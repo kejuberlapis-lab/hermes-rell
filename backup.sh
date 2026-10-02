@@ -18,12 +18,17 @@ mkdir -p "$BACKUP_DIR/projects/hris"
 mkdir -p "$BACKUP_DIR/projects/scripts"
 mkdir -p "$BACKUP_DIR/hermes_core/memories"
 mkdir -p "$BACKUP_DIR/hermes_core/config"
+mkdir -p "$BACKUP_DIR/hermes_core/chat_history"
 mkdir -p "$BACKUP_DIR/skills/profile_skills"
 mkdir -p "$BACKUP_DIR/skills/global_skills"
 mkdir -p "$BACKUP_DIR/system_configs/systemd"
 mkdir -p "$BACKUP_DIR/system_configs/nginx"
 
-# 1. Backup Memories, Rules, Soul & Personas
+# 1. Export Full Readable Chat History (All Sessions & Messages)
+echo "💬 Exporting Full Chat History to Markdown..."
+python3 /home/ubuntu/export_chat_history.py 2>/dev/null || true
+
+# 2. Backup Memories, Rules, Soul & Personas
 echo "📝 Backing up Hermes Memories, Core Rules & Personas..."
 cp -f "$PROFILE_DIR/memories/MEMORY.md" "$BACKUP_DIR/hermes_core/memories/" 2>/dev/null || true
 cp -f "$PROFILE_DIR/memories/USER.md" "$BACKUP_DIR/hermes_core/memories/" 2>/dev/null || true
@@ -36,7 +41,7 @@ if [ -f "$PROFILE_DIR/config.yaml" ]; then
     sed -E 's/(token|key|secret|password): *("[^"]+"|[^\n]+)/\1: "[REDACTED]"/gi' "$PROFILE_DIR/config.yaml" > "$BACKUP_DIR/hermes_core/config/config.sanitized.yaml"
 fi
 
-# 2. Backup All Obsidian Vaults (Full Markdown & Docs)
+# 3. Backup All Obsidian Vaults (Full Markdown & Docs)
 echo "📦 Backing up All Obsidian Vaults & Markdown Docs..."
 rsync -av --delete \
   --exclude=".git" \
@@ -48,7 +53,7 @@ rsync -av --delete \
 # Copy any root markdown files
 find /home/ubuntu/ -maxdepth 1 -name "*.md" -exec cp -f {} "$BACKUP_DIR/" \; 2>/dev/null || true
 
-# 3. Backup Skills (Profile Skills + Global Skills Library)
+# 4. Backup Skills (Profile Skills + Global Skills Library)
 echo "🧠 Backing up Profile Skills & Full Global Skills Library..."
 rsync -av --delete \
   --exclude="__pycache__" \
@@ -61,7 +66,7 @@ rsync -av --delete \
   --exclude=".archive" \
   /home/ubuntu/.hermes/skills/ "$BACKUP_DIR/skills/global_skills/"
 
-# 4. Generate Master Skills Catalog & Index
+# 5. Generate Master Skills Catalog & Index
 echo "📋 Generating Master Skills Catalog (SKILLS_CATALOG.md)..."
 cat << 'EOF' > "$BACKUP_DIR/SKILLS_CATALOG.md"
 # 🧠 Katalog & Daftar Lengkap Skill Hermes AI Agent
@@ -97,7 +102,7 @@ Pustaka skill bawaan meliputi:
 *Generated automatically during Hermes Master Backup.*
 EOF
 
-# 5. Generate Master Rules & Settings Manifest
+# 6. Generate Master Rules & Settings Manifest
 echo "📜 Generating Rules & Settings Manifest (RULES_AND_SETTINGS.md)..."
 cat << 'EOF' > "$BACKUP_DIR/RULES_AND_SETTINGS.md"
 # 🛡️ Manifest Pengaturan, Rule Inti, & Konfigurasi Sistem Hermes
@@ -131,7 +136,7 @@ cat << 'EOF' > "$BACKUP_DIR/RULES_AND_SETTINGS.md"
 *Generated automatically during Hermes Master Backup.*
 EOF
 
-# 6. Backup Projects
+# 7. Backup Projects
 echo "💻 Syncing Projects..."
 rsync -av --delete \
   --exclude=".git" \
@@ -147,13 +152,13 @@ rsync -av --delete \
 
 cp -f /home/ubuntu/*.py "$BACKUP_DIR/projects/scripts/" 2>/dev/null || true
 
-# 7. Backup System Configurations
+# 8. Backup System Configurations
 echo "⚙️ Syncing System Service Configs..."
 cp -f /etc/systemd/system/lamar-coffee.service "$BACKUP_DIR/system_configs/systemd/" 2>/dev/null || true
 cp -f /etc/systemd/system/hris.service "$BACKUP_DIR/system_configs/systemd/" 2>/dev/null || true
 cp -rf /etc/nginx/sites-available "$BACKUP_DIR/system_configs/nginx/" 2>/dev/null || true
 
-# 8. Git Commit & Push
+# 9. Git Commit & Push
 cd "$BACKUP_DIR"
 
 if [ ! -d ".git" ]; then
@@ -171,7 +176,7 @@ git add -A
 if git diff --staged --quiet; then
     echo "✓ No new changes to commit."
 else
-    git commit -m "Hermes Full Comprehensive Backup: Rules, Settings, Skills Catalog & MD Files — $TIMESTAMP"
+    git commit -m "Hermes Full Comprehensive Backup: Chat History, Rules, Settings, Skills Catalog & MD Files — $TIMESTAMP"
     echo "✓ Committed successfully!"
 fi
 
@@ -179,5 +184,5 @@ echo "🚀 Pushing Full Backup to GitHub: $REPO_URL..."
 git push -u origin main
 
 echo "=========================================================="
-echo "🎉 SEMUA RULE, PENGATURAN, MD, & DAFTAR SKILL TELAH TERSINKRON!"
+echo "🎉 SEMUA CHAT HISTORY, RULE, PENGATURAN, MD, & DAFTAR SKILL TELAH TERSINKRON!"
 echo "=========================================================="
