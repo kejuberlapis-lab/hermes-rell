@@ -1,0 +1,35 @@
+{
+  "source": "skills-sh/jeffallan/claude-skills/fullstack-guardian",
+  "source_url": "https://github.com/jeffallan/claude-skills/tree/882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf/skills/fullstack-guardian",
+  "bundle_hash": "sha256:afba73b80b8deaccf64b6ae63ee4428814e9b9a1824a6c472c506dcb788ac287",
+  "scanner_version": "skills-guard-v1",
+  "verdict": "caution",
+  "trust_level": "community",
+  "findings": [
+    {
+      "pattern_id": "dump_all_env",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "references/integration-patterns.md",
+      "line": 319,
+      "match": "export const config = environments[process.env.NODE_ENV || 'development'];",
+      "description": "dumps all environment variables"
+    },
+    {
+      "pattern_id": "remote_fetch",
+      "severity": "medium",
+      "category": "supply_chain",
+      "file": "references/integration-patterns.md",
+      "line": 285,
+      "match": "const res = http.get('https://api.example.com/users');",
+      "description": "fetches remote resource at runtime"
+    }
+  ],
+  "rules": [
+    "dump_all_env",
+    "remote_fetch"
+  ],
+  "scanned_at": "2026-08-27T11:39:46.279520+00:00",
+  "summary": "fullstack-guardian: caution \u2014 2 finding(s) in exfiltration, supply_chain",
+  "fresh": true
+}

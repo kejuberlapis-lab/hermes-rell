@@ -1,0 +1,57 @@
+_config_version: 46
+approvals:
+  mode: manual
+  destructive_slash_confirm: false
+command_allowlist:
+  - delete in root path
+  - force kill processes
+  - force kill processes (killall -KILL)
+  - in-place edit of system config
+  - overwrite system file via tee
+  - script execution via -e/-c flag
+  - stop/restart system service
+  - sudo with combined-flag privilege escalation
+  - sudo with privilege flag (stdin/askpass/shell/list)
+custom_providers:
+  - api_key: "[REDACTED]"
+    base_url: http://localhost:20128/v1
+    discover_models: true
+    model: deepseek/deepseek-v4-flash
+    models:
+      ag/gemini-3.8-flash-high: {}
+      ag/gemini-3.8-flash-medium: {}
+      ag/gemini-3.8-flash-low: {}
+      ag/gemini-3.8-flash: {}
+      ag/gemini-3.7-flash-high: {}
+      ag/gemini-3.7-flash-medium: {}
+      ag/gemini-3.6-flash-high: {}
+      ag/gemini-3.6-flash-medium: {}
+      ag/gemini-3.6-flash-low: {}
+      ag/gemini-3.5-flash-high: {}
+      ag/gemini-3.5-flash-low: {}
+      ag/gemini-3.5-flash-extra-low: {}
+      ag/gemini-3.1-pro-low: {}
+    name: 9Router VPS
+    models_discovered: true
+model:
+  api_key: "[REDACTED]"
+  api_mode: chat_completions
+  base_url: http://localhost:20128/v1
+  default: ag/gemini-3.7-flash-high
+  provider: custom
+onboarding:
+  seen:
+    busy_input_prompt: true
+    profile_build_offered: true
+    tool_progress_prompt: true
+telegram:
+  allow_from: &id001
+    - '661471478'
+    - '5955713269'
+    - '856579127'
+    - '728903007'
+  allowed_chats: *id001
+  reactions: false
+memory:
+  memory_char_limit: 8000
+  user_char_limit: 5000

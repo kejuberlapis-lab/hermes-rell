@@ -1,0 +1,629 @@
+{
+  "version": 1,
+  "installed": {
+    "baoyu-article-illustrator": {
+      "source": "official",
+      "identifier": "official/creative/baoyu-article-illustrator",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:49c09a0ee50b2e59",
+      "install_path": "creative/baoyu-article-illustrator",
+      "files": [
+        "PORT_NOTES.md",
+        "SKILL.md",
+        "prompts/system.md",
+        "references/palettes/macaron.md",
+        "references/palettes/mono-ink.md",
+        "references/palettes/neon.md",
+        "references/palettes/warm.md",
+        "references/prompt-construction.md",
+        "references/style-presets.md",
+        "references/styles/blueprint.md",
+        "references/styles/chalkboard.md",
+        "references/styles/editorial.md",
+        "references/styles/elegant.md",
+        "references/styles/fantasy-animation.md",
+        "references/styles/flat-doodle.md",
+        "references/styles/flat.md",
+        "references/styles/ink-notes.md",
+        "references/styles/intuition-machine.md",
+        "references/styles/minimal.md",
+        "references/styles/nature.md",
+        "references/styles/notion.md",
+        "references/styles/pixel-art.md",
+        "references/styles/playful.md",
+        "references/styles/retro.md",
+        "references/styles/scientific.md",
+        "references/styles/screen-print.md",
+        "references/styles/sketch-notes.md",
+        "references/styles/sketch.md",
+        "references/styles/vector-illustration.md",
+        "references/styles/vintage.md",
+        "references/styles/warm.md",
+        "references/styles/watercolor.md",
+        "references/styles.md",
+        "references/usage.md",
+        "references/workflow.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-07-12T06:51:17.588747+00:00",
+      "updated_at": "2026-07-12T06:51:17.588747+00:00"
+    },
+    "baoyu-comic": {
+      "source": "official",
+      "identifier": "official/creative/baoyu-comic",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:4378c8ba82fd3649",
+      "install_path": "creative/baoyu-comic",
+      "files": [
+        "PORT_NOTES.md",
+        "SKILL.md",
+        "references/analysis-framework.md",
+        "references/art-styles/chalk.md",
+        "references/art-styles/ink-brush.md",
+        "references/art-styles/ligne-claire.md",
+        "references/art-styles/manga.md",
+        "references/art-styles/minimalist.md",
+        "references/art-styles/realistic.md",
+        "references/auto-selection.md",
+        "references/base-prompt.md",
+        "references/character-template.md",
+        "references/layouts/cinematic.md",
+        "references/layouts/dense.md",
+        "references/layouts/four-panel.md",
+        "references/layouts/mixed.md",
+        "references/layouts/splash.md",
+        "references/layouts/standard.md",
+        "references/layouts/webtoon.md",
+        "references/ohmsha-guide.md",
+        "references/partial-workflows.md",
+        "references/presets/concept-story.md",
+        "references/presets/four-panel.md",
+        "references/presets/ohmsha.md",
+        "references/presets/shoujo.md",
+        "references/presets/wuxia.md",
+        "references/storyboard-template.md",
+        "references/tones/action.md",
+        "references/tones/dramatic.md",
+        "references/tones/energetic.md",
+        "references/tones/neutral.md",
+        "references/tones/romantic.md",
+        "references/tones/vintage.md",
+        "references/tones/warm.md",
+        "references/workflow.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-07-12T06:51:17.623627+00:00",
+      "updated_at": "2026-07-12T06:51:17.623627+00:00"
+    },
+    "pixel-art": {
+      "source": "official",
+      "identifier": "official/creative/pixel-art",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:b7ae08576dac501e",
+      "install_path": "creative/pixel-art",
+      "files": [
+        "ATTRIBUTION.md",
+        "SKILL.md",
+        "references/palettes.md",
+        "scripts/__init__.py",
+        "scripts/palettes.py",
+        "scripts/pixel_art.py",
+        "scripts/pixel_art_video.py"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-07-12T06:51:17.647579+00:00",
+      "updated_at": "2026-07-12T06:51:17.647579+00:00"
+    },
+    "minecraft-modpack-server": {
+      "source": "official",
+      "identifier": "official/gaming/minecraft-modpack-server",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:b10f2b1258e9012b",
+      "install_path": "gaming/minecraft-modpack-server",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-07-12T06:51:17.650478+00:00",
+      "updated_at": "2026-07-12T06:51:17.650478+00:00"
+    },
+    "pokemon-player": {
+      "source": "official",
+      "identifier": "official/gaming/pokemon-player",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:c1bc96fc9bb270c0",
+      "install_path": "gaming/pokemon-player",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-07-12T06:51:17.652098+00:00",
+      "updated_at": "2026-07-12T06:51:17.652098+00:00"
+    },
+    "dspy": {
+      "source": "official",
+      "identifier": "official/mlops/research/dspy",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:bbbe1148d27953a8",
+      "install_path": "mlops/research/dspy",
+      "files": [
+        "SKILL.md",
+        "references/examples.md",
+        "references/modules.md",
+        "references/optimizers.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-07-12T06:51:17.659841+00:00",
+      "updated_at": "2026-07-12T06:51:17.659841+00:00"
+    },
+    "fullstack-dev": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/minimax-ai/skills/fullstack-dev",
+      "trust_level": "community",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:95055b9742816f08",
+      "install_path": "fullstack-dev",
+      "files": [
+        "SKILL.md",
+        "references/api-design.md",
+        "references/auth-flow.md",
+        "references/db-schema.md",
+        "references/django-best-practices.md",
+        "references/environment-management.md",
+        "references/release-checklist.md",
+        "references/technology-selection.md",
+        "references/testing-strategy.md"
+      ],
+      "metadata": {
+        "source_url": "https://github.com/minimax-ai/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/fullstack-dev",
+        "source_revision": "60aaae52bb2af8162732751a4332f62a5fef518b"
+      },
+      "scan_provenance": {
+        "source": "skills-sh/minimax-ai/skills/fullstack-dev",
+        "source_url": "https://github.com/minimax-ai/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/fullstack-dev",
+        "bundle_hash": "sha256:95055b9742816f08a8e25d4d83d04373c06c54f65421cedc59ec47d08fa7845c",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "caution",
+        "trust_level": "community",
+        "findings": [
+          {
+            "pattern_id": "python_os_environ",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "SKILL.md",
+            "line": 296,
+            "match": "❌ Never scatter process.env / os.environ throughout code",
+            "description": "accesses os.environ (potential env dump)"
+          },
+          {
+            "pattern_id": "node_process_env",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "SKILL.md",
+            "line": 265,
+            "match": "const value = process.env[name];",
+            "description": "accesses process.env (Node.js environment)"
+          },
+          {
+            "pattern_id": "hardcoded_ip_port",
+            "severity": "medium",
+            "category": "network",
+            "file": "references/django-best-practices.md",
+            "line": 402,
+            "match": "--bind 0.0.0.0:8000 \\",
+            "description": "hardcoded IP address with port"
+          },
+          {
+            "pattern_id": "bind_all_interfaces",
+            "severity": "high",
+            "category": "network",
+            "file": "references/django-best-practices.md",
+            "line": 402,
+            "match": "--bind 0.0.0.0:8000 \\",
+            "description": "binds to all network interfaces"
+          },
+          {
+            "pattern_id": "dump_all_env",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "references/environment-management.md",
+            "line": 49,
+            "match": "origin: ALLOWED_ORIGINS[process.env.NODE_ENV || 'development'],",
+            "description": "dumps all environment variables"
+          }
+        ],
+        "rules": [
+          "bind_all_interfaces",
+          "dump_all_env",
+          "hardcoded_ip_port",
+          "node_process_env",
+          "python_os_environ"
+        ],
+        "scanned_at": "2026-08-27T11:39:32.748749+00:00",
+        "summary": "fullstack-dev: caution — 5 finding(s) in exfiltration, network",
+        "fresh": false
+      },
+      "installed_at": "2026-08-27T11:40:19.227796+00:00",
+      "updated_at": "2026-08-27T11:40:19.227810+00:00"
+    },
+    "fullstack-guardian": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/jeffallan/claude-skills/fullstack-guardian",
+      "trust_level": "community",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:afba73b80b8deacc",
+      "install_path": "fullstack-guardian",
+      "files": [
+        "SKILL.md",
+        "references/api-design-standards.md",
+        "references/architecture-decisions.md",
+        "references/backend-patterns.md",
+        "references/common-patterns.md",
+        "references/deliverables-checklist.md",
+        "references/design-template.md",
+        "references/error-handling.md",
+        "references/frontend-patterns.md",
+        "references/integration-patterns.md",
+        "references/security-checklist.md"
+      ],
+      "metadata": {
+        "source_url": "https://github.com/jeffallan/claude-skills/tree/882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf/skills/fullstack-guardian",
+        "source_revision": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf"
+      },
+      "scan_provenance": {
+        "source": "skills-sh/jeffallan/claude-skills/fullstack-guardian",
+        "source_url": "https://github.com/jeffallan/claude-skills/tree/882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf/skills/fullstack-guardian",
+        "bundle_hash": "sha256:afba73b80b8deaccf64b6ae63ee4428814e9b9a1824a6c472c506dcb788ac287",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "caution",
+        "trust_level": "community",
+        "findings": [
+          {
+            "pattern_id": "dump_all_env",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "references/integration-patterns.md",
+            "line": 319,
+            "match": "export const config = environments[process.env.NODE_ENV || 'development'];",
+            "description": "dumps all environment variables"
+          },
+          {
+            "pattern_id": "remote_fetch",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "references/integration-patterns.md",
+            "line": 285,
+            "match": "const res = http.get('https://api.example.com/users');",
+            "description": "fetches remote resource at runtime"
+          }
+        ],
+        "rules": [
+          "dump_all_env",
+          "remote_fetch"
+        ],
+        "scanned_at": "2026-08-27T11:39:46.279520+00:00",
+        "summary": "fullstack-guardian: caution — 2 finding(s) in exfiltration, supply_chain",
+        "fresh": false
+      },
+      "installed_at": "2026-08-27T11:40:30.488003+00:00",
+      "updated_at": "2026-08-27T11:40:30.488045+00:00"
+    },
+    "backend": {
+      "source": "clawhub",
+      "identifier": "backend",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:e4b27d671d486d3a",
+      "install_path": "backend",
+      "files": [
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "backend",
+        "source_url": "backend",
+        "bundle_hash": "sha256:e4b27d671d486d3a7bdb51d1eac6ab92aa5656e12fc562cd83ff15316c439836",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-08-27T11:40:02.336284+00:00",
+        "summary": "backend: clean scan, no threats detected",
+        "fresh": false
+      },
+      "installed_at": "2026-08-27T11:40:45.244581+00:00",
+      "updated_at": "2026-08-27T11:40:45.244595+00:00"
+    },
+    "ui-ux-design-pro": {
+      "source": "clawhub",
+      "identifier": "ui-ux-design-pro",
+      "trust_level": "community",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:4497c027eef5ab21",
+      "install_path": "ui-ux-design-pro",
+      "files": [
+        "cli/commands/audit.ts",
+        "cli/commands/generate.ts",
+        "cli/commands/icons.ts",
+        "cli/commands/search.ts",
+        "cli/data/ai-hallucinations.csv",
+        "cli/data/charts.csv",
+        "cli/data/colors.csv",
+        "cli/data/components.csv",
+        "cli/data/icon-libraries.csv",
+        "cli/data/icons.csv",
+        "cli/data/landing.csv",
+        "cli/data/products.csv",
+        "cli/data/react-performance.csv",
+        "cli/data/stacks/angular.csv",
+        "cli/data/stacks/astro.csv",
+        "cli/data/stacks/flutter.csv",
+        "cli/data/stacks/html-tailwind.csv",
+        "cli/data/stacks/jetpack-compose.csv",
+        "cli/data/stacks/nextjs.csv",
+        "cli/data/stacks/nuxt-ui.csv",
+        "cli/data/stacks/nuxtjs.csv",
+        "cli/data/stacks/react-native.csv",
+        "cli/data/stacks/react.csv",
+        "cli/data/stacks/remix.csv",
+        "cli/data/stacks/shadcn.csv",
+        "cli/data/stacks/solidjs.csv",
+        "cli/data/stacks/svelte.csv",
+        "cli/data/stacks/swiftui.csv",
+        "cli/data/stacks/vue.csv",
+        "cli/data/styles.csv",
+        "cli/data/typography.csv",
+        "cli/data/ui-reasoning.csv",
+        "cli/data/ux-guidelines.csv",
+        "cli/data/web-interface.csv",
+        "cli/fintech-final-test.md",
+        "cli/fintech-fixed-test.md",
+        "cli/fintech-pro-test.md",
+        "cli/fintech-senior-test.md",
+        "cli/fintech-test.md",
+        "cli/index.ts",
+        "cli/lib/generators.ts",
+        "cli/lib/search.ts",
+        "cli/package.json",
+        "cli/README.md",
+        "cli/saas-final-test.md",
+        "cli/saas-fixed-test.md",
+        "cli/saas-senior-test.md",
+        "cli/saas-test.md",
+        "cli/tsconfig.json",
+        "references/accessibility.md",
+        "references/animation-and-motion.md",
+        "references/cognitive-principles.md",
+        "references/color-system.md",
+        "references/component-patterns.md",
+        "references/critique-protocol.md",
+        "references/depth-and-elevation.md",
+        "references/design-directions.md",
+        "references/icon-patterns.md",
+        "references/real-world-patterns.md",
+        "references/spacing-and-layout.md",
+        "references/token-architecture.md",
+        "references/typography.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "ui-ux-design-pro",
+        "source_url": "ui-ux-design-pro",
+        "bundle_hash": "sha256:4497c027eef5ab215e4b99c88be0fa11d7da29ace2bc635086ec22c072485997",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "caution",
+        "trust_level": "community",
+        "findings": [
+          {
+            "pattern_id": "too_many_files",
+            "severity": "medium",
+            "category": "structural",
+            "file": "(directory)",
+            "line": 0,
+            "match": "64 files",
+            "description": "skill has 64 files (limit: 50)"
+          },
+          {
+            "pattern_id": "md_image_exfil",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "cli/commands/generate.ts",
+            "line": 195,
+            "match": "md += `- **Primary Color**: \\`${style.primary_color}\\` ![${style.primary_color}](https://via.placeholder.com/15/${sty...",
+            "description": "markdown image URL with variable interpolation (image-based exfil)"
+          },
+          {
+            "pattern_id": "md_image_exfil",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "cli/commands/generate.ts",
+            "line": 204,
+            "match": "table += `| **${stop}** | \\`${hex}\\` | ![${hex}](https://via.placeholder.com/80x30/${cleanHex}/${cleanHex}?text=+) |\\n`;",
+            "description": "markdown image URL with variable interpolation (image-based exfil)"
+          },
+          {
+            "pattern_id": "md_link_exfil",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "cli/commands/generate.ts",
+            "line": 195,
+            "match": "md += `- **Primary Color**: \\`${style.primary_color}\\` ![${style.primary_color}](https://via.placeholder.com/15/${sty...",
+            "description": "markdown link with variable interpolation"
+          },
+          {
+            "pattern_id": "md_link_exfil",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "cli/commands/generate.ts",
+            "line": 204,
+            "match": "table += `| **${stop}** | \\`${hex}\\` | ![${hex}](https://via.placeholder.com/80x30/${cleanHex}/${cleanHex}?text=+) |\\n`;",
+            "description": "markdown link with variable interpolation"
+          },
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "references/icon-patterns.md",
+            "line": 40,
+            "match": "npm install @iconify/react",
+            "description": "npm install without version pinning"
+          }
+        ],
+        "rules": [
+          "md_image_exfil",
+          "md_link_exfil",
+          "too_many_files",
+          "unpinned_npm_install"
+        ],
+        "scanned_at": "2026-08-27T11:45:53.544706+00:00",
+        "summary": "ui-ux-design-pro: caution — 6 finding(s) in exfiltration, structural, supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-27T11:45:53.553510+00:00",
+      "updated_at": "2026-08-27T11:45:53.553523+00:00"
+    },
+    "ui-ux-designer": {
+      "source": "lobehub",
+      "identifier": "lobehub/ui-ux-designer",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:bee5815b04dab98e",
+      "install_path": "ui-ux-designer",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "lobehub/ui-ux-designer",
+        "source_url": "lobehub/ui-ux-designer",
+        "bundle_hash": "sha256:bee5815b04dab98e3c6204f2245e6588b7409dae130297544529afd8574742ba",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-08-27T11:45:56.469073+00:00",
+        "summary": "ui-ux-designer: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-08-27T11:45:56.473244+00:00",
+      "updated_at": "2026-08-27T11:45:56.473257+00:00"
+    },
+    "excalidraw": {
+      "source": "official",
+      "identifier": "official/creative/excalidraw",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:359112274e8262e0",
+      "install_path": "creative/excalidraw",
+      "files": [
+        "SKILL.md",
+        "references/colors.md",
+        "references/dark-mode.md",
+        "references/examples.md",
+        "scripts/upload.py"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:01.204394+00:00",
+      "updated_at": "2026-09-27T12:53:01.204394+00:00"
+    },
+    "sketch": {
+      "source": "official",
+      "identifier": "official/creative/sketch",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:bea886ff483216bf",
+      "install_path": "creative/sketch",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:01.259663+00:00",
+      "updated_at": "2026-09-27T12:53:01.259663+00:00"
+    },
+    "weights-and-biases": {
+      "source": "official",
+      "identifier": "official/mlops/evaluation/weights-and-biases",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:4286e3db3985d52f",
+      "install_path": "mlops/evaluation/weights-and-biases",
+      "files": [
+        "SKILL.md",
+        "references/artifacts.md",
+        "references/integrations.md",
+        "references/sweeps.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:01.277529+00:00",
+      "updated_at": "2026-09-27T12:53:01.277529+00:00"
+    },
+    "llama-cpp": {
+      "source": "official",
+      "identifier": "official/mlops/inference/llama-cpp",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:43a4ec8fb07acce8",
+      "install_path": "mlops/inference/llama-cpp",
+      "files": [
+        "SKILL.md",
+        "references/advanced-usage.md",
+        "references/hub-discovery.md",
+        "references/optimization.md",
+        "references/quantization.md",
+        "references/server.md",
+        "references/troubleshooting.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:01.287268+00:00",
+      "updated_at": "2026-09-27T12:53:01.287268+00:00"
+    },
+    "huggingface-hub": {
+      "source": "official",
+      "identifier": "official/mlops/huggingface-hub",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:55fa8eb6c3b4be8c",
+      "install_path": "mlops/huggingface-hub",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:01.300066+00:00",
+      "updated_at": "2026-09-27T12:53:01.300066+00:00"
+    }
+  }
+}

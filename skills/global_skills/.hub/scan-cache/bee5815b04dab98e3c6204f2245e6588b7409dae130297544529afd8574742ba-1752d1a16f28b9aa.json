@@ -1,0 +1,13 @@
+{
+  "source": "lobehub/ui-ux-designer",
+  "source_url": "lobehub/ui-ux-designer",
+  "bundle_hash": "sha256:bee5815b04dab98e3c6204f2245e6588b7409dae130297544529afd8574742ba",
+  "scanner_version": "skills-guard-v1",
+  "verdict": "safe",
+  "trust_level": "community",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-08-27T11:45:56.469073+00:00",
+  "summary": "ui-ux-designer: clean scan, no threats detected",
+  "fresh": true
+}

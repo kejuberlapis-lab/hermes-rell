@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-10-02T22:08:10.621309",
+  "platforms": {
+    "telegram": [
+      {
+        "id": "661471478",
+        "name": "andi saputra",
+        "type": "dm",
+        "thread_id": null
+      },
+      {
+        "id": "856579127",
+        "name": "Sedny Mur Prasetyo",
+        "type": "dm",
+        "thread_id": null
+      },
+      {
+        "id": "5955713269",
+        "name": "avrell",
+        "type": "dm",
+        "thread_id": null
+      },
+      {
+        "id": "728903007",
+        "name": "124230117_Stefano Garrent Khristiawan",
+        "type": "dm",
+        "thread_id": null
+      }
+    ]
+  }
+}

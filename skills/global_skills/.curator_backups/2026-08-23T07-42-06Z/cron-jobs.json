@@ -1,0 +1,46 @@
+{
+  "jobs": [
+    {
+      "id": "c86b19a0d775",
+      "name": "RAM Monitor VPS-Zeus",
+      "prompt": "Cek RAM VPS-Zeus (43.134.233.101) via SSH. Jika RAM used > 80% (dari 3.6GB = >2.88GB used atau available < 720MB), kirim alert ke sir. Gunakan `free -h` untuk cek. Format alert: \u26a0\ufe0f RAM VPS-Zeus: X used / 3.6GB (Y%). Mohon matikan beberapa profile atau clear cache.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 240,
+        "display": "every 240m"
+      },
+      "schedule_display": "every 240m",
+      "repeat": {
+        "times": null,
+        "completed": 7
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-29T02:06:21.173782+07:00",
+      "next_run_at": "2026-08-23T18:39:44.135719+07:00",
+      "last_run_at": "2026-08-23T14:39:44.135719+07:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": "no delivery target resolved for deliver=all",
+      "deliver": "all",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null,
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-08-23T14:39:44.136431+07:00"
+}

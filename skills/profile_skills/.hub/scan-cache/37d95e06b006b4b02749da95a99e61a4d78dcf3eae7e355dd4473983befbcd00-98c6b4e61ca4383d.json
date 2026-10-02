@@ -1,0 +1,43 @@
+{
+  "bundle_hash": "sha256:37d95e06b006b4b02749da95a99e61a4d78dcf3eae7e355dd4473983befbcd00",
+  "scanner_version": "skills-guard-v6",
+  "source": "https://raw.githubusercontent.com/ahmdd4vd/apos/main/skills/apos/SKILL.md",
+  "source_url": "https://raw.githubusercontent.com/ahmdd4vd/apos/main/skills/apos/SKILL.md",
+  "verdict": "safe",
+  "trust_level": "community",
+  "findings": [
+    {
+      "pattern_id": "agent_config_ref",
+      "severity": "low",
+      "category": "persistence",
+      "file": "SKILL.md",
+      "line": 306,
+      "match": "When APOS is adopted in a project, make the project\u2019s primary agent instructions remind agents to use APOS. Use `AGEN...",
+      "description": "references agent config files (informational; only modification intent is scored)"
+    },
+    {
+      "pattern_id": "agent_config_ref",
+      "severity": "low",
+      "category": "persistence",
+      "file": "SKILL.md",
+      "line": 327,
+      "match": "Preserve existing `AGENTS.md` and `CLAUDE.md` instructions. Inspect them first, append an isolated APOS section, and ...",
+      "description": "references agent config files (informational; only modification intent is scored)"
+    },
+    {
+      "pattern_id": "agent_config_ref",
+      "severity": "low",
+      "category": "persistence",
+      "file": "SKILL.md",
+      "line": 333,
+      "match": "Adopt project:  add or update AGENTS.md, CLAUDE.md, and minimum .apos/ state",
+      "description": "references agent config files (informational; only modification intent is scored)"
+    }
+  ],
+  "rules": [
+    "agent_config_ref"
+  ],
+  "scanned_at": "2026-09-27T14:22:14.259539+00:00",
+  "summary": "apos: safe \u2014 3 finding(s) in persistence",
+  "fresh": true
+}

@@ -1,0 +1,73 @@
+{
+  "source": "ui-ux-design-pro",
+  "source_url": "ui-ux-design-pro",
+  "bundle_hash": "sha256:4497c027eef5ab215e4b99c88be0fa11d7da29ace2bc635086ec22c072485997",
+  "scanner_version": "skills-guard-v1",
+  "verdict": "caution",
+  "trust_level": "community",
+  "findings": [
+    {
+      "pattern_id": "too_many_files",
+      "severity": "medium",
+      "category": "structural",
+      "file": "(directory)",
+      "line": 0,
+      "match": "64 files",
+      "description": "skill has 64 files (limit: 50)"
+    },
+    {
+      "pattern_id": "md_image_exfil",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "cli/commands/generate.ts",
+      "line": 195,
+      "match": "md += `- **Primary Color**: \\`${style.primary_color}\\` ![${style.primary_color}](https://via.placeholder.com/15/${sty...",
+      "description": "markdown image URL with variable interpolation (image-based exfil)"
+    },
+    {
+      "pattern_id": "md_image_exfil",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "cli/commands/generate.ts",
+      "line": 204,
+      "match": "table += `| **${stop}** | \\`${hex}\\` | ![${hex}](https://via.placeholder.com/80x30/${cleanHex}/${cleanHex}?text=+) |\\n`;",
+      "description": "markdown image URL with variable interpolation (image-based exfil)"
+    },
+    {
+      "pattern_id": "md_link_exfil",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "cli/commands/generate.ts",
+      "line": 195,
+      "match": "md += `- **Primary Color**: \\`${style.primary_color}\\` ![${style.primary_color}](https://via.placeholder.com/15/${sty...",
+      "description": "markdown link with variable interpolation"
+    },
+    {
+      "pattern_id": "md_link_exfil",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "cli/commands/generate.ts",
+      "line": 204,
+      "match": "table += `| **${stop}** | \\`${hex}\\` | ![${hex}](https://via.placeholder.com/80x30/${cleanHex}/${cleanHex}?text=+) |\\n`;",
+      "description": "markdown link with variable interpolation"
+    },
+    {
+      "pattern_id": "unpinned_npm_install",
+      "severity": "medium",
+      "category": "supply_chain",
+      "file": "references/icon-patterns.md",
+      "line": 40,
+      "match": "npm install @iconify/react",
+      "description": "npm install without version pinning"
+    }
+  ],
+  "rules": [
+    "md_image_exfil",
+    "md_link_exfil",
+    "too_many_files",
+    "unpinned_npm_install"
+  ],
+  "scanned_at": "2026-08-27T11:45:53.544706+00:00",
+  "summary": "ui-ux-design-pro: caution \u2014 6 finding(s) in exfiltration, structural, supply_chain",
+  "fresh": true
+}

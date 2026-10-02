@@ -1,0 +1,28 @@
+services:
+  cybermes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/zyrexnn/cybermes:latest
+    container_name: cybermes-agent
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./targets:/workspace/targets
+      - ./recon:/workspace/recon
+      - ./output:/workspace/output
+      - ./reports:/workspace/reports
+      - ./logs:/workspace/logs
+      - ./skills:/workspace/skills
+      - ./tools:/workspace/tools
+      - ./.hermes:/root/.hermes
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: cybermes gateway run
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - PUPPETEER_HEADLESS=true
+      - NODE_OPTIONS=--no-warnings

@@ -1,0 +1,110 @@
+# =============================================================================
+# Cybermes Comprehensive Git Ignore Rules
+# =============================================================================
+
+# 1. Credentials, Environment Files & Secrets (STRICT - NEVER COMMIT)
+.env
+.env.*
+!.env.example
+*.env
+auth.json
+*.auth.json
+.hermes/auth.json
+.hermes/.env
+.hermes/sessions/
+.hermes/history/
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.csr
+*credentials*.json
+*secrets*.json
+
+# 2. Hermes Agent Local State, Data & Sessions
+.hermes/*
+!.hermes/config.yaml.example
+!.hermes/SOUL.md
+*.db
+*.sqlite*
+gateway-starts.log
+
+# 3. Python Virtual Environments, Bytecode & Build Artifacts
+venv/
+.venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# 4. Compiled Binaries & Executables
+tools/bin/*
+!tools/bin/.gitkeep
+!tools/bin/nmap
+bin/*.exe
+*.exe
+*.dll
+*.dylib
+*.bin
+
+# 5. Assessment Deliverables, Recon Dumps, Logs & Targets
+logs/*
+!logs/.gitkeep
+output/*
+!output/.gitkeep
+recon/*
+!recon/.gitkeep
+targets/*
+!targets/.gitkeep
+reports/*
+!reports/.gitkeep
+*.log
+*.out
+
+# 6. Skills Local Cache & Dynamic State
+skills/.usage.json
+skills/.curator_state
+skills/.*
+skills/**/references/*kompas*
+skills/security/recon-output-triage/
+*kompas*
+
+# 7. Node, Browser, Playwright & Temp Files
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+chrome/
+playwright-report/
+test-results/
+*.tmp
+*.bak
+.tmp_*
+.mdbook-build.*
+
+# 8. OS & IDE Configuration Files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.suo
+*.user
+.gemini/
+.claude/

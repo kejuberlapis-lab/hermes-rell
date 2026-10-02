@@ -1,0 +1,65 @@
+{
+  "source": "skills-sh/minimax-ai/skills/fullstack-dev",
+  "source_url": "https://github.com/minimax-ai/skills/tree/60aaae52bb2af8162732751a4332f62a5fef518b/skills/fullstack-dev",
+  "bundle_hash": "sha256:95055b9742816f08a8e25d4d83d04373c06c54f65421cedc59ec47d08fa7845c",
+  "scanner_version": "skills-guard-v1",
+  "verdict": "caution",
+  "trust_level": "community",
+  "findings": [
+    {
+      "pattern_id": "python_os_environ",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "SKILL.md",
+      "line": 296,
+      "match": "\u274c Never scatter process.env / os.environ throughout code",
+      "description": "accesses os.environ (potential env dump)"
+    },
+    {
+      "pattern_id": "node_process_env",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "SKILL.md",
+      "line": 265,
+      "match": "const value = process.env[name];",
+      "description": "accesses process.env (Node.js environment)"
+    },
+    {
+      "pattern_id": "hardcoded_ip_port",
+      "severity": "medium",
+      "category": "network",
+      "file": "references/django-best-practices.md",
+      "line": 402,
+      "match": "--bind 0.0.0.0:8000 \\",
+      "description": "hardcoded IP address with port"
+    },
+    {
+      "pattern_id": "bind_all_interfaces",
+      "severity": "high",
+      "category": "network",
+      "file": "references/django-best-practices.md",
+      "line": 402,
+      "match": "--bind 0.0.0.0:8000 \\",
+      "description": "binds to all network interfaces"
+    },
+    {
+      "pattern_id": "dump_all_env",
+      "severity": "high",
+      "category": "exfiltration",
+      "file": "references/environment-management.md",
+      "line": 49,
+      "match": "origin: ALLOWED_ORIGINS[process.env.NODE_ENV || 'development'],",
+      "description": "dumps all environment variables"
+    }
+  ],
+  "rules": [
+    "bind_all_interfaces",
+    "dump_all_env",
+    "hardcoded_ip_port",
+    "node_process_env",
+    "python_os_environ"
+  ],
+  "scanned_at": "2026-08-27T11:39:32.748749+00:00",
+  "summary": "fullstack-dev: caution \u2014 5 finding(s) in exfiltration, network",
+  "fresh": true
+}

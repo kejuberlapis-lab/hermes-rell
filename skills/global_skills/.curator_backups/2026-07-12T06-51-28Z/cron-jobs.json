@@ -1,0 +1,46 @@
+{
+  "jobs": [
+    {
+      "id": "c86b19a0d775",
+      "name": "RAM Monitor VPS-Zeus",
+      "prompt": "Cek RAM VPS-Zeus (43.134.233.101) via SSH. Jika RAM used > 80% (dari 3.6GB = >2.88GB used atau available < 720MB), kirim alert ke sir. Gunakan `free -h` untuk cek. Format alert: \u26a0\ufe0f RAM VPS-Zeus: X used / 3.6GB (Y%). Mohon matikan beberapa profile atau clear cache.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 240,
+        "display": "every 240m"
+      },
+      "schedule_display": "every 240m",
+      "repeat": {
+        "times": null,
+        "completed": 2
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-29T02:06:21.173782+07:00",
+      "next_run_at": "2026-07-12T17:51:27.867064+07:00",
+      "last_run_at": "2026-07-12T13:51:27.867064+07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: HTTP 402: Insufficient Balance",
+      "last_delivery_error": "no delivery target resolved for deliver=all",
+      "deliver": "all",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": null,
+      "profile": null,
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-07-12T13:51:27.867329+07:00"
+}
