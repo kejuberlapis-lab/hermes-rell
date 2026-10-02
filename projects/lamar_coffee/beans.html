@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toko Biji Kopi Single-Origin & Roastery — Lamar Coffee</title>
+  <meta name="description" content="Beli biji kopi single-origin segar hasil sangrai mikro Lamar Coffee. Tersedia Aceh Gayo, Toraja Sapan, dan Ethiopia Guji dengan skor cupping SCA 88+." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            linen: '#F8F5EE',
+            sand: '#EFEAE1',
+            warmgray: '#E3DDD2',
+            espresso: '#140F0D',
+            charcoal: '#211B18',
+            roast: '#2E2622',
+            ochre: '#C86D3B',
+            clay: '#A45327',
+            amber: '#D9822B',
+            cream: '#FAF8F5',
+            borderWarm: '#E5DFD3',
+            borderDark: '#382F2A'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-paper text-espresso font-sans antialiased selection:bg-ochre selection:text-white">
+
+  <!-- TOP BAR -->
+  <div class="bg-espresso text-linen/80 py-2 px-4 text-[11px] font-mono tracking-widest uppercase border-b border-borderDark flex items-center justify-between">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center gap-1.5 text-ochre">
+          <span class="w-1.5 h-1.5 rounded-full bg-ochre animate-pulse"></span>
+          Roastery Direct
+        </span>
+        <span class="hidden sm:inline text-linen/50">|</span>
+        <span class="hidden sm:inline text-linen/70">Pengiriman Biji Sangrai Segar ke Seluruh Indonesia</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <span class="text-ochre font-semibold">Bebas Ongkir Jabodetabek >Rp 250k</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-borderWarm transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex flex-col group">
+        <span class="font-serif text-3xl font-bold tracking-tight text-espresso group-hover:text-ochre transition-colors">
+          LAMAR <span class="italic font-normal text-ochre font-serif">Coffee</span>
+        </span>
+        <span class="text-[9px] font-mono tracking-[0.25em] text-espresso/50 uppercase -mt-1">
+          Roastery & Slow Sanctuary
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-espresso/70">
+        <a href="index.html" class="hover:text-ochre transition-colors">Beranda</a>
+        <a href="about.html" class="hover:text-ochre transition-colors">Filosofi</a>
+        <a href="menu.html" class="hover:text-ochre transition-colors">Buku Menu</a>
+        <a href="beans.html" class="text-ochre font-bold">Biji Kopi</a>
+        <a href="space.html" class="hover:text-ochre transition-colors">Ruang</a>
+        <a href="journal.html" class="hover:text-ochre transition-colors">Jurnal</a>
+        <a href="contact.html" class="hover:text-ochre transition-colors">Kontak</a>
+      </nav>
+
+      <div class="flex items-center gap-3.5">
+        <button id="ambienceBtn" onclick="toggleAmbience()" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-borderWarm bg-sand/60 text-[11px] font-mono text-espresso/80 hover:border-ochre hover:text-ochre transition-all cursor-pointer">
+          <span class="w-2 h-2 rounded-full bg-espresso/40" id="ambienceDot"></span>
+          <span id="ambienceText">Suara Kafe: Mati</span>
+        </button>
+
+        <button onclick="toggleCart(true)" class="relative p-2.5 rounded-full border border-borderWarm hover:border-ochre text-espresso hover:text-ochre transition-all bg-white shadow-xs cursor-pointer">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span id="cartCountBadge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ochre text-white text-[10px] font-mono font-bold flex items-center justify-center scale-0 transition-transform">0</span>
+        </button>
+
+        <a href="reservation.html" class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso text-linen text-xs font-mono tracking-wider uppercase hover:bg-ochre transition-colors">
+          <span>Book a Table</span>
+        </a>
+
+        <button onclick="toggleMobileNav()" class="md:hidden p-2 text-espresso">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="hidden md:hidden bg-sand border-b border-borderWarm px-6 py-6 space-y-4 text-xs font-mono uppercase tracking-wider">
+      <a href="index.html" class="block py-1 hover:text-ochre">Beranda</a>
+      <a href="about.html" class="block py-1 hover:text-ochre">Filosofi</a>
+      <a href="menu.html" class="block py-1 hover:text-ochre">Buku Menu</a>
+      <a href="beans.html" class="block py-1 text-ochre font-bold">Biji Kopi</a>
+      <a href="space.html" class="block py-1 hover:text-ochre">Ruang</a>
+      <a href="journal.html" class="block py-1 hover:text-ochre">Jurnal Kopi</a>
+      <a href="contact.html" class="block py-1 hover:text-ochre">Kontak & Lokasi</a>
+      <a href="reservation.html" class="block py-2 text-center rounded-xl bg-espresso text-linen font-bold">Reservasi Meja</a>
+    </div>
+  </header>
+
+  <!-- BEAN SHOP HERO -->
+  <section class="py-16 border-b border-borderWarm bg-sand/40">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <div class="max-w-3xl space-y-4">
+        <span class="text-xs font-mono text-ochre uppercase tracking-widest block">Ethical Direct Trade Roastery</span>
+        <h1 class="font-serif text-4xl sm:text-6xl font-bold text-espresso">Biji Kopi Sangrai Mikro</h1>
+        <p class="text-espresso/70 text-sm font-light leading-relaxed">
+          Kami memilih ceri kopi matang pohon langsung dari petani mitra di Aceh, Toraja, Ethiopia, dan Flores. Disangrai dalam batch kecil dengan mesin Probat Jerman untuk mengunci puncak aroma floral, rasa buah alami, dan aftertaste manis yang bersih.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEANS PRODUCT CARDS -->
+  <section class="py-20 border-b border-borderWarm">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        
+        <!-- Bean 1: Aceh Gayo -->
+        <div class="bg-white rounded-3xl p-8 border border-borderWarm shadow-xs space-y-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-mono text-espresso/60 border-b border-borderWarm pb-3">
+              <span>SUMATRA, INDONESIA</span>
+              <span class="text-ochre font-bold">1.600 MDPL</span>
+            </div>
+            
+            <div class="flex items-start gap-5">
+              <div class="w-28 h-28 rounded-2xl overflow-hidden border border-borderWarm shrink-0">
+                <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=400&q=80" alt="Aceh Gayo" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-ochre uppercase font-semibold">Anaerobic Honey #04</span>
+                <h3 class="font-serif text-3xl font-bold text-espresso mt-0.5">Aceh Gayo Pantan Musara</h3>
+                <p class="text-xs text-espresso/60 font-mono mt-1">Varietas: Ateng Super, TimTim</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="px-2 py-0.5 rounded bg-sand text-[10px] font-mono font-bold text-espresso">SCA Cup Score: 88.5</span>
+                  <span class="px-2 py-0.5 rounded bg-linen text-[10px] font-mono text-espresso/60">Light-Medium Roast</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-linen rounded-2xl border border-borderWarm space-y-1 text-xs font-mono">
+              <span class="text-espresso/50 text-[10px] block">FLAVOR DESCRIPTOR:</span>
+              <p class="text-ochre font-bold text-sm">Wild Blueberry, Dark Cherry, Brown Sugar, Mint</p>
+            </div>
+
+            <!-- Customizer Options for Beans -->
+            <div class="space-y-3 pt-2 text-xs font-mono">
+              <div>
+                <label class="text-espresso/60 block mb-1">PILIHAN UKURAN KEMASAN:</label>
+                <div class="grid grid-cols-3 gap-2" id="gayoWeightGroup">
+                  <button type="button" onclick="setBeanWeight(101, 200, 120000)" class="gayo-w-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center">200g (Rp 120k)</button>
+                  <button type="button" onclick="setBeanWeight(101, 500, 275000)" class="gayo-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">500g (Rp 275k)</button>
+                  <button type="button" onclick="setBeanWeight(101, 1000, 510000)" class="gayo-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">1 kg (Rp 510k)</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-espresso/60 block mb-1">TINGKAT GILINGAN (GRIND SIZE):</label>
+                <select id="gayoGrindSelect" class="w-full px-4 py-2.5 rounded-xl bg-linen border border-borderWarm text-xs font-mono text-espresso outline-none">
+                  <option value="Biji Utuh (Whole Bean)">Biji Utuh (Whole Bean / Belum Digiling)</option>
+                  <option value="Giling Halus (Espresso / Moka Pot)">Giling Halus (Espresso / Moka Pot)</option>
+                  <option value="Giling Sedang (V60 / Kalita / Aeropress)">Giling Sedang (V60 / Kalita / Aeropress)</option>
+                  <option value="Giling Kasar (Cold Brew / French Press)">Giling Kasar (Cold Brew / French Press)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-borderWarm flex items-center justify-between gap-4">
+            <div>
+              <span class="text-[10px] font-mono text-espresso/50 block">HARGA PRODUK:</span>
+              <strong id="gayoPriceText" class="font-mono text-xl font-bold text-espresso">Rp 120.000</strong>
+            </div>
+            <button onclick="addBeanToCart(101, 'Aceh Gayo Pantan Musara')" class="px-6 py-3.5 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center gap-2 cursor-pointer">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Beli Beans Sekarang</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bean 2: Toraja Sapan -->
+        <div class="bg-white rounded-3xl p-8 border border-borderWarm shadow-xs space-y-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-mono text-espresso/60 border-b border-borderWarm pb-3">
+              <span>SULAWESI, INDONESIA</span>
+              <span class="text-ochre font-bold">1.850 MDPL</span>
+            </div>
+            
+            <div class="flex items-start gap-5">
+              <div class="w-28 h-28 rounded-2xl overflow-hidden border border-borderWarm shrink-0">
+                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=400&q=80" alt="Toraja Sapan" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-ochre uppercase font-semibold">Fully Washed Clean</span>
+                <h3 class="font-serif text-3xl font-bold text-espresso mt-0.5">Toraja Sapan Minanga</h3>
+                <p class="text-xs text-espresso/60 font-mono mt-1">Varietas: S795, Typica Tua</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="px-2 py-0.5 rounded bg-sand text-[10px] font-mono font-bold text-espresso">SCA Cup Score: 87.7</span>
+                  <span class="px-2 py-0.5 rounded bg-linen text-[10px] font-mono text-espresso/60">Medium-Light</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-linen rounded-2xl border border-borderWarm space-y-1 text-xs font-mono">
+              <span class="text-espresso/50 text-[10px] block">FLAVOR DESCRIPTOR:</span>
+              <p class="text-ochre font-bold text-sm">Bergamot Tea, Sweet Lemon, Clove, Honey Finish</p>
+            </div>
+
+            <!-- Customizer Options for Beans -->
+            <div class="space-y-3 pt-2 text-xs font-mono">
+              <div>
+                <label class="text-espresso/60 block mb-1">PILIHAN UKURAN KEMASAN:</label>
+                <div class="grid grid-cols-3 gap-2" id="torajaWeightGroup">
+                  <button type="button" onclick="setBeanWeight(102, 200, 135000)" class="toraja-w-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center">200g (Rp 135k)</button>
+                  <button type="button" onclick="setBeanWeight(102, 500, 310000)" class="toraja-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">500g (Rp 310k)</button>
+                  <button type="button" onclick="setBeanWeight(102, 1000, 580000)" class="toraja-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">1 kg (Rp 580k)</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-espresso/60 block mb-1">TINGKAT GILINGAN (GRIND SIZE):</label>
+                <select id="torajaGrindSelect" class="w-full px-4 py-2.5 rounded-xl bg-linen border border-borderWarm text-xs font-mono text-espresso outline-none">
+                  <option value="Biji Utuh (Whole Bean)">Biji Utuh (Whole Bean / Belum Digiling)</option>
+                  <option value="Giling Halus (Espresso / Moka Pot)">Giling Halus (Espresso / Moka Pot)</option>
+                  <option value="Giling Sedang (V60 / Kalita / Aeropress)">Giling Sedang (V60 / Kalita / Aeropress)</option>
+                  <option value="Giling Kasar (Cold Brew / French Press)">Giling Kasar (Cold Brew / French Press)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-borderWarm flex items-center justify-between gap-4">
+            <div>
+              <span class="text-[10px] font-mono text-espresso/50 block">HARGA PRODUK:</span>
+              <strong id="torajaPriceText" class="font-mono text-xl font-bold text-espresso">Rp 135.000</strong>
+            </div>
+            <button onclick="addBeanToCart(102, 'Toraja Sapan Minanga')" class="px-6 py-3.5 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center gap-2 cursor-pointer">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Beli Beans Sekarang</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bean 3: Ethiopia Guji -->
+        <div class="bg-white rounded-3xl p-8 border border-borderWarm shadow-xs space-y-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-mono text-espresso/60 border-b border-borderWarm pb-3">
+              <span>YIRGACHEFFE, ETHIOPIA</span>
+              <span class="text-ochre font-bold">2.050 MDPL</span>
+            </div>
+            
+            <div class="flex items-start gap-5">
+              <div class="w-28 h-28 rounded-2xl overflow-hidden border border-borderWarm shrink-0">
+                <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=400&q=80" alt="Ethiopia Guji" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-ochre uppercase font-semibold">Washed Grade 1</span>
+                <h3 class="font-serif text-3xl font-bold text-espresso mt-0.5">Guji Chelchele Heirloom</h3>
+                <p class="text-xs text-espresso/60 font-mono mt-1">Varietas: Indigenous Wild Heirloom</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="px-2 py-0.5 rounded bg-sand text-[10px] font-mono font-bold text-espresso">SCA Cup Score: 89.2</span>
+                  <span class="px-2 py-0.5 rounded bg-linen text-[10px] font-mono text-espresso/60">Nordic Light</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-linen rounded-2xl border border-borderWarm space-y-1 text-xs font-mono">
+              <span class="text-espresso/50 text-[10px] block">FLAVOR DESCRIPTOR:</span>
+              <p class="text-ochre font-bold text-sm">Jasmine Blossom, White Peach, Earl Grey, Lavender</p>
+            </div>
+
+            <!-- Customizer Options for Beans -->
+            <div class="space-y-3 pt-2 text-xs font-mono">
+              <div>
+                <label class="text-espresso/60 block mb-1">PILIHAN UKURAN KEMASAN:</label>
+                <div class="grid grid-cols-3 gap-2" id="ethiopiaWeightGroup">
+                  <button type="button" onclick="setBeanWeight(103, 200, 160000)" class="ethiopia-w-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center">200g (Rp 160k)</button>
+                  <button type="button" onclick="setBeanWeight(103, 500, 370000)" class="ethiopia-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">500g (Rp 370k)</button>
+                  <button type="button" onclick="setBeanWeight(103, 1000, 690000)" class="ethiopia-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">1 kg (Rp 690k)</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-espresso/60 block mb-1">TINGKAT GILINGAN (GRIND SIZE):</label>
+                <select id="ethiopiaGrindSelect" class="w-full px-4 py-2.5 rounded-xl bg-linen border border-borderWarm text-xs font-mono text-espresso outline-none">
+                  <option value="Biji Utuh (Whole Bean)">Biji Utuh (Whole Bean / Belum Digiling)</option>
+                  <option value="Giling Halus (Espresso / Moka Pot)">Giling Halus (Espresso / Moka Pot)</option>
+                  <option value="Giling Sedang (V60 / Kalita / Aeropress)">Giling Sedang (V60 / Kalita / Aeropress)</option>
+                  <option value="Giling Kasar (Cold Brew / French Press)">Giling Kasar (Cold Brew / French Press)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-borderWarm flex items-center justify-between gap-4">
+            <div>
+              <span class="text-[10px] font-mono text-espresso/50 block">HARGA PRODUK:</span>
+              <strong id="ethiopiaPriceText" class="font-mono text-xl font-bold text-espresso">Rp 160.000</strong>
+            </div>
+            <button onclick="addBeanToCart(103, 'Ethiopia Guji Chelchele')" class="px-6 py-3.5 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center gap-2 cursor-pointer">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Beli Beans Sekarang</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bean 4: Flores Bajawa -->
+        <div class="bg-white rounded-3xl p-8 border border-borderWarm shadow-xs space-y-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between text-xs font-mono text-espresso/60 border-b border-borderWarm pb-3">
+              <span>NTT, INDONESIA</span>
+              <span class="text-ochre font-bold">1.550 MDPL</span>
+            </div>
+            
+            <div class="flex items-start gap-5">
+              <div class="w-28 h-28 rounded-2xl overflow-hidden border border-borderWarm shrink-0">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80" alt="Flores Bajawa" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <span class="text-[10px] font-mono text-ochre uppercase font-semibold">Semi-Washed Honey</span>
+                <h3 class="font-serif text-3xl font-bold text-espresso mt-0.5">Flores Bajawa Kartika</h3>
+                <p class="text-xs text-espresso/60 font-mono mt-1">Varietas: Kartika, Jur-S</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <span class="px-2 py-0.5 rounded bg-sand text-[10px] font-mono font-bold text-espresso">SCA Cup Score: 86.8</span>
+                  <span class="px-2 py-0.5 rounded bg-linen text-[10px] font-mono text-espresso/60">Medium Roast</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 bg-linen rounded-2xl border border-borderWarm space-y-1 text-xs font-mono">
+              <span class="text-espresso/50 text-[10px] block">FLAVOR DESCRIPTOR:</span>
+              <p class="text-ochre font-bold text-sm">Milk Chocolate, Roasted Hazelnut, Caramel Apple</p>
+            </div>
+
+            <!-- Customizer Options for Beans -->
+            <div class="space-y-3 pt-2 text-xs font-mono">
+              <div>
+                <label class="text-espresso/60 block mb-1">PILIHAN UKURAN KEMASAN:</label>
+                <div class="grid grid-cols-3 gap-2" id="floresWeightGroup">
+                  <button type="button" onclick="setBeanWeight(104, 200, 110000)" class="flores-w-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center">200g (Rp 110k)</button>
+                  <button type="button" onclick="setBeanWeight(104, 500, 250000)" class="flores-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">500g (Rp 250k)</button>
+                  <button type="button" onclick="setBeanWeight(104, 1000, 460000)" class="flores-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center">1 kg (Rp 460k)</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="text-espresso/60 block mb-1">TINGKAT GILINGAN (GRIND SIZE):</label>
+                <select id="floresGrindSelect" class="w-full px-4 py-2.5 rounded-xl bg-linen border border-borderWarm text-xs font-mono text-espresso outline-none">
+                  <option value="Biji Utuh (Whole Bean)">Biji Utuh (Whole Bean / Belum Digiling)</option>
+                  <option value="Giling Halus (Espresso / Moka Pot)">Giling Halus (Espresso / Moka Pot)</option>
+                  <option value="Giling Sedang (V60 / Kalita / Aeropress)">Giling Sedang (V60 / Kalita / Aeropress)</option>
+                  <option value="Giling Kasar (Cold Brew / French Press)">Giling Kasar (Cold Brew / French Press)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-borderWarm flex items-center justify-between gap-4">
+            <div>
+              <span class="text-[10px] font-mono text-espresso/50 block">HARGA PRODUK:</span>
+              <strong id="floresPriceText" class="font-mono text-xl font-bold text-espresso">Rp 110.000</strong>
+            </div>
+            <button onclick="addBeanToCart(104, 'Flores Bajawa Kartika')" class="px-6 py-3.5 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center gap-2 cursor-pointer">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Beli Beans Sekarang</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MONTHLY SUBSCRIPTION CLUB -->
+  <section class="py-20 bg-dark-paper text-linen border-b border-borderDark">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-mono text-ochre uppercase tracking-widest block">Lamar Coffee Roasters Club</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-linen">Langganan Biji Kopi Bulanan</h2>
+        <p class="text-xs text-linen/70 font-light leading-relaxed">
+          Nikmati rotasi kurasi biji single-origin terbaik yang dikirim langsung ke pintu rumah Anda setiap awal bulan, bebas ongkir dan diskon 15%.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="p-8 rounded-3xl bg-charcoal border border-borderDark flex flex-col justify-between space-y-6">
+          <div>
+            <span class="text-xs font-mono text-ochre font-bold block">TIER 1 / INDIVIDUAL</span>
+            <h3 class="font-serif text-3xl font-bold text-linen mt-1">The Daily Brewer</h3>
+            <span class="font-mono text-2xl font-bold text-ochre block mt-2">Rp 210.000 <span class="text-xs font-normal text-linen/60">/ bulan</span></span>
+            <ul class="space-y-2.5 text-xs font-mono text-linen/70 pt-6 border-t border-borderDark mt-6">
+              <li>✓ 2x 200g Biji Kopi Single Origin Pilihan</li>
+              <li>✓ Catatan Roaster & Panduan Seduh V60</li>
+              <li>✓ Bebas Ongkir se-Jabodetabek</li>
+            </ul>
+          </div>
+          <button onclick="quickAdd('Langganan Bulanan: Daily Brewer (2x200g)', 210000, 'Subscription Bulanan')" class="w-full py-3.5 rounded-xl bg-linen text-espresso font-mono text-xs uppercase font-bold hover:bg-ochre hover:text-white transition-colors">
+            Pilih Langganan
+          </button>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-roast border-2 border-ochre flex flex-col justify-between space-y-6 relative shadow-xl">
+          <span class="absolute -top-3 right-6 px-3 py-1 rounded-full bg-ochre text-white text-[10px] font-mono font-bold uppercase">Paling Populer</span>
+          <div>
+            <span class="text-xs font-mono text-ochre font-bold block">TIER 2 / CONNOISSEUR</span>
+            <h3 class="font-serif text-3xl font-bold text-linen mt-1">The Origin Hunter</h3>
+            <span class="font-mono text-2xl font-bold text-ochre block mt-2">Rp 395.000 <span class="text-xs font-normal text-linen/60">/ bulan</span></span>
+            <ul class="space-y-2.5 text-xs font-mono text-linen/70 pt-6 border-t border-borderDark mt-6">
+              <li>✓ 3x 200g Single-Origin Termasuk Lot Eksotis / Geisha</li>
+              <li>✓ Free Cupping Session di Slow Bar setiap bulan</li>
+              <li>✓ Diskon 20% untuk semua pembelian menu kafe</li>
+              <li>✓ Bebas Ongkir Nasional</li>
+            </ul>
+          </div>
+          <button onclick="quickAdd('Langganan Bulanan: Origin Hunter (3x200g)', 395000, 'Subscription Bulanan')" class="w-full py-3.5 rounded-xl bg-ochre text-white font-mono text-xs uppercase font-bold hover:bg-white hover:text-espresso transition-colors">
+            Pilih Langganan
+          </button>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-charcoal border border-borderDark flex flex-col justify-between space-y-6">
+          <div>
+            <span class="text-xs font-mono text-ochre font-bold block">TIER 3 / OFFICE & WORKSHOP</span>
+            <h3 class="font-serif text-3xl font-bold text-linen mt-1">Sanctuary Supply</h3>
+            <span class="font-mono text-2xl font-bold text-ochre block mt-2">Rp 750.000 <span class="text-xs font-normal text-linen/60">/ bulan</span></span>
+            <ul class="space-y-2.5 text-xs font-mono text-linen/70 pt-6 border-t border-borderDark mt-6">
+              <li>✓ 2 kg Biji Kopi Fresh Roast (Pilihan Espresso Blend)</li>
+              <li>✓ Konsultasi Kalibrasi Mesin Kantor</li>
+              <li>✓ Pengiriman terbagi 2x per bulan agar selalu segar</li>
+            </ul>
+          </div>
+          <button onclick="quickAdd('Langganan Bulanan: Sanctuary Supply (2kg)', 750000, 'Subscription Bulanan')" class="w-full py-3.5 rounded-xl bg-linen text-espresso font-mono text-xs uppercase font-bold hover:bg-ochre hover:text-white transition-colors">
+            Pilih Langganan
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-espresso text-linen/70 py-16 border-t border-borderDark text-xs font-mono">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-borderDark/80">
+        <div class="md:col-span-5 space-y-4">
+          <span class="font-serif text-3xl font-bold text-linen tracking-tight">LAMAR COFFEE</span>
+          <p class="text-linen/50 text-xs font-light max-w-sm leading-relaxed">
+            Micro-roastery independen & slow living sanctuary di Senopati, Jakarta Selatan.
+          </p>
+        </div>
+        <div class="md:col-span-4 space-y-2">
+          <span class="text-ochre uppercase font-bold block mb-2">Navigasi</span>
+          <div class="flex gap-8 text-linen/80">
+            <ul class="space-y-1">
+              <li><a href="index.html" class="hover:text-ochre">Beranda</a></li>
+              <li><a href="about.html" class="hover:text-ochre">Filosofi</a></li>
+              <li><a href="menu.html" class="hover:text-ochre">Buku Menu</a></li>
+              <li><a href="beans.html" class="hover:text-ochre">Toko Beans</a></li>
+            </ul>
+            <ul class="space-y-1">
+              <li><a href="space.html" class="hover:text-ochre">Fasilitas Ruang</a></li>
+              <li><a href="journal.html" class="hover:text-ochre">Jurnal Kopi</a></li>
+              <li><a href="reservation.html" class="hover:text-ochre">Reservasi</a></li>
+              <li><a href="contact.html" class="hover:text-ochre">Kontak</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="md:col-span-3 space-y-2">
+          <span class="text-ochre uppercase font-bold block mb-2">Jam Buka</span>
+          <p>Senin — Minggu: 07:00 – 22:00 WIB</p>
+          <p class="text-[11px] text-linen/40 pt-2">Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan</p>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-linen/40">
+        <p>© 2026 Lamar Coffee Roastery. Seluruh hak cipta dilindungi.</p>
+        <p>Crafted with patience, precision, and natural single-origins.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SHARED CART DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden justify-end">
+    <div class="w-full max-w-md bg-paper h-full border-l border-borderWarm flex flex-col justify-between p-6 shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between border-b border-borderWarm pb-4 mb-4">
+          <span class="font-serif text-2xl font-bold text-espresso">Keranjang Seduhan</span>
+          <button onclick="toggleCart(false)" class="p-1.5 text-espresso/60 hover:text-ochre cursor-pointer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div id="cartItemsList" class="space-y-3 max-h-[55vh] overflow-y-auto pr-1"></div>
+      </div>
+      <div class="border-t border-borderWarm pt-4 space-y-4 text-xs font-mono">
+        <div class="space-y-1.5 text-espresso/70">
+          <div class="flex justify-between">
+            <span>Subtotal Menu</span>
+            <span id="cartSubtotal" class="font-bold text-espresso">Rp 0</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Pajak Resto (PB1 10%)</span>
+            <span id="cartTax">Rp 0</span>
+          </div>
+          <div class="flex justify-between text-sm font-bold text-espresso pt-2 border-t border-borderWarm">
+            <span>Total Bayar</span>
+            <span id="cartGrandTotal" class="text-ochre">Rp 0</span>
+          </div>
+        </div>
+        <button onclick="checkoutWhatsApp()" class="w-full py-4 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center justify-center gap-2 cursor-pointer">
+          <span>Kirim Pesanan ke Barista WhatsApp →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastNotification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-espresso text-linen px-5 py-3 rounded-full shadow-2xl text-xs font-mono flex items-center gap-2.5 hidden pointer-events-none border border-ochre/40">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-ochre"></i>
+    <span id="toastMessage">Pesanan berhasil ditambahkan!</span>
+  </div>
+
+  <script src="js/shared.js"></script>
+  <script>
+    const beanState = {
+      101: { weight: 200, price: 120000 },
+      102: { weight: 200, price: 135000 },
+      103: { weight: 200, price: 160000 },
+      104: { weight: 200, price: 110000 }
+    };
+
+    function setBeanWeight(beanId, weight, price) {
+      beanState[beanId].weight = weight;
+      beanState[beanId].price = price;
+
+      let prefix = '';
+      if (beanId === 101) prefix = 'gayo';
+      if (beanId === 102) prefix = 'toraja';
+      if (beanId === 103) prefix = 'ethiopia';
+      if (beanId === 104) prefix = 'flores';
+
+      const btns = document.querySelectorAll(`.${prefix}-w-btn`);
+      btns.forEach(b => {
+        if (b.innerText.includes(`${weight}g`) || b.innerText.includes(`${weight === 1000 ? '1 kg' : weight + 'g'}`)) {
+          b.className = `${prefix}-w-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center`;
+        } else {
+          b.className = `${prefix}-w-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 text-center`;
+        }
+      });
+
+      document.getElementById(`${prefix}PriceText`).innerText = `Rp ${price.toLocaleString('id-ID')}`;
+    }
+
+    function addBeanToCart(beanId, name) {
+      const state = beanState[beanId];
+      let prefix = '';
+      if (beanId === 101) prefix = 'gayo';
+      if (beanId === 102) prefix = 'toraja';
+      if (beanId === 103) prefix = 'ethiopia';
+      if (beanId === 104) prefix = 'flores';
+
+      const grind = document.getElementById(`${prefix}GrindSelect`).value;
+      const notes = `Ukuran ${state.weight}g, ${grind}`;
+      quickAdd(`Beans: ${name} (${state.weight}g)`, state.price, notes);
+    }
+  </script>
+</body>
+</html>

@@ -3,9 +3,12 @@ set -e
 
 BACKUP_DIR="/home/ubuntu/hermes_vps_backup"
 TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S WIB")
+SSH_KEY="/home/ubuntu/.ssh/id_ed25519_vps_backup"
+REPO_URL="git@github.com:kejuberlapis-lab/hermes-rell.git"
 
 echo "=========================================="
 echo "Starting Hermes VPS Master Backup: $TIMESTAMP"
+echo "Target Repo: $REPO_URL"
 echo "=========================================="
 
 mkdir -p "$BACKUP_DIR/vaults"
@@ -56,11 +59,15 @@ cd "$BACKUP_DIR"
 if [ ! -d ".git" ]; then
     echo "🔧 Initializing git repository..."
     git init -b main
-    git config user.name "Hermes Agent"
-    git config user.email "hermes@mitsindo.co.id"
-    git config core.sshCommand "ssh -i /home/ubuntu/.ssh/id_ed25519_skripsi -o StrictHostKeyChecking=accept-new"
-    git remote add origin git@github.com:StefanoGarrent/hermes-vps-backup.git 2>/dev/null || true
 fi
+
+git config user.name "Hermes Agent"
+git config user.email "kejuberlapis@gmail.com"
+git config core.sshCommand "ssh -i $SSH_KEY -o StrictHostKeyChecking=accept-new"
+
+# Set remote origin
+git remote remove origin 2>/dev/null || true
+git remote add origin "$REPO_URL"
 
 git add -A
 if git diff --staged --quiet; then
@@ -70,9 +77,9 @@ else
     echo "✓ Committed successfully!"
 fi
 
-echo "🚀 Pushing to GitHub (origin main)..."
+echo "🚀 Pushing to GitHub: $REPO_URL (branch main)..."
 if git push -u origin main; then
-    echo "🎉 BACKUP SUCCESSFUL TO GITHUB!"
+    echo "🎉 BACKUP MASTER BERHASIL KE GITHUB: $REPO_URL!"
 else
-    echo "⚠️ Push failed: Make sure the repo 'StefanoGarrent/hermes-vps-backup' is created on GitHub and has write access for the deploy key."
+    echo "⚠️ Push failed: Pastikan Deploy Key sudah ditambahkan ke repo dengan write access."
 fi

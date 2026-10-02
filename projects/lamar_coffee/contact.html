@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lokasi & Kontak — Lamar Coffee Senopati</title>
+  <meta name="description" content="Kunjungi Lamar Coffee di Senopati Jakarta Selatan. Informasi rute transportasi MRT, jam operasional, FAQ, dan supply biji kopi wholesale." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            linen: '#F8F5EE',
+            sand: '#EFEAE1',
+            warmgray: '#E3DDD2',
+            espresso: '#140F0D',
+            charcoal: '#211B18',
+            roast: '#2E2622',
+            ochre: '#C86D3B',
+            clay: '#A45327',
+            amber: '#D9822B',
+            cream: '#FAF8F5',
+            borderWarm: '#E5DFD3',
+            borderDark: '#382F2A'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-paper text-espresso font-sans antialiased selection:bg-ochre selection:text-white">
+
+  <!-- TOP BAR -->
+  <div class="bg-espresso text-linen/80 py-2 px-4 text-[11px] font-mono tracking-widest uppercase border-b border-borderDark flex items-center justify-between">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center gap-1.5 text-ochre">
+          <span class="w-1.5 h-1.5 rounded-full bg-ochre animate-pulse"></span>
+          Kunjungi Kami
+        </span>
+        <span class="hidden sm:inline text-linen/50">|</span>
+        <span class="hidden sm:inline text-linen/70">Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <span class="text-ochre font-semibold">07:00 — 22:00 WIB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-borderWarm transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex flex-col group">
+        <span class="font-serif text-3xl font-bold tracking-tight text-espresso group-hover:text-ochre transition-colors">
+          LAMAR <span class="italic font-normal text-ochre font-serif">Coffee</span>
+        </span>
+        <span class="text-[9px] font-mono tracking-[0.25em] text-espresso/50 uppercase -mt-1">
+          Roastery & Slow Sanctuary
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-espresso/70">
+        <a href="index.html" class="hover:text-ochre transition-colors">Beranda</a>
+        <a href="about.html" class="hover:text-ochre transition-colors">Filosofi</a>
+        <a href="menu.html" class="hover:text-ochre transition-colors">Buku Menu</a>
+        <a href="beans.html" class="hover:text-ochre transition-colors">Biji Kopi</a>
+        <a href="space.html" class="hover:text-ochre transition-colors">Ruang</a>
+        <a href="journal.html" class="hover:text-ochre transition-colors">Jurnal</a>
+        <a href="contact.html" class="text-ochre font-bold">Kontak</a>
+      </nav>
+
+      <div class="flex items-center gap-3.5">
+        <button id="ambienceBtn" onclick="toggleAmbience()" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-borderWarm bg-sand/60 text-[11px] font-mono text-espresso/80 hover:border-ochre hover:text-ochre transition-all cursor-pointer">
+          <span class="w-2 h-2 rounded-full bg-espresso/40" id="ambienceDot"></span>
+          <span id="ambienceText">Suara Kafe: Mati</span>
+        </button>
+
+        <button onclick="toggleCart(true)" class="relative p-2.5 rounded-full border border-borderWarm hover:border-ochre text-espresso hover:text-ochre transition-all bg-white shadow-xs cursor-pointer">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span id="cartCountBadge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ochre text-white text-[10px] font-mono font-bold flex items-center justify-center scale-0 transition-transform">0</span>
+        </button>
+
+        <a href="reservation.html" class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso text-linen text-xs font-mono tracking-wider uppercase hover:bg-ochre transition-colors">
+          <span>Book a Table</span>
+        </a>
+
+        <button onclick="toggleMobileNav()" class="md:hidden p-2 text-espresso">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="hidden md:hidden bg-sand border-b border-borderWarm px-6 py-6 space-y-4 text-xs font-mono uppercase tracking-wider">
+      <a href="index.html" class="block py-1 hover:text-ochre">Beranda</a>
+      <a href="about.html" class="block py-1 hover:text-ochre">Filosofi</a>
+      <a href="menu.html" class="block py-1 hover:text-ochre">Buku Menu</a>
+      <a href="beans.html" class="block py-1 hover:text-ochre">Biji Kopi</a>
+      <a href="space.html" class="block py-1 hover:text-ochre">Ruang</a>
+      <a href="journal.html" class="block py-1 hover:text-ochre">Jurnal Kopi</a>
+      <a href="contact.html" class="block py-1 text-ochre font-bold">Kontak & Lokasi</a>
+      <a href="reservation.html" class="block py-2 text-center rounded-xl bg-espresso text-linen font-bold">Reservasi Meja</a>
+    </div>
+  </header>
+
+  <!-- CONTACT HERO -->
+  <section class="py-16 border-b border-borderWarm bg-sand/40">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <div class="max-w-3xl space-y-4">
+        <span class="text-xs font-mono text-ochre uppercase tracking-widest block">Lokasi & Rute</span>
+        <h1 class="font-serif text-4xl sm:text-6xl font-bold text-espresso">Temukan Ruang Jeda Kami</h1>
+        <p class="text-espresso/70 text-sm font-light leading-relaxed">
+          Berlokasi strategis di kawasan rindang Senopati, mudah diakses melalui MRT Jakarta dan koridor transportasi umum.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION DETAILS & MAPS -->
+  <section class="py-20 border-b border-borderWarm">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Info Cards -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <div class="p-6 bg-white rounded-2xl border border-borderWarm space-y-3 text-xs font-mono">
+            <span class="text-ochre font-bold uppercase block">📍 ALAMAT LENGKAP</span>
+            <h3 class="font-serif text-2xl font-bold text-espresso">Lamar Coffee Roastery</h3>
+            <p class="text-espresso/70 leading-relaxed font-light">
+              Jl. Senopati No. 42, RT.05/RW.02, Selong, Kebayoran Baru, Jakarta Selatan, DKI Jakarta 12190
+            </p>
+          </div>
+
+          <div class="p-6 bg-white rounded-2xl border border-borderWarm space-y-3 text-xs font-mono">
+            <span class="text-ochre font-bold uppercase block">⏰ JAM OPERASIONAL</span>
+            <div class="space-y-1.5 text-espresso/80">
+              <div class="flex justify-between border-b border-borderWarm/60 pb-1">
+                <span>Senin — Jumat (Hari Kerja):</span>
+                <strong>07:00 – 22:00 WIB</strong>
+              </div>
+              <div class="flex justify-between border-b border-borderWarm/60 pb-1">
+                <span>Sabtu — Minggu (Akhir Pekan):</span>
+                <strong>07:00 – 23:00 WIB</strong>
+              </div>
+              <div class="flex justify-between text-ochre font-semibold pt-1">
+                <span>Slow Bar Manual Brew:</span>
+                <span>Tersedia Setiap Hari</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 bg-white rounded-2xl border border-borderWarm space-y-3 text-xs font-mono">
+            <span class="text-ochre font-bold uppercase block">🚇 PANDUAN RUTE & TRANSPORTASI</span>
+            <ul class="space-y-2 text-espresso/70 font-light">
+              <li>• <strong>MRT Jakarta:</strong> Turun di <em>Stasiun Senayan</em> (5 menit via ojek online / 12 menit jalan kaki).</li>
+              <li>• <strong>TransJakarta:</strong> Halte terdekat <em>Polda Metro Jaya</em> atau <em>Tirtayasa</em>.</li>
+              <li>• <strong>Kendaraan Pribadi:</strong> Tersedia valet parking gratis di halaman depan kafe.</li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-sand rounded-2xl border border-borderWarm space-y-2 text-xs font-mono">
+            <span class="text-ochre font-bold uppercase block">📞 KONTAK & KONSULTASI</span>
+            <p class="text-espresso/80">WhatsApp Barista: <strong>+62 812-8888-5262</strong></p>
+            <p class="text-espresso/80">Email Resmi: <strong>barista@lamarcoffee.id</strong></p>
+            <p class="text-espresso/80">Instagram: <strong>@lamarcoffee.id</strong></p>
+          </div>
+
+        </div>
+
+        <!-- Right: Interactive Map Simulation & Wholesale Form -->
+        <div class="lg:col-span-7 space-y-8">
+          
+          <!-- Map Preview Card -->
+          <div class="bg-white rounded-3xl p-6 border border-borderWarm shadow-xs space-y-4">
+            <div class="h-80 rounded-2xl bg-linen border border-borderWarm flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1000&q=80" alt="Map View" class="absolute inset-0 w-full h-full object-cover opacity-60">
+              <div class="relative z-10 bg-white/95 backdrop-blur-md p-6 rounded-2xl border border-borderWarm max-w-sm shadow-lg text-xs font-mono">
+                <span class="text-ochre font-bold block mb-1">📍 LAMAR COFFEE SENOPATI</span>
+                <p class="text-espresso/80 font-light mb-4">Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan</p>
+                <a href="https://maps.google.com/?q=Senopati+Jakarta+Selatan" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-espresso text-linen text-[11px] uppercase font-bold hover:bg-ochre transition-colors">
+                  <span>Buka di Google Maps ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wholesale B2B Supply Form -->
+          <div class="bg-sand/60 rounded-3xl p-8 border border-borderWarm space-y-5 text-xs font-mono">
+            <div>
+              <span class="text-ochre uppercase font-bold block">Kemitraan & Pasokan Kafe</span>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-espresso mt-1">B2B Wholesale Coffee Beans Supply</h3>
+              <p class="text-espresso/70 font-light mt-1">
+                Ingin menyajikan biji kopi sangrai Lamar di kafe, restoran, hotel, atau kantor Anda? Hubungi divisi roastery kami untuk tester sample gratis.
+              </p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); showToast('✓ Permintaan B2B terkirim! Tim kami akan menghubungi Anda.'); this.reset();" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" required placeholder="Nama Usaha / Kafe Anda" class="w-full px-4 py-3 rounded-xl bg-white border border-borderWarm text-xs text-espresso outline-none focus:border-ochre">
+                <input type="tel" required placeholder="Nomor WhatsApp Kontak" class="w-full px-4 py-3 rounded-xl bg-white border border-borderWarm text-xs text-espresso outline-none focus:border-ochre">
+              </div>
+              <textarea rows="3" placeholder="Kebutuhan volume bulanan (misal: 10kg/bulan Espresso Blend)..." class="w-full px-4 py-3 rounded-xl bg-white border border-borderWarm text-xs text-espresso outline-none focus:border-ochre"></textarea>
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors font-bold cursor-pointer">
+                Kirim Permintaan Sample B2B →
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="py-20 bg-sand/30 border-b border-borderWarm text-xs font-mono">
+    <div class="max-w-4xl mx-auto px-6 sm:px-8 space-y-8">
+      
+      <div class="text-center space-y-2">
+        <span class="text-ochre uppercase font-bold">Pusat Informasi</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+      </div>
+
+      <div class="space-y-4">
+        
+        <div class="p-6 bg-white rounded-2xl border border-borderWarm space-y-2">
+          <strong class="font-serif text-lg text-espresso block">Apakah tersedia menu makanan berat (Hot Kitchen)?</strong>
+          <p class="text-espresso/70 font-light leading-relaxed">
+            Ya, kami menyajikan pilihan brunch artisan seperti <em>Truffle Mushroom Sourdough Toast</em>, aneka croissant mentega Prancis segar, dan pasta sarapan.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white rounded-2xl border border-borderWarm space-y-2">
+          <strong class="font-serif text-lg text-espresso block">Apakah diperbolehkan membawa hewan peliharaan (Pet-Friendly)?</strong>
+          <p class="text-espresso/70 font-light leading-relaxed">
+            Hewan peliharaan (anjing/kucing) sangat diterima di area outdoor <strong>Glass Courtyard Garden</strong> dengan tali kekang yang terjaga rapi.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white rounded-2xl border border-borderWarm space-y-2">
+          <strong class="font-serif text-lg text-espresso block">Apakah cocok untuk bekerja remote / WFC seharian?</strong>
+          <p class="text-espresso/70 font-light leading-relaxed">
+            Sangat cocok. Area Mezzanine <strong>Reading & Work Loft</strong> didesain khusus sebagai area hening dengan stopkontak individual, kursi ergonomis, dan koneksi internet 200 Mbps tanpa batasan waktu.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white rounded-2xl border border-borderWarm space-y-2">
+          <strong class="font-serif text-lg text-espresso block">Bagaimana cara membeli biji kopi untuk seduh di rumah?</strong>
+          <p class="text-espresso/70 font-light leading-relaxed">
+            Anda dapat membeli langsung di kasir kafe atau melalui halaman <a href="beans.html" class="text-ochre font-bold underline">Toko Biji Kopi</a> di website ini dengan opsi gratis giling sesuai alat seduh Anda.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-espresso text-linen/70 py-16 border-t border-borderDark text-xs font-mono">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-borderDark/80">
+        <div class="md:col-span-5 space-y-4">
+          <span class="font-serif text-3xl font-bold text-linen tracking-tight">LAMAR COFFEE</span>
+          <p class="text-linen/50 text-xs font-light max-w-sm leading-relaxed">
+            Micro-roastery independen & slow living sanctuary di Senopati, Jakarta Selatan.
+          </p>
+        </div>
+        <div class="md:col-span-4 space-y-2">
+          <span class="text-ochre uppercase font-bold block mb-2">Navigasi</span>
+          <div class="flex gap-8 text-linen/80">
+            <ul class="space-y-1">
+              <li><a href="index.html" class="hover:text-ochre">Beranda</a></li>
+              <li><a href="about.html" class="hover:text-ochre">Filosofi</a></li>
+              <li><a href="menu.html" class="hover:text-ochre">Buku Menu</a></li>
+              <li><a href="beans.html" class="hover:text-ochre">Toko Beans</a></li>
+            </ul>
+            <ul class="space-y-1">
+              <li><a href="space.html" class="hover:text-ochre">Fasilitas Ruang</a></li>
+              <li><a href="journal.html" class="hover:text-ochre">Jurnal Kopi</a></li>
+              <li><a href="reservation.html" class="hover:text-ochre">Reservasi</a></li>
+              <li><a href="contact.html" class="hover:text-ochre">Kontak</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="md:col-span-3 space-y-2">
+          <span class="text-ochre uppercase font-bold block mb-2">Jam Buka</span>
+          <p>Senin — Minggu: 07:00 – 22:00 WIB</p>
+          <p class="text-[11px] text-linen/40 pt-2">Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan</p>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-linen/40">
+        <p>© 2026 Lamar Coffee Roastery. Seluruh hak cipta dilindungi.</p>
+        <p>Crafted with patience, precision, and natural single-origins.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SHARED CART DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden justify-end">
+    <div class="w-full max-w-md bg-paper h-full border-l border-borderWarm flex flex-col justify-between p-6 shadow-2xl">
+      <div>
+        <div class="flex items-center justify-between border-b border-borderWarm pb-4 mb-4">
+          <span class="font-serif text-2xl font-bold text-espresso">Keranjang Seduhan</span>
+          <button onclick="toggleCart(false)" class="p-1.5 text-espresso/60 hover:text-ochre cursor-pointer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div id="cartItemsList" class="space-y-3 max-h-[55vh] overflow-y-auto pr-1"></div>
+      </div>
+      <div class="border-t border-borderWarm pt-4 space-y-4 text-xs font-mono">
+        <div class="space-y-1.5 text-espresso/70">
+          <div class="flex justify-between">
+            <span>Subtotal Menu</span>
+            <span id="cartSubtotal" class="font-bold text-espresso">Rp 0</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Pajak Resto (PB1 10%)</span>
+            <span id="cartTax">Rp 0</span>
+          </div>
+          <div class="flex justify-between text-sm font-bold text-espresso pt-2 border-t border-borderWarm">
+            <span>Total Bayar</span>
+            <span id="cartGrandTotal" class="text-ochre">Rp 0</span>
+          </div>
+        </div>
+        <button onclick="checkoutWhatsApp()" class="w-full py-4 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center justify-center gap-2 cursor-pointer">
+          <span>Kirim Pesanan ke Barista WhatsApp →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastNotification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-espresso text-linen px-5 py-3 rounded-full shadow-2xl text-xs font-mono flex items-center gap-2.5 hidden pointer-events-none border border-ochre/40">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-ochre"></i>
+    <span id="toastMessage">Pesanan berhasil ditambahkan!</span>
+  </div>
+
+  <script src="js/shared.js"></script>
+</body>
+</html>

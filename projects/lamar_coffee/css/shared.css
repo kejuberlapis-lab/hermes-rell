@@ -1,0 +1,32 @@
+/* Shared Editorial Tokens & Textures */
+.bg-paper {
+  background-color: #F8F5EE;
+  background-image: radial-gradient(#E3DDD2 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+.bg-dark-paper {
+  background-color: #140F0D;
+  background-image: radial-gradient(#2A221E 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+}
+
+.hairline-b {
+  border-bottom: 1px solid rgba(229, 223, 211, 0.8);
+}
+.hairline-dark-b {
+  border-bottom: 1px solid rgba(56, 47, 42, 0.7);
+}
+
+::selection {
+  background-color: #C86D3B;
+  color: #FFFFFF;
+}
+
+@keyframes toastSlide {
+  from { transform: translateY(100%) translateX(-50%); opacity: 0; }
+  to { transform: translateY(0) translateX(-50%); opacity: 1; }
+}
+.animate-toast {
+  animation: toastSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
