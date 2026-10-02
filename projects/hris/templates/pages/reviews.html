@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+{% block title %}Performance Reviews{% endblock %}
+{% block page_title %}{% if user.role == 'employee' %}Penilaian Kinerja Saya{% elif user.role == 'manager' %}Penilaian & Evaluasi Tim{% else %}Performance Reviews{% endif %}{% endblock %}
+{% block content %}
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+            <h4 class="mb-1 fw-bold">
+                {% if user.role == 'employee' %}
+                    Penilaian Kinerja Saya
+                {% elif user.role == 'manager' %}
+                    Penilaian Kinerja Tim & Subordinat
+                {% elif user.role == 'director' %}
+                    Penilaian Kinerja Manajer & Tim
+                {% else %}
+                    Performance Reviews & Appraisals
+                {% endif %}
+            </h4>
+            <p class="text-muted mb-0">
+                {% if user.role == 'employee' %}
+                    Hasil evaluasi berkala, skor performa, dan catatan evaluasi dari atasan Anda
+                {% elif user.role == 'manager' %}
+                    Evaluasi performa berkala, penilaian KPI staf, dan rekap evaluasi atasan
+                {% elif user.role == 'director' %}
+                    Evaluasi performa manajer, tinjauan KPI eksekutif, dan penilaian kinerja tim perusahaan
+                {% else %}
+                    Track, manage, and score employee performance evaluations and appraisal reviews
+                {% endif %}
+            </p>
+        </div>
+        {% if user.role in ['super_admin', 'director', 'manager'] %}
+        <div class="d-flex gap-2">
+            <a href="/kpi-dashboard" class="btn btn-outline-primary btn-sm"><i class="fas fa-chart-line me-1"></i> KPI Dashboard</a>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addReviewModal">
+                <i class="fas fa-plus me-1"></i> Beri Penilaian Baru
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-primary-subtle me-3"><i class="fas fa-clipboard-check text-primary"></i></div>
+                <div><div class="fw-bold">{{ rev_stats.total }}</div><small class="text-muted">Total Evaluasi</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-success-subtle me-3"><i class="fas fa-star text-success"></i></div>
+                <div><div class="fw-bold">{{ rev_stats.avg_score }} / 5.0</div><small class="text-muted">Rata-rata Skor</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-info-subtle me-3"><i class="fas fa-check-double text-info"></i></div>
+                <div><div class="fw-bold">{{ rev_stats.completed }}</div><small class="text-muted">Selesai Dinilai</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-warning-subtle me-3"><i class="fas fa-users text-warning"></i></div>
+                <div>
+                    <div class="fw-bold">{{ rev_stats.team_count if rev_stats.team_count is defined else (team_members|length if team_members else 0) }}</div>
+                    <small class="text-muted">{% if user.role == 'director' %}Manajer & Karyawan{% else %}Staf Subordinat{% endif %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if user.role == 'manager' %}
+<ul class="nav nav-tabs nav-tabs-custom mb-3" id="reviewTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active fw-medium" id="team-tab" data-bs-toggle="tab" data-bs-target="#teamReviewsPane" type="button" role="tab">
+            <i class="fas fa-users-cog me-1"></i> Penilaian Tim Saya ({{ team_reviews|length if team_reviews else 0 }})
+        </button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link fw-medium" id="my-tab" data-bs-toggle="tab" data-bs-target="#myReviewsPane" type="button" role="tab">
+            <i class="fas fa-user-check me-1"></i> Evaluasi Kinerja Saya ({{ my_reviews|length if my_reviews else 0 }})
+        </button>
+    </li>
+</ul>
+{% endif %}
+
+<div class="tab-content" id="reviewTabsContent">
+    <div class="tab-pane fade show active" id="{% if user.role == 'manager' %}teamReviewsPane{% else %}allReviewsPane{% endif %}" role="tabpanel">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0 fw-semibold">
+                    <i class="fas fa-award text-primary me-2"></i>
+                    {% if user.role == 'employee' %}
+                        Riwayat Evaluasi Kinerja Saya
+                    {% elif user.role == 'manager' %}
+                        Daftar Penilaian Kinerja Anggota Tim / Subordinat
+                    {% elif user.role == 'director' %}
+                        Daftar Penilaian Kinerja Manajer & Karyawan
+                    {% else %}
+                        Daftar Penilaian Kinerja Karyawan
+                    {% endif %}
+                </h6>
+                {% if user.role in ['super_admin', 'director', 'manager'] and team_members %}
+                <span class="badge bg-primary-subtle text-primary">{{ team_members|length }} {% if user.role == 'director' %}Manajer & Karyawan{% else %}Anggota Tim{% endif %}</span>
+                {% endif %}
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                {% if user.role != 'employee' %}
+                                <th>Karyawan</th>
+                                {% endif %}
+                                <th>Penilai (Reviewer)</th>
+                                <th>Periode</th>
+                                <th>Skor Performa</th>
+                                <th>Predikat</th>
+                                <th>Catatan & Evaluasi</th>
+                                <th>Tanggal</th>
+                                {% if user.role in ['super_admin', 'director', 'manager'] %}
+                                <th>Aksi</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set current_reviews = team_reviews if (user.role == 'manager' and team_reviews is defined) else reviews %}
+                            {% if current_reviews %}
+                                {% for r in current_reviews %}
+                                <tr>
+                                    {% if user.role != 'employee' %}
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm bg-primary-subtle rounded-circle me-2">
+                                                <span class="text-primary fw-semibold">{{ r.employee_name[:2].upper() if r.employee_name else 'EM' }}</span>
+                                            </div>
+                                            <div>
+                                                <div class="fw-medium">{{ r.employee_name }}</div>
+                                                <small class="text-muted">{{ r.employee_id_str or '' }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    {% endif %}
+                                    <td><strong>{{ r.reviewer_name or 'Atasan Langsung' }}</strong></td>
+                                    <td><span class="badge bg-light text-dark border">{{ r.period }}</span></td>
+                                    <td>
+                                        {% if r.score %}
+                                            <span class="badge bg-success-subtle text-success fs-6"><i class="fas fa-star text-warning me-1"></i>{{ r.score }} / 5.0</span>
+                                        {% else %}
+                                            <span class="badge bg-warning-subtle text-warning">Belum Dinilai</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if r.score %}
+                                            {% if r.score >= 4.5 %}
+                                                <span class="badge bg-success">Sangat Baik</span>
+                                            {% elif r.score >= 3.8 %}
+                                                <span class="badge bg-primary">Baik</span>
+                                            {% elif r.score >= 3.0 %}
+                                                <span class="badge bg-secondary">Memenuhi Harapan</span>
+                                            {% elif r.score >= 2.0 %}
+                                                <span class="badge bg-warning text-dark">Kurang</span>
+                                            {% else %}
+                                                <span class="badge bg-danger">Sangat Kurang</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td><small class="text-muted">{{ r.comments or '-' }}</small></td>
+                                    <td><small class="text-muted">{{ (r.created_at or '')[:10] }}</small></td>
+                                    {% if user.role in ['super_admin', 'manager'] %}
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" onclick="App.openReviewModal({{ r.employee_id }}, '{{ r.employee_name }}', '{{ r.period }}', {{ r.score or 0 }}, '{{ r.comments or '' }}')">
+                                            <i class="fas fa-edit me-1"></i> Edit
+                                        </button>
+                                    </td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center py-4 text-muted">
+                                        <i class="fas fa-clipboard-list fa-2x mb-2 d-block"></i>
+                                        Belum ada data penilaian kinerja tim. Silakan klik <strong>"Beri Penilaian Baru"</strong> untuk menilai staf.
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if user.role == 'manager' %}
+    <div class="tab-pane fade" id="myReviewsPane" role="tabpanel">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom py-3">
+                <h6 class="mb-0 fw-semibold"><i class="fas fa-user-check text-success me-2"></i>Evaluasi Kinerja Diri Saya dari Atasan (Direktur / Manajemen)</h6>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Penilai (Reviewer)</th>
+                                <th>Periode</th>
+                                <th>Skor Performa</th>
+                                <th>Predikat</th>
+                                <th>Catatan & Feedback</th>
+                                <th>Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if my_reviews %}
+                                {% for r in my_reviews %}
+                                <tr>
+                                    <td><strong>{{ r.reviewer_name or 'Direktur / Manajemen' }}</strong></td>
+                                    <td><span class="badge bg-light text-dark border">{{ r.period }}</span></td>
+                                    <td>
+                                        {% if r.score %}
+                                            <span class="badge bg-success-subtle text-success fs-6"><i class="fas fa-star text-warning me-1"></i>{{ r.score }} / 5.0</span>
+                                        {% else %}
+                                            <span class="badge bg-warning-subtle text-warning">Dalam Proses</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if r.score %}
+                                            {% if r.score >= 4.5 %}
+                                                <span class="badge bg-success">Sangat Baik</span>
+                                            {% elif r.score >= 3.8 %}
+                                                <span class="badge bg-primary">Baik</span>
+                                            {% elif r.score >= 3.0 %}
+                                                <span class="badge bg-secondary">Memenuhi Harapan</span>
+                                            {% else %}
+                                                <span class="badge bg-warning text-dark">Perlu Peningkatan</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td><small class="text-muted">{{ r.comments or '-' }}</small></td>
+                                    <td><small class="text-muted">{{ (r.created_at or '')[:10] }}</small></td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4 text-muted">
+                                        <i class="fas fa-award fa-2x mb-2 d-block"></i>
+                                        Belum ada penilaian kinerja masuk dari atasan untuk periode ini.
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Modal Beri Penilaian Kinerja -->
+<div class="modal fade" id="addReviewModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold"><i class="fas fa-star text-warning me-2"></i>Beri Penilaian Performa & KPI Karyawan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="performanceReviewForm" onsubmit="return App.submitPerformanceReview(event)">
+                    <div class="row g-3">
+                        <div class="col-md-7">
+                            <label class="form-label fw-medium">Pilih Karyawan / Staf <span class="text-danger">*</span></label>
+                            <select class="form-select" name="employee_id" id="reviewEmployeeId" required>
+                                <option value="">-- Pilih Staf Subordinat --</option>
+                                {% if team_members %}
+                                    {% for m in team_members %}
+                                    <option value="{{ m.id }}">{{ m.full_name }} ({{ m.employee_id_str }})</option>
+                                    {% endfor %}
+                                {% else %}
+                                    {% for r in reviews %}
+                                    <option value="{{ r.employee_id }}">{{ r.employee_name }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="form-label fw-medium">Periode Evaluasi <span class="text-danger">*</span></label>
+                            <select class="form-select" name="period" id="reviewPeriod" required>
+                                <option value="Q1 2026">Q1 2026</option>
+                                <option value="Q2 2026">Q2 2026</option>
+                                <option value="Q3 2026">Q3 2026</option>
+                                <option value="Q4 2026">Q4 2026</option>
+                                <option value="Semester 1 2026">Semester 1 2026</option>
+                                <option value="Tahunan 2026">Tahunan 2026</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Tipe Evaluasi <span class="text-danger">*</span></label>
+                            <select class="form-select" name="review_type" id="reviewType">
+                                <option value="manager">Manager Review (Atasan ke Bawahan)</option>
+                                <option value="quarterly">Evaluasi Kuartalan (Quarterly)</option>
+                                <option value="annual">Evaluasi Tahunan (Annual)</option>
+                                <option value="360">Evaluasi 360 Derajat</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-medium">Skor Penilaian (1.0 - 5.0) <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="number" step="0.1" min="1.0" max="5.0" class="form-control" name="score" id="reviewScore" placeholder="Contoh: 4.5" required>
+                                <span class="input-group-text">/ 5.0</span>
+                            </div>
+                            <small class="text-muted d-block mt-1">
+                                5 = Sangat Baik (>100%) | 4 = Baik (86-100%) | 3 = Memenuhi (70-85%)
+                            </small>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label fw-medium">Catatan, Evaluasi KPI & Rekomendasi Coaching <span class="text-danger">*</span></label>
+                            <textarea class="form-control" name="comments" id="reviewComments" rows="4" placeholder="Tuliskan ulasan pencapaian KPI staf, kelebihan, area peningkatan, dan arahan rencana kerja ke depan..." required></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary" form="performanceReviewForm">
+                    <i class="fas fa-save me-1"></i> Simpan Penilaian
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

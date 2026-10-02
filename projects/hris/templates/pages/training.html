@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Training{% endblock %}
+{% block page_title %}Training & Development{% endblock %}
+{% block content %}
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+            <h4 class="mb-1 fw-bold">Training & Learning</h4>
+            <p class="text-muted mb-0">{% if user.role == 'employee' %}Daftar program pelatihan keahlian dan status keikutsertaan Anda{% else %}Manage training programs and track employee development{% endif %}</p>
+        </div>
+        {% if user.role in ['super_admin', 'manager'] %}
+        <div class="d-flex gap-2">
+            <a href="/api/exports/training?format=excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel me-1"></i> Export Excel</a>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addTrainingModal"><i class="fas fa-plus me-1"></i>Add Program</button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-primary-subtle me-3"><i class="fas fa-graduation-cap text-primary"></i></div>
+                <div><div class="fw-bold">{{ train_stats.total }}</div><small class="text-muted">Total Program Pelatihan</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-success-subtle me-3"><i class="fas fa-check-circle text-success"></i></div>
+                <div><div class="fw-bold">{{ train_stats.active }}</div><small class="text-muted">Program Aktif</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-info-subtle me-3"><i class="fas fa-certificate text-info"></i></div>
+                <div><div class="fw-bold">{{ train_stats.completed }}</div><small class="text-muted">Program Selesai</small></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-bottom py-3">
+        <h6 class="mb-0 fw-semibold"><i class="fas fa-book-reader text-primary me-2"></i>Katalog Pelatihan Karyawan</h6>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nama Program Pelatihan</th>
+                        <th>Instruktur / Pemateri</th>
+                        <th>Jadwal Pelaksanaan</th>
+                        {% if user.role == 'employee' %}
+                        <th>Status Keikutsertaan Saya</th>
+                        <th>Nilai / Skor Akhir</th>
+                        {% else %}
+                        <th>Kapasitas Peserta</th>
+                        <th>Status Program</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if trainings %}
+                        {% for t in trainings %}
+                        <tr>
+                            <td>
+                                <div>
+                                    <strong>{{ t.title }}</strong>
+                                    <p class="text-muted small mb-0">{{ t.description or '-' }}</p>
+                                </div>
+                            </td>
+                            <td><i class="fas fa-user-tie text-secondary me-1"></i> {{ t.trainer or '-' }}</td>
+                            <td><small class="text-muted">{{ t.start_date }} s/d {{ t.end_date }}</small></td>
+                            
+                            {% if user.role == 'employee' %}
+                            <td>
+                                {% if t.enrollment_status == 'completed' %}
+                                    <span class="badge bg-success-subtle text-success"><i class="fas fa-check-circle me-1"></i>Selesai Mengikuti</span>
+                                {% elif t.enrollment_status == 'enrolled' %}
+                                    <span class="badge bg-primary-subtle text-primary"><i class="fas fa-user-check me-1"></i>Terdaftar (Enrolled)</span>
+                                {% else %}
+                                    <span class="badge bg-secondary-subtle text-dark">Tersedia</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if t.my_score %}
+                                    <strong class="text-success">{{ t.my_score }} / 100</strong>
+                                {% elif t.enrollment_status == 'enrolled' %}
+                                    <span class="text-muted small">Dalam Pelaksanaan</span>
+                                {% else %}
+                                    <span class="text-muted small">-</span>
+                                {% endif %}
+                            </td>
+                            {% else %}
+                            <td><span class="badge bg-info-subtle text-info">{{ t.enrolled_count or 0 }} / {{ t.capacity or 30 }} Peserta</span></td>
+                            <td>
+                                {% if t.status == 'active' %}
+                                    <span class="badge bg-success-subtle text-success">Active</span>
+                                {% else %}
+                                    <span class="badge bg-secondary-subtle text-secondary">Completed</span>
+                                {% endif %}
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-muted">Belum ada program pelatihan.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{
+  "bundle_hash": "sha256:348da59092dc7fc252bdb4e136317f288abee97ae47d7773a50cd79b1511ff3c",
+  "scanner_version": "skills-guard-v6",
+  "source": "@reikys/reikys-hallucination-guard",
+  "source_url": "@reikys/reikys-hallucination-guard",
+  "verdict": "safe",
+  "trust_level": "community",
+  "findings": [
+    {
+      "pattern_id": "unpinned_pip_install",
+      "severity": "medium",
+      "category": "supply_chain",
+      "file": "SKILL.md",
+      "line": 741,
+      "match": "Recommend: pip install boto3, then retry",
+      "description": "pip install without version pinning"
+    }
+  ],
+  "rules": [
+    "unpinned_pip_install"
+  ],
+  "scanned_at": "2026-09-27T13:21:22.625089+00:00",
+  "summary": "reikys-hallucination-guard: safe \u2014 1 finding(s) in supply_chain",
+  "fresh": true
+}

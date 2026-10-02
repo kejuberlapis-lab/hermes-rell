@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+{% block title %}Struktur Organisasi PT Mitsindo{% endblock %}
+{% block page_title %}Struktur Organisasi{% endblock %}
+
+{% block extra_css %}
+<style>
+.org-container {
+    overflow-x: auto;
+    padding: 20px 0;
+}
+.org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 1200px;
+}
+.org-node {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    min-width: 140px;
+    position: relative;
+    transition: all 0.2s;
+}
+.org-node:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+.org-node.commissioner { border-top: 3px solid #8b5cf6; background: #faf5ff; }
+.org-node.director { border-top: 3px solid #3b82f6; background: #eff6ff; }
+.org-node.secretary { border-top: 3px solid #06b6d4; background: #ecfeff; }
+.org-node.manager { border-top: 3px solid #0ea5e9; }
+.org-node.staff { border-top: 3px solid #94a3b8; font-size: 0.8rem; }
+.org-role { font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: #64748b; margin-bottom: 2px; }
+.org-name { font-size: 0.88rem; font-weight: 600; color: #1e293b; }
+.org-subtext { font-size: 0.72rem; color: #94a3b8; }
+
+.org-connector-v { width: 2px; height: 24px; background: #cbd5e1; margin: 0 auto; }
+.org-connector-h { height: 2px; background: #cbd5e1; margin-bottom: 24px; }
+.dept-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+.dept-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.dept-title-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #f1f5f9;
+    color: #475569;
+    margin-bottom: 4px;
+    white-space: nowrap;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <h4 class="fw-bold mb-1">Struktur Organisasi MVP 2026</h4>
+        <p class="text-muted small mb-0">PT Mitsindo - Solution Integration PROFESIONAL</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="/employees" class="btn btn-outline-primary btn-sm"><i class="fas fa-users me-1"></i> Data Karyawan (33)</a>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body org-container">
+        <div class="org-chart">
+            
+            <!-- Tier 1: Dewan Komisaris -->
+            <div class="d-flex gap-4 mb-2">
+                <div class="org-node commissioner">
+                    <div class="org-role text-purple">Komisaris</div>
+                    <div class="org-name">Slamet</div>
+                    <div class="org-subtext">MVP0001</div>
+                </div>
+                <div class="org-node commissioner">
+                    <div class="org-role text-purple">Komisaris</div>
+                    <div class="org-name">Willung</div>
+                    <div class="org-subtext">MVP0002</div>
+                </div>
+            </div>
+
+            <div class="org-connector-v"></div>
+
+            <!-- Tier 2: Direktur & Sekretaris -->
+            <div class="d-flex align-items-center gap-3">
+                <div class="org-node director" style="min-width: 220px;">
+                    <div class="org-role text-primary">Direktur Utama</div>
+                    <div class="org-name" style="font-size: 0.95rem;">William Hosea Eko Putro</div>
+                    <div class="org-subtext">MVP0003</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div style="width: 20px; height: 2px; background: #cbd5e1; border-top: 1px dashed #94a3b8;"></div>
+                    <div class="org-node secretary">
+                        <div class="org-role text-info">Sekretaris</div>
+                        <div class="org-name">Annisa</div>
+                        <div class="org-subtext">MVP0004</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="org-connector-v" style="height: 30px;"></div>
+
+            <!-- Tier 3: 6 Divisi Operasional Utama -->
+            <div class="dept-grid">
+                
+                <!-- 1. General Affairs -->
+                <div class="dept-col">
+                    <span class="dept-title-badge">General Affairs</span>
+                    <div class="org-node manager w-100">
+                        <div class="org-role text-info">Head GA</div>
+                        <div class="org-name">Andreas</div>
+                        <div class="org-subtext">MVP0005</div>
+                    </div>
+                    <div class="org-connector-v" style="height: 12px;"></div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Staf GA</div>
+                        <div class="org-name">Alwan</div>
+                        <div class="org-subtext">MVP0006</div>
+                    </div>
+                </div>
+
+                <!-- 2. Accounting & Finance -->
+                <div class="dept-col">
+                    <span class="dept-title-badge">Accounting & Finance</span>
+                    <div class="org-node manager w-100">
+                        <div class="org-role text-info">Head Acc & Fin</div>
+                        <div class="org-name">Wina</div>
+                        <div class="org-subtext">MVP0007</div>
+                    </div>
+                    <div class="org-connector-v" style="height: 12px;"></div>
+                    <div class="org-node manager w-100">
+                        <div class="org-role text-info">Head Finance</div>
+                        <div class="org-name">Mei</div>
+                        <div class="org-subtext">MVP0008</div>
+                    </div>
+                    <div class="org-node staff w-100 mt-1">
+                        <div class="org-role">Staf Penjualan</div>
+                        <div class="org-name">Ravena</div>
+                        <div class="org-subtext">MVP0009</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Staf Kasir</div>
+                        <div class="org-name">Kristin</div>
+                        <div class="org-subtext">MVP0010</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Purchasing & Acc</div>
+                        <div class="org-name">Agnes</div>
+                        <div class="org-subtext">MVP0011</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Supir & Logistik</div>
+                        <div class="org-name">Iwan, Jeni, Furqon</div>
+                        <div class="org-subtext">MVP0012-0014</div>
+                    </div>
+                </div>
+
+                <!-- 3. Government Sales -->
+                <div class="dept-col">
+                    <span class="dept-title-badge">Government Sales</span>
+                    <div class="org-node manager w-100">
+                        <div class="org-role text-info">Manager GS</div>
+                        <div class="org-name">Lina</div>
+                        <div class="org-subtext">MVP0015</div>
+                    </div>
+                    <div class="org-connector-v" style="height: 12px;"></div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Sales Support</div>
+                        <div class="org-name">Arvina</div>
+                        <div class="org-subtext">MVP0019</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Sales</div>
+                        <div class="org-name">Arief</div>
+                        <div class="org-subtext">MVP0016</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Sales</div>
+                        <div class="org-name">Jefferson</div>
+                        <div class="org-subtext">MVP0017</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Sales</div>
+                        <div class="org-name">Bagus Juono</div>
+                        <div class="org-subtext">MVP0018</div>
+                    </div>
+                </div>
+
+                <!-- 4. Corporate Sales -->
+                <div class="dept-col">
+                    <span class="dept-title-badge">Corporate Sales</span>
+                    <div class="org-node manager w-100">
+                        <div class="org-role text-info">Manager CS</div>
+                        <div class="org-name">Meytilien</div>
+                        <div class="org-subtext">MVP0020</div>
+                    </div>
+                    <div class="org-connector-v" style="height: 12px;"></div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Sales</div>
+                        <div class="org-name">Edwin Yahya</div>
+                        <div class="org-subtext">MVP0021</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Sales</div>
+                        <div class="org-name">Ekky Muhammad</div>
+                        <div class="org-subtext">MVP0022</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Sales</div>
+                        <div class="org-name">Rendy Mahardika</div>
+                        <div class="org-subtext">MVP0023</div>
+                    </div>
+                </div>
+
+                <!-- 5. Development & Technical -->
+                <div class="dept-col">
+                    <span class="dept-title-badge">Development & Tech</span>
+                    <div class="org-node manager w-100" style="border-top-color: #2563eb; background: #f0f7ff;">
+                        <div class="org-role text-primary">Manager Dev</div>
+                        <div class="org-name">Andi Saputra</div>
+                        <div class="org-subtext">MVP0024</div>
+                    </div>
+                    <div class="org-connector-v" style="height: 12px;"></div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Presales</div>
+                        <div class="org-name">Gilang Ramadhan</div>
+                        <div class="org-subtext">MVP0025</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Digital Marketing</div>
+                        <div class="org-name">Sedni</div>
+                        <div class="org-subtext">MVP0026</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Teknis</div>
+                        <div class="org-name">Rahman</div>
+                        <div class="org-subtext">MVP0027</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Teknis</div>
+                        <div class="org-name">Willy</div>
+                        <div class="org-subtext">MVP0028</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Teknis</div>
+                        <div class="org-name">Irvan</div>
+                        <div class="org-subtext">MVP0029</div>
+                    </div>
+                </div>
+
+                <!-- 6. Warehouse & Logistics -->
+                <div class="dept-col">
+                    <span class="dept-title-badge">Warehouse</span>
+                    <div class="org-node manager w-100">
+                        <div class="org-role text-info">Head Warehouse</div>
+                        <div class="org-name">Sugeng</div>
+                        <div class="org-subtext">MVP0030</div>
+                    </div>
+                    <div class="org-connector-v" style="height: 12px;"></div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Staf Gudang</div>
+                        <div class="org-name">Joko</div>
+                        <div class="org-subtext">MVP0031</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Staf Gudang</div>
+                        <div class="org-name">Yusuf</div>
+                        <div class="org-subtext">MVP0032</div>
+                    </div>
+                    <div class="org-node staff w-100">
+                        <div class="org-role">Staf Gudang</div>
+                        <div class="org-name">Sureha</div>
+                        <div class="org-subtext">MVP0033</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

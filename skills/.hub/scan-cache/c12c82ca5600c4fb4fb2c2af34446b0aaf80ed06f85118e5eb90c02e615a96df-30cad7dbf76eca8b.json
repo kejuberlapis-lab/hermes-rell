@@ -1,0 +1,13 @@
+{
+  "bundle_hash": "sha256:c12c82ca5600c4fb4fb2c2af34446b0aaf80ed06f85118e5eb90c02e615a96df",
+  "scanner_version": "skills-guard-v6",
+  "source": "@borodich/bug-fix-protocol",
+  "source_url": "@borodich/bug-fix-protocol",
+  "verdict": "safe",
+  "trust_level": "community",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-09-27T13:21:46.757121+00:00",
+  "summary": "bug-fix-protocol: clean scan, no threats detected",
+  "fresh": true
+}

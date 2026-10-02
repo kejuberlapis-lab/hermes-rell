@@ -1,0 +1,33 @@
+KPI SYSTEM SUMMARY REPORT
+==================================================
+
+Company: Solution Integration Profesional
+Year: 2026 (Fase Transisi)
+Version: V.01 MVP 2026
+Generated: 2026-09-09 01:31:22
+
+OVERVIEW:
+- Total KPI Templates: 33
+- Total Employee Assignments: 34
+- Departments Covered: 5
+- Positions Covered: 8
+
+DEPARTMENT BREAKDOWN:
+- Executive: 5 KPI templates
+- Finance: 4 KPI templates
+- Marketing: 6 KPI templates
+- Operations: 13 KPI templates
+- Sales: 5 KPI templates
+
+SCORING SCALE (Fase Transisi):
+1. Sangat Kurang: < 50% dari target
+2. Kurang: 50% - 69% dari target
+3. Memenuhi Harapan: 70% - 85% dari target
+4. Baik: 86% - 100% dari target
+5. Sangat Baik: > 100% dari target
+
+REWARD SCHEME:
+- Extra PTO: 1 hari untuk skor KPI minimal 95% selama 4 kuartal
+- WFH/WFA: 1 hari/bulan dengan persetujuan Manajer
+- Sponsor Sertifikasi: Untuk karyawan berprestasi
+- Employee of the Month: Sertifikat + Rp 250.000

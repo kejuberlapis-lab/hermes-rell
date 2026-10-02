@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HRIS{% endblock %} | PT Mitsindo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/style.css?v=20260907" rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand d-flex align-items-center gap-2">
+                <img src="/static/img/logo.png?v=2" alt="PT Mitsindo" style="width: 38px; height: 38px; object-fit: contain;">
+                <span class="brand-text fw-bold" style="font-size: 1.15rem; letter-spacing: 0.5px; color: #ffffff;">MITSINDO</span>
+            </div>
+            <button class="sidebar-close d-lg-none" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <!-- Dashboard -->
+            <a href="/dashboard" class="sidebar-link {% if active_page == 'dashboard' %}active{% endif %}">
+                <i class="fas fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <!-- Core HR -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">
+                    <span>Core HR</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-section-menu">
+                    {% if user and user.role == 'super_admin' %}
+                    <a href="/employees" class="sidebar-link {% if active_page == 'employees' %}active{% endif %}">
+                        <i class="fas fa-users"></i><span>Employees</span>
+                    </a>
+                    <a href="/departments" class="sidebar-link {% if active_page == 'departments' %}active{% endif %}">
+                        <i class="fas fa-sitemap"></i><span>Departments</span>
+                    </a>
+                    {% elif user and user.role == 'director' %}
+                    <a href="/employees/{{ user.employee_id or user.id or 2 }}" class="sidebar-link {% if active_page == 'employee_detail' and emp_id == (user.employee_id or user.id) %}active{% endif %}">
+                        <i class="fas fa-user-tie"></i><span>Profil Direktur</span>
+                    </a>
+                    <a href="/employees" class="sidebar-link {% if active_page == 'employees' %}active{% endif %}">
+                        <i class="fas fa-users"></i><span>Semua Karyawan</span>
+                    </a>
+                    <a href="/departments" class="sidebar-link {% if active_page == 'departments' %}active{% endif %}">
+                        <i class="fas fa-sitemap"></i><span>Departments</span>
+                    </a>
+                    {% elif user and user.role == 'manager' %}
+                    <a href="/employees/{{ user.employee_id or user.id or 3 }}" class="sidebar-link {% if active_page == 'employee_detail' and emp_id == (user.employee_id or user.id) %}active{% endif %}">
+                        <i class="fas fa-user-circle"></i><span>Profil Saya</span>
+                    </a>
+                    <a href="/employees" class="sidebar-link {% if active_page == 'employees' %}active{% endif %}">
+                        <i class="fas fa-users-cog"></i><span>Tim / Karyawan</span>
+                    </a>
+                    <a href="/departments" class="sidebar-link {% if active_page == 'departments' %}active{% endif %}">
+                        <i class="fas fa-sitemap"></i><span>Departments</span>
+                    </a>
+                    {% elif user and user.role == 'employee' %}
+                    <a href="/employees/{{ user.employee_id or user.id or 4 }}" class="sidebar-link {% if active_page == 'employee_detail' %}active{% endif %}">
+                        <i class="fas fa-user-circle"></i><span>Profil Saya</span>
+                    </a>
+                    {% endif %}
+                    <a href="/documents" class="sidebar-link {% if active_page == 'documents' %}active{% endif %}">
+                        <i class="fas fa-file-alt"></i><span>Documents</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Admin (Super Admin Only) -->
+            {% if user and user.role == 'super_admin' %}
+            <div class="sidebar-section" data-role="super_admin">
+                <div class="sidebar-section-title">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-section-menu">
+                    <a href="/admin/registrations" class="sidebar-link {% if active_page == 'registrations' %}active{% endif %}">
+                        <i class="fas fa-user-check"></i><span>Registration Approvals</span>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Time & Attendance -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">
+                    <span>Time & Attendance</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-section-menu">
+                    <a href="/attendance" class="sidebar-link {% if active_page == 'attendance' %}active{% endif %}">
+                        <i class="fas fa-clock"></i><span>Attendance</span>
+                    </a>
+                    <a href="/overtime" class="sidebar-link {% if active_page == 'overtime' %}active{% endif %}">
+                        <i class="fas fa-hourglass-half"></i><span>Overtime</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Leave Management -->
+            <a href="/leave" class="sidebar-link {% if active_page == 'leave' %}active{% endif %}">
+                <i class="fas fa-calendar-times"></i>
+                <span>Leave Management</span>
+            </a>
+
+            <!-- Payroll & Finance -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">
+                    <span>Payroll & Claims</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-section-menu">
+                    {% if user and user.role == 'super_admin' %}
+                    <a href="/payroll" class="sidebar-link {% if active_page == 'payroll' %}active{% endif %}">
+                        <i class="fas fa-money-check-alt"></i><span>Salary Processing</span>
+                    </a>
+                    {% endif %}
+                    <a href="/payslips" class="sidebar-link {% if active_page == 'payslips' %}active{% endif %}">
+                        <i class="fas fa-receipt"></i><span>Payslips</span>
+                    </a>
+                    <a href="/reimbursement" class="sidebar-link {% if active_page == 'reimbursement' %}active{% endif %}">
+                        <i class="fas fa-file-invoice-dollar"></i><span>Reimbursement</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Travel & Finance -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">
+                    <span>Travel & Finance</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-section-menu">
+                    <a href="/travel" class="sidebar-link {% if active_page == 'travel' %}active{% endif %}">
+                        <i class="fas fa-plane-departure"></i><span>Perjalanan Dinas</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Performance & Training -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">
+                    <span>Performance</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-section-menu">
+                    {% if user and user.role in ['super_admin', 'director'] %}
+                    <a href="/performance" class="sidebar-link {% if active_page == 'performance' %}active{% endif %}">
+                        <i class="fas fa-bullseye"></i><span>KPI / OKR Master</span>
+                    </a>
+                    {% endif %}
+                    {% if user and user.role in ['super_admin', 'director', 'manager'] %}
+                    <a href="/kpi-dashboard" class="sidebar-link {% if active_page == 'kpi-dashboard' %}active{% endif %}">
+                        <i class="fas fa-chart-line"></i><span>KPI Dashboard</span>
+                    </a>
+                    {% endif %}
+                    <a href="/reviews" class="sidebar-link {% if active_page == 'reviews' %}active{% endif %}">
+                        <i class="fas fa-star"></i><span>{% if user and user.role == 'director' %}Penilaian Manajer & Tim{% elif user and user.role == 'manager' %}Penilaian & Evaluasi Tim{% elif user and user.role == 'employee' %}Penilaian Kinerja Saya{% else %}Reviews{% endif %}</span>
+                    </a>
+                    <a href="/training" class="sidebar-link {% if active_page == 'training' %}active{% endif %}">
+                        <i class="fas fa-graduation-cap"></i><span>Training</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Recruitment (Hanya Andreas / Head of General Affairs & HR) -->
+            {% if user and (user.username == 'andreas' or user.role == 'super_admin') %}
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">
+                    <span>Recruitment</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sidebar-section-menu">
+                    <a href="/requisitions" class="sidebar-link {% if active_page == 'requisitions' %}active{% endif %}">
+                        <i class="fas fa-clipboard-list"></i><span>Requisitions</span>
+                    </a>
+                    <a href="/recruitment" class="sidebar-link {% if active_page == 'recruitment' %}active{% endif %}">
+                        <i class="fas fa-user-plus"></i><span>Applicants</span>
+                    </a>
+                    <a href="/interviews" class="sidebar-link {% if active_page == 'interviews' %}active{% endif %}">
+                        <i class="fas fa-comments"></i><span>Interviews</span>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Operations & Reports (Super Admin, Director & Manager) -->
+            {% if user and user.role in ['super_admin', 'director', 'manager'] %}
+            <a href="/procurement" class="sidebar-link {% if active_page == 'procurement' %}active{% endif %}">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Procurement</span>
+            </a>
+            <a href="/assets" class="sidebar-link {% if active_page == 'assets' %}active{% endif %}">
+                <i class="fas fa-boxes"></i>
+                <span>Asset Management</span>
+            </a>
+            <a href="/reports" class="sidebar-link {% if active_page == 'reports' %}active{% endif %}">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+            </a>
+            {% endif %}
+
+            <!-- Settings (Super Admin only) -->
+            {% if user and user.role == 'super_admin' %}
+            <a href="/settings" class="sidebar-link sidebar-admin {% if active_page == 'settings' %}active{% endif %}" data-role="super_admin">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+            {% endif %}
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-version">v2.1.0</div>
+        </div>
+    </aside>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Navbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="topbar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="topbar-breadcrumb">
+                    {% block breadcrumb %}
+                    <span class="text-muted">{% block page_title %}Dashboard{% endblock %}</span>
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="topbar-right">
+                <!-- Search -->
+                <div class="topbar-search d-none d-md-flex">
+                    <input type="text" class="form-control form-control-sm" placeholder="Search employees, documents..." id="globalSearch">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <button class="topbar-icon-btn" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notifBadge">3</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end notification-dropdown">
+                        <div class="dropdown-header d-flex justify-content-between align-items-center">
+                            <span>Notifications</span>
+                            <a href="#" class="text-decoration-none small">Mark all read</a>
+                        </div>
+                        <div class="notification-list">
+                            {% if user and user.role == 'employee' %}
+                            <a href="/attendance" class="notification-item unread">
+                                <div class="notification-icon bg-success-subtle">
+                                    <i class="fas fa-fingerprint text-success"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p class="mb-0">Presensi masuk hari ini berhasil dicatat</p>
+                                    <small class="text-muted">Pagi ini</small>
+                                </div>
+                            </a>
+                            <a href="/leave" class="notification-item unread">
+                                <div class="notification-icon bg-warning-subtle">
+                                    <i class="fas fa-calendar-check text-warning"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p class="mb-0">Pengajuan cuti Anda dalam proses review</p>
+                                    <small class="text-muted">Kemarin</small>
+                                </div>
+                            </a>
+                            <a href="/payslips" class="notification-item">
+                                <div class="notification-icon bg-primary-subtle">
+                                    <i class="fas fa-receipt text-primary"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p class="mb-0">Slip gaji periode terbaru Anda telah terbit</p>
+                                    <small class="text-muted">3 hari yang lalu</small>
+                                </div>
+                            </a>
+                            {% else %}
+                            <a href="#" class="notification-item unread">
+                                <div class="notification-icon bg-primary-subtle">
+                                    <i class="fas fa-user-plus text-primary"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p class="mb-0">Pendaftaran karyawan baru terdaftar</p>
+                                    <small class="text-muted">2 minutes ago</small>
+                                </div>
+                            </a>
+                            <a href="/leave" class="notification-item unread">
+                                <div class="notification-icon bg-warning-subtle">
+                                    <i class="fas fa-calendar-check text-warning"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p class="mb-0">Pengajuan cuti tim membutuhkan review</p>
+                                    <small class="text-muted">15 minutes ago</small>
+                                </div>
+                            </a>
+                            <a href="/payroll" class="notification-item">
+                                <div class="notification-icon bg-success-subtle">
+                                    <i class="fas fa-check-circle text-success"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p class="mb-0">Payroll bulan berjalan telah diproses</p>
+                                    <small class="text-muted">1 hour ago</small>
+                                </div>
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="dropdown-footer text-center">
+                            <a href="#" class="text-decoration-none small">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Messages -->
+                <div class="dropdown">
+                    <button class="topbar-icon-btn" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-envelope"></i>
+                        <span class="notification-badge">1</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end notification-dropdown">
+                        <div class="dropdown-header">Messages</div>
+                        <a href="#" class="notification-item">
+                            <div class="notification-icon bg-info-subtle">
+                                <i class="fas fa-envelope text-info"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p class="mb-0">You have a new message from HR Dept</p>
+                                <small class="text-muted">30 minutes ago</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- User Profile -->
+                <div class="dropdown">
+                    <button class="topbar-user" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="user-avatar">
+                            <span>{{ (user.full_name or user.username or 'US')[:2] | upper }}</span>
+                        </div>
+                        <div class="user-info d-none d-md-block">
+                            <div class="user-name" id="userName">{{ user.full_name or user.username or 'User' }}</div>
+                            <div class="user-role" id="userRole">{{ user.role | replace('_', ' ') | title if user and user.role else 'Employee' }}</div>
+                        </div>
+                        <i class="fas fa-chevron-down ms-2 d-none d-md-inline"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a href="/profile" class="dropdown-item">
+                            <i class="fas fa-user me-2"></i>My Profile
+                        </a>
+                        <a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            <i class="fas fa-key me-2"></i>Ganti Password
+                        </a>
+                        {% if user and user.role == 'super_admin' %}
+                        <a href="/settings" class="dropdown-item">
+                            <i class="fas fa-cog me-2"></i>Settings
+                        </a>
+                        {% endif %}
+                        <a href="/help" class="dropdown-item">
+                            <i class="fas fa-question-circle me-2"></i>Help
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item text-danger" onclick="App.logout()">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="page-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Toast Container -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+    </div>
+
+    <!-- Modal Ganti Password -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" {% if user and user.must_change_password == 1 %}data-bs-backdrop="static" data-bs-keyboard="false"{% endif %} aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title fw-bold" id="changePasswordModalLabel">
+                        <i class="fas fa-shield-alt me-2"></i>{% if user and user.must_change_password == 1 %}Wajib Ganti Password Pertama Kali{% else %}Ganti Password Akun{% endif %}
+                    </h5>
+                    {% if not user or user.must_change_password != 1 %}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    {% endif %}
+                </div>
+                <form id="changePasswordForm" onsubmit="return handleGlobalChangePassword(event)">
+                    <div class="modal-body p-4">
+                        {% if user and user.must_change_password == 1 %}
+                        <div class="alert alert-warning border-0 d-flex align-items-center mb-3">
+                            <i class="fas fa-exclamation-triangle fa-2x me-3 text-warning"></i>
+                            <div>
+                                <strong>Keamanan Akun:</strong> Ini adalah login pertama Anda. Demi keamanan data, silakan buat password baru Anda sebelum melanjutkan.
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="alert d-none" id="changePwAlert"></div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Password Saat Ini / Default</label>
+                            <input type="password" class="form-control" name="old_password" placeholder="Masukkan password saat ini" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Password Baru</label>
+                            <input type="password" class="form-control" name="new_password" placeholder="Minimal 6 karakter" required minlength="6">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Konfirmasi Password Baru</label>
+                            <input type="password" class="form-control" name="confirm_new_password" placeholder="Ketik ulang password baru" required minlength="6">
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        {% if not user or user.must_change_password != 1 %}
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        {% endif %}
+                        <button type="submit" class="btn btn-primary px-4" id="submitChangePwBtn">
+                            <i class="fas fa-check-circle me-1"></i>Simpan Password Baru
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="/static/js/app.js?v=20260919_v8"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% if user and user.must_change_password == 1 %}
+        const pwModalEl = document.getElementById('changePasswordModal');
+        if (pwModalEl) {
+            const pwModal = new bootstrap.Modal(pwModalEl);
+            pwModal.show();
+        }
+        {% endif %}
+    });
+
+    async function handleGlobalChangePassword(e) {
+        e.preventDefault();
+        const form = e.target;
+        const btn = document.getElementById('submitChangePwBtn');
+        const alertBox = document.getElementById('changePwAlert');
+
+        const old_password = form.old_password.value;
+        const new_password = form.new_password.value;
+        const confirm_new_password = form.confirm_new_password.value;
+
+        if (new_password !== confirm_new_password) {
+            alertBox.className = 'alert alert-danger';
+            alertBox.textContent = 'Konfirmasi password baru tidak cocok!';
+            alertBox.classList.remove('d-none');
+            return false;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Menyimpan...';
+
+        try {
+            const token = localStorage.getItem('hris_token') || (document.cookie.match(/(?:^|;\s*)token=([^;]+)/) || [])[1] || '';
+            const res = await fetch('/api/auth/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    old_password: old_password,
+                    new_password: new_password
+                })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                alertBox.className = 'alert alert-success';
+                alertBox.textContent = 'Password berhasil diubah! Memuat ulang halaman...';
+                alertBox.classList.remove('d-none');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1200);
+            } else {
+                alertBox.className = 'alert alert-danger';
+                alertBox.textContent = data.detail || 'Gagal mengubah password.';
+                alertBox.classList.remove('d-none');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check-circle me-1"></i>Simpan Password Baru';
+            }
+        } catch (err) {
+            alertBox.className = 'alert alert-danger';
+            alertBox.textContent = 'Terjadi kesalahan koneksi.';
+            alertBox.classList.remove('d-none');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-check-circle me-1"></i>Simpan Password Baru';
+        }
+        return false;
+    }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

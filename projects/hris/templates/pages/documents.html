@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Document Management{% endblock %}
+{% block page_title %}{% if user.role == 'employee' %}Dokumen Saya{% else %}Document Management{% endif %}{% endblock %}
+{% block content %}
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+            <h4 class="mb-1 fw-bold">{% if user.role == 'employee' %}Dokumen Pribadi Saya{% else %}Document Management{% endif %}</h4>
+            <p class="text-muted mb-0">{% if user.role == 'employee' %}Arsip dokumen identitas, berkas kontrak, dan sertifikat profesional Anda{% else %}Store and manage company and employee documents{% endif %}</p>
+        </div>
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#uploadDocModal"><i class="fas fa-cloud-upload-alt me-1"></i> Upload Document</button>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-primary-subtle me-3"><i class="fas fa-file-alt text-primary"></i></div>
+                <div><div class="fw-bold">{{ doc_stats.total }}</div><small class="text-muted">Total Documents</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-success-subtle me-3"><i class="fas fa-check-circle text-success"></i></div>
+                <div><div class="fw-bold">{{ doc_stats.valid }}</div><small class="text-muted">Valid</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-warning-subtle me-3"><i class="fas fa-exclamation-triangle text-warning"></i></div>
+                <div><div class="fw-bold">{{ doc_stats.expiring }}</div><small class="text-muted">Expiring Soon</small></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-danger-subtle me-3"><i class="fas fa-times-circle text-danger"></i></div>
+                <div><div class="fw-bold">{{ doc_stats.expired }}</div><small class="text-muted">Expired</small></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-header bg-white border-bottom py-3">
+        <h6 class="mb-0 fw-semibold"><i class="fas fa-folder-open text-primary me-2"></i>{% if user.role == 'employee' %}Daftar Dokumen Saya{% else %}Daftar Dokumen Karyawan{% endif %}</h6>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        {% if user.role != 'employee' %}
+                        <th>Karyawan</th>
+                        {% endif %}
+                        <th>Jenis Dokumen</th>
+                        <th>Nama File</th>
+                        <th>Tanggal Upload</th>
+                        <th>Masa Berlaku</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if documents %}
+                        {% for d in documents %}
+                        <tr>
+                            {% if user.role != 'employee' %}
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar-sm bg-primary-subtle rounded-circle me-2">
+                                        <span class="text-primary fw-semibold">{{ d.full_name[:2].upper() if d.full_name else 'EM' }}</span>
+                                    </div>
+                                    <div>
+                                        <div class="fw-medium">{{ d.full_name }}</div>
+                                        <small class="text-muted">{{ d.employee_id_str or '' }}</small>
+                                    </div>
+                                </div>
+                            </td>
+                            {% endif %}
+                            <td>
+                                {% if d.doc_type == 'ktp' %}
+                                    <span class="badge bg-primary-subtle text-primary"><i class="fas fa-id-card me-1"></i>KTP / Identitas</span>
+                                {% elif d.doc_type == 'kontrak' %}
+                                    <span class="badge bg-success-subtle text-success"><i class="fas fa-file-contract me-1"></i>Kontrak Kerja</span>
+                                {% elif d.doc_type == 'sertifikat' %}
+                                    <span class="badge bg-warning-subtle text-warning"><i class="fas fa-certificate me-1"></i>Sertifikat</span>
+                                {% else %}
+                                    <span class="badge bg-secondary-subtle text-dark"><i class="fas fa-file me-1"></i>Dokumen Lain</span>
+                                {% endif %}
+                            </td>
+                            <td><i class="fas fa-file-pdf text-danger me-1"></i> <strong>{{ d.file_name }}</strong></td>
+                            <td><small class="text-muted">{{ (d.uploaded_at or '')[:10] }}</small></td>
+                            <td>{{ d.expiry_date or 'Seumur Hidup / Permanent' }}</td>
+                            <td>
+                                {% if not d.expiry_date or d.expiry_date >= '2026-09-19' %}
+                                    <span class="badge bg-success-subtle text-success">Valid</span>
+                                {% else %}
+                                    <span class="badge bg-danger-subtle text-danger">Expired</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/api/documents/download/{{ d.id }}" class="btn btn-outline-primary btn-sm" target="_blank">
+                                    <i class="fas fa-download me-1"></i>Download
+                                </a>
+                                {% if user.role in ['super_admin', 'manager'] %}
+                                <button class="btn btn-outline-danger btn-sm" onclick="App.deleteDocument({{ d.id }})"><i class="fas fa-trash"></i></button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-muted">
+                                <i class="fas fa-folder fa-2x mb-2 d-block"></i>
+                                Belum ada dokumen yang diunggah.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

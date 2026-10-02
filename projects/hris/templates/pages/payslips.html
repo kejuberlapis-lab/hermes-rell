@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block title %}Payslips{% endblock %}
+{% block page_title %}Payslips{% endblock %}
+{% block content %}
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+            {% if user and user.role == 'employee' %}
+            <h4 class="mb-1 fw-bold"><i class="fas fa-receipt text-primary me-2"></i>Slip Gaji Saya</h4>
+            <p class="text-muted mb-0">Lihat dan unduh berkas slip gaji resmi bulanan Anda</p>
+            {% else %}
+            <h4 class="mb-1 fw-bold"><i class="fas fa-file-invoice-dollar text-primary me-2"></i>Payslips Management</h4>
+            <p class="text-muted mb-0">View and download employee payslips</p>
+            {% endif %}
+        </div>
+        <div class="d-flex gap-2">
+            {% if user and user.role == 'super_admin' %}
+            <a href="/api/exports/payroll?format=excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel me-1"></i> Export Excel</a>
+            <a href="/payroll" class="btn btn-primary btn-sm"><i class="fas fa-cogs me-1"></i> Process Payroll</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-primary-subtle me-3"><i class="fas fa-file-invoice-dollar text-primary"></i></div>
+                <div>
+                    <div class="fw-bold fs-5">{{ stats.total if stats is defined else payslips|length }}</div>
+                    <small class="text-muted">{% if user and user.role == 'employee' %}Total Slip Diterima{% else %}Total Payslips{% endif %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-success-subtle me-3"><i class="fas fa-check-circle text-success"></i></div>
+                <div>
+                    <div class="fw-bold fs-5">{{ stats.processed if stats is defined else payslips|length }}</div>
+                    <small class="text-muted">Processed</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-warning-subtle me-3"><i class="fas fa-clock text-warning"></i></div>
+                <div>
+                    <div class="fw-bold fs-5">{{ stats.pending if stats is defined else 0 }}</div>
+                    <small class="text-muted">Pending</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-info-subtle me-3"><i class="fas fa-money-bill-wave text-info"></i></div>
+                <div>
+                    <div class="fw-bold fs-5">
+                        {% if stats is defined and stats.total_net %}
+                        Rp {{ "{:,.0f}".format(stats.total_net) }}
+                        {% else %}
+                        -
+                        {% endif %}
+                    </div>
+                    <small class="text-muted">{% if user and user.role == 'employee' %}Total Gaji Diterima{% else %}Total Payroll Amount{% endif %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+        <h6 class="mb-0 fw-semibold">
+            <i class="fas fa-list me-1 text-primary"></i> Daftar Slip Gaji
+        </h6>
+        <span class="badge bg-light text-dark border">{{ payslips|length }} Berkas</span>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" id="payslipsTable">
+                <thead class="table-light">
+                    <tr>
+                        {% if user and user.role != 'employee' %}
+                        <th>Employee</th>
+                        {% endif %}
+                        <th>Period</th>
+                        <th>Gross Salary</th>
+                        <th>Deductions</th>
+                        <th>Net Salary (Take Home Pay)</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in payslips %}
+                    <tr>
+                        {% if user and user.role != 'employee' %}
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm bg-primary-subtle rounded-circle me-2 d-flex align-items-center justify-content-center fw-bold text-primary" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                                    {{ (p.full_name or 'EP')[:2] | upper }}
+                                </div>
+                                <div>
+                                    <div class="fw-semibold">{{ p.full_name }}</div>
+                                    <small class="text-muted">{{ p.employee_id_str or '-' }} &bull; {{ p.department_name or '-' }}</small>
+                                </div>
+                            </div>
+                        </td>
+                        {% endif %}
+                        <td>
+                            <span class="badge bg-light text-dark border fw-medium px-2 py-1">
+                                <i class="fas fa-calendar-alt me-1 text-secondary"></i>
+                                {% if p.period_month == 1 %}Januari
+                                {% elif p.period_month == 2 %}Februari
+                                {% elif p.period_month == 3 %}Maret
+                                {% elif p.period_month == 4 %}April
+                                {% elif p.period_month == 5 %}Mei
+                                {% elif p.period_month == 6 %}Juni
+                                {% elif p.period_month == 7 %}Juli
+                                {% elif p.period_month == 8 %}Agustus
+                                {% elif p.period_month == 9 %}September
+                                {% elif p.period_month == 10 %}Oktober
+                                {% elif p.period_month == 11 %}November
+                                {% elif p.period_month == 12 %}Desember
+                                {% else %}Bulan {{ p.period_month }}
+                                {% endif %} {{ p.period_year }}
+                            </span>
+                        </td>
+                        <td><span class="fw-medium">Rp {{ "{:,.0f}".format(p.base_salary + (p.allowance or 0)) }}</span></td>
+                        <td><span class="text-danger">- Rp {{ "{:,.0f}".format(p.deduction or 0) }}</span></td>
+                        <td><span class="fw-bold text-success fs-6">Rp {{ "{:,.0f}".format(p.net_salary) }}</span></td>
+                        <td>
+                            {% if p.status == 'processed' or p.status == 'approved' %}
+                            <span class="badge bg-success-subtle text-success border border-success-subtle"><i class="fas fa-check-circle me-1"></i>Processed</span>
+                            {% else %}
+                            <span class="badge bg-warning-subtle text-warning border border-warning-subtle"><i class="fas fa-clock me-1"></i>Pending</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <a href="/api/exports/payslip/{{ p.employee_id }}?period_month={{ p.period_month }}&period_year={{ p.period_year }}" target="_blank" class="btn btn-outline-danger" title="Download Official PDF">
+                                    <i class="fas fa-file-pdf me-1"></i>PDF
+                                </a>
+                                <button type="button" class="btn btn-outline-primary" onclick="App.downloadPayslip({{ p.employee_id }}, {{ p.period_month }}, {{ p.period_year }})" title="Preview & Print">
+                                    <i class="fas fa-print me-1"></i>Preview
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="{% if user and user.role != 'employee' %}7{% else %}6{% endif %}" class="text-center text-muted py-5">
+                            <i class="fas fa-file-invoice-dollar fa-3x mb-3 text-secondary d-block"></i>
+                            Belum ada slip gaji yang diproses untuk periode ini.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

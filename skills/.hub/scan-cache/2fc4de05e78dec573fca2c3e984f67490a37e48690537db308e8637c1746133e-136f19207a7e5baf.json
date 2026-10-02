@@ -1,0 +1,13 @@
+{
+  "bundle_hash": "sha256:2fc4de05e78dec573fca2c3e984f67490a37e48690537db308e8637c1746133e",
+  "scanner_version": "skills-guard-v6",
+  "source": "@scytheshan-pixel/hallucination-guard",
+  "source_url": "@scytheshan-pixel/hallucination-guard",
+  "verdict": "safe",
+  "trust_level": "community",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-09-27T13:20:55.844783+00:00",
+  "summary": "hallucination-guard: clean scan, no threats detected",
+  "fresh": true
+}

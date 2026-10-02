@@ -1,0 +1,36 @@
+# Secrets & Credentials
+*.env
+*.env.*
+*.key
+*.pem
+id_rsa*
+id_ed25519*
+*.session
+
+# Large Datasets & Binaries
+*.csv
+*.tsv
+*.parquet
+*.h5
+*.zip
+*.tar.gz
+*.7z
+*.iso
+
+# Python & Node Virtual Environments / Caches
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+node_modules/
+.pytest_cache/
+
+# System / Virtual Machines
+.wine/
+.cache/
+.tmp/
+*.log
+*.pid
+scratch/

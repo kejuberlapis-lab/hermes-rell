@@ -1,0 +1,13 @@
+{
+  "bundle_hash": "sha256:3831ddb0c641e25002ff85ea14c0edf36dd8e6d913668b53fedf883492cb601f",
+  "scanner_version": "skills-guard-v6",
+  "source": "@yiping3/anti-hallucination",
+  "source_url": "@yiping3/anti-hallucination",
+  "verdict": "safe",
+  "trust_level": "community",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-09-27T13:21:35.986819+00:00",
+  "summary": "anti-hallucination: clean scan, no threats detected",
+  "fresh": true
+}

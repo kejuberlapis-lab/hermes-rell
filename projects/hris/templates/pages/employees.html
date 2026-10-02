@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Employees{% endblock %}
+{% block page_title %}Employees{% endblock %}
+{% block content %}
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div><h4 class="mb-1 fw-bold">Employees</h4><p class="text-muted mb-0">Manage your organization's workforce</p></div>
+        <div class="d-flex gap-2">
+        <div class="btn-group">
+          <a href="/api/exports/employees?format=excel" class="btn btn-success btn-sm"><i class="fas fa-file-excel me-1"></i> Export Excel</a>
+          <button type="button" class="btn btn-success btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"><span class="visually-hidden">Toggle Dropdown</span></button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/api/exports/employees?format=excel"><i class="fas fa-file-excel me-2 text-success"></i>Excel</a></li>
+            <li><a class="dropdown-item" href="/api/exports/employees?format=pdf"><i class="fas fa-file-pdf me-2 text-danger"></i>PDF</a></li>
+          </ul>
+        </div>
+        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fas fa-file-import me-1"></i> Import</button>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addEmployeeModal"><i class="fas fa-plus me-1"></i>Add Employee</button>
+        </div>
+    </div>
+</div>
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-body py-3">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-4"><label class="form-label small text-muted">Search</label><div class="input-group input-group-sm"><span class="input-group-text bg-light"><i class="fas fa-search text-muted"></i></span><input type="text" class="form-control" id="empSearch" placeholder="Name, ID, or email..." oninput="App.filterEmployees()"></div></div>
+            <div class="col-md-2"><label class="form-label small text-muted">Department</label><select class="form-select form-select-sm" id="empDeptFilter" onchange="App.filterEmployees()"><option value="">All Departments</option><option>Engineering</option><option>Marketing</option><option>Finance</option><option>HR</option><option>Operations</option><option>Sales</option></select></div>
+            <div class="col-md-2"><label class="form-label small text-muted">Status</label><select class="form-select form-select-sm" id="empStatusFilter" onchange="App.filterEmployees()"><option value="">All Status</option><option value="active">Active</option><option value="inactive">Inactive</option><option value="on_leave">On Leave</option></select></div>
+            <div class="col-md-2"><label class="form-label small text-muted">Position</label><select class="form-select form-select-sm" id="empPositionFilter"><option value="">All Positions</option><option>Manager</option><option>Staff</option><option>Senior Staff</option></select></div>
+            <div class="col-md-2"><button class="btn btn-outline-secondary btn-sm w-100" onclick="App.resetEmployeeFilters()"><i class="fas fa-undo me-1"></i>Reset</button></div>
+        </div>
+    </div>
+</div>
+<div class="bulk-actions-bar mb-2 d-none" id="bulkActionsBar"><div class="d-flex align-items-center gap-2"><span class="text-muted small"><span id="selectedCount">0</span> selected</span><button class="btn btn-outline-danger btn-sm" onclick="App.bulkAction('deactivate')"><i class="fas fa-ban me-1"></i>Deactivate</button><button class="btn btn-outline-primary btn-sm" onclick="App.bulkAction('transfer')"><i class="fas fa-exchange-alt me-1"></i>Transfer</button></div></div>
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0" id="employeeTable">
+            <thead class="table-light"><tr><th width="40"><div class="form-check"><input class="form-check-input" type="checkbox" id="selectAll" onchange="App.toggleSelectAll(this)"></div></th><th>Employee</th><th>ID</th><th>Department</th><th>Position</th><th>Join Date</th><th>Status</th><th width="100">Actions</th></tr></thead>
+            <tbody>
+                {% for emp in employees %}
+                <tr>
+                    <td><div class="form-check"><input class="form-check-input emp-check" type="checkbox" value="{{ emp.id }}"></div></td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-sm bg-primary-subtle rounded-circle me-2 d-flex align-items-center justify-content-center" style="width:36px;height:36px;">
+                                <span class="text-primary fw-semibold">{{ (emp.full_name or '?')[:2] | upper }}</span>
+                            </div>
+                            <div>
+                                <div class="fw-medium">{{ emp.full_name }}</div>
+                                <small class="text-muted">{{ emp.email or '-' }}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ emp.employee_id_str or '#' ~ emp.id }}</td>
+                    <td>{{ emp.department_name or '-' }}</td>
+                    <td>{{ emp.position_title or '-' }}</td>
+                    <td>{{ emp.hire_date or '-' }}</td>
+                    <td><span class="badge bg-{% if emp.status == 'active' %}success{% elif emp.status == 'inactive' %}danger{% else %}warning{% endif %}">{{ emp.status or 'active' }}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-1" onclick="App.viewEmployee({{ emp.id }})" title="Lihat Detail"><i class="fas fa-eye"></i></button>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="App.editEmployee({{ emp.id }})" title="Edit"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="8" class="text-center text-muted py-5">Belum ada karyawan terdaftar.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer bg-white border-top d-flex justify-content-between align-items-center py-3">
+        <div class="text-muted small">Showing <span id="empCount">{{ employees | length if employees else 0 }}</span> of <span id="empTotal">{{ employees | length if employees else 0 }}</span> employees</div>
+        <nav id="empPagination" class="{% if not employees or employees|length <= 10 %}d-none{% endif %}">
+            <ul class="pagination pagination-sm mb-0">
+                <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="modal fade" id="importModal" tabindex="-1">
+  <div class="modal-dialog"><div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title fw-bold"><i class="fas fa-file-import me-2"></i>Import Employees</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+    <div class="modal-body">
+      <p class="text-muted mb-3">Upload a CSV or Excel (.xlsx) file. Required columns: <code>full_name</code>, <code>email</code>. Optional: <code>phone</code>, <code>department</code>, <code>position</code>, <code>status</code>.</p>
+      <div id="importDropZone" class="border border-2 border-dashed rounded-3 p-5 text-center mb-3" style="border-color: #dee2e6; cursor: pointer;" onclick="document.getElementById('importFile').click()">
+        <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+        <p class="mb-1 fw-semibold">Drop file here or click to browse</p>
+        <p class="text-muted small">Supports CSV and XLSX files</p>
+        <input type="file" id="importFile" class="d-none" accept=".csv,.xlsx,.xls" onchange="App.handleImportFile(this)">
+      </div>
+      <div id="importFileName" class="text-muted small mb-3" style="display:none;"></div>
+      <div id="importProgress" style="display:none;">
+        <div class="progress"><div id="importProgressBar" class="progress-bar" style="width:0%"></div></div>
+      </div>
+      <div id="importResult" style="display:none;"></div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+      <button type="button" id="importBtn" class="btn btn-primary" onclick="App.submitImport()" disabled><i class="fas fa-upload me-1"></i> Import Now</button>
+    </div>
+  </div></div>
+</div>
+<div class="modal fade" id="addEmployeeModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5 class="modal-title fw-bold">Add New Employee</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><form id="addEmployeeForm" onsubmit="return App.submitEmployee(event)"><div class="row g-3"><div class="col-md-6"><label class="form-label">First Name <span class="text-danger">*</span></label><input type="text" class="form-control" name="first_name" required></div><div class="col-md-6"><label class="form-label">Last Name <span class="text-danger">*</span></label><input type="text" class="form-control" name="last_name" required></div><div class="col-md-6"><label class="form-label">Email <span class="text-danger">*</span></label><input type="email" class="form-control" name="email" required></div><div class="col-md-6"><label class="form-label">Phone</label><input type="tel" class="form-control" name="phone"></div><div class="col-md-6"><label class="form-label">Department <span class="text-danger">*</span></label><select class="form-select" name="department" required><option value="">Select Department</option><option>Engineering</option><option>Marketing</option><option>Finance</option><option>HR</option><option>Operations</option><option>Sales</option></select></div><div class="col-md-6"><label class="form-label">Position <span class="text-danger">*</span></label><input type="text" class="form-control" name="position" required></div><div class="col-md-6"><label class="form-label">Join Date <span class="text-danger">*</span></label><input type="date" class="form-control" name="join_date" required></div><div class="col-md-6"><label class="form-label">Employment Type</label><select class="form-select" name="employment_type"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Intern</option></select></div></div></form></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary" form="addEmployeeForm"><i class="fas fa-plus me-1"></i>Add Employee</button></div></div></div></div>
+{% endblock %}

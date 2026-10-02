@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="col-md-5 col-lg-4 px-4">
+        <div class="text-center mb-4">
+            <a href="/" class="text-decoration-none">
+                <img src="/static/img/logo.png" alt="PT Mitsindo" class="mb-2 rounded-circle shadow-sm" style="width: 64px; height: 64px; object-fit: contain;">
+                <h3 class="d-block fw-bold text-dark mb-0">HRIS System</h3>
+            </a>
+            <p class="text-muted small mt-1">PT Mitsindo</p>
+        </div>
+
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-1">Create Account</h5>
+                <p class="text-muted small mb-3">Fill in your details to register as an employee.</p>
+
+                <form id="registerForm" autocomplete="on">
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Full Name *</label>
+                        <input type="text" name="full_name" class="form-control form-control-sm" required placeholder="e.g. Budi Santoso">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Email *</label>
+                        <input type="email" name="email" class="form-control form-control-sm" required placeholder="you@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Username *</label>
+                        <input type="text" name="username" class="form-control form-control-sm" required placeholder="budi.santoso" minlength="3">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label small fw-medium">Phone</label>
+                            <input type="text" name="phone" class="form-control form-control-sm" placeholder="08xxxxxxxxxx">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label small fw-medium">Position</label>
+                            <input type="text" name="position" class="form-control form-control-sm" placeholder="e.g. Staff Marketing">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Department</label>
+                        <select name="department" class="form-select form-select-sm">
+                            <option value="">-- Select --</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Finance">Finance</option>
+                            <option value="HR">Human Resources</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Sales">Sales</option>
+                            <option value="IT">IT</option>
+                            <option value="Legal">Legal</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="form-label small fw-medium">Password *</label>
+                            <input type="password" name="password" class="form-control form-control-sm" required minlength="6" placeholder="Min 6 chars">
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label small fw-medium">Confirm *</label>
+                            <input type="password" name="confirm_password" class="form-control form-control-sm" required minlength="6" placeholder="Repeat password">
+                        </div>
+                    </div>
+
+                    <div id="regAlert" class="alert d-none alert-sm py-1 px-2 small"></div>
+
+                    <button type="submit" class="btn btn-primary btn-sm w-100">
+                        <span class="spinner-border spinner-border-sm d-none" style="width:0.8rem;height:0.8rem"></span>
+                        <span class="btn-text">Register</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <small class="text-muted">Already have an account? 
+                <a href="/" class="text-decoration-none">Sign In</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lamar Coffee — Specialty Roastery & Slow Living Sanctuary</title>
+  <meta name="description" content="Lamar Coffee: Micro-roastery independen dan ruang seduh artisan di Jakarta. Menghadirkan biji kopi single-origin kurasi langsung dari petani." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            linen: '#F8F5EE',
+            sand: '#EFEAE1',
+            warmgray: '#E3DDD2',
+            espresso: '#140F0D',
+            charcoal: '#211B18',
+            roast: '#2E2622',
+            ochre: '#C86D3B',
+            clay: '#A45327',
+            amber: '#D9822B',
+            cream: '#FAF8F5',
+            borderWarm: '#E5DFD3',
+            borderDark: '#382F2A'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Organic Fine Paper Texture */
+    .bg-paper {
+      background-color: #F8F5EE;
+      background-image: radial-gradient(#E3DDD2 0.75px, transparent 0.75px);
+      background-size: 24px 24px;
+    }
+
+    .bg-dark-paper {
+      background-color: #140F0D;
+      background-image: radial-gradient(#2A221E 0.75px, transparent 0.75px);
+      background-size: 24px 24px;
+    }
+
+    /* Minimalist hairline borders */
+    .hairline-b {
+      border-bottom: 1px solid rgba(229, 223, 211, 0.8);
+    }
+    .hairline-dark-b {
+      border-bottom: 1px solid rgba(56, 47, 42, 0.7);
+    }
+
+    /* Editorial selection */
+    ::selection {
+      background-color: #C86D3B;
+      color: #FFFFFF;
+    }
+
+    /* Toast animation */
+    @keyframes toastSlide {
+      from { transform: translateY(100%) translateX(-50%); opacity: 0; }
+      to { transform: translateY(0) translateX(-50%); opacity: 1; }
+    }
+    .animate-toast {
+      animation: toastSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+
+<body class="bg-paper text-espresso font-sans antialiased selection:bg-ochre selection:text-white pb-12 sm:pb-0">
+
+  <!-- ========================================== -->
+  <!-- 1. TOP TICKER & ANNOUNCEMENT BAR -->
+  <!-- ========================================== -->
+  <div class="bg-espresso text-linen/80 py-2 px-4 text-[11px] font-mono tracking-widest uppercase border-b border-borderDark flex items-center justify-between">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="inline-flex items-center gap-1.5 text-ochre">
+          <span class="w-1.5 h-1.5 rounded-full bg-ochre animate-pulse"></span>
+          Fresh Batch Roasting
+        </span>
+        <span class="hidden sm:inline text-linen/50">|</span>
+        <span class="hidden sm:inline text-linen/70">Single-Origin Aceh Gayo Anaerobic Honey #04</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <span class="hidden md:inline text-linen/60">📍 Senopati 42, Jakarta Selatan</span>
+        <span class="text-ochre font-semibold">07:00 — 22:00 WIB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. MAIN EDITORIAL HEADER -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-borderWarm transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logotype -->
+      <a href="#hero" class="flex flex-col group">
+        <span class="font-serif text-3xl font-bold tracking-tight text-espresso group-hover:text-ochre transition-colors">
+          LAMAR <span class="italic font-normal text-ochre font-serif">Coffee</span>
+        </span>
+        <span class="text-[9px] font-mono tracking-[0.25em] text-espresso/50 uppercase -mt-1">
+          Roastery & Slow Sanctuary
+        </span>
+      </a>
+
+      <!-- Minimalist Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-10 text-xs font-mono uppercase tracking-wider text-espresso/70">
+        <a href="#about" class="hover:text-ochre transition-colors">Filosofi</a>
+        <a href="#menu" class="hover:text-ochre transition-colors">Buku Menu</a>
+        <a href="#roastery" class="hover:text-ochre transition-colors">Biji Kopi</a>
+        <a href="#space" class="hover:text-ochre transition-colors">Ruang</a>
+        <a href="#reservation" class="hover:text-ochre transition-colors">Reservasi</a>
+      </nav>
+
+      <!-- Utility & Actions -->
+      <div class="flex items-center gap-4">
+        <!-- Ambience Audio Toggle -->
+        <button id="ambienceBtn" onclick="toggleAmbience()" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full border border-borderWarm bg-sand/60 text-[11px] font-mono text-espresso/80 hover:border-ochre hover:text-ochre transition-all cursor-pointer">
+          <span class="w-2 h-2 rounded-full bg-espresso/40" id="ambienceDot"></span>
+          <span id="ambienceText">Suara Kafe: Mati</span>
+        </button>
+
+        <!-- Cart Badge -->
+        <button onclick="toggleCart(true)" class="relative p-2.5 rounded-full border border-borderWarm hover:border-ochre text-espresso hover:text-ochre transition-all bg-white shadow-xs cursor-pointer">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span id="cartCountBadge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ochre text-white text-[10px] font-mono font-bold flex items-center justify-center scale-0 transition-transform">0</span>
+        </button>
+
+        <!-- Primary Reservation CTA -->
+        <a href="#reservation" class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso text-linen text-xs font-mono tracking-wider uppercase hover:bg-ochre transition-colors">
+          <span>Book a Table</span>
+        </a>
+
+        <!-- Mobile Menu -->
+        <button onclick="toggleMobileNav()" class="md:hidden p-2 text-espresso">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileNav" class="hidden md:hidden bg-sand border-b border-borderWarm px-6 py-6 space-y-4 text-xs font-mono uppercase tracking-wider">
+      <a href="#about" onclick="toggleMobileNav()" class="block py-1 hover:text-ochre">Filosofi</a>
+      <a href="#menu" onclick="toggleMobileNav()" class="block py-1 hover:text-ochre">Buku Menu</a>
+      <a href="#roastery" onclick="toggleMobileNav()" class="block py-1 hover:text-ochre">Biji Kopi</a>
+      <a href="#space" onclick="toggleMobileNav()" class="block py-1 hover:text-ochre">Ruang</a>
+      <a href="#reservation" onclick="toggleMobileNav()" class="block py-1 text-ochre font-bold">Reservasi Meja</a>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- 3. EDITORIAL HERO SECTION -->
+  <!-- ========================================== -->
+  <section id="hero" class="relative pt-12 pb-24 border-b border-borderWarm overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <!-- Top Subhead & Index Tag -->
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-borderWarm/80 text-xs font-mono text-espresso/60 uppercase">
+        <div class="flex items-center gap-3">
+          <span>Vol. 04 — Edisi Musim Gugur</span>
+          <span>·</span>
+          <span>Micro-Roastery Independen</span>
+        </div>
+        <div>
+          <span>Elevasi 1.400 – 2.100 mdpl</span>
+        </div>
+      </div>
+
+      <!-- Asymmetric Editorial Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-10 items-end">
+        
+        <!-- Left: Large Evocative Headline & Essay Lead -->
+        <div class="lg:col-span-7 space-y-8">
+          <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-espresso leading-[0.95]">
+            Ritual Kopi. <br>
+            <span class="italic font-serif text-ochre font-light">Ruang Jeda.</span>
+          </h1>
+
+          <p class="text-espresso/80 text-base sm:text-lg font-light leading-relaxed max-w-xl">
+            Di <strong class="font-semibold text-espresso">Lamar Coffee</strong>, kami memandang kopi bukan sekadar pendorong produktivitas, melainkan sebuah jeda yang layak dirayakan. Disangrai dengan disiplin mikro, diseduh perlahan di hadapan Anda.
+          </p>
+
+          <!-- Interaction CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#menu" class="px-8 py-4 rounded-full bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-all shadow-sm">
+              Jelajahi Menu Hari Ini →
+            </a>
+            <a href="#roastery" class="px-7 py-4 rounded-full border border-borderWarm bg-white/70 hover:bg-sand font-mono text-xs uppercase tracking-wider text-espresso transition-all">
+              Kurasi Biji Kopi
+            </a>
+          </div>
+
+          <!-- Direct Facts Strip -->
+          <div class="grid grid-cols-3 gap-6 pt-10 border-t border-borderWarm/80">
+            <div>
+              <span class="font-mono text-xs text-espresso/50 uppercase block">Sumber</span>
+              <strong class="font-serif text-xl sm:text-2xl font-bold text-espresso">100% Petani Langsung</strong>
+            </div>
+            <div>
+              <span class="font-mono text-xs text-espresso/50 uppercase block">Kalibrasi</span>
+              <strong class="font-serif text-xl sm:text-2xl font-bold text-espresso">Batch Harian</strong>
+            </div>
+            <div>
+              <span class="font-mono text-xs text-espresso/50 uppercase block">Karakter</span>
+              <strong class="font-serif text-xl sm:text-2xl font-bold text-espresso">Clean & Complex</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Tactile Curated Product Artifact -->
+        <div class="lg:col-span-5">
+          <div class="bg-sand border border-borderWarm rounded-2xl p-6 sm:p-8 space-y-6 shadow-xs relative">
+            <div class="flex items-start justify-between border-b border-borderWarm pb-4">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-ochre font-semibold block">Signature Lot</span>
+                <h3 class="font-serif text-3xl font-bold text-espresso mt-0.5">Lamar Aren Macchiato</h3>
+              </div>
+              <span class="font-mono text-xl font-bold text-espresso">Rp 38.000</span>
+            </div>
+
+            <!-- Tactile Editorial Photograph -->
+            <div class="h-64 rounded-xl overflow-hidden border border-borderWarm/70 relative">
+              <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=700&q=80" alt="Lamar Aren Macchiato" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-700">
+              <span class="absolute bottom-3 left-3 px-2.5 py-1 bg-espresso/90 text-linen text-[10px] font-mono rounded">
+                Double Ristretto + Java Aren Nira + Oat Crema
+              </span>
+            </div>
+
+            <!-- Sensory Notes Breakdown -->
+            <div class="grid grid-cols-3 gap-2 text-center text-[11px] font-mono">
+              <div class="p-2 bg-white/80 rounded-lg border border-borderWarm">
+                <span class="text-espresso/50 block text-[9px]">AROMA</span>
+                <strong>Gula Kelapa</strong>
+              </div>
+              <div class="p-2 bg-white/80 rounded-lg border border-borderWarm">
+                <span class="text-espresso/50 block text-[9px]">BODY</span>
+                <strong>Velvety Oat</strong>
+              </div>
+              <div class="p-2 bg-white/80 rounded-lg border border-borderWarm">
+                <span class="text-espresso/50 block text-[9px]">FINISH</span>
+                <strong>Sea Salt Toffee</strong>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <button onclick="openCustomizer(1)" class="py-3.5 rounded-xl border border-borderWarm bg-white/80 font-mono text-xs uppercase tracking-wider text-espresso hover:border-ochre hover:text-ochre transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+                <span>Custom Rasa</span>
+              </button>
+              <button onclick="quickAdd('Lamar Aren Macchiato', 38000, 'Iced, Oat Milk, Aren Nira 100%')" class="py-3.5 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span>Pesan Cepat</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 4. PHILOSOPHY & ARTISAN MANIFESTO -->
+  <!-- ========================================== -->
+  <section id="about" class="py-24 bg-dark-paper text-linen border-b border-borderDark">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 space-y-4">
+          <span class="text-xs font-mono text-ochre uppercase tracking-widest block">Manifesto</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-normal leading-tight text-linen">
+            Bukan Sekadar Kafe. <br>
+            <span class="italic text-ochre">Sebuah Tempat Bernapas.</span>
+          </h2>
+          <div class="w-16 h-px bg-ochre/60 my-4"></div>
+          <p class="text-linen/70 text-sm font-light leading-relaxed">
+            Kami menolak budaya serba cepat yang mengorbankan kualitas. Dari pemilihan biji kopi yang dipetik saat matang sempurna di pohon, hingga waktu ekstraksi air pada suhu 92°C yang tepat — setiap detik di Lamar memiliki tujuan.
+          </p>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="p-6 rounded-2xl bg-charcoal border border-borderDark space-y-3">
+            <span class="font-mono text-xs text-ochre">01 / PROVENANCE</span>
+            <h3 class="font-serif text-2xl font-bold text-linen">Ketertelusuran Penuh</h3>
+            <p class="text-xs text-linen/60 font-light leading-relaxed">
+              Anda tahu persis nama petani, desa asal, varietas pohon kopi (Typica/Catimor), dan metode fermentasi di balik cangkir Anda.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-charcoal border border-borderDark space-y-3">
+            <span class="font-mono text-xs text-ochre">02 / ROAST MASTERY</span>
+            <h3 class="font-serif text-2xl font-bold text-linen">Profil Sangrai Mikro</h3>
+            <p class="text-xs text-linen/60 font-light leading-relaxed">
+              Kami menyangrai biji dalam volume maksimal 5 kg untuk menjaga kehalusan asam buah alami dan menghindari rasa pahit gosong.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-charcoal border border-borderDark space-y-3">
+            <span class="font-mono text-xs text-ochre">03 / ACOUSTIC LIVING</span>
+            <h3 class="font-serif text-2xl font-bold text-linen">Kenyamanan Suasana</h3>
+            <p class="text-xs text-linen/60 font-light leading-relaxed">
+              Kombinasi material kayu jati, pencahayaan 2700K yang ramah di mata, serta kurasi musik vinyl & lo-fi yang menenangkan pikiran.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-charcoal border border-borderDark space-y-3">
+            <span class="font-mono text-xs text-ochre">04 / ZERO NONSENSE</span>
+            <h3 class="font-serif text-2xl font-bold text-linen">Kejujuran Bahan Baku</h3>
+            <p class="text-xs text-linen/60 font-light leading-relaxed">
+              Gula aren nira organik dari petani Kulon Progo, susu gandum murni tanpa gula tambahan, dan cokelat single-origin Tabanan Bali.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 5. THE COFFEE MENU -->
+  <!-- ========================================== -->
+  <section id="menu" class="py-24 border-b border-borderWarm">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b border-borderWarm gap-6">
+        <div>
+          <span class="text-xs font-mono text-ochre uppercase tracking-widest block mb-1">Buku Menu Terkurasi</span>
+          <h2 class="font-serif text-4xl sm:text-6xl font-bold text-espresso">Menu & Racikan Seduh</h2>
+        </div>
+        
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap gap-2 text-xs font-mono uppercase" id="menuTabs">
+          <button onclick="filterCategory('all')" class="cat-tab active px-4 py-2 rounded-full bg-espresso text-linen font-bold cursor-pointer">Semua</button>
+          <button onclick="filterCategory('espresso')" class="cat-tab px-4 py-2 rounded-full border border-borderWarm bg-white/70 text-espresso/70 hover:text-ochre cursor-pointer">Espresso</button>
+          <button onclick="filterCategory('manual')" class="cat-tab px-4 py-2 rounded-full border border-borderWarm bg-white/70 text-espresso/70 hover:text-ochre cursor-pointer">Manual Brew</button>
+          <button onclick="filterCategory('botanical')" class="cat-tab px-4 py-2 rounded-full border border-borderWarm bg-white/70 text-espresso/70 hover:text-ochre cursor-pointer">Teh & Botanical</button>
+          <button onclick="filterCategory('pastry')" class="cat-tab px-4 py-2 rounded-full border border-borderWarm bg-white/70 text-espresso/70 hover:text-ochre cursor-pointer">Artisan Pastry</button>
+        </div>
+      </div>
+
+      <!-- Menu Table / List Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 pt-10" id="menuContainer">
+        <!-- Rendered via Javascript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 6. BEAN ORIGINS & HARVEST NOTES -->
+  <!-- ========================================== -->
+  <section id="roastery" class="py-24 bg-sand/60 border-b border-borderWarm">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-mono text-ochre uppercase tracking-widest block mb-2">Direct Trade Origins</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso">Biji Kopi Pilihan Bulan Ini</h2>
+        <p class="text-espresso/70 text-sm font-light mt-2">
+          Disangrai setiap hari Selasa dan Jumat dalam batch kecil 5 kg untuk mengunci puncak aroma floral & keasaman manis alami buah ceri kopi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Bean 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-borderWarm shadow-xs space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-espresso/60 border-b border-borderWarm pb-3">
+              <span>SUMATRA, INDONESIA</span>
+              <span class="text-ochre font-bold">1.600 MDPL</span>
+            </div>
+            
+            <div class="flex items-center gap-4 mt-3">
+              <div class="w-14 h-14 rounded-xl overflow-hidden border border-borderWarm shrink-0">
+                <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=200&q=80" alt="Gayo Beans" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-espresso">Aceh Gayo Pantan Musara</h3>
+                <span class="text-[10px] font-mono text-espresso/60">Proses: Double Anaerobic Natural</span>
+              </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-linen rounded-xl border border-borderWarm/80 text-xs font-mono space-y-1">
+              <span class="text-espresso/50 block text-[10px]">SCA SCORE: 88.5 · TASTING NOTES:</span>
+              <p class="text-ochre font-semibold">Wild Blueberry, Dark Cherry, Brown Sugar, Mint</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-borderWarm flex items-center justify-between text-xs font-mono">
+            <span class="font-bold text-espresso">Rp 120.000 / 200g</span>
+            <button onclick="quickAdd('Beans: Aceh Gayo Pantan Musara (200g)', 120000, 'Whole Bean, Roasted Weekly')" class="px-4 py-2 rounded-lg bg-espresso text-linen hover:bg-ochre transition-colors text-[11px] cursor-pointer">Beli Beans</button>
+          </div>
+        </div>
+
+        <!-- Bean 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-borderWarm shadow-xs space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-espresso/60 border-b border-borderWarm pb-3">
+              <span>SULAWESI, INDONESIA</span>
+              <span class="text-ochre font-bold">1.850 MDPL</span>
+            </div>
+            
+            <div class="flex items-center gap-4 mt-3">
+              <div class="w-14 h-14 rounded-xl overflow-hidden border border-borderWarm shrink-0">
+                <img src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=200&q=80" alt="Toraja Beans" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-espresso">Toraja Sapan Minanga</h3>
+                <span class="text-[10px] font-mono text-espresso/60">Proses: Fully Washed Clean</span>
+              </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-linen rounded-xl border border-borderWarm/80 text-xs font-mono space-y-1">
+              <span class="text-espresso/50 block text-[10px]">SCA SCORE: 87.7 · TASTING NOTES:</span>
+              <p class="text-ochre font-semibold">Bergamot Tea, Sweet Lemon, Clove, Honey Finish</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-borderWarm flex items-center justify-between text-xs font-mono">
+            <span class="font-bold text-espresso">Rp 135.000 / 200g</span>
+            <button onclick="quickAdd('Beans: Toraja Sapan Minanga (200g)', 135000, 'Whole Bean, Roasted Weekly')" class="px-4 py-2 rounded-lg bg-espresso text-linen hover:bg-ochre transition-colors text-[11px] cursor-pointer">Beli Beans</button>
+          </div>
+        </div>
+
+        <!-- Bean 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-borderWarm shadow-xs space-y-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-espresso/60 border-b border-borderWarm pb-3">
+              <span>YIRGACHEFFE, ETHIOPIA</span>
+              <span class="text-ochre font-bold">2.050 MDPL</span>
+            </div>
+            
+            <div class="flex items-center gap-4 mt-3">
+              <div class="w-14 h-14 rounded-xl overflow-hidden border border-borderWarm shrink-0">
+                <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=200&q=80" alt="Ethiopia Beans" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-espresso">Guji Chelchele Heirloom</h3>
+                <span class="text-[10px] font-mono text-espresso/60">Proses: Washed Grade 1</span>
+              </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-linen rounded-xl border border-borderWarm/80 text-xs font-mono space-y-1">
+              <span class="text-espresso/50 block text-[10px]">SCA SCORE: 89.2 · TASTING NOTES:</span>
+              <p class="text-ochre font-semibold">Jasmine Blossom, White Peach, Earl Grey, Lavender</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-borderWarm flex items-center justify-between text-xs font-mono">
+            <span class="font-bold text-espresso">Rp 160.000 / 200g</span>
+            <button onclick="quickAdd('Beans: Ethiopia Guji Chelchele (200g)', 160000, 'Whole Bean, Roasted Weekly')" class="px-4 py-2 rounded-lg bg-espresso text-linen hover:bg-ochre transition-colors text-[11px] cursor-pointer">Beli Beans</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 7. SPATIAL SANCTUARY -->
+  <!-- ========================================== -->
+  <section id="space" class="py-24 border-b border-borderWarm">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-mono text-ochre uppercase tracking-widest block">Arsitektur & Ruang</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-bold text-espresso leading-tight">
+            Ruang yang Dirancang untuk Ketenangan.
+          </h2>
+          <p class="text-espresso/75 text-sm font-light leading-relaxed">
+            Terletak di tengah dinamika Senopati, Lamar Coffee menyediakan oasis tanpa kebisingan distraktif. Dilengkapi colokan daya di setiap kursi, pencahayaan alami kaca skylight, dan meja kayu solid.
+          </p>
+
+          <div class="space-y-3 pt-2 text-xs font-mono">
+            <div class="flex items-center gap-3 p-3.5 bg-white rounded-xl border border-borderWarm">
+              <span class="w-6 h-6 rounded-full bg-sand flex items-center justify-center font-bold text-ochre shrink-0">1</span>
+              <span><strong>The Slow Bar:</strong> Ruang interaksi seduh manual V60 & Syphon bersama barista.</span>
+            </div>
+            <div class="flex items-center gap-3 p-3.5 bg-white rounded-xl border border-borderWarm">
+              <span class="w-6 h-6 rounded-full bg-sand flex items-center justify-center font-bold text-ochre shrink-0">2</span>
+              <span><strong>Reading & Work Loft:</strong> Zona hening untuk membaca buku atau bekerja produktif.</span>
+            </div>
+            <div class="flex items-center gap-3 p-3.5 bg-white rounded-xl border border-borderWarm">
+              <span class="w-6 h-6 rounded-full bg-sand flex items-center justify-center font-bold text-ochre shrink-0">3</span>
+              <span><strong>Glass Courtyard:</strong> Area luar terbuka dengan pohon pakis dan semilir angin sore.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-2 gap-4">
+          <div class="h-80 rounded-2xl overflow-hidden border border-borderWarm shadow-xs">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=700&q=80" alt="Slow Bar" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-500">
+          </div>
+          <div class="h-80 rounded-2xl overflow-hidden border border-borderWarm shadow-xs mt-8">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=700&q=80" alt="Work Loft" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-500">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 8. TABLE RESERVATION & WHATSAPP DISPATCH -->
+  <!-- ========================================== -->
+  <section id="reservation" class="py-24 bg-sand/50">
+    <div class="max-w-3xl mx-auto px-6 sm:px-8">
+      
+      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-borderWarm shadow-sm">
+        <div class="text-center max-w-xl mx-auto mb-10">
+          <span class="text-xs font-mono text-ochre uppercase tracking-widest block mb-1">Reservasi Tempat</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso">Amankan Sudut Favorit Anda</h2>
+          <p class="text-xs text-espresso/70 font-light mt-2">
+            Kami menerima reservasi untuk meja kerja, pertemuan santai, atau VIP room. Konfirmasi langsung terhubung ke barista via WhatsApp.
+          </p>
+        </div>
+
+        <form id="reservationForm" onsubmit="handleReservation(event)" class="space-y-5 text-xs font-mono">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-espresso/70 uppercase mb-1.5">Nama Lengkap</label>
+              <input type="text" id="resName" required placeholder="Andi Saputra" class="w-full px-4 py-3 rounded-xl bg-linen border border-borderWarm focus:border-ochre text-xs text-espresso outline-none">
+            </div>
+            <div>
+              <label class="block text-espresso/70 uppercase mb-1.5">Nomor WhatsApp</label>
+              <input type="tel" id="resPhone" required placeholder="081234567890" class="w-full px-4 py-3 rounded-xl bg-linen border border-borderWarm focus:border-ochre text-xs text-espresso outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-espresso/70 uppercase mb-1.5">Tanggal</label>
+              <input type="date" id="resDate" required class="w-full px-4 py-3 rounded-xl bg-linen border border-borderWarm focus:border-ochre text-xs text-espresso outline-none">
+            </div>
+            <div>
+              <label class="block text-espresso/70 uppercase mb-1.5">Waktu</label>
+              <input type="time" id="resTime" value="15:00" required class="w-full px-4 py-3 rounded-xl bg-linen border border-borderWarm focus:border-ochre text-xs text-espresso outline-none">
+            </div>
+            <div>
+              <label class="block text-espresso/70 uppercase mb-1.5">Jumlah Tamu</label>
+              <select id="resGuests" class="w-full px-4 py-3 rounded-xl bg-linen border border-borderWarm focus:border-ochre text-xs text-espresso outline-none">
+                <option value="1 - 2 Orang">1 - 2 Orang</option>
+                <option value="3 - 4 Orang">3 - 4 Orang</option>
+                <option value="5 - 8 Orang">5 - 8 Orang</option>
+                <option value="VIP Room (>10 Orang)">VIP Room (>10 Orang)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-espresso/70 uppercase mb-1.5">Zona Tempat Duduk</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <label class="p-3 rounded-xl border border-ochre bg-linen flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="resZone" value="Slow Bar / Indoor AC" checked class="text-ochre focus:ring-0">
+                <span>Slow Bar (Indoor)</span>
+              </label>
+              <label class="p-3 rounded-xl border border-borderWarm bg-white flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="resZone" value="Outdoor Glass Garden" class="text-ochre focus:ring-0">
+                <span>Glass Garden</span>
+              </label>
+              <label class="p-3 rounded-xl border border-borderWarm bg-white flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="resZone" value="Work Loft Sanctuary" class="text-ochre focus:ring-0">
+                <span>Work Loft</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-espresso/70 uppercase mb-1.5">Catatan Tambahan (Opsional)</label>
+            <input type="text" id="resNotes" placeholder="Dekat colokan listrik, request meja hening..." class="w-full px-4 py-3 rounded-xl bg-linen border border-borderWarm focus:border-ochre text-xs text-espresso outline-none">
+          </div>
+
+          <button type="submit" class="w-full py-4 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center justify-center gap-2 cursor-pointer">
+            <span>Kirim Permintaan Reservasi ke WhatsApp →</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 9. FOOTER -->
+  <!-- ========================================== -->
+  <footer class="bg-espresso text-linen/70 py-16 border-t border-borderDark text-xs font-mono">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-borderDark/80">
+        
+        <div class="md:col-span-5 space-y-4">
+          <span class="font-serif text-3xl font-bold text-linen tracking-tight">LAMAR COFFEE</span>
+          <p class="text-linen/50 text-xs font-light max-w-sm leading-relaxed">
+            Micro-roastery & slow living sanctuary. Mengapresiasi ketepatan seduhan dan keindahan ruang jeda.
+          </p>
+          <div class="pt-2 text-ochre">
+            <span>Instagram: @lamarcoffee.id</span>
+          </div>
+        </div>
+
+        <div class="md:col-span-4 space-y-2">
+          <span class="text-ochre uppercase font-bold block mb-2">Jam Buka</span>
+          <p class="flex justify-between border-b border-borderDark/50 pb-1 text-linen/80">
+            <span>Senin — Jumat:</span>
+            <strong>07:00 – 22:00 WIB</strong>
+          </p>
+          <p class="flex justify-between border-b border-borderDark/50 pb-1 text-linen/80">
+            <span>Sabtu — Minggu:</span>
+            <strong>07:00 – 23:00 WIB</strong>
+          </p>
+          <p class="text-[11px] text-linen/40 pt-2">Jl. Senopati No. 42, Kebayoran Baru, Jakarta Selatan 12190</p>
+        </div>
+
+        <div class="md:col-span-3 space-y-2">
+          <span class="text-ochre uppercase font-bold block mb-2">Kontak Langsung</span>
+          <p>WhatsApp: <span class="text-linen">+62 812-8888-LAMAR</span></p>
+          <p>Email: <span class="text-linen">barista@lamarcoffee.id</span></p>
+          <p class="text-[10px] text-linen/40 pt-3">Tersedia di GoFood, GrabFood & ShopeeFood.</p>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-linen/40">
+        <p>© 2026 Lamar Coffee Roastery. Seluruh hak cipta dilindungi.</p>
+        <p>Crafted with patience, precision, and natural beans.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- 10. SLIDE-OUT ORDER CART DRAWER -->
+  <!-- ========================================== -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden justify-end">
+    <div class="w-full max-w-md bg-paper h-full border-l border-borderWarm flex flex-col justify-between p-6 shadow-2xl">
+      
+      <div>
+        <div class="flex items-center justify-between border-b border-borderWarm pb-4 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="font-serif text-2xl font-bold text-espresso">Keranjang Seduhan</span>
+          </div>
+          <button onclick="toggleCart(false)" class="p-1.5 text-espresso/60 hover:text-ochre cursor-pointer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div id="cartItemsList" class="space-y-3 max-h-[55vh] overflow-y-auto pr-1">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="border-t border-borderWarm pt-4 space-y-4 text-xs font-mono">
+        <div class="space-y-1.5 text-espresso/70">
+          <div class="flex justify-between">
+            <span>Subtotal Menu</span>
+            <span id="cartSubtotal" class="font-bold text-espresso">Rp 0</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Pajak Resto (PB1 10%)</span>
+            <span id="cartTax">Rp 0</span>
+          </div>
+          <div class="flex justify-between text-sm font-bold text-espresso pt-2 border-t border-borderWarm">
+            <span>Total Bayar</span>
+            <span id="cartGrandTotal" class="text-ochre">Rp 0</span>
+          </div>
+        </div>
+
+        <button onclick="checkoutWhatsApp()" class="w-full py-4 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center justify-center gap-2 cursor-pointer">
+          <span>Kirim Pesanan ke Barista WhatsApp →</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 11. COFFEE CUSTOMIZER MODAL -->
+  <!-- ========================================== -->
+  <div id="customizerModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="w-full max-w-lg bg-paper rounded-2xl border border-borderWarm p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button onclick="closeCustomizer()" class="absolute top-5 right-5 p-2 rounded-full hover:bg-sand text-espresso/60 hover:text-espresso cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-4 border-b border-borderWarm pb-4">
+        <div class="w-16 h-16 rounded-xl overflow-hidden border border-borderWarm shrink-0" id="custImageWrapper">
+          <img id="custImage" src="" alt="Menu Image" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h3 id="custTitle" class="font-serif text-2xl font-bold text-espresso">Menu Kopi</h3>
+          <span id="custBasePrice" class="font-mono text-sm font-bold text-ochre">Rp 0</span>
+        </div>
+      </div>
+
+      <!-- Temperature Option -->
+      <div class="space-y-2 text-xs font-mono">
+        <label class="text-espresso/70 uppercase block">Suhu Penyajian</label>
+        <div class="grid grid-cols-2 gap-3" id="custTempGroup">
+          <button type="button" onclick="setCustTemp('Iced (Dingin)')" class="temp-btn p-3 rounded-xl border border-ochre bg-linen text-espresso font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>❄ Iced (Dingin)</span>
+          </button>
+          <button type="button" onclick="setCustTemp('Hot (Hangat)')" class="temp-btn p-3 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre flex items-center justify-center gap-2 cursor-pointer">
+            <span>♨ Hot (Hangat)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Milk Option -->
+      <div class="space-y-2 text-xs font-mono">
+        <label class="text-espresso/70 uppercase block">Pilihan Susu</label>
+        <div class="grid grid-cols-3 gap-2" id="custMilkGroup">
+          <button type="button" onclick="setCustMilk('Fresh Milk', 0)" class="milk-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center cursor-pointer">
+            Fresh Milk
+          </button>
+          <button type="button" onclick="setCustMilk('Oat Milk', 6000)" class="milk-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre text-center cursor-pointer">
+            Oat (+6k)
+          </button>
+          <button type="button" onclick="setCustMilk('Almond Milk', 8000)" class="milk-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre text-center cursor-pointer">
+            Almond (+8k)
+          </button>
+        </div>
+      </div>
+
+      <!-- Sweetness Level -->
+      <div class="space-y-2 text-xs font-mono">
+        <label class="text-espresso/70 uppercase block">Tingkat Kemanisan</label>
+        <div class="grid grid-cols-4 gap-2" id="custSweetGroup">
+          <button type="button" onclick="setCustSweet('100%')" class="sweet-btn p-2 rounded-lg border border-ochre bg-linen text-espresso font-bold text-center cursor-pointer">100%</button>
+          <button type="button" onclick="setCustSweet('70%')" class="sweet-btn p-2 rounded-lg border border-borderWarm bg-white text-espresso/70 text-center cursor-pointer">70%</button>
+          <button type="button" onclick="setCustSweet('50%')" class="sweet-btn p-2 rounded-lg border border-borderWarm bg-white text-espresso/70 text-center cursor-pointer">50%</button>
+          <button type="button" onclick="setCustSweet('0%')" class="sweet-btn p-2 rounded-lg border border-borderWarm bg-white text-espresso/70 text-center cursor-pointer">0%</button>
+        </div>
+      </div>
+
+      <!-- Extra Espresso Shot -->
+      <div class="p-3 bg-sand/60 rounded-xl border border-borderWarm flex items-center justify-between text-xs font-mono">
+        <div class="flex items-center gap-2">
+          <input type="checkbox" id="custExtraShot" onchange="toggleExtraShot()" class="text-ochre rounded focus:ring-0 w-4 h-4 cursor-pointer">
+          <label for="custExtraShot" class="cursor-pointer font-medium text-espresso">Extra Double Ristretto Shot (+Rp 8.000)</label>
+        </div>
+      </div>
+
+      <!-- Quantity & Submit -->
+      <div class="pt-4 border-t border-borderWarm flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2 bg-sand p-1.5 rounded-xl text-xs font-mono">
+          <button onclick="changeCustQty(-1)" class="w-7 h-7 bg-white rounded-lg text-center font-bold text-sm cursor-pointer">-</button>
+          <span id="custQtyText" class="w-6 text-center font-bold">1</span>
+          <button onclick="changeCustQty(1)" class="w-7 h-7 bg-white rounded-lg text-center font-bold text-sm cursor-pointer">+</button>
+        </div>
+
+        <button onclick="submitCustomizer()" class="flex-1 py-3.5 rounded-xl bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-colors flex items-center justify-center gap-2 cursor-pointer">
+          <span>Tambahkan · </span>
+          <span id="custTotalPrice" class="font-bold">Rp 0</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 12. FLOATING TOAST FEEDBACK -->
+  <!-- ========================================== -->
+  <div id="toastNotification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-espresso text-linen px-5 py-3 rounded-full shadow-2xl text-xs font-mono flex items-center gap-2.5 hidden pointer-events-none border border-ochre/40">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-ochre"></i>
+    <span id="toastMessage">Pesanan berhasil ditambahkan!</span>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC & STATE -->
+  <!-- ========================================== -->
+  <script>
+    const menuItems = [
+      {
+        id: 1,
+        name: "Lamar Aren Macchiato",
+        category: "espresso",
+        price: 38000,
+        notes: "Double ristretto Aceh Gayo, aren nira Kulon Progo, fresh oat milk & sea salt crema.",
+        badge: "Chef Signature",
+        image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 2,
+        name: "Kyoto 12h Cold Drip",
+        category: "manual",
+        price: 42000,
+        notes: "Single-origin Ethiopia Guji diseduh tetes demi tetes 12 jam. Floral winey & madu.",
+        badge: "Slow Drip",
+        image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 3,
+        name: "Pistachio Spanish Latte",
+        category: "espresso",
+        price: 45000,
+        notes: "Espresso Toraja Sapan, pasta pistachio murni Sicilia, sweet steamed milk lembut.",
+        badge: "Artisan Nut",
+        image: "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 4,
+        name: "V60 Pour Over Aceh Gayo",
+        category: "manual",
+        price: 36000,
+        notes: "Seduhan manual filter V60 aroma jasmine, bright wild berries, clean aftertaste.",
+        badge: "Single Origin",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 5,
+        name: "V60 Toraja Sapan Minanga",
+        category: "manual",
+        price: 38000,
+        notes: "Ketinggian 1.850 mdpl. Notes bergamot, herbal spices & aftertaste manis tebal.",
+        badge: "Single Origin",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 6,
+        name: "Classic Flat White (Double)",
+        category: "espresso",
+        price: 34000,
+        notes: "Double shot ristretto pekat dengan microfoam susu bertekstur sutra halus.",
+        badge: "Classic",
+        image: "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 7,
+        name: "Cascara Rosella Sparkling",
+        category: "botanical",
+        price: 36000,
+        notes: "Kulit ceri kopi kering, seduhan teh bunga rosela merah, lemon segar & soda.",
+        badge: "Botanical",
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 8,
+        name: "Ceremonial Uji Matcha Latte",
+        category: "botanical",
+        price: 40000,
+        notes: "Bubuk matcha grade seremonial Kyoto, dipadukan susu oat murni hangat/dingin.",
+        badge: "Direct Japan",
+        image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 9,
+        name: "Artisan Almond Butter Croissant",
+        category: "pastry",
+        price: 32000,
+        notes: "Croissant mentega Prancis berlapis renyah dengan pasta almond panggang.",
+        badge: "Fresh Bake",
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=80"
+      },
+      {
+        id: 10,
+        name: "Truffle Mushroom Sourdough Toast",
+        category: "pastry",
+        price: 48000,
+        notes: "Roti sourdough panggang, tumis jamur champignon saus krim truffle & telur omega.",
+        badge: "Brunch",
+        image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80"
+      }
+    ];
+
+    function renderMenu(list) {
+      const container = document.getElementById('menuContainer');
+      container.innerHTML = list.map(item => `
+        <div class="flex items-start gap-4 pb-6 border-b border-borderWarm/70 group">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-borderWarm shrink-0">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300">
+          </div>
+          <div class="space-y-1 flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h3 class="font-serif text-xl sm:text-2xl font-bold text-espresso group-hover:text-ochre transition-colors truncate">${item.name}</h3>
+              <span class="px-2 py-0.5 rounded bg-sand text-[10px] font-mono text-espresso/70">${item.badge}</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light leading-relaxed line-clamp-2">${item.notes}</p>
+          </div>
+          <div class="text-right flex flex-col items-end gap-2 shrink-0">
+            <span class="font-mono text-xs sm:text-sm font-bold text-espresso">Rp ${(item.price).toLocaleString('id-ID')}</span>
+            <div class="flex items-center gap-1.5">
+              <button onclick="openCustomizer(${item.id})" title="Kustomisasi Suhu/Susu/Gula" class="p-1.5 rounded-lg border border-borderWarm bg-white hover:border-ochre hover:text-ochre text-[11px] font-mono transition-all cursor-pointer">
+                <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="quickAdd('${item.name}', ${item.price}, 'Standar Seduh Barista')" class="px-3 py-1.5 rounded-lg bg-espresso text-linen hover:bg-ochre text-[11px] font-mono transition-all cursor-pointer">
+                + Pesan
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function filterCategory(cat) {
+      const tabs = document.querySelectorAll('.cat-tab');
+      tabs.forEach(t => {
+        t.className = "cat-tab px-4 py-2 rounded-full border border-borderWarm bg-white/70 text-espresso/70 hover:text-ochre cursor-pointer";
+      });
+      event.target.className = "cat-tab active px-4 py-2 rounded-full bg-espresso text-linen font-bold cursor-pointer";
+
+      if (cat === 'all') {
+        renderMenu(menuItems);
+      } else {
+        renderMenu(menuItems.filter(i => i.category === cat));
+      }
+    }
+
+    // Customizer State & Logic
+    let activeCustomItem = null;
+    let custTemp = 'Iced (Dingin)';
+    let custMilk = 'Fresh Milk';
+    let custMilkExtra = 0;
+    let custSweet = '100%';
+    let custExtraShotPrice = 0;
+    let custQty = 1;
+
+    function openCustomizer(itemId) {
+      const item = menuItems.find(i => i.id === itemId);
+      if (!item) return;
+      activeCustomItem = item;
+      custQty = 1;
+      custMilkExtra = 0;
+      custExtraShotPrice = 0;
+      custTemp = 'Iced (Dingin)';
+      custMilk = 'Fresh Milk';
+      custSweet = '100%';
+
+      document.getElementById('custImage').src = item.image;
+      document.getElementById('custTitle').innerText = item.name;
+      document.getElementById('custBasePrice').innerText = `Rp ${item.price.toLocaleString('id-ID')}`;
+      document.getElementById('custExtraShot').checked = false;
+      document.getElementById('custQtyText').innerText = '1';
+
+      resetCustButtons();
+      updateCustTotal();
+
+      const modal = document.getElementById('customizerModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeCustomizer() {
+      const modal = document.getElementById('customizerModal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+
+    function resetCustButtons() {
+      // Temp buttons
+      const tempBtns = document.querySelectorAll('.temp-btn');
+      tempBtns[0].className = "temp-btn p-3 rounded-xl border border-ochre bg-linen text-espresso font-bold flex items-center justify-center gap-2 cursor-pointer";
+      tempBtns[1].className = "temp-btn p-3 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre flex items-center justify-center gap-2 cursor-pointer";
+
+      // Milk buttons
+      const milkBtns = document.querySelectorAll('.milk-btn');
+      milkBtns[0].className = "milk-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center cursor-pointer";
+      milkBtns[1].className = "milk-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre text-center cursor-pointer";
+      milkBtns[2].className = "milk-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre text-center cursor-pointer";
+
+      // Sweet buttons
+      const sweetBtns = document.querySelectorAll('.sweet-btn');
+      sweetBtns[0].className = "sweet-btn p-2 rounded-lg border border-ochre bg-linen text-espresso font-bold text-center cursor-pointer";
+      sweetBtns[1].className = "sweet-btn p-2 rounded-lg border border-borderWarm bg-white text-espresso/70 text-center cursor-pointer";
+      sweetBtns[2].className = "sweet-btn p-2 rounded-lg border border-borderWarm bg-white text-espresso/70 text-center cursor-pointer";
+      sweetBtns[3].className = "sweet-btn p-2 rounded-lg border border-borderWarm bg-white text-espresso/70 text-center cursor-pointer";
+    }
+
+    function setCustTemp(val) {
+      custTemp = val;
+      const btns = document.querySelectorAll('.temp-btn');
+      btns.forEach(b => {
+        if (b.innerText.includes(val.split(' ')[0])) {
+          b.className = "temp-btn p-3 rounded-xl border border-ochre bg-linen text-espresso font-bold flex items-center justify-center gap-2 cursor-pointer";
+        } else {
+          b.className = "temp-btn p-3 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre flex items-center justify-center gap-2 cursor-pointer";
+        }
+      });
+    }
+
+    function setCustMilk(val, extra) {
+      custMilk = val;
+      custMilkExtra = extra;
+      const btns = document.querySelectorAll('.milk-btn');
+      btns.forEach(b => {
+        if (b.innerText.includes(val.split(' ')[0])) {
+          b.className = "milk-btn p-2.5 rounded-xl border border-ochre bg-linen text-espresso font-bold text-center cursor-pointer";
+        } else {
+          b.className = "milk-btn p-2.5 rounded-xl border border-borderWarm bg-white text-espresso/70 hover:border-ochre text-center cursor-pointer";
+        }
+      });
+      updateCustTotal();
+    }
+
+    function setCustSweet(val) {
+      custSweet = val;
+      const btns = document.querySelectorAll('.sweet-btn');
+      btns.forEach(b => {
+        if (b.innerText === val) {
+          b.className = "sweet-btn p-2 rounded-lg border border-ochre bg-linen text-espresso font-bold text-center cursor-pointer";
+        } else {
+          b.className = "sweet-btn p-2 rounded-lg border border-borderWarm bg-white text-espresso/70 text-center cursor-pointer";
+        }
+      });
+    }
+
+    function toggleExtraShot() {
+      const checked = document.getElementById('custExtraShot').checked;
+      custExtraShotPrice = checked ? 8000 : 0;
+      updateCustTotal();
+    }
+
+    function changeCustQty(delta) {
+      custQty = Math.max(1, custQty + delta);
+      document.getElementById('custQtyText').innerText = custQty;
+      updateCustTotal();
+    }
+
+    function updateCustTotal() {
+      if (!activeCustomItem) return;
+      const unitPrice = activeCustomItem.price + custMilkExtra + custExtraShotPrice;
+      const total = unitPrice * custQty;
+      document.getElementById('custTotalPrice').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function submitCustomizer() {
+      if (!activeCustomItem) return;
+      let notes = `${custTemp}, ${custMilk}, Gula ${custSweet}`;
+      if (custExtraShotPrice > 0) notes += ', Extra Shot';
+      const unitPrice = activeCustomItem.price + custMilkExtra + custExtraShotPrice;
+
+      for (let i = 0; i < custQty; i++) {
+        quickAdd(activeCustomItem.name, unitPrice, notes);
+      }
+      closeCustomizer();
+    }
+
+    // Cart Management
+    let cart = [];
+
+    function quickAdd(name, price, notes) {
+      const existing = cart.find(i => i.name === name && i.notes === notes);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id: Date.now(), name, price, notes, qty: 1 });
+      }
+      updateCartUI();
+      showToast(`✓ Ditambahkan: ${name}`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').innerText = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('animate-toast');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('animate-toast');
+      }, 3000);
+    }
+
+    function updateCartUI() {
+      const badge = document.getElementById('cartCountBadge');
+      const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+      badge.innerText = totalQty;
+      badge.className = totalQty > 0 ? "absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ochre text-white text-[10px] font-mono font-bold flex items-center justify-center scale-100 transition-transform" : "scale-0";
+
+      const list = document.getElementById('cartItemsList');
+      if (cart.length === 0) {
+        list.innerHTML = `<div class="py-12 text-center text-espresso/40 text-xs font-mono">Keranjang seduhan masih kosong.</div>`;
+      } else {
+        list.innerHTML = cart.map(item => `
+          <div class="p-3 bg-white rounded-xl border border-borderWarm flex items-center justify-between gap-3 text-xs font-mono">
+            <div class="min-w-0 flex-1">
+              <h4 class="font-bold text-espresso truncate">${item.name}</h4>
+              <p class="text-[10px] text-espresso/60 truncate">${item.notes}</p>
+              <span class="text-ochre font-semibold">Rp ${(item.price * item.qty).toLocaleString('id-ID')}</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-sand p-1 rounded-lg">
+              <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5 bg-white rounded text-center text-xs font-bold cursor-pointer">-</button>
+              <span class="w-4 text-center font-bold text-xs">${item.qty}</span>
+              <button onclick="changeQty(${item.id}, 1)" class="w-5 h-5 bg-white rounded text-center text-xs font-bold cursor-pointer">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const tax = subtotal * 0.1;
+      const grandTotal = subtotal + tax;
+
+      document.getElementById('cartSubtotal').innerText = `Rp ${subtotal.toLocaleString('id-ID')}`;
+      document.getElementById('cartTax').innerText = `Rp ${tax.toLocaleString('id-ID')}`;
+      document.getElementById('cartGrandTotal').innerText = `Rp ${grandTotal.toLocaleString('id-ID')}`;
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+      }
+      updateCartUI();
+    }
+
+    function toggleCart(show) {
+      const drawer = document.getElementById('cartDrawer');
+      if (show) {
+        drawer.classList.remove('hidden');
+        drawer.classList.add('flex');
+      } else {
+        drawer.classList.remove('flex');
+        drawer.classList.add('hidden');
+      }
+    }
+
+    function checkoutWhatsApp() {
+      if (cart.length === 0) return alert('Keranjang masih kosong!');
+      let text = `*PESANAN SEDUHAN - LAMAR COFFEE*\n===============================\n`;
+      cart.forEach((item, idx) => {
+        text += `${idx + 1}. *${item.name}* (x${item.qty})\n   ↳ _${item.notes}_\n   ↳ Rp ${(item.price * item.qty).toLocaleString('id-ID')}\n`;
+      });
+      const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+      const tax = subtotal * 0.1;
+      const grandTotal = subtotal + tax;
+
+      text += `===============================\nSubtotal: Rp ${subtotal.toLocaleString('id-ID')}\nPB1 (10%): Rp ${tax.toLocaleString('id-ID')}\n*TOTAL PEMBAYARAN: Rp ${grandTotal.toLocaleString('id-ID')}*\n\nMohon diproses untuk nomor meja / pickup saya. Terima kasih! ☕`;
+      window.open(`https://wa.me/6281288885262?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function handleReservation(e) {
+      e.preventDefault();
+      const name = document.getElementById('resName').value;
+      const phone = document.getElementById('resPhone').value;
+      const date = document.getElementById('resDate').value;
+      const time = document.getElementById('resTime').value;
+      const guests = document.getElementById('resGuests').value;
+      const zone = document.querySelector('input[name="resZone"]:checked').value;
+      const notes = document.getElementById('resNotes').value || '-';
+
+      const msg = `*RESERVASI MEJA - LAMAR COFFEE*\n==============================\n` +
+                  `👤 *Nama:* ${name}\n` +
+                  `📱 *WhatsApp:* ${phone}\n` +
+                  `📅 *Tanggal:* ${date}\n` +
+                  `⏰ *Waktu:* ${time} WIB\n` +
+                  `👥 *Jumlah Tamu:* ${guests}\n` +
+                  `📍 *Zona Pilihan:* ${zone}\n` +
+                  `📝 *Catatan:* ${notes}\n` +
+                  `==============================\nMohon konfirmasi ketersediaan tempat. Terima kasih!`;
+      window.open(`https://wa.me/6281288885262?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // Audio Ambience Generator
+    let audioPlaying = false;
+    let audioCtx = null;
+    let audioNode = null;
+
+    function toggleAmbience() {
+      const btnText = document.getElementById('ambienceText');
+      const dot = document.getElementById('ambienceDot');
+
+      if (!audioPlaying) {
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const bufferSize = audioCtx.sampleRate * 2;
+          const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const data = buffer.getChannelData(0);
+          let lastOut = 0.0;
+          for (let i = 0; i < bufferSize; i++) {
+            const white = Math.random() * 2 - 1;
+            data[i] = (lastOut + (0.02 * white)) / 1.02;
+            lastOut = data[i];
+            data[i] *= 0.12;
+          }
+          audioNode = audioCtx.createBufferSource();
+          audioNode.buffer = buffer;
+          audioNode.loop = true;
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(400, audioCtx.currentTime);
+          audioNode.connect(filter);
+          filter.connect(audioCtx.destination);
+          audioNode.start();
+
+          audioPlaying = true;
+          btnText.innerText = "Suara Kafe: Aktif 🎧";
+          dot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+        } catch (e) {
+          console.log(e);
+        }
+      } else {
+        if (audioNode) audioNode.stop();
+        audioPlaying = false;
+        btnText.innerText = "Suara Kafe: Mati";
+        dot.className = "w-2 h-2 rounded-full bg-espresso/40";
+      }
+    }
+
+    function toggleMobileNav() {
+      document.getElementById('mobileNav').classList.toggle('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMenu(menuItems);
+      updateCartUI();
+      lucide.createIcons();
+      document.getElementById('resDate').value = new Date().toISOString().split('T')[0];
+    });
+  </script>
+</body>
+</html>

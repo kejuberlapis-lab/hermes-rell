@@ -1,0 +1,291 @@
+{
+  "version": 1,
+  "installed": {
+    "excalidraw": {
+      "source": "official",
+      "identifier": "official/creative/excalidraw",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:359112274e8262e0",
+      "install_path": "creative/excalidraw",
+      "files": [
+        "SKILL.md",
+        "references/colors.md",
+        "references/dark-mode.md",
+        "references/examples.md",
+        "scripts/upload.py"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:04.431201+00:00",
+      "updated_at": "2026-09-27T12:53:04.431201+00:00"
+    },
+    "sketch": {
+      "source": "official",
+      "identifier": "official/creative/sketch",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:bea886ff483216bf",
+      "install_path": "creative/sketch",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:04.461220+00:00",
+      "updated_at": "2026-09-27T12:53:04.461220+00:00"
+    },
+    "weights-and-biases": {
+      "source": "official",
+      "identifier": "official/mlops/evaluation/weights-and-biases",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:4286e3db3985d52f",
+      "install_path": "mlops/evaluation/weights-and-biases",
+      "files": [
+        "SKILL.md",
+        "references/artifacts.md",
+        "references/integrations.md",
+        "references/sweeps.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:04.469689+00:00",
+      "updated_at": "2026-09-27T12:53:04.469689+00:00"
+    },
+    "llama-cpp": {
+      "source": "official",
+      "identifier": "official/mlops/inference/llama-cpp",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:43a4ec8fb07acce8",
+      "install_path": "mlops/inference/llama-cpp",
+      "files": [
+        "SKILL.md",
+        "references/advanced-usage.md",
+        "references/hub-discovery.md",
+        "references/optimization.md",
+        "references/quantization.md",
+        "references/server.md",
+        "references/troubleshooting.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:04.474647+00:00",
+      "updated_at": "2026-09-27T12:53:04.474647+00:00"
+    },
+    "huggingface-hub": {
+      "source": "official",
+      "identifier": "official/mlops/huggingface-hub",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:55fa8eb6c3b4be8c",
+      "install_path": "mlops/huggingface-hub",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-27T12:53:04.479401+00:00",
+      "updated_at": "2026-09-27T12:53:04.479401+00:00"
+    },
+    "hallucination-guard": {
+      "source": "clawhub",
+      "identifier": "@scytheshan-pixel/hallucination-guard",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:2fc4de05e78dec57",
+      "install_path": "hallucination-guard",
+      "files": [
+        "references/audit-prompt.md",
+        "references/drift-monitor.md",
+        "references/taxonomy.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:2fc4de05e78dec573fca2c3e984f67490a37e48690537db308e8637c1746133e",
+        "scanner_version": "skills-guard-v6",
+        "source": "@scytheshan-pixel/hallucination-guard",
+        "source_url": "@scytheshan-pixel/hallucination-guard",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-09-27T13:20:55.844783+00:00",
+        "summary": "hallucination-guard: clean scan, no threats detected",
+        "fresh": false
+      },
+      "installed_at": "2026-09-27T13:21:09.240062+00:00",
+      "updated_at": "2026-09-27T13:21:09.240062+00:00"
+    },
+    "reikys-hallucination-guard": {
+      "source": "clawhub",
+      "identifier": "@reikys/reikys-hallucination-guard",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:348da59092dc7fc2",
+      "install_path": "reikys-hallucination-guard",
+      "files": [
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:348da59092dc7fc252bdb4e136317f288abee97ae47d7773a50cd79b1511ff3c",
+        "scanner_version": "skills-guard-v6",
+        "source": "@reikys/reikys-hallucination-guard",
+        "source_url": "@reikys/reikys-hallucination-guard",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [
+          {
+            "pattern_id": "unpinned_pip_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 741,
+            "match": "Recommend: pip install boto3, then retry",
+            "description": "pip install without version pinning"
+          }
+        ],
+        "rules": [
+          "unpinned_pip_install"
+        ],
+        "scanned_at": "2026-09-27T13:21:22.625089+00:00",
+        "summary": "reikys-hallucination-guard: safe — 1 finding(s) in supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-09-27T13:21:22.632020+00:00",
+      "updated_at": "2026-09-27T13:21:22.632020+00:00"
+    },
+    "anti-hallucination": {
+      "source": "clawhub",
+      "identifier": "@yiping3/anti-hallucination",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:3831ddb0c641e250",
+      "install_path": "anti-hallucination",
+      "files": [
+        "skill-card.md",
+        "SKILL.md",
+        "素材_for_10号.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:3831ddb0c641e25002ff85ea14c0edf36dd8e6d913668b53fedf883492cb601f",
+        "scanner_version": "skills-guard-v6",
+        "source": "@yiping3/anti-hallucination",
+        "source_url": "@yiping3/anti-hallucination",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-09-27T13:21:35.986819+00:00",
+        "summary": "anti-hallucination: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-09-27T13:21:35.993866+00:00",
+      "updated_at": "2026-09-27T13:21:35.993866+00:00"
+    },
+    "bug-fix-protocol": {
+      "source": "clawhub",
+      "identifier": "@borodich/bug-fix-protocol",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:c12c82ca5600c4fb",
+      "install_path": "bug-fix-protocol",
+      "files": [
+        "README.md",
+        "skill-card.md",
+        "SKILL.md",
+        "_meta.json"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:c12c82ca5600c4fb4fb2c2af34446b0aaf80ed06f85118e5eb90c02e615a96df",
+        "scanner_version": "skills-guard-v6",
+        "source": "@borodich/bug-fix-protocol",
+        "source_url": "@borodich/bug-fix-protocol",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-09-27T13:21:46.757121+00:00",
+        "summary": "bug-fix-protocol: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-09-27T13:21:46.763746+00:00",
+      "updated_at": "2026-09-27T13:21:46.763746+00:00"
+    },
+    "apos": {
+      "source": "url",
+      "identifier": "https://raw.githubusercontent.com/ahmdd4vd/apos/main/skills/apos/SKILL.md",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:37d95e06b006b4b0",
+      "install_path": "apos",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "url": "https://raw.githubusercontent.com/ahmdd4vd/apos/main/skills/apos/SKILL.md",
+        "source_url": "https://raw.githubusercontent.com/ahmdd4vd/apos/main/skills/apos/SKILL.md",
+        "awaiting_name": false
+      },
+      "scan_provenance": {
+        "bundle_hash": "sha256:37d95e06b006b4b02749da95a99e61a4d78dcf3eae7e355dd4473983befbcd00",
+        "scanner_version": "skills-guard-v6",
+        "source": "https://raw.githubusercontent.com/ahmdd4vd/apos/main/skills/apos/SKILL.md",
+        "source_url": "https://raw.githubusercontent.com/ahmdd4vd/apos/main/skills/apos/SKILL.md",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [
+          {
+            "pattern_id": "agent_config_ref",
+            "severity": "low",
+            "category": "persistence",
+            "file": "SKILL.md",
+            "line": 306,
+            "match": "When APOS is adopted in a project, make the project’s primary agent instructions remind agents to use APOS. Use `AGEN...",
+            "description": "references agent config files (informational; only modification intent is scored)"
+          },
+          {
+            "pattern_id": "agent_config_ref",
+            "severity": "low",
+            "category": "persistence",
+            "file": "SKILL.md",
+            "line": 327,
+            "match": "Preserve existing `AGENTS.md` and `CLAUDE.md` instructions. Inspect them first, append an isolated APOS section, and ...",
+            "description": "references agent config files (informational; only modification intent is scored)"
+          },
+          {
+            "pattern_id": "agent_config_ref",
+            "severity": "low",
+            "category": "persistence",
+            "file": "SKILL.md",
+            "line": 333,
+            "match": "Adopt project:  add or update AGENTS.md, CLAUDE.md, and minimum .apos/ state",
+            "description": "references agent config files (informational; only modification intent is scored)"
+          }
+        ],
+        "rules": [
+          "agent_config_ref"
+        ],
+        "scanned_at": "2026-09-27T14:22:14.259539+00:00",
+        "summary": "apos: safe — 3 finding(s) in persistence",
+        "fresh": true
+      },
+      "installed_at": "2026-09-27T14:22:14.267490+00:00",
+      "updated_at": "2026-09-27T14:22:14.267490+00:00"
+    }
+  }
+}

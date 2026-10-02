@@ -1,0 +1,978 @@
+{% extends "base.html" %}
+{% block title %}Presensi & Face Check-In{% endblock %}
+{% block page_title %}Presensi & Riwayat Kehadiran{% endblock %}
+{% block content %}
+<style>
+/* Modern Face Capture & Geolocation Styles */
+.face-camera-box {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    height: 360px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0f172a;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.face-camera-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Mirror camera */
+}
+
+.face-camera-canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    transform: scaleX(-1);
+}
+
+.face-oval-guide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 210px;
+    height: 270px;
+    border: 3px dashed rgba(59, 130, 246, 0.85);
+    border-radius: 50% / 45%;
+    pointer-events: none;
+    box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.45);
+    transition: all 0.3s ease;
+}
+
+.face-oval-guide.success {
+    border-color: #10b981;
+    border-style: solid;
+    box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.3), 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+.face-guide-hint {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 12px;
+    margin: 0 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.attendance-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #e2e8f0;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.attendance-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-color: #3b82f6;
+}
+
+.live-clock-badge {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+}
+</style>
+
+<!-- ===================== HEADER & LIVE CLOCK ===================== -->
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+            <h4 class="mb-1 fw-bold"><i class="fas fa-user-clock text-primary me-2"></i>Presensi Kehadiran & Face Capture</h4>
+            <p class="text-muted mb-0">Sistem Presensi Pintar berbasis Titik Koordinat GPS & Verifikasi Wajah Langsung</p>
+        </div>
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <div class="bg-white border rounded px-3 py-2 shadow-sm d-flex align-items-center me-2">
+                <i class="far fa-clock text-primary me-2 fs-5"></i>
+                <div>
+                    <div class="small text-muted" style="line-height: 1;">Waktu Server (WIB)</div>
+                    <div class="fw-bold text-dark live-clock-badge" id="liveClockDisplay">--:--:-- WIB</div>
+                </div>
+            </div>
+
+            <!-- Tombol Check In / Check Out Utama -->
+            <button class="btn btn-primary px-3 py-2 shadow-sm fw-bold d-flex align-items-center" onclick="openAttendanceModal()">
+                <i class="fas fa-camera me-2 fs-5"></i> Presensi Sekarang (Face & GPS)
+            </button>
+
+            {% if user and (user.role == 'super_admin' or user.employee_id == 5 or user.username == 'andreas') %}
+            <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#importExcelModal" title="Import Fingerprint">
+                <i class="fas fa-file-import me-1"></i> Import Excel
+            </button>
+            {% endif %}
+
+            <div class="btn-group">
+              <a href="/api/exports/attendance?format=excel" class="btn btn-outline-success btn-sm"><i class="fas fa-file-excel me-1"></i> Export</a>
+              <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"><span class="visually-hidden">Toggle</span></button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/api/exports/attendance?format=excel"><i class="fas fa-file-excel me-2 text-success"></i>Excel (.xlsx)</a></li>
+                <li><a class="dropdown-item" href="/api/exports/attendance?format=pdf"><i class="fas fa-file-pdf me-2 text-danger"></i>PDF (.pdf)</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== FILTER BAR ===================== -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body p-3">
+        <form method="GET" action="/attendance" class="row g-2 align-items-center">
+            <div class="col-auto">
+                <span class="small fw-semibold text-muted"><i class="fas fa-filter me-1"></i>Filter Periode:</span>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <select name="period" class="form-select form-select-sm" onchange="handlePeriodChange(this.value)">
+                    <option value="all" {% if current_period == 'all' and not current_month and not current_year %}selected{% endif %}>Semua Riwayat (Tampilkan Semua)</option>
+                    <option value="this_month" {% if current_period == 'this_month' %}selected{% endif %}>Bulan Ini</option>
+                    <option value="this_year" {% if current_period == 'this_year' %}selected{% endif %}>Tahun Ini (2026)</option>
+                    <option value="custom_month" {% if current_month %}selected{% endif %}>Pilih Per Bulan...</option>
+                    <option value="custom_year" {% if current_year %}selected{% endif %}>Pilih Per Tahun...</option>
+                </select>
+            </div>
+            
+            <div class="col-md-3 col-sm-6 {% if not current_month %}d-none{% endif %}" id="monthFilterCol">
+                <input type="month" name="month" class="form-control form-select-sm" value="{{ current_month or '' }}">
+            </div>
+
+            <div class="col-md-2 col-sm-6 {% if not current_year %}d-none{% endif %}" id="yearFilterCol">
+                <select name="year" class="form-select form-select-sm">
+                    <option value="">-- Pilih Tahun --</option>
+                    {% for yr in available_years %}
+                    <option value="{{ yr }}" {% if current_year == yr %}selected{% endif %}>Tahun {{ yr }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2 col-sm-6">
+                <select name="limit_count" class="form-select form-select-sm">
+                    <option value="50" {% if current_limit == 50 %}selected{% endif %}>Tampilkan 50 Baris</option>
+                    <option value="100" {% if current_limit == 100 %}selected{% endif %}>Tampilkan 100 Baris</option>
+                    <option value="200" {% if current_limit == 200 %}selected{% endif %}>Tampilkan 200 Baris</option>
+                    <option value="500" {% if current_limit == 500 %}selected{% endif %}>Tampilkan 500 Baris</option>
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary btn-sm px-3">
+                    <i class="fas fa-search me-1"></i> Terapkan
+                </button>
+                <a href="/attendance" class="btn btn-outline-secondary btn-sm ms-1">
+                    <i class="fas fa-undo me-1"></i> Reset
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ===================== STAT CARDS ===================== -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-success-subtle me-3"><i class="fas fa-user-check text-success"></i></div>
+                <div>
+                    <div class="fw-bold fs-5" id="attPresent">{{ att_stats.present if att_stats is defined else '0' }}</div>
+                    <small class="text-muted">Total Hadir / Tepat Waktu</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-warning-subtle me-3"><i class="fas fa-clock text-warning"></i></div>
+                <div>
+                    <div class="fw-bold fs-5 text-warning" id="attLate">{{ att_stats.late if att_stats is defined else '0' }}</div>
+                    <small class="text-muted">Total Terlambat</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-info-subtle me-3"><i class="fas fa-plane-departure text-info"></i></div>
+                <div>
+                    <div class="fw-bold fs-5 text-info" id="attDuty">{{ att_stats.duty if att_stats is defined else '0' }}</div>
+                    <small class="text-muted">Penugasan / Dinas Luar</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm p-3">
+            <div class="d-flex align-items-center">
+                <div class="stat-icon bg-danger-subtle me-3"><i class="fas fa-calendar-times text-danger"></i></div>
+                <div>
+                    <div class="fw-bold fs-5 text-danger" id="attAbsent">{{ (att_stats.absent + att_stats.on_leave) if att_stats is defined else '0' }}</div>
+                    <small class="text-muted">Cuti / Izin / Alpa</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== ATTENDANCE TABLE ===================== -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+        <h6 class="mb-0 fw-semibold">
+            <i class="fas fa-list-alt me-1 text-primary"></i> Riwayat Presensi & Verifikasi Wajah
+        </h6>
+        <span class="badge bg-light text-dark border">{{ attendance|length }} Catatan Ditemukan</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0" id="attendanceTable">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 14%;">Tanggal</th>
+                    <th style="width: 18%;">Jam Masuk & Keluar</th>
+                    <th style="width: 14%;">Foto Wajah</th>
+                    <th style="width: 20%;">Tipe & Lokasi GPS</th>
+                    <th style="width: 14%;">Status</th>
+                    <th style="width: 20%;">Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for att in attendance %}
+                <tr>
+                    <td>
+                        <div class="fw-bold text-dark"><i class="far fa-calendar-alt text-muted me-1"></i>{{ att.date }}</div>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column gap-1">
+                            <div>
+                                <span class="badge bg-success-subtle text-success border border-success px-2 py-1">
+                                    <i class="fas fa-sign-in-alt me-1"></i>In: {{ att.clock_in or '-' }}
+                                </span>
+                            </div>
+                            {% if att.clock_out %}
+                            <div>
+                                <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1">
+                                    <i class="fas fa-sign-out-alt me-1"></i>Out: {{ att.clock_out }}
+                                </span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            {% if att.photo_in %}
+                            <div class="text-center">
+                                <img src="{{ att.photo_in }}" class="attendance-thumb" alt="Foto Masuk" onclick="viewPhoto('{{ att.photo_in }}', 'Foto Presensi Masuk - {{ att.date }} ({{ att.clock_in }})', '{{ att.location_lat or '' }}', '{{ att.location_lng or '' }}', '{{ att.distance_meters or '' }}')" title="Klik untuk perbesar foto Masuk">
+                                <div class="badge bg-light text-muted border mt-1" style="font-size: 0.65rem;">In</div>
+                            </div>
+                            {% endif %}
+
+                            {% if att.photo_out %}
+                            <div class="text-center">
+                                <img src="{{ att.photo_out }}" class="attendance-thumb" alt="Foto Keluar" onclick="viewPhoto('{{ att.photo_out }}', 'Foto Presensi Keluar - {{ att.date }} ({{ att.clock_out }})', '{{ att.location_lat_out or '' }}', '{{ att.location_lng_out or '' }}', '')" title="Klik untuk perbesar foto Keluar">
+                                <div class="badge bg-light text-muted border mt-1" style="font-size: 0.65rem;">Out</div>
+                            </div>
+                            {% endif %}
+
+                            {% if not att.photo_in and not att.photo_out %}
+                            <span class="badge bg-light text-muted border px-2 py-1"><i class="fas fa-fingerprint me-1"></i>Fingerprint</span>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            {% set atype = (att.attendance_type or 'wfo')|lower %}
+                            {% if atype == 'wfo' %}
+                            <span class="badge bg-primary-subtle text-primary border border-primary px-2 py-1">
+                                <i class="fas fa-building me-1"></i>WFO (Kantor)
+                            </span>
+                            {% elif atype == 'wfh' %}
+                            <span class="badge bg-info-subtle text-info border border-info px-2 py-1">
+                                <i class="fas fa-home me-1"></i>WFH (Rumah)
+                            </span>
+                            {% elif atype == 'duty' or atype == 'dinas' or atype == 'dinas luar' %}
+                            <span class="badge bg-warning-subtle text-warning-emphasis border border-warning px-2 py-1">
+                                <i class="fas fa-briefcase me-1"></i>Dinas Luar
+                            </span>
+                            {% else %}
+                            <span class="badge bg-light text-dark border">{{ att.attendance_type or 'WFO' }}</span>
+                            {% endif %}
+
+                            {% if att.location_lat and att.location_lng %}
+                            <div class="mt-1 small">
+                                <a href="https://www.google.com/maps?q={{ att.location_lat }},{{ att.location_lng }}" target="_blank" class="text-decoration-none text-primary" title="Buka di Google Maps">
+                                    <i class="fas fa-map-marker-alt text-danger me-1"></i>
+                                    {{ "%.4f"|format(att.location_lat) }}, {{ "%.4f"|format(att.location_lng) }}
+                                </a>
+                                {% if att.distance_meters is not none %}
+                                <div class="text-muted" style="font-size: 0.75rem;">
+                                    <i class="fas fa-ruler me-1"></i>Jarak: {% if att.distance_meters >= 1000 %}{{ "%.1f"|format(att.distance_meters / 1000) }} km{% else %}{{ "%.0f"|format(att.distance_meters) }} m{% endif %} dari kantor
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        {% if att.status == 'present' %}
+                        <span class="badge bg-success-subtle text-success border border-success px-2 py-1"><i class="fas fa-check me-1"></i>Hadir Tepat</span>
+                        {% elif att.status == 'late' %}
+                        <span class="badge bg-warning-subtle text-warning-emphasis border border-warning px-2 py-1"><i class="fas fa-exclamation-triangle me-1"></i>Terlambat</span>
+                        {% elif att.status == 'duty' %}
+                        <span class="badge bg-info-subtle text-info-emphasis border border-info px-2 py-1"><i class="fas fa-briefcase me-1"></i>Penugasan</span>
+                        {% elif att.status == 'leave' %}
+                        <span class="badge bg-primary-subtle text-primary border border-primary px-2 py-1"><i class="fas fa-umbrella-beach me-1"></i>Cuti</span>
+                        {% elif att.status == 'sick' %}
+                        <span class="badge bg-secondary-subtle text-secondary border border-secondary px-2 py-1"><i class="fas fa-notes-medical me-1"></i>Sakit</span>
+                        {% elif att.status == 'absent' %}
+                        <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1"><i class="fas fa-times me-1"></i>Tidak Hadir</span>
+                        {% else %}
+                        <span class="badge bg-secondary">{{ att.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td><small class="text-muted">{{ att.notes or '-' }}</small></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-5">
+                        <i class="fas fa-calendar-times fa-2x mb-2 text-secondary d-block"></i>
+                        Tidak ada catatan presensi untuk periode yang dipilih.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ===================== LIVE ATTENDANCE MODAL (FACE + GPS) ===================== -->
+<div class="modal fade" id="liveAttendanceModal" tabindex="-1" aria-labelledby="liveAttendanceModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-gradient bg-primary text-white py-3">
+                <h5 class="modal-title fw-bold" id="liveAttendanceModalLabel">
+                    <i class="fas fa-camera-retro me-2"></i>Presensi Pintar (Face Capture & GPS)
+                </h5>
+                <button type="button" class="btn-close btn-close-white" onclick="closeAttendanceModal()"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="row g-4">
+                    <!-- Sisi Kamera Live & Face Guide -->
+                    <div class="col-md-6 text-center">
+                        <div class="face-camera-box mb-3 position-relative">
+                            <video id="webcamVideo" class="face-camera-video" autoplay playsinline muted></video>
+                            <canvas id="snapshotCanvas" class="face-camera-canvas"></canvas>
+                            <img id="nativePhotoPreview" class="face-camera-video" style="display: none; object-fit: cover;" alt="Foto Selfie">
+                            
+                            <div class="face-oval-guide" id="faceOvalGuide"></div>
+                            <div class="face-guide-hint" id="faceGuideHint">
+                                <i class="fas fa-smile me-1"></i> Posisikan wajah Anda di dalam lingkaran
+                            </div>
+                        </div>
+
+                        <!-- Input File Kamera Native (Support HP / HTTP / Fallback) -->
+                        <input type="file" id="nativeCameraInput" accept="image/*" capture="user" class="d-none" onchange="handleNativeCameraCapture(event)">
+
+                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                            <button type="button" class="btn btn-primary px-3 shadow-sm" id="btnCapturePhoto" onclick="takePhotoSnapshot()">
+                                <i class="fas fa-camera me-1"></i> Ambil Foto Wajah
+                            </button>
+                            <button type="button" class="btn btn-outline-primary px-3 shadow-sm" id="btnOpenNativeCamera" onclick="document.getElementById('nativeCameraInput').click()">
+                                <i class="fas fa-mobile-alt me-1"></i> Buka Kamera Langsung
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary px-3 d-none" id="btnRetakePhoto" onclick="retakePhoto()">
+                                <i class="fas fa-redo me-1"></i> Foto Ulang
+                            </button>
+                        </div>
+                        <div class="small text-muted mt-2">
+                            <i class="fas fa-shield-alt text-success me-1"></i> Mendukung Kamera HP & WebRTC Langsung
+                        </div>
+                    </div>
+
+                    <!-- Sisi Informasi GPS & Opsi Presensi -->
+                    <div class="col-md-6">
+                        <!-- Mode Selector (Clock In / Out) -->
+                        <div class="alert alert-primary border-0 p-3 mb-3 d-flex align-items-center justify-content-between">
+                            <div>
+                                <span class="badge bg-primary me-2" id="modalActionBadge">CLOCK IN</span>
+                                <strong id="modalActionTitle">Presensi Masuk</strong>
+                            </div>
+                            <div class="fw-bold text-primary" id="modalClockTime">--:--:--</div>
+                        </div>
+
+                        <!-- Status GPS & Lokasi Geofence -->
+                        <div class="card bg-light border-0 p-3 mb-3">
+                            <h6 class="fw-bold mb-2 small text-uppercase text-muted">
+                                <i class="fas fa-satellite-dish me-1 text-primary"></i> Deteksi Titik Koordinat GPS
+                            </h6>
+                            <div id="gpsStatusContainer">
+                                <div class="d-flex align-items-center text-muted small py-2">
+                                    <div class="spinner-border spinner-border-sm text-primary me-2"></div>
+                                    Mendeteksi koordinat lokasi Anda...
+                                </div>
+                            </div>
+                            <div id="gpsDetailsContainer" class="d-none mt-2 small">
+                                <div class="d-flex justify-content-between py-1 border-bottom">
+                                    <span class="text-muted">Koordinat:</span>
+                                    <span class="fw-semibold" id="gpsCoordsText">-</span>
+                                </div>
+                                <div class="d-flex justify-content-between py-1 border-bottom">
+                                    <span class="text-muted">Akurasi GPS:</span>
+                                    <span class="fw-semibold text-success" id="gpsAccuracyText">-</span>
+                                </div>
+                                <div class="d-flex justify-content-between py-1">
+                                    <span class="text-muted">Jarak ke Kantor:</span>
+                                    <span class="fw-bold" id="gpsDistanceText">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Input Presensi -->
+                        <form id="attendanceSubmitForm" onsubmit="return submitAttendance(event)">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small">Tipe Kehadiran <span class="text-danger">*</span></label>
+                                <select class="form-select form-select-sm" id="attTypeSelect" required onchange="handleAttTypeChange(this.value)">
+                                    <option value="wfo" selected>WFO (Work From Office - Kantor Pusat)</option>
+                                    <option value="duty">Dinas Luar / Meeting Klien / Proyek</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold small">Catatan / Keterangan (Opsional)</label>
+                                <input type="text" class="form-control form-control-sm" id="attNotesInput" placeholder="Contoh: Bertemu klien di Jakarta Barat / Pekerjaan reguler">
+                            </div>
+
+                            <div id="attendanceAlert" class="alert d-none small"></div>
+
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-success py-2 fw-bold shadow-sm" id="btnSubmitAttendance" disabled>
+                                    <i class="fas fa-check-circle me-1"></i> Kirim Presensi Sekarang
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== PHOTO VIEWER MODAL ===================== -->
+<div class="modal fade" id="photoViewerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-dark text-white py-2">
+                <h6 class="modal-title fw-bold" id="photoViewerTitle">Pratinjau Foto Presensi</h6>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0 text-center bg-black position-relative">
+                <img id="photoViewerImg" src="" class="img-fluid" style="max-height: 480px; width: 100%; object-fit: contain;">
+                <div id="photoViewerOverlay" class="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-white p-2 small text-start">
+                    <div id="photoViewerMeta"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== IMPORT EXCEL MODAL ===================== -->
+{% if user and (user.role == 'super_admin' or user.employee_id == 5 or user.username == 'andreas') %}
+<div class="modal fade" id="importExcelModal" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold" id="importExcelModalLabel">
+                    <i class="fas fa-file-excel me-2"></i>Import Data Absensi Fingerprint
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="importExcelForm" onsubmit="return handleImportExcel(event)">
+                <div class="modal-body p-4">
+                    <div class="alert alert-info border-0 d-flex align-items-center mb-3">
+                        <i class="fas fa-info-circle fs-4 me-3 text-info"></i>
+                        <div class="small">
+                            Format file mendukung hasil export Excel standar mesin fingerprint (kolom No ID, Nama, Tanggal, Jam Scan, Keterangan).
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Pilih File Excel (.xlsx / .xls)</label>
+                        <input class="form-control" type="file" id="excelFileInput" accept=".xlsx, .xls" required>
+                    </div>
+
+                    <div id="importLoading" class="text-center d-none py-3">
+                        <div class="spinner-border text-primary mb-2" role="status"></div>
+                        <div class="small text-muted fw-medium">Sedang memproses & mencocokkan data karyawan...</div>
+                    </div>
+
+                    <div id="importResult" class="d-none"></div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm" id="btnUploadSubmit">
+                        <i class="fas fa-upload me-1"></i> Mulai Import Data
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// ============================================
+// LIVE DIGITAL CLOCK
+// ============================================
+function updateLiveClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const clockEl = document.getElementById('liveClockDisplay');
+    const modalClockEl = document.getElementById('modalClockTime');
+    if (clockEl) clockEl.textContent = `${hours}:${minutes}:${seconds} WIB`;
+    if (modalClockEl) modalClockEl.textContent = `${hours}:${minutes}:${seconds} WIB`;
+}
+setInterval(updateLiveClock, 1000);
+updateLiveClock();
+
+function handlePeriodChange(val) {
+    const monthCol = document.getElementById('monthFilterCol');
+    const yearCol = document.getElementById('yearFilterCol');
+    if (val === 'custom_month') {
+        monthCol.classList.remove('d-none');
+        yearCol.classList.add('d-none');
+    } else if (val === 'custom_year') {
+        yearCol.classList.remove('d-none');
+        monthCol.classList.add('d-none');
+    } else {
+        monthCol.classList.add('d-none');
+        yearCol.classList.add('d-none');
+    }
+}
+
+// ============================================
+// WEBCAM & GPS ATTENDANCE LOGIC
+// ============================================
+let webcamStream = null;
+let currentGeoPosition = null;
+let capturedPhotoBase64 = null;
+let currentAttendanceAction = 'in'; // 'in' or 'out'
+let officeConfig = { lat: -6.136820, lng: 106.797240, radius: 200.0, name: 'Kantor Pusat PT Mitsindo Visual Pratama' };
+
+async function openAttendanceModal() {
+    const modalEl = document.getElementById('liveAttendanceModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    // 1. Fetch Today Status to determine Clock-In vs Clock-Out
+    try {
+        const token = localStorage.getItem('hris_token') || (document.cookie.match(/(?:^|;\s*)token=([^;]+)/) || [])[1] || '';
+        const res = await fetch('/api/attendance/today-status', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) {
+            const data = await res.json();
+            if (data.office) officeConfig = data.office;
+            
+            if (!data.has_clocked_in) {
+                currentAttendanceAction = 'in';
+                document.getElementById('modalActionBadge').className = 'badge bg-success me-2';
+                document.getElementById('modalActionBadge').textContent = 'CLOCK IN';
+                document.getElementById('modalActionTitle').textContent = 'Presensi Masuk';
+                document.getElementById('btnSubmitAttendance').className = 'btn btn-success py-2 fw-bold shadow-sm';
+                document.getElementById('btnSubmitAttendance').innerHTML = '<i class="fas fa-sign-in-alt me-1"></i> Catat Presensi Masuk (Clock In)';
+            } else if (!data.has_clocked_out) {
+                currentAttendanceAction = 'out';
+                document.getElementById('modalActionBadge').className = 'badge bg-danger me-2';
+                document.getElementById('modalActionBadge').textContent = 'CLOCK OUT';
+                document.getElementById('modalActionTitle').textContent = 'Presensi Keluar (Pulang)';
+                document.getElementById('btnSubmitAttendance').className = 'btn btn-danger py-2 fw-bold shadow-sm';
+                document.getElementById('btnSubmitAttendance').innerHTML = '<i class="fas fa-sign-out-alt me-1"></i> Catat Presensi Keluar (Clock Out)';
+            } else {
+                currentAttendanceAction = 'done';
+                document.getElementById('modalActionBadge').className = 'badge bg-secondary me-2';
+                document.getElementById('modalActionBadge').textContent = 'SELESAI';
+                document.getElementById('modalActionTitle').textContent = 'Presensi Hari Ini Sudah Lengkap';
+                document.getElementById('btnSubmitAttendance').disabled = true;
+                document.getElementById('btnSubmitAttendance').innerHTML = '<i class="fas fa-check-double me-1"></i> Sudah Presensi Masuk & Keluar';
+            }
+        }
+    } catch (e) {
+        console.error('Error fetching attendance status:', e);
+    }
+
+    // 2. Start Camera
+    await startCamera();
+
+    // 3. Get GPS Location
+    getLiveGeolocation();
+}
+
+async function startCamera() {
+    const video = document.getElementById('webcamVideo');
+    const canvas = document.getElementById('snapshotCanvas');
+    const previewImg = document.getElementById('nativePhotoPreview');
+    const guide = document.getElementById('faceOvalGuide');
+    const hint = document.getElementById('faceGuideHint');
+    const btnCapture = document.getElementById('btnCapturePhoto');
+    const btnNative = document.getElementById('btnOpenNativeCamera');
+    
+    video.style.display = 'block';
+    canvas.style.display = 'none';
+    if (previewImg) previewImg.style.display = 'none';
+    guide.className = 'face-oval-guide';
+    hint.innerHTML = '<i class="fas fa-smile me-1"></i> Posisikan wajah Anda di dalam lingkaran';
+
+    btnCapture.classList.remove('d-none');
+    document.getElementById('btnRetakePhoto').classList.add('d-none');
+    capturedPhotoBase64 = null;
+    checkSubmitReadiness();
+
+    // Check if getUserMedia is supported in current context
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: 'user',
+                    width: { ideal: 640 },
+                    height: { ideal: 640 }
+                },
+                audio: false
+            });
+            webcamStream = stream;
+            video.srcObject = stream;
+            await video.play();
+            return;
+        } catch (err) {
+            console.warn('WebRTC camera error, switching to native camera mode:', err);
+        }
+    }
+
+    // Fallback if HTTP or getUserMedia not permitted
+    video.style.display = 'none';
+    hint.innerHTML = '<i class="fas fa-camera me-1"></i> Klik tombol "Buka Kamera Langsung" di bawah';
+    btnCapture.classList.add('d-none');
+    btnNative.className = 'btn btn-primary px-4 py-2 shadow-sm fw-bold';
+}
+
+function handleNativeCameraCapture(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        capturedPhotoBase64 = e.target.result;
+        
+        const video = document.getElementById('webcamVideo');
+        const canvas = document.getElementById('snapshotCanvas');
+        const previewImg = document.getElementById('nativePhotoPreview');
+        const guide = document.getElementById('faceOvalGuide');
+        const hint = document.getElementById('faceGuideHint');
+
+        video.style.display = 'none';
+        canvas.style.display = 'none';
+        previewImg.src = capturedPhotoBase64;
+        previewImg.style.display = 'block';
+
+        guide.className = 'face-oval-guide success';
+        hint.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Foto Wajah Berhasil Diambil';
+
+        document.getElementById('btnCapturePhoto').classList.add('d-none');
+        document.getElementById('btnOpenNativeCamera').classList.add('d-none');
+        document.getElementById('btnRetakePhoto').classList.remove('d-none');
+
+        checkSubmitReadiness();
+    };
+    reader.readAsDataURL(file);
+}
+
+function takePhotoSnapshot() {
+    const video = document.getElementById('webcamVideo');
+    const canvas = document.getElementById('snapshotCanvas');
+    const guide = document.getElementById('faceOvalGuide');
+    const hint = document.getElementById('faceGuideHint');
+
+    canvas.width = video.videoWidth || 480;
+    canvas.height = video.videoHeight || 480;
+    const ctx = canvas.getContext('2d');
+    
+    // Draw mirrored image to match user preview
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    capturedPhotoBase64 = canvas.toDataURL('image/jpeg', 0.85);
+
+    video.style.display = 'none';
+    canvas.style.display = 'block';
+    guide.className = 'face-oval-guide success';
+    hint.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Foto Wajah Berhasil Diambil';
+
+    document.getElementById('btnCapturePhoto').classList.add('d-none');
+    document.getElementById('btnRetakePhoto').classList.remove('d-none');
+
+    checkSubmitReadiness();
+}
+
+function retakePhoto() {
+    const fileInput = document.getElementById('nativeCameraInput');
+    if (fileInput) fileInput.value = '';
+    const btnNative = document.getElementById('btnOpenNativeCamera');
+    btnNative.classList.remove('d-none');
+    startCamera();
+}
+
+function closeAttendanceModal() {
+    if (webcamStream) {
+        webcamStream.getTracks().forEach(track => track.stop());
+        webcamStream = null;
+    }
+    const modalEl = document.getElementById('liveAttendanceModal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+}
+
+function getLiveGeolocation() {
+    const statusBox = document.getElementById('gpsStatusContainer');
+    const detailsBox = document.getElementById('gpsDetailsContainer');
+
+    if (!navigator.geolocation) {
+        statusBox.innerHTML = '<div class="alert alert-danger p-2 mb-0 small"><i class="fas fa-times-circle me-1"></i> Perangkat tidak mendukung GPS Geolocation</div>';
+        return;
+    }
+
+    statusBox.innerHTML = '<div class="d-flex align-items-center text-muted small py-2"><div class="spinner-border spinner-border-sm text-primary me-2"></div> Mendeteksi titik GPS & jarak ke kantor...</div>';
+
+    navigator.geolocation.getCurrentPosition(
+        (pos) => {
+            currentGeoPosition = {
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude,
+                accuracy: pos.coords.accuracy
+            };
+
+            // Calculate distance to office
+            const distMeters = calculateHaversine(currentGeoPosition.lat, currentGeoPosition.lng, officeConfig.lat, officeConfig.lng);
+            const isInsideRadius = distMeters <= officeConfig.radius;
+            const distFormatted = distMeters >= 1000 ? `${(distMeters / 1000).toFixed(1)} km` : `${distMeters.toFixed(0)} meter`;
+
+            statusBox.innerHTML = `
+                <div class="d-flex align-items-center justify-content-between p-2 rounded ${isInsideRadius ? 'bg-success-subtle text-success border border-success' : 'bg-warning-subtle text-warning-emphasis border border-warning'}">
+                    <div>
+                        <i class="fas fa-${isInsideRadius ? 'check-circle text-success' : 'exclamation-circle text-warning'} me-1"></i>
+                        <strong>${isInsideRadius ? 'Di Dalam Area Kantor' : 'Di Luar Area Kantor'}</strong>
+                    </div>
+                    <span class="badge ${isInsideRadius ? 'bg-success' : 'bg-warning text-dark'}">${distFormatted}</span>
+                </div>
+            `;
+
+            detailsBox.classList.remove('d-none');
+            document.getElementById('gpsCoordsText').textContent = `${currentGeoPosition.lat.toFixed(5)}, ${currentGeoPosition.lng.toFixed(5)}`;
+            document.getElementById('gpsAccuracyText').textContent = `±${pos.coords.accuracy.toFixed(1)} meter`;
+            document.getElementById('gpsDistanceText').textContent = `${distFormatted} (${officeConfig.name || 'Kantor'})`;
+
+            checkSubmitReadiness();
+        },
+        (err) => {
+            console.warn('GPS error:', err);
+            statusBox.innerHTML = `
+                <div class="alert alert-warning p-2 mb-0 small">
+                    <i class="fas fa-exclamation-triangle me-1"></i> Izin GPS belum aktif. Tetap dapat lanjut dengan presensi Dinas Luar.
+                </div>
+            `;
+            checkSubmitReadiness();
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+}
+
+function calculateHaversine(lat1, lon1, lat2, lon2) {
+    const R = 6371000;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon/2) * Math.sin(dLon/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    return R * c;
+}
+
+function handleAttTypeChange(val) {
+    checkSubmitReadiness();
+}
+
+function checkSubmitReadiness() {
+    const btnSubmit = document.getElementById('btnSubmitAttendance');
+    if (currentAttendanceAction === 'done') {
+        btnSubmit.disabled = true;
+        return;
+    }
+    if (capturedPhotoBase64) {
+        btnSubmit.disabled = false;
+    } else {
+        btnSubmit.disabled = true;
+    }
+}
+
+async function submitAttendance(e) {
+    e.preventDefault();
+    if (!capturedPhotoBase64) {
+        alert('Silakan ambil foto selfie wajah terlebih dahulu.');
+        return;
+    }
+
+    const btn = document.getElementById('btnSubmitAttendance');
+    const alertBox = document.getElementById('attendanceAlert');
+    const attType = document.getElementById('attTypeSelect').value;
+    const notes = document.getElementById('attNotesInput').value;
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Mengirim Presensi...';
+    alertBox.classList.add('d-none');
+
+    const endpoint = currentAttendanceAction === 'out' ? '/api/attendance/clock-out' : '/api/attendance/clock-in';
+    const payload = {
+        attendance_type: attType,
+        notes: notes,
+        photo_base64: capturedPhotoBase64,
+        location_lat: currentGeoPosition ? currentGeoPosition.lat : null,
+        location_lng: currentGeoPosition ? currentGeoPosition.lng : null
+    };
+
+    try {
+        const token = localStorage.getItem('hris_token') || (document.cookie.match(/(?:^|;\s*)token=([^;]+)/) || [])[1] || '';
+        const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            alertBox.className = 'alert alert-success border-0 small mt-2';
+            alertBox.innerHTML = `<i class="fas fa-check-circle me-1"></i> <strong>Berhasil:</strong> ${data.message || 'Presensi Anda berhasil dicatat!'}`;
+            alertBox.classList.remove('d-none');
+            
+            setTimeout(() => {
+                closeAttendanceModal();
+                window.location.reload();
+            }, 1200);
+        } else {
+            alertBox.className = 'alert alert-danger border-0 small mt-2';
+            alertBox.innerHTML = `<i class="fas fa-exclamation-triangle me-1"></i> ${data.detail || 'Gagal mengirim data presensi.'}`;
+            alertBox.classList.remove('d-none');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-check-circle me-1"></i> Coba Kirim Ulang';
+        }
+    } catch (err) {
+        alertBox.className = 'alert alert-danger border-0 small mt-2';
+        alertBox.innerHTML = `<i class="fas fa-exclamation-triangle me-1"></i> Terjadi kesalahan koneksi: ${err.message}`;
+        alertBox.classList.remove('d-none');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-check-circle me-1"></i> Coba Kirim Ulang';
+    }
+}
+
+// ============================================
+// PHOTO VIEWER MODAL
+// ============================================
+function viewPhoto(url, title, lat, lng, dist) {
+    document.getElementById('photoViewerTitle').textContent = title;
+    document.getElementById('photoViewerImg').src = url;
+    
+    let metaHtml = `<strong>${title}</strong>`;
+    if (lat && lng) {
+        metaHtml += `<div class="mt-1"><i class="fas fa-map-marker-alt text-danger me-1"></i> Lokasi: ${parseFloat(lat).toFixed(5)}, ${parseFloat(lng).toFixed(5)}`;
+        if (dist) {
+            const d = parseFloat(dist);
+            const distLabel = d >= 1000 ? `${(d / 1000).toFixed(1)} km` : `${d.toFixed(0)}m`;
+            metaHtml += ` (Jarak: ${distLabel} dari kantor)`;
+        }
+        metaHtml += `</div>`;
+    }
+    document.getElementById('photoViewerMeta').innerHTML = metaHtml;
+
+    const modal = new bootstrap.Modal(document.getElementById('photoViewerModal'));
+    modal.show();
+}
+
+// ============================================
+// IMPORT EXCEL LOGIC
+// ============================================
+async function handleImportExcel(e) {
+    e.preventDefault();
+    const fileInput = document.getElementById('excelFileInput');
+    if (!fileInput.files || fileInput.files.length === 0) {
+        alert('Pilih file Excel terlebih dahulu.');
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const btnSubmit = document.getElementById('btnUploadSubmit');
+    const loading = document.getElementById('importLoading');
+    const resultBox = document.getElementById('importResult');
+
+    btnSubmit.disabled = true;
+    loading.classList.remove('d-none');
+    resultBox.classList.add('d-none');
+
+    try {
+        const response = await fetch('/api/attendance/import-excel', {
+            method: 'POST',
+            body: formData
+        });
+
+        const res = await response.json();
+        loading.classList.add('d-none');
+        btnSubmit.disabled = false;
+
+        if (response.ok && res.success) {
+            resultBox.className = 'alert alert-success border-0 small mt-2';
+            resultBox.innerHTML = `
+                <div class="fw-bold"><i class="fas fa-check-circle me-1"></i> ${res.message}</div>
+                <ul class="mb-0 mt-2 ps-3">
+                    <li>Data baru ditambahkan: <strong>${res.imported}</strong></li>
+                    <li>Data diperbarui: <strong>${res.updated}</strong></li>
+                    <li>Baris dilewati/ringkasan: <strong>${res.skipped}</strong></li>
+                </ul>
+            `;
+            resultBox.classList.remove('d-none');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1800);
+        } else {
+            resultBox.className = 'alert alert-danger border-0 small mt-2';
+            resultBox.innerHTML = `<i class="fas fa-exclamation-triangle me-1"></i> Gagal: ${res.detail || 'Terjadi kesalahan saat memproses file.'}`;
+            resultBox.classList.remove('d-none');
+        }
+    } catch (err) {
+        loading.classList.add('d-none');
+        btnSubmit.disabled = false;
+        resultBox.className = 'alert alert-danger border-0 small mt-2';
+        resultBox.innerHTML = `<i class="fas fa-exclamation-triangle me-1"></i> Error: ${err.message}`;
+        resultBox.classList.remove('d-none');
+    }
+}
+</script>
+{% endblock %}

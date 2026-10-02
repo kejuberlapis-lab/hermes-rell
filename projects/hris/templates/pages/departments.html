@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Departments{% endblock %}
+{% block page_title %}Departments{% endblock %}
+{% block content %}
+<div class="page-header mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <div>
+            <h4 class="mb-1 fw-bold">Departments</h4>
+            <p class="text-muted mb-0">Organize and manage company divisions & teams</p>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addDeptModal">
+                <i class="fas fa-plus me-1"></i>Add Department
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    {% for dept in departments %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div class="avatar-sm bg-primary-subtle text-primary rounded-3 d-flex align-items-center justify-content-center fw-bold" style="width: 44px; height: 44px; font-size: 1.1rem;">
+                        {{ dept.code }}
+                    </div>
+                    <span class="badge bg-light text-dark border">{{ dept.employee_count or 0 }} Karyawan</span>
+                </div>
+                <h5 class="fw-bold mb-1">{{ dept.name }}</h5>
+                <p class="text-muted small mb-3">{{ dept.description or 'Tidak ada deskripsi' }}</p>
+                <hr class="my-3 opacity-10">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <small class="text-muted d-block">Department Head</small>
+                        <span class="fw-medium small">{{ dept.manager_name or 'Belum Ditentukan' }}</span>
+                    </div>
+                    <a href="/employees" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-users me-1"></i>View Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="card border-0 shadow-sm p-5 text-center text-muted">
+            <i class="fas fa-sitemap fa-3x mb-3 text-secondary"></i>
+            <p class="mb-0">Belum ada departemen terdaftar.</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Modal Add Department -->
+<div class="modal fade" id="addDeptModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Tambah Departemen Baru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addDeptForm">
+                    <div class="mb-3">
+                        <label class="form-label">Nama Departemen <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="name" required placeholder="Contoh: Engineering">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Kode Departemen <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="code" required placeholder="Contoh: ENG">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Deskripsi</label>
+                        <textarea class="form-control" name="description" rows="3" placeholder="Deskripsi tugas departemen..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-primary" onclick="alert('Departemen berhasil ditambahkan!')" data-bs-dismiss="modal">Simpan Departemen</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
