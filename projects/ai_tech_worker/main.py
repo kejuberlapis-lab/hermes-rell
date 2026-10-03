@@ -1,3 +1,4 @@
+from datetime import timedelta
 import json
 import sqlite3
 import re
@@ -256,6 +257,13 @@ def admin_verify_pin(req: AdminVerifyPINRequest):
 
 # --- SECURE METRICS ENDPOINT ---
 
+def format_wib(dt):
+    if not dt:
+        return "-"
+    # dt in SQLite is UTC naive datetime -> convert to WIB (+7 hours)
+    wib_time = dt + timedelta(hours=7)
+    return wib_time.strftime("%Y-%m-%d %H:%M:%S WIB")
+
 @app.get("/api/admin/metrics")
 def get_admin_metrics(db: Session = Depends(get_db)):
     admin_name = "Admin Console" 
@@ -317,8 +325,8 @@ def get_admin_metrics(db: Session = Depends(get_db)):
             "total_amount": t.total_amount,
             "status": t.status,
             "qr_url": t.qr_url,
-            "created_at": t.created_at.isoformat() if t.created_at else None,
-            "paid_at": t.paid_at.isoformat() if t.paid_at else None
+            "created_at": format_wib(t.created_at),
+            "paid_at": format_wib(t.paid_at)
         }
         for t in transactions
     ]
@@ -370,8 +378,8 @@ def get_admin_metrics(db: Session = Depends(get_db)):
             "tokens_used": max(0, 8 - tokens_rem) if u.tier == "TRIAL" else 0,
             "messages_sent": msg_count,
             "total_tokens_purchased": u.total_tokens_purchased or 0,
-            "created_at": u.created_at.isoformat() if u.created_at else None,
-            "updated_at": u.updated_at.isoformat() if u.updated_at else None
+            "created_at": format_wib(u.created_at),
+            "updated_at": format_wib(u.updated_at)
         })
     
     return {

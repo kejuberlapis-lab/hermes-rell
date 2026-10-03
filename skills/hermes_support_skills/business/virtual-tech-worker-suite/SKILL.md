@@ -22,10 +22,13 @@ Protokol operasional komprehensif untuk mengoperasikan 5 pilar modul bisnis ente
 ### B. Pembayaran Instant via QR (Dynamic QRIS & Payment Link)
 - **Integrasi Gateway:** BuatQris Open API, Midtrans, Xendit, Doku.
 - **Standar Output:**
-  - QRIS Dinamis (string payload QRIS berstandar EMVCo / PNG image).
+  - QRIS Dinamis (string payload QRIS berstandar EMVCo / PNG image via `Content-Type: application/x-www-form-urlencoded`).
   - Tautan Pembayaran (Payment URL) dengan masa kadaluwarsa (TTL 15-60 menit).
   - Validasi nominal otomatis (termasuk biaya admin / kode unik bila diperlukan).
-  - Webhook callback listener dengan verifikasi signature HMAC-SHA256.
+  - Webhook callback listener dengan verifikasi signature HMAC-SHA256 pada `raw_body`.
+- **Micro-Commitment & Trial Capping Protocol:**
+  - Konversikan "Free Trial" ke tiket uji komitmen mikro (misal: Rp 1.000 untuk 8 token) untuk membangun persepsi nilai premium dan melatih user alur scan QRIS.
+  - Batasi pembelian/klaim trial maksimal 2 kali per akun Telegram. Jika melewati batas, kembalikan respon penolakan terstruktur yang mengarahkan user untuk upgrade ke paket utama (Starter Tier).
 
 ### C. Manajemen Stok & Produk (Knowledge Base & Multi-Varian)
 - **Struktur Katalog:**
@@ -123,3 +126,16 @@ Protokol operasional komprehensif untuk mengoperasikan 5 pilar modul bisnis ente
 
 ### C. E-Commerce Marketplace Sync
 - Mengintegrasikan data pesanan dan resi pengiriman dari marketplace utama ke dalam satu dashboard konsolidasi.
+
+---
+
+## 6. Operational Reporting & Gateway Channel Protocols
+
+### A. Timezone Localization for Operational Dashboards (WIB / Asia/Jakarta)
+- Database SQL (SQLite/PostgreSQL) menyimpan stempel waktu dalam UTC naive (`datetime.utcnow()`).
+- Saat menyajikan tabel transaksi dan log pengguna ke dashboard analitik atau laporan manajemen di Indonesia, wajib mengonversi stempel waktu ke **Asia/Jakarta (WIB, UTC+7)** (`+ timedelta(hours=7)`) dan menyematkan label `(WIB)` pada header kolom untuk menjaga konsistensi audit mutasi.
+
+### B. Telegram Gateway DM Initiation Protocol
+- Telegram Bot API tidak dapat mengirim pesan langsung (`sendMessage`) ke user yang belum pernah berinteraksi/menekan `/start` di bot tersebut (`chat not found` error 400).
+- Desain autentikasi (OTP/notifikasi) harus menyediakan fallback langsung (misal: Master Security PIN) atau instruksi jelas agar user mengklik `/start` pada tautan bot resmi terlebih dahulu.
+

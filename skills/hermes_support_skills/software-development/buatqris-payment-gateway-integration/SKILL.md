@@ -1,7 +1,7 @@
 ---
 name: buatqris-payment-gateway-integration
-description: "Use when integrating BuatQris QRIS payments and webhooks."
-version: 1.3.0
+description: Use when integrating BuatQris QRIS payments and webhooks.
+version: 1.4.0
 author: Hermes Agent
 license: MIT
 metadata:
@@ -12,7 +12,7 @@ metadata:
 
 # BuatQris Payment Gateway Integration & Dynamic QRIS Automation
 
-A class-level operational guide for integrating the **BuatQris Open API** (`https://api.buatqris.site`) into SaaS platforms, Telegram bots, and backend applications for automated dynamic QRIS generation, secure webhook callback processing, signature verification, micro-trial activations, web-to-bot transaction binding, and quota fulfillment.
+A class-level operational guide for integrating the **BuatQris Open API** (`https://api.buatqris.site`) into SaaS platforms, Telegram bots, and backend applications for automated dynamic QRIS generation, secure webhook callback processing, signature verification, micro-trial activations, web-to-bot transaction binding, quota fulfillment, and instant push notification delivery.
 
 ## When to Use
 
@@ -21,7 +21,7 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
 - When implementing HMAC-SHA256 signature verification on raw request bodies to block forged payment notifications.
 - When configuring merchant requirements (Website / Link Usaha, Account ID, Secret Token, Signing Secret).
 - When implementing automated Telegram bot paywalls, micro-transaction trial verifications (Rp 1.000 minimum), and deep-linked transaction claiming.
-- When testing end-to-end payment workflows using Sandbox mode (`test=1`) without real money.
+- When setting up instant post-payment Telegram push notifications to prompt immediate user activation.
 
 ## Core API Characteristics
 
@@ -81,12 +81,20 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
      - If the transaction is pending, reply with the order summary and local QR image.
      - **Post-Payment Claim Gate:** If the user already paid before opening Telegram, detect `status == 'success'` and immediately credit the tokens to their user record.
 
-4. **Micro-Payment Trial Verification Pattern (Rp 1.000 Minimum):**
-   - When offering a "Free Trial" that requires account verification or anti-spam gating, create a micro-invoice with `amount=1000`.
-   - The user pays `Rp 1.000 + amount_uniq` (e.g. Rp 1.079).
-   - Upon receiving `payment.success` webhook, immediately credit free trial quota (e.g. 8 tasks) into the database and notify the user on Telegram.
+4. **Micro-Payment Trial Verification & Purchase Capping Pattern (Rp 1.000 Minimum):**
+   - When offering an intro trial that requires commitment or anti-spam gating, create a micro-invoice with `amount=1000` (e.g. "Lihat Bagaimana Virtual Tech Worker Bekerja").
+   - **Strict Per-User Purchase Quota (Max 2x):**
+     - Enforce a hard ceiling on trial purchases per unique `telegram_id` (e.g. max 2 trial transactions with `status in ('success', 'paid')`).
+     - If the user attempts a 3rd trial purchase, reject with HTTP 400 and provide a structured upsell response directing them to the primary entry plan (e.g. Starter Tier).
+     - Provide an interactive client-side confirmation in the web modal so the user can transition directly to the Starter checkout in one click.
+   - Upon receiving `payment.success` webhook, immediately credit quota (e.g. 8 tokens) into the database and notify the user on Telegram.
 
-5. **Telegram Bot Gateway Native Photo Delivery:**
+5. **Operational Dashboard & Timezone Localization (WIB / Asia/Jakarta):**
+   - Databases typically persist transaction timestamps in naive UTC (`datetime.utcnow()`).
+   - When returning transaction lists and user logs to Indonesian administrative consoles or executive dashboards, always offset UTC timestamps by $+7\text{ hours}$ (`Asia/Jakarta` / WIB) and explicitly label table headers with `(WIB)`.
+   - Prevent displaying raw UTC strings (which appear 7 hours behind real local time) to ensure customer trust during settlement audits.
+
+6. **Telegram Bot Gateway Native Photo Delivery:**
    - To send QRIS barcodes natively as photo bubbles in Telegram:
      - Download the QR image from `qr_url` to a local scratch path (e.g. `/tmp/qris_<trx_id>.png`).
      - Prepend `MEDIA:/tmp/qris_<trx_id>.png\n\n` to the response markdown.
@@ -110,12 +118,24 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
          ).hexdigest()
          return hmac.compare_digest(calc, incoming_header or "")
      ```
-   - **Fast Response Gate (<6 Seconds):** Return HTTP 200 immediately to prevent BuatQris automated retry loops (0.3s delay retry on non-2xx).
+   - **Fast Response Gate (<6 Seconds):** Return HTTP 200 immediately to prevent BuatQris automated retry loops.
    - **Idempotency Guard:** If `transaction.status == 'success'`, return `{"status": "already_processed"}` without re-crediting quota.
 
-7. **Merchant Website / Link Usaha Requirement:**
-   - BuatQris requires a valid URL in **Profil $\rightarrow$ Website / Link Usaha**.
-   - Deploy a clean multi-page application with anti-cache headers (`Cache-Control: no-cache, no-store, must-revalidate`), segmented dock navbar, and responsive mobile quick pills.
+7. **Automated Instant Push Notification & Activation Invitation:**
+   - When payment succeeds, immediately invoke Telegram Bot API (`sendMessage`) with parsed HTML markup:
+     ```python
+     notification_text = (
+         f"🎉 <b>PEMBAYARAN BERHASIL DIVERIFIKASI!</b>\n\n"
+         f"Halo! Pembayaran QRIS Anda sebesar <b>Rp {total_paid}</b> telah kami terima dan diverifikasi secara otomatis.\n\n"
+         f"📋 <b>Detail Akun & Kuota Anda:</b>\n"
+         f"• <b>Paket Langganan:</b> {tier_title}\n"
+         f"• <b>Kuota Tugas:</b> {tokens_cnt} Token Eksekusi\n"
+         f"• <b>Status Akun:</b> 🟢 Aktif & Siap Bekerja\n\n"
+         f"🤖 <b>Silakan Mulai Menggunakan Saya Sekarang!</b>\n"
+         f"Saya adalah AI Tech Worker Anda. Anda bisa langsung memberikan instruksi pekerjaan teknis apa pun di sini, ketikkan tugas atau pertanyaan pertama Anda sekarang untuk langsung saya eksekusi!"
+     )
+     ```
+   - Use automatic fallback to plain text if markup entity parsing fails.
 
 ## Pitfalls
 
@@ -127,4 +147,4 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
 - **Parsing Body Before Signature Check:** Verifying HMAC on JSON-decoded or re-serialized strings fails due to key ordering and whitespace discrepancies. Always compute HMAC over the untouched `raw_body` bytes.
 - **Matching Base Amount Instead of Total Amount:** Failing to verify `total_amount` (which includes unique 3-digit suffix) causes reconciliation mismatches against bank settlements.
 - **Polling Status Aggressively (HTTP 429 Rate Limit):** `action=api_check_status` is hard-limited to 1 request per 20 seconds per transaction. Rely primarily on webhooks rather than client-side polling loops.
-- **Hermes Gateway `/start` Platform Ping Interception:** Default gateway dispatch drops bare `/start` commands as empty platform pings. Dispatchers must allow `/start` to fall through to the bridge handler so paywalls and onboarding flows can execute.
+- **Invoice Timeout vs Failure:** Invoices expire in 15–30 minutes if unpaid. Expired status is expected timeout lifecycle behavior, not an infrastructure defect.

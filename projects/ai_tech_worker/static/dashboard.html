@@ -259,7 +259,7 @@
                                 <th class="p-4">Token</th>
                                 <th class="p-4">Nominal</th>
                                 <th class="p-4">Status</th>
-                                <th class="p-4">Waktu</th>
+                                <th class="p-4">Waktu Transaksi (WIB)</th>
                                 <th class="p-4 text-center">QRIS Link</th>
                             </tr>
                         </thead>
@@ -295,8 +295,8 @@
                                 <th class="p-4">Status / Tier</th>
                                 <th class="p-4">Sisa Token</th>
                                 <th class="p-4 text-center">Aktivitas Chat</th>
-                                <th class="p-4">Waktu Registrasi</th>
-                                <th class="p-4">Terakhir Aktif</th>
+                                <th class="p-4">Waktu Registrasi (WIB)</th>
+                                <th class="p-4">Terakhir Aktif (WIB)</th>
                             </tr>
                         </thead>
                         <tbody id="userTableBody" class="divide-y hairline-border font-medium">
@@ -352,7 +352,7 @@
                 document.getElementById('txExpired').innerText = `${data.transactions_by_status.expired || 0} Expired`;
                 document.getElementById('totalHits').innerText = data.nginx_hits || 0;
                 document.getElementById('uniqueIps').innerText = `${data.nginx_unique_ips || 0} Unique IPs`;
-                document.getElementById('lastUpdated').innerText = new Date().toLocaleTimeString('id-ID');
+                document.getElementById('lastUpdated').innerText = new Date().toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta' }) + ' WIB';
 
                 // 2. Update Charts
                 updateCharts(data);
@@ -464,7 +464,7 @@
                         <td class="p-4 font-bold text-blue-600">${tx.tokens_allocated} Token</td>
                         <td class="p-4 font-mono font-bold text-slate-900">${formatRupiah(tx.total_amount || tx.amount)}</td>
                         <td class="p-4">${statusBadge}</td>
-                        <td class="p-4 text-slate-500 font-mono">${tx.created_at ? tx.created_at.replace('T', ' ').substring(0, 19) : '-'}</td>
+                        <td class="p-4 text-slate-500 font-mono">${tx.created_at || '-'}</td>
                         <td class="p-4 text-center">${qrButton}</td>
                     </tr>
                 `;
@@ -503,8 +503,8 @@
                         <td class="p-4">${tierBadge}</td>
                         <td class="p-4 font-bold text-blue-600">${u.tokens_remaining} Token</td>
                         <td class="p-4 text-center">${chatBadge}</td>
-                        <td class="p-4 text-slate-500 font-mono">${u.created_at ? u.created_at.replace('T', ' ').substring(0, 19) : '-'}</td>
-                        <td class="p-4 text-slate-500 font-mono">${u.updated_at ? u.updated_at.replace('T', ' ').substring(0, 19) : '-'}</td>
+                        <td class="p-4 text-slate-500 font-mono">${u.created_at || '-'}</td>
+                        <td class="p-4 text-slate-500 font-mono">${u.updated_at || '-'}</td>
                     </tr>
                 `;
             }).join('');
