@@ -234,72 +234,54 @@ async def payment_webhook(
 
 # Multi-Page Sub-Route Serving
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def serve_home():
     return FileResponse(os.path.join(BASE_DIR, "static", "index.html"))
 
-@app.get("/skills")
+@app.api_route("/skills", methods=["GET", "HEAD"])
+@app.api_route("/skills.html", methods=["GET", "HEAD"])
 def serve_skills():
     return FileResponse(os.path.join(BASE_DIR, "static", "skills.html"))
 
-@app.get("/skills.html")
-def serve_skills_html():
-    return FileResponse(os.path.join(BASE_DIR, "static", "skills.html"))
-
-@app.get("/pricing")
+@app.api_route("/pricing", methods=["GET", "HEAD"])
+@app.api_route("/pricing.html", methods=["GET", "HEAD"])
 def serve_pricing():
     return FileResponse(os.path.join(BASE_DIR, "static", "pricing.html"))
 
-@app.get("/pricing.html")
-def serve_pricing_html():
-    return FileResponse(os.path.join(BASE_DIR, "static", "pricing.html"))
-
-@app.get("/case-studies")
+@app.api_route("/case-studies", methods=["GET", "HEAD"])
+@app.api_route("/case-studies.html", methods=["GET", "HEAD"])
 def serve_cases():
     return FileResponse(os.path.join(BASE_DIR, "static", "case-studies.html"))
 
-@app.get("/case-studies.html")
-def serve_cases_html():
-    return FileResponse(os.path.join(BASE_DIR, "static", "case-studies.html"))
-
-@app.get("/docs")
+@app.api_route("/docs", methods=["GET", "HEAD"])
+@app.api_route("/docs.html", methods=["GET", "HEAD"])
+@app.api_route("/tutorial", methods=["GET", "HEAD"])
+@app.api_route("/tutorial.html", methods=["GET", "HEAD"])
 def serve_docs():
     return FileResponse(os.path.join(BASE_DIR, "static", "docs.html"))
 
-@app.get("/docs.html")
-def serve_docs_html():
-    return FileResponse(os.path.join(BASE_DIR, "static", "docs.html"))
-
-@app.get("/tutorial")
-@app.get("/tutorial.html")
-def serve_tutorial():
-    return FileResponse(os.path.join(BASE_DIR, "static", "docs.html"))
-
-@app.get("/about")
+@app.api_route("/about", methods=["GET", "HEAD"])
+@app.api_route("/about.html", methods=["GET", "HEAD"])
 def serve_about():
     return FileResponse(os.path.join(BASE_DIR, "static", "about.html"))
 
-@app.get("/about.html")
-def serve_about_html():
-    return FileResponse(os.path.join(BASE_DIR, "static", "about.html"))
-
-@app.get("/enterprise")
-@app.get("/enterprise.html")
+@app.api_route("/enterprise", methods=["GET", "HEAD"])
+@app.api_route("/enterprise.html", methods=["GET", "HEAD"])
 def serve_enterprise():
     return FileResponse(os.path.join(BASE_DIR, "static", "enterprise.html"))
 
-@app.get("/umkm")
-@app.get("/umkm.html")
+@app.api_route("/umkm", methods=["GET", "HEAD"])
+@app.api_route("/umkm.html", methods=["GET", "HEAD"])
 def serve_umkm():
     return FileResponse(os.path.join(BASE_DIR, "static", "umkm.html"))
 
-@app.get("/personal")
-@app.get("/personal.html")
+@app.api_route("/personal", methods=["GET", "HEAD"])
+@app.api_route("/personal.html", methods=["GET", "HEAD"])
 def serve_personal():
     return FileResponse(os.path.join(BASE_DIR, "static", "personal.html"))
 
-@app.get("/contact")
-@app.get("/contact.html")
+@app.api_route("/contact", methods=["GET", "HEAD"])
+@app.api_route("/contact.html", methods=["GET", "HEAD"])
 def serve_contact():
     return FileResponse(os.path.join(BASE_DIR, "static", "contact.html"))
 
