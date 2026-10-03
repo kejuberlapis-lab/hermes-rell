@@ -4,7 +4,7 @@
 ## Ringkasan Layanan & Kapabilitas
 - **Domain Resmi:** https://techworker.my.id
 - **Bot Telegram Resmi:** https://t.me/Olo_SBT_bot (@Olo_SBT_bot)
-- **Model Bisnis:** Pay-per-task & Langganan Bulanan via QRIS (BuatQris Open API)
+- **Model Bisnis:** Pay-per-task & Langganan Bulanan via QRIS (Dynamic QRIS)
 
 ## 10 Divisi Kerja Teknis Utama
 1. **Tech & IT Engineering:** Coding Fullstack (Next.js, React, Node.js, Python, FastAPI, PHP/Laravel, Golang), database schema, CRUD API, dan perbaikan bug sistematis.
