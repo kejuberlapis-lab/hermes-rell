@@ -829,6 +829,12 @@
       2653458,
       1790513584275721751
     ],
+    "software-development/buatqris-payment-gateway-integration/SKILL.md": [
+      1790995904567647078,
+      7878,
+      1442708,
+      1790995904570647097
+    ],
     "software-development/simplify-code/SKILL.md": [
       1790513154045929923,
       14696,
@@ -2846,6 +2852,21 @@
       "category": "software-development",
       "frontmatter_name": "automated-trading-systems",
       "description": "Use when developing, testing, or deploying trading bots.",
+      "platforms": [],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": [],
+        "session_platforms": []
+      },
+      "requires_apps": []
+    },
+    {
+      "skill_name": "buatqris-payment-gateway-integration",
+      "category": "software-development",
+      "frontmatter_name": "buatqris-payment-gateway-integration",
+      "description": "Use when integrating BuatQris QRIS payments and webhooks.",
       "platforms": [],
       "conditions": {
         "fallback_for_toolsets": [],

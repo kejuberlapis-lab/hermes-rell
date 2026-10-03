@@ -1,23 +1,24 @@
 ---
 name: anti-slop-saas-paywall-design
 description: "Use when designing Anti-Slop SaaS paywalls & QRIS modals."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
 metadata:
   hermes:
     category: software-development
-    tags: [anti-slop, saas, landing-page, qris, paywall, tailwind, ui-ux, dark-mode]
+    tags: [anti-slop, saas, landing-page, qris, paywall, tailwind, ui-ux, dark-mode, executive-dashboard]
 ---
 
 # Anti-Slop SaaS Landing Page & Paywall Checkout Design
 
-A class-level operational guide and standard for designing high-craft, developer-grade SaaS landing pages, Pay-to-Unlock subscription tiers, and Dynamic QRIS checkout interfaces without falling into generic AI design clichés (*"AI slop"*).
+A class-level operational guide and standard for designing high-craft, developer-grade SaaS landing pages, Pay-to-Unlock subscription tiers, Dynamic QRIS checkout interfaces, and Executive Monitoring Dashboards without falling into generic AI design clichés (*"AI slop"*).
 
 ## When to Use
 
 - When building or redesigning landing pages for AI agents, developer tools, SaaS platforms, or autonomous virtual workers.
 - When implementing Paywall flows, subscription tiering, and dynamic QRIS payment checkout modals.
+- When designing executive monitoring dashboards with live SQLite, QRIS transaction logs, and Nginx traffic telemetry.
 - When eliminating AI template clichés: purple/blue gradient bloat, 3 identical icon-topper boxes, floating unaligned modals, and em-dash punctuation tells.
 
 ## Core Anti-Slop Archetypes & Rules
@@ -35,18 +36,33 @@ A class-level operational guide and standard for designing high-craft, developer
      - **Right Group (Support):** `Contact & Help`.
    - **Mobile Dual-Nav:** Pair desktop docks with an always-visible horizontal scrollable pill bar (`lg:hidden overflow-x-auto`) plus a collapsible dropdown drawer to prevent links from disappearing on mobile screens.
 
-3. **Dynamic Multi-Task Terminal Showcase (Auto-Cycle):**
+3. **Promo Pricing & Strikethrough Visual Hierarchy:**
+   - **Inline Strikethrough:** Place strikethrough original prices (e.g. `~~Rp150k~~`) inline immediately beside the active promo price (e.g. `Rp99k`) rather than stacking them vertically. This preserves horizontal baseline alignment across all pricing tier cards.
+   - **Strikethrough Contrast:** Render strikethrough text in bold (`font-extrabold`) with an explicit crimson/red strike line (`text-decoration-color: #ef4444; text-decoration-thickness: 3px`) to ensure the discount is visually unmistakable.
+
+4. **Telegram Trust-Building Architecture:**
+   - When deploying Telegram-first SaaS tools, include an explicit trust-building section addressing enterprise friction:
+     - **Privacy & Isolation:** Highlight enterprise encryption and segregated database storage.
+     - **Zero-Overhead:** 1-click start without software installation or RAM consumption.
+     - **Lossless Document Exchange:** Full support for large native `.xlsx`, `.docx`, and PDF files without image compression.
+     - **Seamless Multi-Device Continuity:** Synchronous access from mobile to desktop web without session drops.
+
+5. **Dynamic Multi-Task Terminal Showcase (Auto-Cycle):**
    - Avoid static, single-prompt mockups. Build an auto-cycling interactive terminal simulator (cycling every 6-8 seconds) covering diverse real-world workloads (e.g. API debugging, Nginx Docker SSL, anti-bot web scraping, SQL index tuning, background cronjobs).
    - Include interactive tab selector buttons (`#1`, `#2`, `#3`), progress bars, simulated user handles (`[@growth_analyst]`), step-by-step action logs, and verified completion timestamps (`<30s latency`).
 
-4. **Proprietary SaaS Branding & Engine Confidentiality:**
+6. **Executive Admin Dashboard (Clean Light Monitoring):**
+   - **Visual Standards:** Slate-50 canvas (`#f8fafc`), clean white cards with hairline borders (`#e2e8f0`), and high-contrast typography (*Plus Jakarta Sans*).
+   - **Realtime Telemetry:** 4 KPI summary cards (Total Users, Free Trials, Total QRIS Invoices, Nginx Traffic), interactive Chart.js visualizations (Donut tier breakdown, Bar transaction pipeline), and searchable SQLite data tables.
+
+7. **Proprietary SaaS Branding & Engine Confidentiality:**
    - Never expose third-party AI model names, underlying engines, or internal prompts in client-facing UI copy. Brand all capabilities under the platform's proprietary autonomous agent infrastructure.
 
-5. **Bespoke Typography & Zero Em-Dash Discipline:**
+8. **Bespoke Typography & Zero Em-Dash Discipline:**
    - **Font Stack:** Clean geometric UI Sans (*Plus Jakarta Sans* / *Geist*) paired with precision Monospace (*JetBrains Mono*) for telemetry, code, transaction IDs, and currency amounts.
    - **Zero Em-Dash (`—`) Rule:** Never use `—` in headlines, subheads, feature badges, or button labels. Use standard hyphens (`-`), colons, commas, or line breaks instead.
 
-6. **Studio Precision QRIS Checkout Modal:**
+9. **Studio Precision QRIS Checkout Modal:**
    - **Modal Backdrop:** Deep dark backdrop blur (`bg-black/80 backdrop-blur-md`) with perfect viewport centering (`flex items-center justify-center`).
    - **Scanning Optimization:** Dynamic QR code must sit inside a crisp, high-contrast white rounded card with clear banking/e-wallet badges (BCA, Mandiri, GoPay, Dana, OVO, ShopeePay).
    - **Nominal Transparency:** Highlight the exact total amount including unique 3-digit verification code (`amount_uniq`).
@@ -55,7 +71,7 @@ A class-level operational guide and standard for designing high-craft, developer
 ## Procedure
 
 1. **Structure Layout & Containers:**
-   - Create semantic sections: Sticky Navbar $\rightarrow$ Asymmetric Hero + Live CLI $\rightarrow$ Core Capabilities Grid (asymmetric/bento) $\rightarrow$ Subscription Matrix $\rightarrow$ Dynamic QRIS Checkout Modal $\rightarrow$ FAQ $\rightarrow$ Minimalist Footer.
+   - Create semantic sections: Sticky Navbar $\rightarrow$ Asymmetric Hero + Live CLI $\rightarrow$ Core Capabilities Grid (asymmetric/bento) $\rightarrow$ Subscription Matrix $\rightarrow$ Dynamic QRIS Checkout Modal $\rightarrow$ Trust Builder $\rightarrow$ FAQ $\rightarrow$ Minimalist Footer $\rightarrow$ Executive Dashboard (`/dashboard`).
 
 2. **Wiring Interactive Paywall & QRIS Actions:**
    - Connect pricing tier CTA buttons directly to backend API (`POST /api/payment/create-qris`).
@@ -67,7 +83,7 @@ A class-level operational guide and standard for designing high-craft, developer
      ```
 
 3. **Verification via Browser Automation:**
-   - Verify modal open/close states and inspect rendered layouts using `browser_vision` to confirm contrast, typography hierarchy, and absence of template artifacts.
+   - Verify modal open/close states, dashboard telemetry endpoints (`GET /api/admin/metrics`), and inspect rendered layouts using `browser_vision` to confirm contrast, typography hierarchy, and absence of template artifacts.
 
 ## Pitfalls
 

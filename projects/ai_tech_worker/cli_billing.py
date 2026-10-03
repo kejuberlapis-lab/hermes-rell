@@ -140,13 +140,11 @@ def deduct_token(telegram_id: str, count: int = 1):
             }
             
         user.tokens_remaining -= count
-        user.total_tasks_completed += count
         db.commit()
         db.refresh(user)
         return {
             "status": "success",
-            "tokens_remaining": user.tokens_remaining,
-            "tasks_completed": user.total_tasks_completed
+            "tokens_remaining": user.tokens_remaining
         }
     finally:
         db.close()

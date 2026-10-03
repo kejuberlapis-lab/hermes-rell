@@ -294,14 +294,14 @@
     "first_seen_at": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-10-03T10:43:28.556114+00:00",
+    "last_viewed_at": "2026-10-03T10:43:28.551192+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "airtable": {
     "archived_at": null,
@@ -435,16 +435,16 @@
     "created_at": "2026-10-02T16:52:48.845644+00:00",
     "created_by": "agent",
     "first_seen_at": null,
-    "last_patched_at": "2026-10-03T02:46:40.478213+00:00",
+    "last_patched_at": "2026-10-03T12:05:21.745490+00:00",
     "last_reused_patch_generation": 3,
-    "last_used_at": "2026-10-03T09:06:45.099855+00:00",
-    "last_viewed_at": "2026-10-03T09:06:45.094926+00:00",
-    "patch_count": 3,
-    "patch_generation": 3,
+    "last_used_at": "2026-10-03T12:05:13.438795+00:00",
+    "last_viewed_at": "2026-10-03T12:05:13.433504+00:00",
+    "patch_count": 4,
+    "patch_generation": 4,
     "pinned": false,
     "state": "active",
-    "use_count": 9,
-    "view_count": 9
+    "use_count": 10,
+    "view_count": 10
   },
   "anti-slop-web-design": {
     "archived_at": null,
@@ -452,15 +452,15 @@
     "created_by": "agent",
     "first_seen_at": null,
     "last_patched_at": "2026-10-03T08:46:11.959852+00:00",
-    "last_reused_patch_generation": 1,
-    "last_used_at": "2026-10-03T08:45:54.351738+00:00",
-    "last_viewed_at": "2026-10-03T08:45:54.346723+00:00",
+    "last_reused_patch_generation": 2,
+    "last_used_at": "2026-10-03T09:13:31.616207+00:00",
+    "last_viewed_at": "2026-10-03T09:13:31.611379+00:00",
     "patch_count": 2,
     "patch_generation": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 13,
-    "view_count": 13
+    "use_count": 14,
+    "view_count": 14
   },
   "apos": {
     "archived_at": null,
@@ -1164,14 +1164,14 @@
     "first_seen_at": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-10-03T08:46:16.386974+00:00",
-    "last_viewed_at": "2026-10-03T08:46:16.381441+00:00",
+    "last_used_at": "2026-10-03T09:13:45.935906+00:00",
+    "last_viewed_at": "2026-10-03T09:13:45.930649+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 5,
-    "view_count": 5
+    "use_count": 7,
+    "view_count": 7
   },
   "generative-engine-optimization": {
     "archived_at": null,
@@ -1893,6 +1893,22 @@
     "use_count": 1,
     "view_count": 1
   },
+  "poster-hero": {
+    "archived_at": null,
+    "created_at": "2026-10-03T10:34:45.110215+00:00",
+    "created_by": null,
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": "2026-10-03T10:34:45.118747+00:00",
+    "last_viewed_at": "2026-10-03T10:34:45.110237+00:00",
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
   "powerpoint": {
     "archived_at": null,
     "created_at": "2026-09-03T09:10:46.370220+00:00",
@@ -2095,6 +2111,22 @@
     "use_count": 0,
     "view_count": 0
   },
+  "saas-social-media-creative": {
+    "archived_at": null,
+    "created_at": "2026-10-03T10:43:44.188260+00:00",
+    "created_by": "agent",
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "saas-web-architecture-and-paywall": {
     "archived_at": null,
     "created_at": "2026-10-02T17:10:23.561512+00:00",
@@ -2185,6 +2217,22 @@
     "state": "active",
     "use_count": 0,
     "view_count": 0
+  },
+  "social-media-sage": {
+    "archived_at": null,
+    "created_at": "2026-10-03T10:34:49.448661+00:00",
+    "created_by": null,
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": "2026-10-03T10:34:49.454654+00:00",
+    "last_viewed_at": "2026-10-03T10:34:49.448682+00:00",
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
   },
   "solana-memecoin-trench-bot": {
     "archived_at": null,
@@ -2421,6 +2469,22 @@
     "use_count": 0,
     "view_count": 0
   },
+  "telegram-bot-gateway-delivery-guard": {
+    "archived_at": null,
+    "created_at": "2026-10-03T13:06:58.679556+00:00",
+    "created_by": "agent",
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": "2026-10-03T13:07:08.507464+00:00",
+    "last_viewed_at": "2026-10-03T13:07:08.502559+00:00",
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
   "telegram-mini-app-automation": {
     "archived_at": null,
     "created_at": "2026-09-28T17:59:34.284082+00:00",
@@ -2547,6 +2611,38 @@
     "use_count": 0,
     "view_count": 0
   },
+  "virtual-tech-worker-suite": {
+    "archived_at": null,
+    "created_at": "2026-10-03T10:46:36.495120+00:00",
+    "created_by": "learn",
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": "2026-10-03T13:06:46.225146+00:00",
+    "last_viewed_at": "2026-10-03T13:06:46.219495+00:00",
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 7,
+    "view_count": 7
+  },
+  "virtual-tech-worker-suite-v2": {
+    "archived_at": null,
+    "created_at": "2026-10-03T12:57:31.322676+00:00",
+    "created_by": "agent",
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "web-asset-deployment-and-caching": {
     "archived_at": null,
     "created_at": "2026-09-28T06:51:16.621693+00:00",
@@ -2562,6 +2658,22 @@
     "state": "active",
     "use_count": 35,
     "view_count": 35
+  },
+  "web-ui-master-craft": {
+    "archived_at": null,
+    "created_at": "2026-10-03T09:14:00.381854+00:00",
+    "created_by": "agent",
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
   },
   "web3-airdrop-and-node-automation": {
     "archived_at": null,

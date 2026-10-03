@@ -1,7 +1,19 @@
 {
-  "updated_at": "2026-10-03T17:10:11.221800",
+  "updated_at": "2026-10-03T21:26:06.562777",
   "platforms": {
     "telegram": [
+      {
+        "id": "856579127",
+        "name": "Sedny Mur Prasetyo",
+        "type": "dm",
+        "thread_id": null
+      },
+      {
+        "id": "1615581466",
+        "name": "Iskandar",
+        "type": "dm",
+        "thread_id": null
+      },
       {
         "id": "661471478",
         "name": "andi saputra",
