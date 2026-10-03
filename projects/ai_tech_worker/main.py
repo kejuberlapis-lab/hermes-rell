@@ -667,9 +667,9 @@ def serve_llms():
 def serve_indexnow_key():
     return FileResponse(os.path.join(BASE_DIR, "static", "a7d9f2b4c8e146039582710364958102.txt"), media_type="text/plain")
 
-@app.api_route("/google{verify_id}.html", methods=["GET", "HEAD"])
-def serve_google_verify(verify_id: str):
-    return Response(content=f"google-site-verification: google{verify_id}.html", media_type="text/html")
+@app.api_route("/google9710c4f647f38670.html", methods=["GET", "HEAD"])
+def serve_google_verify():
+    return FileResponse(os.path.join(BASE_DIR, "static", "google9710c4f647f38670.html"), media_type="text/html")
 
 # Static Mount for Assets
 static_dir = os.path.join(BASE_DIR, 'static')
