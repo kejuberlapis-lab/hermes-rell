@@ -21,7 +21,7 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
 - When implementing HMAC-SHA256 signature verification on raw request bodies to block forged payment notifications.
 - When configuring merchant requirements (Website / Link Usaha, Account ID, Secret Token, Signing Secret).
 - When implementing automated Telegram bot paywalls and micro-transaction trial verifications (Rp 1.000 minimum).
-- When testing end-to-end payment workflows using Sandbox mode (`test=1`) without real money.
+- When reconciling transaction status on demand (`action=api_check_status`) upon receiving payment receipts or manual confirmation claims.
 
 ## Core API Characteristics
 
@@ -71,45 +71,70 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
      - Always display `data.total_amount` (which includes the unique nominal code `amount_uniq`), not the raw `amount`.
      - Capture `data.transaction_id` and `data.expired_at` for database tracking.
 
-3. **Micro-Payment Trial Verification Pattern (Rp 1.000 Minimum):**
+3. **Reconciling Status on Demand (`action=api_check_status`):**
+   - When a user claims payment ("Sudah bayar", sending receipt image) or during account verification checks, query transaction status directly:
+     ```python
+     import httpx
+
+     def check_qris_status(account_id: str, secret_token: str, transaction_id: str):
+         payload = {
+             "action": "api_check_status",
+             "account_id": account_id,
+             "secret_token": secret_token,
+             "transaction_id": transaction_id
+         }
+         headers = {
+             "Content-Type": "application/x-www-form-urlencoded",
+             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+         }
+         res = httpx.post("https://api.buatqris.site", data=payload, headers=headers, timeout=15.0)
+         data = res.json()
+         if data.get("success") and data.get("data", {}).get("status") == "success":
+             return True, data["data"]
+         return False, data
+     ```
+
+4. **Micro-Payment Trial Verification Pattern (Rp 1.000 Minimum):**
    - When offering a "Free Trial" that requires account verification or payment gateway testing, create a micro-invoice with `amount=1000`.
    - The user pays `Rp 1.000 + amount_uniq` (e.g. Rp 1.040).
-   - Upon receiving `payment.success` webhook, immediately credit free trial quota (e.g. 8 tasks) into the database and notify the user on Telegram.
+   - Upon receiving `payment.success` webhook or status check confirmation, immediately credit free trial quota (e.g. 8 tasks) into the database and notify the user on Telegram.
 
-4. **Telegram Bot `/start` Paywall & Gateway Integration:**
+5. **Telegram Bot `/start` Paywall & Gateway Integration:**
    - In Hermes multi-profile Telegram gateways, raw `/start` platform pings must fall through to the agent turn loop (`return False, None` in `gateway/run_inbound.py::_hm_cmd_start`).
    - When a user sends `/start`:
      - Query user status via billing CLI/database.
      - If unverified or tokens == 0, generate dynamic QRIS and send the image markdown `![QRIS Aktivasi](<qr_url>)` with the exact `total_amount` and expiration timer.
-     - Once verified via webhook, the bot deducts 1 token per completed task.
+     - Once verified via webhook or status reconciliation, the bot deducts 1 token per completed task.
 
-5. **Processing Inbound Webhooks (`POST /api/payment/webhook`):**
-   - **Header Inspection:**
-     - `X-BuatQris-Event`: e.g. `payment.success`, `payment.expired`, `payment.failed`.
-     - `X-BuatQris-Signature`: Format `sha256=<hex_digest>`.
-     - `X-BuatQris-Delivery`: `transaction_id`.
-   - **Mandatory HMAC-SHA256 Raw Body Verification:**
+6. **Processing Inbound Webhooks (`POST /api/payment/webhook`):**
+   - **Header Inspection:** Check `X-BuatQris-Signature` / `X-Signature` (case-insensitive).
+   - **Mandatory HMAC-SHA256 Raw Body Verification:** Compare both raw hex digest and `sha256=<hex>` prefix:
      ```python
      import hmac
      import hashlib
 
      def verify_signature(raw_body: bytes, incoming_header: str, signing_secret: str) -> bool:
-         calc = "sha256=" + hmac.new(
+         raw_digest = hmac.new(
              signing_secret.encode("utf-8"),
              raw_body,
              hashlib.sha256
          ).hexdigest()
-         return hmac.compare_digest(calc, incoming_header or "")
+         return (
+             hmac.compare_digest(incoming_header or "", raw_digest)
+             or hmac.compare_digest(incoming_header or "", f"sha256={raw_digest}")
+         )
      ```
+   - **Robust Payload Unpacking:** Extract fields supporting both flat and nested keys (`payload.get("transaction_id") or payload.get("data", {}).get("transaction_id")`).
    - **Fast Response Gate (<6 Seconds):** Return HTTP 200 immediately to prevent BuatQris automated retry loops (0.3s delay retry on non-2xx).
    - **Idempotency Guard:** If `transaction.status == 'success'`, return `{"status": "already_processed"}` without re-crediting quota.
 
-6. **Merchant Website / Link Usaha Requirement:**
+7. **Merchant Website / Link Usaha Requirement:**
    - BuatQris requires a valid URL in **Profil $\rightarrow$ Website / Link Usaha**.
    - Deploy a clean multi-page application with anti-cache headers (`Cache-Control: no-cache, no-store, must-revalidate`), segmented dock navbar, and responsive mobile quick pills.
 
 ## Pitfalls
 
+- **Sending JSON Payloads to Status/Create API:** BuatQris strictly expects `application/x-www-form-urlencoded` with form fields (`action`, `account_id`, `secret_token`). Sending JSON payloads results in HTTP 400 (`account_id dan secret_token wajib diisi`).
 - **Default Python User-Agent Blocking (HTTP 403 Forbidden):** Python's default `urllib` user agent (`Python-urllib/3.x`) is blocked by BuatQris API security filters. Always send a standard browser `User-Agent` header with every request.
 - **Enforcing Amounts Under Rp 1.000:** Attempting to create a QRIS for Rp 1 or Rp 500 fails because BuatQris enforces a minimum base amount of Rp 1.000. Use Rp 1.000 for trial verification checkouts.
 - **Sending JSON Payloads to Create QRIS:** BuatQris strictly expects `application/x-www-form-urlencoded`. Sending `application/json` causes parameter parsing errors or silent failures.

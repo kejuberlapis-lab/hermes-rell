@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
+    <link rel="canonical" href="https://techworker.my.id/pricing">
+    <meta name="keywords" content="AI tech worker, AI agent Indonesia, bot telegram programmer, bot coding telegram, jasa devops otomatis, scraping data otomatis, AI agent QRIS, virtual worker assistant">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techworker.my.id/pricing">
+    <meta property="og:site_name" content="Virtual Tech Worker Assistant">
+    <meta name="twitter:card" content="summary_large_image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paket & Dynamic QRIS Gateway | Virtual Tech Worker Assistant</title>
@@ -683,7 +691,16 @@
                     if (checkPollInterval) clearInterval(checkPollInterval);
                     checkPollInterval = setInterval(checkPaymentStatus, 5000);
                 } else {
-                    alert(data.detail || 'Gagal memproses QRIS');
+                    const errMsg = data.detail || 'Gagal memproses QRIS';
+                    if (errMsg.includes('Starter') || errMsg.includes('Maksimal')) {
+                        if (confirm(errMsg + '\n\nBeralih ke Paket Starter (Rp 99.000 / 50 Token) sekarang?')) {
+                            closeModal();
+                            requestQRIS('STARTER', 'Starter (50 Token)', 99000);
+                            return;
+                        }
+                    } else {
+                        alert(errMsg);
+                    }
                     closeModal();
                 }
             } catch (err) {

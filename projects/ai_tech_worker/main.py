@@ -423,7 +423,11 @@ def user_start(req: StartCheckRequest, db: Session = Depends(get_db)):
     }
 
 @app.post("/api/payment/create-qris")
-async def create_qris(req: CreateQRISRequest, db: Session = Depends(get_db)):
+def create_qris(req: CreateQRISRequest, db: Session = Depends(get_db)):
+    import urllib.request
+    import urllib.parse
+    import json
+    
     tier_config = {
         "TRIAL": {"price": 1000, "tasks": 8, "name": "Lihat Bagaimana Virtual Tech Worker Bekerja (8 Token)"},
         "STARTER": {"price": 99000, "tasks": 50, "name": "Starter (50 Token)"},
@@ -439,58 +443,80 @@ async def create_qris(req: CreateQRISRequest, db: Session = Depends(get_db)):
     amount = cfg["price"]
     tokens = cfg["tasks"]
     
-    headers = {
-        "Authorization": f"Bearer {BUATQRIS_SECRET_TOKEN}",
-        "Content-Type": "application/json"
-    }
+    # Batasan Maksimal 2x Trial per Akun Telegram
+    if tier_upper == "TRIAL":
+        tid_str = str(req.telegram_id).strip()
+        trial_paid_count = db.query(Transaction).filter(
+            Transaction.telegram_id == tid_str,
+            Transaction.tier_package == "TRIAL",
+            Transaction.status.in_(["success", "paid"])
+        ).count()
+        
+        if trial_paid_count >= 2:
+            raise HTTPException(
+                status_code=400,
+                detail="Batas Maksimal Uji Coba Tercapai (Maksimal 2x per Akun Telegram). Anda sudah menggunakan 2 kali kuota Uji Coba. Untuk melanjutkan pekerjaan operasional, silakan pilih Paket Starter (50 Token · Rp 99.000)."
+            )
     
     payload = {
-        "account_id": BUATQRIS_ACCOUNT_ID,
-        "amount": amount,
         "action": "api_create_qris",
-        "payer_name": f"User_{req.telegram_id}"
+        "account_id": BUATQRIS_ACCOUNT_ID,
+        "secret_token": BUATQRIS_SECRET_TOKEN,
+        "amount": str(amount),
+        "description": f"Aktivasi {cfg['name']} ID:{req.telegram_id}",
+        "fee_by": "user"
     }
     
+    data_bytes = urllib.parse.urlencode(payload).encode("utf-8")
+    request_obj = urllib.request.Request(
+        BUATQRIS_API_URL,
+        data=data_bytes,
+        headers={
+            "Content-Type": "application/x-www-form-urlencoded",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+    )
+    
     try:
-        async with httpx.AsyncClient() as client:
-            resp = await client.post(f"{BUATQRIS_API_URL}/api_create_qris", json=payload, headers=headers, timeout=15.0)
-            data = resp.json()
-            
-            if data.get("status") == "success":
-                tx_id = data.get("transaction_id")
-                total_amount = data.get("total_amount", amount)
-                qr_url = data.get("image_url")
-                
-                tx = Transaction(
-                    transaction_id=tx_id,
-                    telegram_id=req.telegram_id,
-                    tier_package=tier_upper,
-                    tokens_allocated=tokens,
-                    amount=amount,
-                    total_amount=total_amount,
-                    status='pending',
-                    qr_url=qr_url
-                )
-                db.add(tx)
-                db.commit()
-                
-                return {
-                    "status": "success",
-                    "transaction_id": tx_id,
-                    "tier": tier_upper,
-                    "package_name": cfg["name"],
-                    "tokens": tokens,
-                    "amount": amount,
-                    "total_amount": total_amount,
-                    "qr_image_url": qr_url,
-                    "instructions": f"Silakan scan QRIS di atas dengan GoPay/OVO/Dana/BCA. Total bayar tepat Rp {total_amount:,}."
-                }
-            else:
-                raise HTTPException(status_code=502, detail=data.get("message", "Gagal mengeneralisasi QRIS."))
-    except HTTPException:
-        raise
+        with urllib.request.urlopen(request_obj, timeout=15.0) as response:
+            res_json = json.loads(response.read().decode())
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal Gateway Error: {str(e)}")
+        raise HTTPException(status_code=502, detail=f"Gagal menghubungi BuatQris API: {str(e)}")
+        
+    if not res_json.get("success"):
+        raise HTTPException(status_code=502, detail=res_json.get("message", "Gagal generate QRIS."))
+        
+    trx_data = res_json.get("data", {})
+    tx_id = str(trx_data.get("transaction_id"))
+    total_amount = int(trx_data.get("total_amount", amount))
+    qr_url = trx_data.get("qr_url")
+    qr_image = trx_data.get("qris_image", qr_url)
+    
+    tx = Transaction(
+        transaction_id=tx_id,
+        telegram_id=req.telegram_id,
+        tier_package=tier_upper,
+        tokens_allocated=tokens,
+        amount=amount,
+        total_amount=total_amount,
+        status='pending',
+        qr_url=qr_url
+    )
+    db.add(tx)
+    db.commit()
+    
+    return {
+        "status": "success",
+        "transaction_id": tx_id,
+        "tier": tier_upper,
+        "package_name": cfg["name"],
+        "tokens": tokens,
+        "amount": amount,
+        "total_amount": total_amount,
+        "qr_url": qr_url,
+        "qr_image": qr_image,
+        "instructions": f"Silakan scan QRIS di atas dengan GoPay/OVO/Dana/BCA/ShopeePay. Total bayar tepat Rp {total_amount:,}."
+    }
 
 @app.post("/api/payment/webhook")
 async def buatqris_webhook(request: Request, db: Session = Depends(get_db)):
@@ -624,6 +650,14 @@ def serve_contact():
 @app.api_route("/admin", methods=["GET", "HEAD"])
 def serve_dashboard():
     return FileResponse(os.path.join(BASE_DIR, "static", "dashboard.html"))
+
+@app.api_route("/robots.txt", methods=["GET", "HEAD"])
+def serve_robots():
+    return FileResponse(os.path.join(BASE_DIR, "static", "robots.txt"), media_type="text/plain")
+
+@app.api_route("/sitemap.xml", methods=["GET", "HEAD"])
+def serve_sitemap():
+    return FileResponse(os.path.join(BASE_DIR, "static", "sitemap.xml"), media_type="application/xml")
 
 # Static Mount for Assets
 static_dir = os.path.join(BASE_DIR, 'static')

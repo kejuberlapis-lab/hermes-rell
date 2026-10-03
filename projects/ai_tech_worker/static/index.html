@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
+    <link rel="canonical" href="https://techworker.my.id">
+    <meta name="keywords" content="AI tech worker, AI agent Indonesia, bot telegram programmer, bot coding telegram, jasa devops otomatis, scraping data otomatis, AI agent QRIS, virtual worker assistant">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techworker.my.id">
+    <meta property="og:site_name" content="Virtual Tech Worker Assistant">
+    <meta name="twitter:card" content="summary_large_image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Tech Worker Assistant | All-in-One Digital Operator & Orchestrator</title>
@@ -51,6 +59,76 @@
     <link rel="icon" type="image/png" href="/static/assets/favicon.png">
     <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico">
     <meta property="og:image" content="https://techworker.my.id/static/assets/tech_worker_logo.png">
+    <!-- JSON-LD Structured Data for Google & AI Search (GEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://techworker.my.id/#software",
+          "name": "Virtual Tech Worker Assistant",
+          "alternateName": "AI Tech Worker Indonesia",
+          "applicationCategory": "BusinessApplication, DeveloperApplication",
+          "operatingSystem": "All, Cloud, Telegram",
+          "url": "https://techworker.my.id",
+          "description": "Platform AI Agent otonom pertama di Indonesia untuk eksekusi coding, perbaikan bug, manajemen VPS, scraping data, dan otomasi bisnis langsung via Telegram dengan pembayaran QRIS.",
+          "offers": {
+            "@type": "AggregateOffer",
+            "priceCurrency": "IDR",
+            "lowPrice": "1000",
+            "highPrice": "499000",
+            "offerCount": "4"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "128"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://techworker.my.id/#organization",
+          "name": "Virtual Tech Worker Assistant",
+          "url": "https://techworker.my.id",
+          "logo": "https://techworker.my.id/static/assets/tech_worker_logo.png",
+          "sameAs": [
+            "https://t.me/Olo_SBT_bot"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://techworker.my.id/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Apa itu Virtual Tech Worker Assistant?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Virtual Tech Worker Assistant adalah asisten AI otonom tingkat lanjut yang bertindak seperti engineer dan operator teknis mandiri untuk menyelesaikan tugas coding, setup server VPS, data scraping, dan otomasi bisnis via Telegram."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Berapa biaya aktivasi trial dan paket langganan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Aktivasi Free Trial 8 task tersedia seharga Rp 1.000 via Dynamic QRIS. Paket berlangganan mulai dari Starter (Rp 100.000 / 50 tasks), Advance (Rp 249.000 / 150 tasks), hingga Pro (Rp 499.000 / 350 tasks)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Bagaimana cara mulai menggunakan AI Tech Worker?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Cukup buka bot Telegram @Olo_SBT_bot atau klik tombol Mulai Sekarang di website techworker.my.id, lakukan aktivasi trial Rp 1.000 via QRIS, dan bot langsung siap mengeksekusi tugas teknis Anda."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="bg-[#f8fafc] text-slate-900 antialiased selection:bg-blue-600 selection:text-white relative">
 
@@ -965,7 +1043,16 @@ async def create_order(req: OrderCreate, db: AsyncSession):
                     if (checkPollInterval) clearInterval(checkPollInterval);
                     checkPollInterval = setInterval(checkPaymentStatus, 5000);
                 } else {
-                    alert(data.detail || 'Gagal memproses QRIS');
+                    const errMsg = data.detail || 'Gagal memproses QRIS';
+                    if (errMsg.includes('Starter') || errMsg.includes('Maksimal')) {
+                        if (confirm(errMsg + '\n\nBeralih ke Paket Starter (Rp 99.000 / 50 Token) sekarang?')) {
+                            closeModal();
+                            requestQRIS('STARTER', 'Starter (50 Token)', 99000);
+                            return;
+                        }
+                    } else {
+                        alert(errMsg);
+                    }
                     closeModal();
                 }
             } catch (err) {
