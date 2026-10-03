@@ -17,20 +17,21 @@ Use this skill whenever designing, reviewing, or refactoring landing pages, bran
 
 ---
 
-## 🚫 The 10 AI Slop Tells & How to Replace Them
+## 🚫 The 11 AI Slop Tells & How to Replace Them
 
 | # | AI Slop Tell | Why It Fails | Anti-Slop Replacement |
 |---|---|---|---|
 | 1 | **Tech Gradient Mania** | Electric indigo/purple gradients look like cookie-cutter crypto/SaaS. | **Earthy / Organic Canvas**: Warm linen (`#F8F5EE`), deep roasted espresso (`#140F0D`), terracotta clay, or architectural monochrome. |
-| 2 | **Unearned Glassmorphism** | Blur and semi-transparent cards pasted everywhere without real depth. | **Tactile Physical Layers**: Subtle `dot-grid` canvas textures, hairline borders (`1px solid rgba(...)`), and grounded cards. |
-| 3 | **Default Font Pairings** | Raw Inter / Roboto everywhere feels sterile and machine-generated. | **Bespoke Editorial Typography**: High-contrast Serif headlines (*Cormorant Garamond, Playfair Display*) + clean human geometric Sans body (*Plus Jakarta Sans*) + Mono metadata (*Space Grotesk*). |
-| 4 | **Icon-Topper Clichés** | Placing a rounded colored icon above every single heading. | **Clean Structural Hierarchy**: Use scale, weight, uppercase micro-labels, and whitespace instead of boxy icons. |
-| 5 | **Equal-Weight Feature Grids** | 3 or 4 identical boxes with an icon + title + filler sentence. | **Asymmetric Editorial Spreads**: Prioritize the hero signature lot, highlight an authentic artifact, and vary column widths (7/5 or 8/4 grid). |
-| 6 | **Generic Stock Fluff** | Unsplash search #1 hero images and abstract 3D spheres. | **Grounded Subject Photography**: Editorial close-ups of ingredients, brewing rituals, physical packaging, and human space. |
-| 7 | **Decorative AI Buzzwords** | Vague labels like *"Seamless Synergy," "Next-Gen," "Revolutionary."* | **Concrete Specifications**: Lot names (*Gayo Anaerobic Honey*), SCA cupping scores (*88.5*), elevation (*1.850 mdpl*), recipe ratios. |
-| 8 | **Floating Ghost Forms** | Forms that submit to nothing or display synthetic alert modals. | **Direct-Action Dispatch**: Form actions that pre-format messages directly to WhatsApp, email, or live backend APIs with instant feedback. |
-| 9 | **Fake Dashboard Metrics** | Gratuitous counters without context. | **Transparent Metrics**: Real operational facts (roasting days, operating hours, direct-trade sourcing). |
-| 10 | **Disconnected Action Controls** | Buttons that look clickable but fail under automation testing. | **Full Interactive Wiring**: Wire customizer modals, steppers `[-] qty [+]`, subtotal/PB1 tax calculations, and floating toast feedback. |
+| 2 | **Rainbow Pastel / Carnival UI** | Assigning random pastel colors (pink, sky, green, amber, red, purple) to every single box and text label. | **Disciplined Monochrome & Single Accent**: Strict dark neutral headings (`text-slate-900`), muted body (`text-slate-600`), and a single cohesive brand accent color. |
+| 3 | **Unearned Glassmorphism** | Blur and semi-transparent cards pasted everywhere without real depth. | **Tactile Physical Layers**: Subtle `dot-grid` canvas textures, hairline borders (`1px solid rgba(...)`), and grounded cards. |
+| 4 | **Default Font Pairings** | Raw Inter / Roboto everywhere feels sterile and machine-generated. | **Bespoke Editorial Typography**: High-contrast Serif headlines (*Cormorant Garamond, Playfair Display*) + clean human geometric Sans body (*Plus Jakarta Sans*) + Mono metadata (*Space Grotesk / JetBrains Mono*). |
+| 5 | **Icon-Topper Clichés** | Placing a rounded colored icon above every single heading. | **Clean Structural Hierarchy**: Use scale, weight, uppercase micro-labels, and whitespace instead of boxy icons. |
+| 6 | **Equal-Weight Feature Grids** | 3 or 4 identical boxes with an icon + title + filler sentence. | **Asymmetric Editorial Spreads**: Prioritize the hero signature lot, highlight an authentic artifact, and vary column widths (7/5 or 8/4 grid). |
+| 7 | **Generic Stock Fluff** | Unsplash search #1 hero images and abstract 3D spheres. | **Grounded Subject Photography**: Editorial close-ups of ingredients, brewing rituals, physical packaging, and human space. |
+| 8 | **Decorative AI Buzzwords** | Vague labels like *"Seamless Synergy," "Next-Gen," "Revolutionary."* | **Concrete Specifications**: Real quantitative metrics, specific feature outcomes, and clear operational details. |
+| 9 | **Floating Ghost Forms** | Forms that submit to nothing or display synthetic alert modals. | **Direct-Action Dispatch**: Form actions that pre-format messages directly to WhatsApp, email, or live backend APIs with instant feedback. |
+| 10 | **Fake Dashboard Metrics** | Gratuitous counters without context. | **Transparent Metrics**: Real operational facts (roasting days, operating hours, direct-trade sourcing). |
+| 11 | **Disconnected Action Controls** | Buttons that look clickable but fail under automation testing. | **Full Interactive Wiring**: Wire customizer modals, steppers `[-] qty [+]`, subtotal/PB1 tax calculations, and floating toast feedback. |
 
 ---
 

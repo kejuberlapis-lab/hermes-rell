@@ -3,6 +3,11 @@ server {
 
     client_max_body_size 50M;
 
+    # Force immediate cache invalidation for all browsers & proxies
+    add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" always;
+    add_header Pragma "no-cache" always;
+    add_header Expires "0" always;
+
     location / {
         proxy_pass http://127.0.0.1:8088;
         proxy_http_version 1.1;
@@ -21,26 +26,19 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/techworker.my.id/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
-
 }
+
 server {
     if ($host = www.techworker.my.id) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
     if ($host = techworker.my.id) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
-
 
     listen 80;
     listen [::]:80;
     server_name techworker.my.id www.techworker.my.id;
     return 404; # managed by Certbot
-
-
-
-
 }

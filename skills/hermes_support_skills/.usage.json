@@ -287,6 +287,22 @@
     "use_count": 22,
     "view_count": 22
   },
+  "ai-artwork-recolor-and-brand-asset-pipeline": {
+    "archived_at": null,
+    "created_at": "2026-10-03T09:07:08.901529+00:00",
+    "created_by": "agent",
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "airtable": {
     "archived_at": null,
     "created_at": "2026-09-03T09:10:45.782111+00:00",
@@ -421,30 +437,30 @@
     "first_seen_at": null,
     "last_patched_at": "2026-10-03T02:46:40.478213+00:00",
     "last_reused_patch_generation": 3,
-    "last_used_at": "2026-10-03T03:12:05.838266+00:00",
-    "last_viewed_at": "2026-10-03T03:12:05.832793+00:00",
+    "last_used_at": "2026-10-03T09:06:45.099855+00:00",
+    "last_viewed_at": "2026-10-03T09:06:45.094926+00:00",
     "patch_count": 3,
     "patch_generation": 3,
     "pinned": false,
     "state": "active",
-    "use_count": 8,
-    "view_count": 8
+    "use_count": 9,
+    "view_count": 9
   },
   "anti-slop-web-design": {
     "archived_at": null,
     "created_at": "2026-10-02T11:10:34.441546+00:00",
     "created_by": "agent",
     "first_seen_at": null,
-    "last_patched_at": "2026-10-02T11:10:40.759029+00:00",
+    "last_patched_at": "2026-10-03T08:46:11.959852+00:00",
     "last_reused_patch_generation": 1,
-    "last_used_at": "2026-10-03T08:13:52.631150+00:00",
-    "last_viewed_at": "2026-10-03T08:13:52.625760+00:00",
-    "patch_count": 1,
-    "patch_generation": 1,
+    "last_used_at": "2026-10-03T08:45:54.351738+00:00",
+    "last_viewed_at": "2026-10-03T08:45:54.346723+00:00",
+    "patch_count": 2,
+    "patch_generation": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 12,
-    "view_count": 12
+    "use_count": 13,
+    "view_count": 13
   },
   "apos": {
     "archived_at": null,
@@ -667,14 +683,14 @@
     "first_seen_at": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-10-03T09:06:39.220588+00:00",
+    "last_viewed_at": "2026-10-03T09:06:39.213427+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "brand-extract": {
     "archived_at": null,
@@ -1148,14 +1164,14 @@
     "first_seen_at": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-10-03T08:22:35.317640+00:00",
-    "last_viewed_at": "2026-10-03T08:22:35.312680+00:00",
+    "last_used_at": "2026-10-03T08:46:16.386974+00:00",
+    "last_viewed_at": "2026-10-03T08:46:16.381441+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 3,
-    "view_count": 3
+    "use_count": 5,
+    "view_count": 5
   },
   "generative-engine-optimization": {
     "archived_at": null,
