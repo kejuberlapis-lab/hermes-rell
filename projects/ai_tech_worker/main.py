@@ -425,6 +425,7 @@ def user_start(req: StartCheckRequest, db: Session = Depends(get_db)):
 @app.post("/api/payment/create-qris")
 async def create_qris(req: CreateQRISRequest, db: Session = Depends(get_db)):
     tier_config = {
+        "TRIAL": {"price": 1000, "tasks": 8, "name": "Lihat Bagaimana Virtual Tech Worker Bekerja (8 Token)"},
         "STARTER": {"price": 99000, "tasks": 50, "name": "Starter (50 Token)"},
         "ADVANCE": {"price": 249000, "tasks": 150, "name": "Advance (150 Token)"},
         "PRO": {"price": 499000, "tasks": 350, "name": "Pro Enterprise (350 Token)"}
