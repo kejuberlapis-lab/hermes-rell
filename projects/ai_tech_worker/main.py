@@ -545,22 +545,17 @@ async def buatqris_webhook(request: Request, db: Session = Depends(get_db)):
         
         tier_title = tx.tier_package.upper()
         tokens_cnt = tx.tokens_allocated
-        total_paid = tx.total_amount
+        total_paid = f"{tx.total_amount:,}".replace(",", ".")
         
         msg = (
-            f"🎉 <b>PEMBAYARAN BERHASIL DIVERIFIKASI!</b> 🚀\n\n"
-            f"Halo! Pembayaran QRIS Anda sebesar <b>Rp {total_paid:,}</b> telah kami terima dan diverifikasi secara otomatis.\n\n"
+            f"🎉 <b>PEMBAYARAN BERHASIL DIVERIFIKASI!</b>\n\n"
+            f"Halo! Pembayaran QRIS Anda sebesar <b>Rp {total_paid}</b> telah kami terima dan diverifikasi secara otomatis.\n\n"
             f"📋 <b>Detail Akun & Kuota Anda:</b>\n"
             f"• <b>Paket Langganan:</b> {tier_title}\n"
-            f"• <b>Kuota Tugas:</b> <b>{tokens_cnt} Token Eksekusi</b>\n"
+            f"• <b>Kuota Tugas:</b> {tokens_cnt} Token Eksekusi\n"
             f"• <b>Status Akun:</b> 🟢 Aktif & Siap Bekerja\n\n"
             f"🤖 <b>Silakan Mulai Menggunakan Saya Sekarang!</b>\n"
-            f"Saya adalah AI Tech Worker Anda. Anda bisa langsung memberikan instruksi pekerjaan teknis apa pun di sini, misalnya:\n"
-            f"💻 <i>Pembuatan / perbaikan kode website & backend (Python, JS, PHP, DB)</i>\n"
-            f"⚙️ <i>Konfigurasi & troubleshooting server VPS, Docker, Nginx, SSL</i>\n"
-            f"📊 <i>Web scraping & ekstraksi data otomatis</i>\n"
-            f"🤖 <i>Otomasi bot Telegram / sistem bisnis</i>\n\n"
-            f"👉 <b>Ketikkan tugas atau pertanyaan pertama Anda sekarang untuk langsung saya eksekusi!</b>"
+            f"Saya adalah AI Tech Worker Anda. Anda bisa langsung memberikan instruksi pekerjaan teknis apa pun di sini, ketikkan tugas atau pertanyaan pertama Anda sekarang untuk langsung saya eksekusi!"
         )
         await send_telegram_notify(tx.telegram_id, msg, parse_mode="HTML")
         
