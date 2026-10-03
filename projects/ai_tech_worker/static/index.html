@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="id" class="dark scroll-smooth">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tech Worker | Autonomous Virtual Tech Specialist & Engineering Operations</title>
-    <meta name="description" content="Pekerja virtual AI otonom untuk Software Engineering, Cloud VPS, Data Scraping, dan Otomasi Bisnis langsung via Telegram dengan integrasi Dynamic QRIS.">
+    <title>Virtual Tech Worker Assistant | All-in-One Digital Operator & Orchestrator</title>
+    <meta name="description" content="Satu asisten AI cerdas untuk mengorkestrasi dan mengeksekusi operasional 10 divisi bisnis Anda secara tuntas, presisi, dan terukur langsung via Telegram.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -20,17 +19,13 @@
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
-                        obsidian: {
-                            950: '#06080F',
-                            900: '#0B0F19',
-                            850: '#101626',
-                            800: '#161F36',
-                            700: '#233052',
-                        },
-                        emeraldAccent: {
-                            400: '#34D399',
-                            500: '#10B981',
-                            600: '#059669',
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#0f172a',
                         }
                     }
                 }
@@ -38,189 +33,178 @@
         }
     </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06080F; color: #E2E8F0; }
-        .dot-grid { background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px); background-size: 24px 24px; }
-        .hairline-border { border: 1px solid rgba(255, 255, 255, 0.08); }
-        .glow-subtle { box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.15); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .dot-grid { background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px); background-size: 24px 24px; }
+        .hairline-border { border: 1px solid #e2e8f0; }
         .btn-tactile:active { transform: translateY(1px) scale(0.99); }
+        .price-strike-large {
+            font-size: 20px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-decoration: line-through;
+            text-decoration-thickness: 2.5px;
+            text-decoration-color: #ef4444;
+            margin-left: 4px;
+            margin-right: 2px;
+        }
     </style>
 </head>
-<body class="bg-obsidian-950 text-slate-200 antialiased selection:bg-emeraldAccent-500 selection:text-obsidian-950 relative">
+<body class="bg-[#f8fafc] text-slate-900 antialiased selection:bg-blue-600 selection:text-white relative">
 
-    <div class="fixed inset-0 dot-grid pointer-events-none z-0 opacity-80"></div>
+    <div class="fixed inset-0 dot-grid pointer-events-none z-0 opacity-60"></div>
 
-    <!-- Precision Segmented Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-obsidian-950/90 backdrop-blur-md border-b hairline-border">
+    <!-- Precision Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b hairline-border shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
             
             <!-- Left: Branding -->
             <a href="/" class="flex items-center space-x-3 shrink-0 group">
-                <div class="w-8 h-8 rounded-lg bg-emeraldAccent-500/10 border border-emeraldAccent-500/30 flex items-center justify-center text-emeraldAccent-400 font-mono font-bold text-sm group-hover:border-emeraldAccent-400 transition-colors">
-                    λ
+                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm">
+                    ⚡
                 </div>
                 <div class="flex items-baseline space-x-2">
-                    <span class="font-bold tracking-tight text-white text-sm sm:text-base">AI TECH WORKER</span>
-                    <span class="hidden sm:inline-block text-[9px] font-mono font-semibold uppercase tracking-widest text-emeraldAccent-400 bg-emeraldAccent-500/10 px-1.5 py-0.5 rounded border border-emeraldAccent-500/20">AUTONOMOUS</span>
+                    <span class="font-extrabold tracking-tight text-slate-900 text-sm sm:text-base">VIRTUAL TECH WORKER</span>
+                    <span class="hidden sm:inline-block text-[9px] font-mono font-bold uppercase tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">ASSISTANT</span>
                 </div>
             </a>
 
-            <!-- Center: Segmented Navigation Dock (Desktop / Tablet-L) -->
-            <nav class="hidden lg:flex items-center p-1 rounded-full bg-obsidian-900/90 hairline-border text-xs font-medium text-slate-400 shadow-inner">
+            <!-- Center: Segmented Navigation Dock -->
+            <nav class="hidden lg:flex items-center p-1 rounded-full bg-slate-100 hairline-border text-xs font-semibold text-slate-600 shadow-inner">
                 <div class="flex items-center space-x-0.5">
-                    <a href="/" class="bg-white/[0.08] text-emeraldAccent-400 font-semibold border border-emeraldAccent-500/30 px-3 py-1.5 rounded-full transition-all">Beranda</a>
-                <a href="/skills" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Katalog Skill</a>
-                <a href="/pricing" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Pricing</a>
-                <a href="/docs" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Tutorial</a>
-                
+                    <a href="/" class="bg-white text-blue-600 font-bold shadow-sm border border-slate-200 px-3.5 py-1.5 rounded-full">Beranda</a>
+                    <a href="/skills" class="hover:text-slate-900 hover:bg-white text-slate-600 transition-all px-3.5 py-1.5 rounded-full">Katalog Skill</a>
+                    <a href="/pricing" class="hover:text-slate-900 hover:bg-white text-slate-600 transition-all px-3.5 py-1.5 rounded-full">Pricing</a>
+                    <a href="/docs" class="hover:text-slate-900 hover:bg-white text-slate-600 transition-all px-3.5 py-1.5 rounded-full">Tutorial</a>
                 </div>
 
-                <!-- Precision Divider -->
-                <div class="w-[1px] h-4 bg-white/10 mx-1.5"></div>
+                <div class="w-[1px] h-4 bg-slate-300 mx-2"></div>
 
-                <!-- Solutions Group -->
                 <div class="flex items-center space-x-0.5">
-                    <a href="/enterprise" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-500"></i> <span>Enterprise</span></a>
-                <a href="/umkm" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="store" class="w-3.5 h-3.5 text-slate-500"></i> <span>UMKM</span></a>
-                <a href="/personal" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5 text-slate-500"></i> <span>Personal</span></a>
-                
+                    <a href="/enterprise" class="hover:text-slate-900 hover:bg-white text-slate-600 transition-all px-3 py-1.5 rounded-full flex items-center gap-1.5"><i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-500"></i> <span>Enterprise</span></a>
+                    <a href="/umkm" class="hover:text-slate-900 hover:bg-white text-slate-600 transition-all px-3 py-1.5 rounded-full flex items-center gap-1.5"><i data-lucide="store" class="w-3.5 h-3.5 text-slate-500"></i> <span>UMKM</span></a>
+                    <a href="/personal" class="hover:text-slate-900 hover:bg-white text-slate-600 transition-all px-3 py-1.5 rounded-full flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5 text-slate-500"></i> <span>Personal</span></a>
                 </div>
 
-                <!-- Precision Divider -->
-                <div class="w-[1px] h-4 bg-white/10 mx-1.5"></div>
+                <div class="w-[1px] h-4 bg-slate-300 mx-2"></div>
 
-                <!-- Help Group -->
-                <a href="/contact" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3.5 h-3.5 text-slate-500"></i> <span>Contact & Help</span></a>
+                <a href="/contact" class="hover:text-slate-900 hover:bg-white text-slate-600 transition-all px-3.5 py-1.5 rounded-full flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3.5 h-3.5 text-slate-500"></i> <span>Contact</span></a>
             </nav>
 
             <!-- Right: Actions -->
             <div class="flex items-center space-x-2.5 shrink-0">
-                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center px-3.5 py-1.5 text-xs font-semibold font-mono text-obsidian-950 bg-emeraldAccent-400 hover:bg-emeraldAccent-500 rounded-full transition-all btn-tactile shadow-sm shadow-emeraldAccent-500/20">
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center px-4 py-2 text-xs font-bold font-mono text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-all btn-tactile shadow-sm shadow-blue-500/20">
                     <i data-lucide="terminal" class="w-3.5 h-3.5 mr-1.5"></i>
                     <span class="hidden sm:inline">Buka </span><span>Telegram</span>
                 </a>
 
-                <!-- Mobile Hamburger Toggle -->
-                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-obsidian-900 hairline-border text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-slate-100 hairline-border text-slate-700 hover:text-slate-900 focus:outline-none" aria-label="Toggle Menu">
                     <i data-lucide="menu" id="menuIcon" class="w-4 h-4"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Scrollable Segmented Dock (Mobile & Tablet) -->
-        <div class="lg:hidden border-t hairline-border bg-obsidian-950 px-3 py-2 overflow-x-auto flex items-center gap-1.5 text-xs font-medium whitespace-nowrap">
-            <a href="/" class="px-3 py-1.5 rounded-full bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40 font-semibold flex items-center gap-1.5"><i data-lucide="home" class="w-3 h-3"></i> Beranda</a>
-            <a href="/skills" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="layers" class="w-3 h-3 text-slate-500"></i> Katalog Skill</a>
-            <a href="/pricing" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="tag" class="w-3 h-3 text-slate-500"></i> Pricing</a>
-            <a href="/docs" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="book-open" class="w-3 h-3 text-slate-500"></i> Tutorial</a>
-            <a href="/enterprise" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="building-2" class="w-3 h-3 text-slate-500"></i> Enterprise</a>
-            <a href="/umkm" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="store" class="w-3 h-3 text-slate-500"></i> UMKM</a>
-            <a href="/personal" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="user" class="w-3 h-3 text-slate-500"></i> Personal</a>
-            <a href="/contact" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3 h-3 text-slate-500"></i> Contact & Help</a>
-            
-        </div>
-
-        <!-- Mobile Dropdown Drawer -->
-        <div id="mobileDrawer" class="hidden lg:hidden border-t hairline-border bg-obsidian-950 px-4 py-3 space-y-1 text-xs font-medium">
-            <a href="/" class="block px-3 py-2 rounded-lg bg-emeraldAccent-500/10 text-emeraldAccent-400 font-semibold flex items-center gap-2.5"><i data-lucide="home" class="w-4 h-4"></i> Beranda</a>
-        <a href="/skills" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="layers" class="w-4 h-4 text-slate-500"></i> Katalog Skill</a>
-        <a href="/pricing" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="tag" class="w-4 h-4 text-slate-500"></i> Pricing</a>
-        <a href="/docs" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="book-open" class="w-4 h-4 text-slate-500"></i> Tutorial</a>
-        <a href="/enterprise" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="building-2" class="w-4 h-4 text-slate-500"></i> Enterprise</a>
-        <a href="/umkm" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="store" class="w-4 h-4 text-slate-500"></i> UMKM</a>
-        <a href="/personal" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="user" class="w-4 h-4 text-slate-500"></i> Personal</a>
-        <a href="/contact" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="life-buoy" class="w-4 h-4 text-slate-500"></i> Contact & Help</a>
-        
+        <!-- Mobile Scrollable Dock -->
+        <div class="lg:hidden border-t hairline-border bg-white px-3 py-2 overflow-x-auto flex items-center gap-1.5 text-xs font-semibold whitespace-nowrap">
+            <a href="/" class="px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-200 font-bold flex items-center gap-1.5"><i data-lucide="home" class="w-3 h-3"></i> Beranda</a>
+            <a href="/skills" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-1.5"><i data-lucide="layers" class="w-3 h-3"></i> Katalog Skill</a>
+            <a href="/pricing" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-1.5"><i data-lucide="tag" class="w-3 h-3"></i> Pricing</a>
+            <a href="/docs" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-1.5"><i data-lucide="book-open" class="w-3 h-3"></i> Tutorial</a>
+            <a href="/enterprise" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-1.5"><i data-lucide="building-2" class="w-3 h-3"></i> Enterprise</a>
+            <a href="/umkm" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-1.5"><i data-lucide="store" class="w-3 h-3"></i> UMKM</a>
+            <a href="/personal" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-1.5"><i data-lucide="user" class="w-3 h-3"></i> Personal</a>
+            <a href="/contact" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3 h-3"></i> Contact</a>
         </div>
     </header>
 
-    <!-- Hero Section (Asymmetric Split Screen with Dynamic Live Agent Terminal) -->
+    <!-- Hero Section -->
     <section class="relative z-10 pt-12 pb-16 md:pt-16 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <!-- Left Column: Value Proposition -->
             <div class="lg:col-span-6 space-y-6 text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-850 hairline-border text-xs font-mono text-slate-300">
-                    <span class="w-2 h-2 rounded-full bg-emeraldAccent-400 animate-ping"></span>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-bold text-blue-700">
+                    <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
                     <span>Free Trial 8 Token Otomatis Aktif</span>
                 </div>
 
-                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                    Pekerja Virtual Otonom untuk Tim Teknis & Solo Dev
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                    AI Chatbot Biasa Menjawab Pertanyaan. <br>
+                    <span class="text-blue-600">Virtual Tech Worker</span> Mengorkestrasi & Menuntaskan Pekerjaan.
                 </h1>
 
-                <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-xl">
-                    Bukan sekadar chatbot pasif yang memberi teks teori. AI Tech Worker mengeksekusi aksi nyata di terminal VPS, repositori kode, database, dan browser dengan verifikasi tuntas via Telegram.
+                <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+                    Satu asisten digital pintar untuk menangani 10 divisi operasional bisnis Anda: mulai dari rumus finansial/pajak presisi, draf kontrak PKS legal, kode sistem teruji, hingga strategi marketing siap rilis via Telegram.
                 </p>
 
                 <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                    <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center justify-center px-5 py-3 text-xs font-bold font-mono text-obsidian-950 bg-emeraldAccent-400 hover:bg-emeraldAccent-500 rounded-lg transition-all btn-tactile">
+                    <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center justify-center px-6 py-3.5 text-xs font-bold font-mono text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all btn-tactile shadow-md shadow-blue-500/20">
                         <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
-                        Mulai Free Trial (8 Tasks)
+                        Coba Gratis (8 Token)
                     </a>
-                    <a href="/skills" class="inline-flex items-center justify-center px-5 py-3 text-xs font-semibold text-slate-300 bg-obsidian-850 hover:bg-obsidian-800 hairline-border rounded-lg transition-all btn-tactile">
-                        <i data-lucide="layers" class="w-4 h-4 mr-2 text-emeraldAccent-400"></i>
-                        Eksplorasi 40+ Skill Teknis
+                    <a href="#pricing-section" class="inline-flex items-center justify-center px-6 py-3.5 text-xs font-semibold text-slate-800 bg-white hover:bg-slate-50 hairline-border rounded-xl transition-all btn-tactile shadow-sm">
+                        <i data-lucide="tag" class="w-4 h-4 mr-2 text-blue-600"></i>
+                        Lihat Pilihan Paket
                     </a>
                 </div>
 
                 <!-- Verified Metrics Strip -->
-                <div class="pt-4 grid grid-cols-3 gap-4 border-t hairline-border text-left">
+                <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200 text-left">
                     <div>
-                        <span class="block text-lg font-bold font-mono text-white">100%</span>
-                        <span class="text-[11px] text-slate-500">Autonomous Action</span>
+                        <span class="block text-xl font-bold font-mono text-slate-900">10 Divisi</span>
+                        <span class="text-xs text-slate-500">Cross-Department Ops</span>
                     </div>
                     <div>
-                        <span class="block text-lg font-bold font-mono text-emeraldAccent-400">&lt; 30s</span>
-                        <span class="text-[11px] text-slate-500">Avg. Resolution</span>
+                        <span class="block text-xl font-bold font-mono text-blue-600">90%</span>
+                        <span class="text-xs text-slate-500">Waktu Dihemat</span>
                     </div>
                     <div>
-                        <span class="block text-lg font-bold font-mono text-white">Dynamic</span>
-                        <span class="text-[11px] text-slate-500">QRIS Instan 24/7</span>
+                        <span class="block text-xl font-bold font-mono text-slate-900">24 / 7</span>
+                        <span class="text-xs text-slate-500">Realtime Telegram</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Dynamic Live Agent Terminal Showcase -->
+            <!-- Right Column: Interactive Live Task Showcase -->
             <div class="lg:col-span-6">
-                <div class="rounded-xl bg-obsidian-900 hairline-border overflow-hidden shadow-2xl glow-subtle font-mono text-xs text-left">
+                <div class="rounded-2xl bg-white hairline-border overflow-hidden shadow-xl text-xs text-left">
                     
                     <!-- Terminal Header -->
-                    <div class="bg-obsidian-850 px-4 py-2.5 flex items-center justify-between border-b hairline-border">
+                    <div class="bg-slate-900 px-4 py-3 flex items-center justify-between text-white">
                         <div class="flex items-center space-x-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-emeraldAccent-400"></span>
-                            <span class="text-[11px] text-slate-400 ml-2" id="termUserHost">ai-tech-worker@zeus-node ~ dispatcher</span>
+                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            <span class="text-xs font-mono text-slate-300 ml-2" id="termUserHost">virtual-tech-worker@assistant ~ dispatcher</span>
                         </div>
                         <div class="flex items-center gap-1.5">
-                            <span class="w-2 h-2 rounded-full bg-emeraldAccent-400 animate-pulse"></span>
-                            <span class="text-[10px] text-emeraldAccent-400 font-bold uppercase" id="termStatusBadge">LIVE EXECUTION</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider" id="termStatusBadge">LIVE EXECUTION</span>
                         </div>
                     </div>
 
                     <!-- Task Selector Tabs -->
-                    <div class="bg-obsidian-950/90 px-4 py-2 flex items-center gap-2 border-b hairline-border overflow-x-auto text-[10px]">
-                        <button onclick="switchTerminalTask(0)" class="term-tab active px-2.5 py-1 rounded bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40 whitespace-nowrap transition-all" data-index="0">#1 FastAPI Fix</button>
-                        <button onclick="switchTerminalTask(1)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="1">#2 Nginx & Docker</button>
-                        <button onclick="switchTerminalTask(2)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="2">#3 Stealth Scraping</button>
-                        <button onclick="switchTerminalTask(3)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="3">#4 SQL Tuning</button>
-                        <button onclick="switchTerminalTask(4)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="4">#5 Sheets Cronjob</button>
+                    <div class="bg-slate-800 px-4 py-2.5 flex items-center gap-2 overflow-x-auto text-[11px] font-mono">
+                        <button onclick="switchTerminalTask(0)" class="term-tab active px-3 py-1 rounded bg-blue-600 text-white font-bold whitespace-nowrap transition-all" data-index="0">#1 Excel PPN & Fee</button>
+                        <button onclick="switchTerminalTask(1)" class="term-tab px-3 py-1 rounded bg-slate-700 text-slate-300 hover:text-white whitespace-nowrap transition-all" data-index="1">#2 Draf PKS B2B</button>
+                        <button onclick="switchTerminalTask(2)" class="term-tab px-3 py-1 rounded bg-slate-700 text-slate-300 hover:text-white whitespace-nowrap transition-all" data-index="2">#3 API Backend & DB</button>
+                        <button onclick="switchTerminalTask(3)" class="term-tab px-3 py-1 rounded bg-slate-700 text-slate-300 hover:text-white whitespace-nowrap transition-all" data-index="3">#4 SEO Keyword Plan</button>
+                        <button onclick="switchTerminalTask(4)" class="term-tab px-3 py-1 rounded bg-slate-700 text-slate-300 hover:text-white whitespace-nowrap transition-all" data-index="4">#5 Multi-Agent Flow</button>
                     </div>
 
                     <!-- Dynamic Terminal Body -->
-                    <div id="terminalBody" class="p-5 space-y-3.5 leading-relaxed text-slate-300 min-h-[290px] flex flex-col justify-between transition-opacity duration-300">
+                    <div id="terminalBody" class="p-5 font-mono space-y-3.5 leading-relaxed text-slate-800 bg-slate-50 min-h-[300px] flex flex-col justify-between transition-opacity duration-300">
                         <!-- Dynamic scenario content is injected here via JS -->
                     </div>
 
                     <!-- Terminal Footer Auto-Cycle Progress -->
-                    <div class="bg-obsidian-950 px-4 py-2 border-t hairline-border flex items-center justify-between text-[10px] text-slate-500">
+                    <div class="bg-slate-100 px-4 py-2.5 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 font-mono">
                         <div class="flex items-center gap-2">
-                            <span>Auto Cycle:</span>
-                            <div class="w-24 h-1.5 bg-obsidian-850 rounded-full overflow-hidden hairline-border">
-                                <div id="termProgressBar" class="h-full bg-emeraldAccent-400 transition-all duration-100" style="width: 0%;"></div>
+                            <span>Auto Showcase:</span>
+                            <div class="w-24 h-2 bg-slate-200 rounded-full overflow-hidden">
+                                <div id="termProgressBar" class="h-full bg-blue-600 transition-all duration-100" style="width: 0%;"></div>
                             </div>
                         </div>
-                        <div id="termTimerText" class="font-mono text-slate-400">Next task in 6s</div>
+                        <div id="termTimerText" class="text-slate-600 font-semibold">Next task in 6s</div>
                     </div>
 
                 </div>
@@ -229,333 +213,774 @@
         </div>
     </section>
 
-    <!-- 3-Step Execution Pipeline -->
-    <section class="relative z-10 py-16 bg-obsidian-900/60 border-y hairline-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-left max-w-2xl mb-12">
-                <span class="text-xs font-mono uppercase tracking-widest text-emeraldAccent-400">Workflow Execution</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-                    Cara Kerja AI Tech Worker dalam 3 Langkah
-                </h2>
+    <!-- 10 Divisi Badges Bar -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div class="bg-white rounded-2xl p-6 hairline-border shadow-sm">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 pb-3 border-b border-slate-100">
+                <div class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="building-2" class="w-4 h-4 text-blue-600"></i>
+                    <span>10 Divisi Lengkap yang Siap Dikelola Virtual Tech Worker Assistant:</span>
+                </div>
+                <span class="bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200">100% Ready di Semua Paket</span>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs">
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="code" class="w-3.5 h-3.5 text-blue-600"></i> Tech & IT Development</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="palette" class="w-3.5 h-3.5 text-pink-600"></i> UI/UX & Product Design</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="database" class="w-3.5 h-3.5 text-sky-600"></i> Data Intelligence & AI</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="trending-up" class="w-3.5 h-3.5 text-green-600"></i> Marketing & Growth</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="briefcase" class="w-3.5 h-3.5 text-amber-600"></i> B2B Sales & Deals</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="dollar-sign" class="w-3.5 h-3.5 text-emerald-600"></i> Finance, Tax & PPN</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="settings" class="w-3.5 h-3.5 text-slate-600"></i> Operations & Fulfillment</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="users" class="w-3.5 h-3.5 text-purple-600"></i> HR & Payroll System</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="shield" class="w-3.5 h-3.5 text-orange-600"></i> Legal, PKS & Compliance</div>
+                <div class="bg-slate-50 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5"><i data-lucide="target" class="w-3.5 h-3.5 text-red-600"></i> Executive & Strategy</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Head-to-Head Comparison: Virtual Tech Worker vs AI Biasa -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <div class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-indigo-200 mb-2">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-indigo-600"></i> Solusi Operasional Bisnis Nyata
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Mengapa Bisnis Anda Butuh <span class="text-blue-600">Virtual Tech Worker?</span>
+            </h2>
+            <p class="mt-2 text-sm font-semibold text-slate-700">
+                "AI Chatbot Biasa Menjawab Pertanyaan. Virtual Tech Worker Mengorkestrasi & Menuntaskan Pekerjaan."
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto mb-10">
+            
+            <!-- Left: AI Chatbot Biasa -->
+            <div class="p-6 sm:p-8 rounded-2xl bg-white hairline-border shadow-sm text-left">
+                <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+                    <div class="w-11 h-11 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500">
+                        <i data-lucide="bot" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-700">AI Chatbot Biasa</h3>
+                        <p class="text-xs text-slate-400 font-medium">Chatbot Teks Konvensional (Hanya Memberi Saran Teori)</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&times;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Hanya Memberi Saran Pasif</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Memberikan teks teori panjang lebar, tetapi Anda tetap harus menyalin, merapikan, dan mengeksekusinya sendiri.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&times;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Tidak Bisa Mengorkestrasi Alur Kerja</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Hanya memproses 1 chat linier. Tidak bisa membagi tugas ke sub-pekerja atau menghubungkan alur kerja antar-divisi.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&times;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Rawan Halusinasi & Asumsi Angka</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Sering membuat angka perkiraan tanpa verifikasi matematika seimbang pada perhitungan pajak, margin, dan data bisnis.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&times;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Terisolasi di Kotak Web</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Tidak terhubung ke file spreadsheet lokal, sistem database, atau aplikasi bisnis harian Anda.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&times;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Beban Eksekusi Tetap di Tangan Anda</h4>
+                            <p class="text-xs text-slate-500 mt-0.5">Anda masih harus menjadi "operator" yang memilah potongan jawaban sebelum siap dipakai oleh tim kantor.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                <div class="p-6 rounded-xl bg-obsidian-850 hairline-border">
-                    <span class="text-2xl font-mono font-bold text-emeraldAccent-400 block mb-3">01</span>
-                    <h3 class="text-base font-bold text-white mb-2">Kirim Instruksi di Telegram</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Kirim perintah tugas teknis dalam Bahasa Indonesia natural. Anda bisa melampirkan file kode, pesan error server, atau credential target.
-                    </p>
+            <!-- Right: Virtual Tech Worker Assistant -->
+            <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-white to-blue-50/40 border-2 border-blue-600 shadow-xl shadow-blue-500/10 text-left relative">
+                <div class="absolute -top-3 right-6 bg-blue-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
+                    ★ REKOMENDASI BISNIS
+                </div>
+                <div class="flex items-center gap-3 pb-4 mb-5 border-b border-blue-100">
+                    <div class="w-11 h-11 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600">
+                        <i data-lucide="user-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900">Virtual Tech Worker Assistant</h3>
+                        <p class="text-xs text-blue-600 font-bold">Digital Operator & Orchestrator (10 Divisi)</p>
+                    </div>
                 </div>
 
-                <div class="p-6 rounded-xl bg-obsidian-850 hairline-border">
-                    <span class="text-2xl font-mono font-bold text-emeraldAccent-400 block mb-3">02</span>
-                    <h3 class="text-base font-bold text-white mb-2">Eksekusi Mandiri & Self-Healing</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        AI Worker langsung membedah masalah, menulis kode, menguji di terminal terisolasi, dan memperbaiki bug secara mandiri jika terjadi error.
-                    </p>
+                <div class="space-y-4 text-xs sm:text-sm">
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Eksekusi Tuntas & Output Siap Pakai</h4>
+                            <p class="text-xs text-slate-600 mt-0.5">Bukan cuma teks mentah, langsung memberikan rumus Excel presisi seimbang, draf kontrak PKS legal, kode teruji, dan materi siap rilis.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Mampu Mengorkestrasi Multi-Agen & Alur Kerja</h4>
+                            <p class="text-xs text-slate-600 mt-0.5">Membagi tugas kompleks ke sub-agen paralel & menyelaraskan alur 10 divisi layaknya Manajer Operasional.</p>
+                            <span class="inline-block bg-blue-50 text-blue-700 font-bold text-[11px] px-2 py-0.5 rounded border border-blue-200 mt-1">✨ Multi-Agent Orchestration</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Verifikasi Presisi Tanpa Halusinasi</h4>
+                            <p class="text-xs text-slate-600 mt-0.5">Dilengkapi mesin audit mandiri untuk memastikan neraca finansial, logika kode, dan aturan regulasi terverifikasi sebelum diserahkan.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Terintegrasi Lintas Ekosistem Bisnis</h4>
+                            <p class="text-xs text-slate-600 mt-0.5">Bekerja langsung dari Telegram ke sistem database, file spreadsheet, hingga verifikasi visual dokumen kerja Anda.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">&check;</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Memangkas 90% Waktu Operasional</h4>
+                            <p class="text-xs text-slate-600 mt-0.5">Bekerja otonom seperti memiliki tim profesional senior 24/7 di Telegram tanpa biaya gaji puluhan juta per bulan.</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="p-6 rounded-xl bg-obsidian-850 hairline-border">
-                    <span class="text-2xl font-mono font-bold text-emeraldAccent-400 block mb-3">03</span>
-                    <h3 class="text-base font-bold text-white mb-2">Laporan & Bukti Nyata</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Hasil kerja dikirimkan kembali ke chat Telegram lengkap dengan URL aktif, file output, atau log verifikasi keberhasilan sistem.
-                    </p>
+        </div>
+
+        <!-- 3 Keunggulan Utama -->
+        <div class="bg-white rounded-2xl p-6 sm:p-7 hairline-border shadow-sm max-w-6xl mx-auto text-left">
+            <div class="text-sm font-bold text-slate-900 flex items-center gap-2 mb-4">
+                <i data-lucide="network" class="w-4 h-4 text-blue-600"></i>
+                <span>3 Keunggulan Utama Virtual Tech Worker Assistant:</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="text-[10px] font-bold text-blue-600 uppercase tracking-wider mb-1">Keunggulan 01</div>
+                    <h5 class="text-sm font-bold text-slate-900 mb-1">Multi-Agent Orchestration</h5>
+                    <p class="text-xs text-slate-600">Mendelegasikan sub-tugas secara simultan dan menyatukan alur kerja 10 divisi bisnis tanpa terputus.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="text-[10px] font-bold text-blue-600 uppercase tracking-wider mb-1">Keunggulan 02</div>
+                    <h5 class="text-sm font-bold text-slate-900 mb-1">Problem Solving & Audit Mandiri</h5>
+                    <p class="text-xs text-slate-600">Mendeteksi selisih angka dan anomali data, lalu merumuskan solusi bertahap hingga selesai tuntas.</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="text-[10px] font-bold text-blue-600 uppercase tracking-wider mb-1">Keunggulan 03</div>
+                    <h5 class="text-sm font-bold text-slate-900 mb-1">Efisiensi Biaya Ekstrem (ROI Tinggi)</h5>
+                    <p class="text-xs text-slate-600">Kapabilitas setara tim korporasi lengkap mulai Rp3 ribuan per hari via sistem token terukur.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Featured Skills Highlights Grid -->
-    <section class="relative z-10 py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-            <div class="text-left max-w-xl">
-                <span class="text-xs font-mono uppercase tracking-widest text-emeraldAccent-400">Core Capabilities</span>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">
-                    Spesialisasi Teknis yang Siap Dikerjakan
-                </h2>
+    <!-- Pricing Section on Home Page -->
+    <section id="pricing-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        
+        <!-- Header Section -->
+        <div class="text-center max-w-3xl mx-auto mb-8">
+            <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-blue-200 mb-3">
+                <i data-lucide="tag" class="w-3.5 h-3.5 text-blue-600"></i> Pilihan Paket Berlangganan
             </div>
-            <a href="/skills" class="mt-4 md:mt-0 inline-flex items-center text-xs font-mono text-emeraldAccent-400 hover:text-emeraldAccent-300 transition-colors">
-                <span>Lihat Semua 40+ Skill di Katalog</span>
-                <i data-lucide="arrow-right" class="w-4 h-4 ml-1.5"></i>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                Investasi Cerdas untuk <span class="text-blue-600">Operasional Bisnis Anda</span>
+            </h2>
+            <p class="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed">
+                Pilih kuota token (pesan perintah) sesuai ritme kebutuhan operasional tim Anda.
+            </p>
+        </div>
+
+        <!-- Token Info Explanatory Box -->
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl p-4 sm:p-5 hairline-border shadow-sm mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0">
+                <i data-lucide="info" class="w-5 h-5"></i>
+            </div>
+            <div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                <strong class="text-slate-900 font-bold">Apa itu 1 Token (Pesan Perintah)?</strong> 1 Token dihitung untuk <strong class="text-slate-900 font-semibold">1 instruksi tugas menyeluruh hingga tuntas</strong>.
+                <div class="mt-2 flex flex-wrap gap-1.5 text-xs">
+                    <span class="inline-block bg-slate-100 text-slate-800 font-medium px-2.5 py-1 rounded-md border border-slate-200">"Buatkan rumus PPN & fulfillment Excel"</span>
+                    <span class="inline-block bg-slate-100 text-slate-800 font-medium px-2.5 py-1 rounded-md border border-slate-200">"Buat draf kontrak PKS B2B"</span>
+                    <span class="inline-block bg-slate-100 text-slate-800 font-medium px-2.5 py-1 rounded-md border border-slate-200">"Tulis kode endpoint API Node.js"</span>
+                    <span class="inline-block bg-slate-100 text-slate-800 font-medium px-2.5 py-1 rounded-md border border-slate-200">"Riset keyword & strategi SEO"</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4-Card Pricing Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-stretch mb-12">
+            
+            <!-- 1. Free Trial -->
+            <div class="p-6 rounded-2xl bg-white hairline-border flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 mb-4">
+                        <i data-lucide="gift" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Free Trial</h3>
+                    <p class="text-xs text-slate-500 mb-4 h-9">Uji coba langsung kapabilitas 10 divisi tanpa risiko.</p>
+                    
+                    <div class="mb-4 pb-4 border-b border-slate-100">
+                        <div class="text-3xl font-extrabold text-slate-900">Rp0 <span class="text-xs font-normal text-slate-500">/ 7 hari</span></div>
+                        <div class="inline-flex items-center gap-1.5 bg-slate-100 text-slate-800 text-xs font-bold px-2.5 py-1 rounded-md mt-2 border border-slate-200">
+                            <i data-lucide="zap" class="w-3.5 h-3.5 text-blue-600"></i> 8 Token (Pesan Perintah)
+                        </div>
+                        <span class="block text-[11px] text-emerald-600 font-bold mt-1">Akses Coba Lengkap</span>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs text-slate-600 mb-6">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Fitur Termasuk:</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span>Akses Penuh 10 Divisi</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span>1 Tugas Penuh + 1 Sample</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span>Ekspor Rumus & Markdown</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span>Respon Realtime Telegram</span></div>
+                    </div>
+                </div>
+
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2.5 px-4 rounded-xl font-bold text-xs text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition-all btn-tactile text-center">
+                    Mulai Gratis
+                </a>
+            </div>
+
+            <!-- 2. Starter Plan -->
+            <div class="p-6 rounded-2xl bg-white hairline-border flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 mb-4">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Starter</h3>
+                    <p class="text-xs text-slate-500 mb-4 h-9">Solusi operasional harian untuk solopreneur & UMKM.</p>
+                    
+                    <div class="mb-4 pb-4 border-b border-slate-100">
+                        <div class="flex items-baseline flex-wrap">
+                            <span class="text-3xl font-extrabold text-slate-900">Rp99k</span>
+                            <span class="price-strike-large">Rp150k</span>
+                            <span class="text-xs font-normal text-slate-500">/ bln</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 bg-slate-100 text-slate-800 text-xs font-bold px-2.5 py-1 rounded-md mt-2 border border-slate-200">
+                            <i data-lucide="zap" class="w-3.5 h-3.5 text-blue-600"></i> 50 Token (Pesan Perintah) / Bln
+                        </div>
+                        <span class="block text-[11px] text-emerald-600 font-bold mt-1">~Rp1.980 / pesan perintah</span>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs text-slate-600 mb-6">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Fitur Termasuk:</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span><strong class="text-slate-900 font-bold">Professional Full Access (10 Divisi)</strong></span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span>Coding, PRD, Copywriting & Legal</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span>Rumus Finansial, Pajak, & Akuntansi</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i> <span>Multi-Turn Chat & Revisi Langkah</span></div>
+                    </div>
+                </div>
+
+                <button onclick="requestQRIS('STARTER', 'Starter (50 Token)', 99000)" class="w-full py-2.5 px-4 rounded-xl font-bold text-xs text-slate-800 bg-slate-100 hover:bg-blue-600 hover:text-white border border-slate-300 hover:border-blue-600 transition-all btn-tactile flex items-center justify-center gap-2">
+                    <i data-lucide="qr-code" class="w-4 h-4"></i> Pilih Starter (Rp 99k)
+                </button>
+            </div>
+
+            <!-- 3. Advance Plan (Featured) -->
+            <div class="p-6 rounded-2xl bg-gradient-to-b from-white to-blue-50/40 border-2 border-blue-600 flex flex-col justify-between relative shadow-xl shadow-blue-500/10 transform lg:-translate-y-2">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+                    <i data-lucide="star" class="w-3 h-3 fill-white"></i> PALING POPULER · BEST VALUE
+                </div>
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 border border-blue-200 flex items-center justify-center text-blue-600 mb-4 mt-2">
+                        <i data-lucide="rocket" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Advance</h3>
+                    <p class="text-xs text-slate-500 mb-4 h-9">Kekuatan penuh AI untuk bisnis bertumbuh dengan kuota besar.</p>
+                    
+                    <div class="mb-4 pb-4 border-b border-blue-100">
+                        <div class="text-3xl font-extrabold text-slate-900">Rp249k <span class="text-xs font-normal text-slate-500">/ bulan</span></div>
+                        <div class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-md mt-2 border border-blue-200">
+                            <i data-lucide="zap" class="w-3.5 h-3.5 text-blue-600"></i> 150 Token (Pesan Perintah) / Bln
+                        </div>
+                        <span class="block text-[11px] text-blue-700 font-bold mt-1">~Rp1.660 / pesan (Hemat 16%)</span>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs text-slate-600 mb-6">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-600">Semua di Starter, Plus:</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i> <span><strong class="text-slate-900 font-bold">Kuota 3x Lipat Lebih Banyak</strong></span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i> <span>Prioritas Pemrosesan Cepat</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i> <span>Multi-Project & Brand Context</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i> <span>Opsi Rollover Token Sisa</span></div>
+                    </div>
+                </div>
+
+                <button onclick="requestQRIS('ADVANCE', 'Advance (150 Token)', 249000)" class="w-full py-3 px-4 rounded-xl font-bold text-xs text-white bg-blue-600 hover:bg-blue-700 transition-all btn-tactile flex items-center justify-center gap-2 shadow-md shadow-blue-500/20">
+                    <i data-lucide="qr-code" class="w-4 h-4"></i> Pilih Advance (Rp 249k)
+                </button>
+            </div>
+
+            <!-- 4. Pro Enterprise Plan -->
+            <div class="p-6 rounded-2xl bg-white hairline-border flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+                <div>
+                    <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600 mb-4">
+                        <i data-lucide="crown" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Pro Enterprise</h3>
+                    <p class="text-xs text-slate-500 mb-4 h-9">Arsitektur sistem skala besar, otonom, & audit kepatuhan.</p>
+                    
+                    <div class="mb-4 pb-4 border-b border-slate-100">
+                        <div class="text-3xl font-extrabold text-slate-900">Rp499k <span class="text-xs font-normal text-slate-500">/ bulan</span></div>
+                        <div class="inline-flex items-center gap-1.5 bg-purple-50 text-purple-800 text-xs font-bold px-2.5 py-1 rounded-md mt-2 border border-purple-200">
+                            <i data-lucide="zap" class="w-3.5 h-3.5 text-purple-600"></i> 350 Token (Pesan Perintah) / Bln
+                        </div>
+                        <span class="block text-[11px] text-emerald-600 font-bold mt-1">~Rp1.420 / pesan (Paling Hemat)</span>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs text-slate-600 mb-6">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Semua di Advance, Plus:</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i> <span><strong class="text-slate-900 font-bold">Enterprise System Architecture</strong></span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i> <span>Eksekusi Otonom & Background Flow</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i> <span>Audit Kepatuhan ISO 27001 & UU PDP</span></div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i> <span>VIP Dedicated SLA & Prioritas Server</span></div>
+                    </div>
+                </div>
+
+                <button onclick="requestQRIS('PRO', 'Pro Enterprise (350 Token)', 499000)" class="w-full py-2.5 px-4 rounded-xl font-bold text-xs text-white bg-slate-900 hover:bg-slate-800 transition-all btn-tactile flex items-center justify-center gap-2">
+                    <i data-lucide="qr-code" class="w-4 h-4"></i> Pilih Pro (Rp 499k)
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Custom Unlimited Callout Banner -->
+        <div class="max-w-6xl mx-auto bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 shadow-xl">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center text-sky-400 shrink-0">
+                    <i data-lucide="infinity" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h4 class="text-base sm:text-lg font-bold">Ingin punya Virtual Tech Worker Assistant <span class="text-sky-400">Tanpa Limit Token (Pesan Perintah)?</span></h4>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Dapatkan dedicated instance server, kustomisasi alur kerja perusahaan, dan kuota unlimited tanpa batasan.</p>
+                </div>
+            </div>
+            <a href="https://t.me/Olo_SBT_bot" target="_blank" class="px-5 py-3 rounded-xl font-bold text-xs text-white bg-blue-600 hover:bg-blue-700 transition-all btn-tactile flex items-center gap-2 whitespace-nowrap shadow-md">
+                <i data-lucide="phone" class="w-4 h-4"></i> Hubungi Team Kami
             </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
-            <div class="p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="font-mono text-xs text-emeraldAccent-400">DEV / FULLSTACK</span>
-                    <span class="text-[10px] font-mono text-slate-500">~25s Latency</span>
-                </div>
-                <h3 class="text-base font-bold text-white mb-2">Bug Fixing & API Development</h3>
-                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Perbaikan syntax error, query database lambat, CORS issue, dan pembuatan endpoint REST API (FastAPI, Express, Laravel).
-                </p>
-                <div class="text-[11px] font-mono text-slate-300 bg-obsidian-950 p-2.5 rounded hairline-border">
-                    Input: "Fix error 500 auth query"<br>
-                    Output: Patch code + API verified OK
-                </div>
-            </div>
-
-            <div class="p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="font-mono text-xs text-emeraldAccent-400">DEVOPS / LINUX</span>
-                    <span class="text-[10px] font-mono text-slate-500">~45s Latency</span>
-                </div>
-                <h3 class="text-base font-bold text-white mb-2">Cloud VPS & Nginx Automation</h3>
-                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Konfigurasi reverse proxy Nginx, pasang SSL Certbot, setup service systemd, Docker container, dan tuning XRDP GUI.
-                </p>
-                <div class="text-[11px] font-mono text-slate-300 bg-obsidian-950 p-2.5 rounded hairline-border">
-                    Input: "Setup port 8080 ke domain"<br>
-                    Output: Nginx vhost active + SSL HTTPS
-                </div>
-            </div>
-
-            <div class="p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all">
-                <div class="flex justify-between items-center mb-3">
-                    <span class="font-mono text-xs text-emeraldAccent-400">DATA / SCRAPING</span>
-                    <span class="text-[10px] font-mono text-slate-500">~60s Latency</span>
-                </div>
-                <h3 class="text-base font-bold text-white mb-2">Stealth Anti-Bot Web Scraping</h3>
-                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-                    Ekstraksi data e-commerce, direktori vendor publik, bypass Cloudflare Turnstile / DataDome, dan konversi ke CSV/Excel.
-                </p>
-                <div class="text-[11px] font-mono text-slate-300 bg-obsidian-950 p-2.5 rounded hairline-border">
-                    Input: "Ambil 500 vendor dari web X"<br>
-                    Output: Clean CSV / Excel dataset
-                </div>
-            </div>
-        </div>
     </section>
 
-    <!-- Quick CTA Banner -->
-    <section class="relative z-10 py-16 bg-obsidian-850 border-t hairline-border">
-        <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Siap Menugaskan Pekerja Virtual Otonom Anda?
+    
+    <!-- Mengapa Memilih Telegram Section (Trust Builder) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-blue-200 mb-2">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Keamanan & Kemudahan Akses
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Mengapa Kami Memilih <span class="text-blue-600">Telegram</span> untuk Bisnis Anda?
             </h2>
-            <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
-                Tekan tombol di bawah untuk langsung mencoba 8 tugas pertama secara gratis di Telegram.
+            <p class="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Aman, instan, tanpa beban instalasi software berat, dan dapat diakses dari smartphone maupun laptop kerja Anda kapan saja.
             </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="px-6 py-3.5 text-xs font-mono font-bold text-obsidian-950 bg-emeraldAccent-400 hover:bg-emeraldAccent-500 rounded-lg transition-all btn-tactile shadow-lg shadow-emeraldAccent-500/20">
-                    <i data-lucide="zap" class="w-4 h-4 mr-2 inline"></i> Mulai Free Trial di Telegram
-                </a>
-                <a href="/pricing" class="px-6 py-3.5 text-xs font-mono font-semibold text-slate-300 bg-obsidian-900 hover:bg-obsidian-800 hairline-border rounded-lg transition-all btn-tactile">
-                    <i data-lucide="qr-code" class="w-4 h-4 mr-2 inline text-emeraldAccent-400"></i> Lihat Paket QRIS
-                </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-10 text-left">
+            
+            <!-- Card 1: Keamanan & Privasi -->
+            <div class="p-6 rounded-2xl bg-white hairline-border shadow-sm flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 shrink-0">
+                    <i data-lucide="shield" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Keamanan & Privasi Data Terjamin</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-2">Infrastruktur Telegram menerapkan enkripsi data ketat berstandar internasional. Seluruh data transaksi, draf kontrak hukum, dan rahasia operasional bisnis Anda terlindungi secara privat.</p>
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">🛡️ Enkripsi Data & Akses Terisolasi</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Akses Multi-Device -->
+            <div class="p-6 rounded-2xl bg-white hairline-border shadow-sm flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0">
+                    <i data-lucide="laptop" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Sinkronisasi Multi-Device Tanpa Putus</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-2">Kirim instruksi dari smartphone (iOS/Android) saat meeting di luar kantor, lalu langsung buka, salin, atau download dokumen hasil kerjanya di laptop (Mac/Windows/Web) secara realtime.</p>
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded border border-blue-200">📱 Sinkronisasi Realtime HP & Laptop</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Ekosistem File Lengkap -->
+            <div class="p-6 rounded-2xl bg-white hairline-border shadow-sm flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 shrink-0">
+                    <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Kirim & Terima File Utuh Tanpa Kompresi</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-2">Mendukung pertukaran dokumen resmi hingga ukuran besar tanpa pecah: spreadsheet Excel (.xlsx), dokumen Word (.docx), PDF laporan keuangan, gambar bukti, hingga file source code.</p>
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200">📁 Support Excel, PDF, Docx & Code</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Nol Instalasi & Ringan -->
+            <div class="p-6 rounded-2xl bg-white hairline-border shadow-sm flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600 shrink-0">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Nol Instalasi & Bebas Beban Perangkat</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-2">Anda tidak perlu menginstal software rumit yang memakan memori RAM laptop atau setup server sendiri. Cukup 1 klik di Telegram, Virtual Tech Worker 10 divisi langsung siap bekerja untuk Anda.</p>
+                    <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded border border-purple-200">⚡ 1-Klik Langsung Siap Kerja</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-5xl mx-auto bg-slate-900 text-white rounded-2xl p-6 sm:p-7 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shadow-xl text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm sm:text-base font-bold">Siap Meningkatkan Efisiensi Bisnis Anda? <span class="text-sky-400">Coba Gratis 8 Token Sekarang.</span></h4>
+                    <p class="text-xs text-slate-400 mt-0.5">Tanpa kartu kredit, tanpa registrasi rumit. Langsung rasakan kapabilitas 10 divisi kerja nyata di Telegram.</p>
+                </div>
+            </div>
+            <a href="https://t.me/Olo_SBT_bot" target="_blank" class="px-5 py-2.5 rounded-xl font-bold text-xs text-white bg-blue-600 hover:bg-blue-700 transition-all btn-tactile flex items-center gap-2 whitespace-nowrap shadow-md">
+                Buka Bot Telegram &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- 3-Step Execution Pipeline -->
+    <section class="relative z-10 py-16 bg-slate-100 border-t hairline-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-mono uppercase tracking-widest text-blue-600 font-bold">Alur Kerja Praktis</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+                    Cara Kerja dalam 3 Langkah Sederhana
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-600 mt-2">
+                    Mulai dalam 1 menit langsung dari bot Telegram tanpa perlu instalasi rumit.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
+                
+                <div class="p-6 rounded-2xl bg-white hairline-border shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 font-mono font-bold text-sm mb-4">
+                        01
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">Kirim Instruksi Tugas di Telegram</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Tulis instruksi pekerjaan bisnis Anda dengan bahasa natural sehari-hari atau lampirkan dokumen/gambar pendukung ke bot Telegram.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white hairline-border shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 font-mono font-bold text-sm mb-4">
+                        02
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">AI Mengorkestrasi & Eksekusi Tuntas</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Virtual Tech Worker membagi sub-tugas secara simultan, menjalankan kalkulasi presisi, audit logika, dan penataan dokumen.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white hairline-border shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 font-mono font-bold text-sm mb-4">
+                        03
+                    </div>
+                    <h3 class="text-base font-bold text-slate-900 mb-2">Terima Output Jadi & Terverifikasi</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Dapatkan hasil kerja final yang matang: rumus spreadsheet seimbang, draf kontrak PKS, kode teruji, atau dokumen strategi siap rilis.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Unified Technical Footer -->
-    <footer class="relative z-10 bg-obsidian-950 py-10 border-t hairline-border text-xs text-slate-500 font-mono">
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white border-t border-slate-800 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-left">
-                <div class="space-y-3">
-                    <span class="text-white font-bold tracking-tight text-sm block">AI TECH WORKER</span>
-                    <p class="text-[11px] text-slate-400 leading-relaxed font-sans">
-                        Platform pekerja teknis virtual mandiri untuk eksekusi tugas nyata, perbaikan server, dan otomatisasi bisnis.
-                    </p>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-mono font-bold text-sm">
+                        ⚡
+                    </div>
+                    <span class="font-extrabold text-sm tracking-tight">VIRTUAL TECH WORKER ASSISTANT</span>
                 </div>
-                <div>
-                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Navigasi</span>
-                    <ul class="space-y-2 text-[11px]">
-                        <li><a href="/" class="hover:text-emeraldAccent-400">Beranda</a></li>
-                        <li><a href="/skills" class="hover:text-emeraldAccent-400">Katalog Skill</a></li>
-                        <li><a href="/pricing" class="hover:text-emeraldAccent-400">Paket & QRIS</a></li>
-                        <li><a href="/case-studies" class="hover:text-emeraldAccent-400">Studi Kasus</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Bantuan & Panduan</span>
-                    <ul class="space-y-2 text-[11px]">
-                        <li><a href="/docs" class="hover:text-emeraldAccent-400">Panduan Bot Telegram</a></li>
-                        <li><a href="/about" class="hover:text-emeraldAccent-400">Keamanan & Sandbox</a></li>
-                        <li><a href="https://t.me/Olo_SBT_bot" target="_blank" class="hover:text-emeraldAccent-400">Live Telegram Bot</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Gateway Pembayaran</span>
-                    <p class="text-[11px] text-slate-400 leading-relaxed font-sans mb-2">
-                        Didukung oleh Dynamic QRIS dengan auto-settlement instan 24 jam.
-                    </p>
-                    <span class="text-[10px] text-emeraldAccent-400/80 bg-emeraldAccent-500/10 px-2 py-1 rounded border border-emeraldAccent-500/20 block text-center">
-                        BCA &bull; Mandiri &bull; GoPay &bull; Dana &bull; OVO
-                    </span>
-                </div>
-            </div>
-            <div class="pt-6 border-t hairline-border flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px]">
-                <p>&copy; 2026 AI Tech Worker Platform. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="/about" class="hover:text-slate-300">Privacy Policy</a>
-                    <a href="/docs" class="hover:text-slate-300">Terms of Service</a>
-                    <a href="https://t.me/Olo_SBT_bot" target="_blank" class="hover:text-emeraldAccent-400">Telegram Bot</a>
+                <div class="text-xs text-slate-400 font-mono text-center md:text-right">
+                    &copy; 2026 Virtual Tech Worker Platform. All rights reserved. &middot; Powered by Dynamic QRIS BuatQris
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Dynamic Terminal Task Switcher Script -->
+    <!-- QRIS Modal Checkout -->
+    <div id="qrisModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity" style="display: none;">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-slate-200 text-left">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center space-x-2.5 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600">
+                    <i data-lucide="qr-code" class="w-4 h-4"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-tight" id="modalPlanName">Tagihan QRIS Dinamis</h3>
+                    <p class="text-[11px] font-mono text-slate-500">BuatQris Open API &middot; Auto-Settlement</p>
+                </div>
+            </div>
+
+            <div id="qrisLoading" class="py-12 flex flex-col items-center justify-center">
+                <div class="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-xs font-mono text-slate-500 mt-4">Generating unique QRIS payload...</p>
+            </div>
+
+            <div id="qrisContent" class="hidden">
+                <div class="bg-white p-3 rounded-xl border border-slate-200 inline-block w-full text-center">
+                    <img id="qrisImg" src="" alt="Dynamic QRIS" class="w-52 h-52 object-contain mx-auto">
+                    <div class="mt-2 flex items-center justify-center gap-2 text-[10px] text-slate-500 font-semibold uppercase">
+                        <span>BCA</span> &bull; <span>Mandiri</span> &bull; <span>GoPay</span> &bull; <span>Dana</span> &bull; <span>OVO</span> &bull; <span>ShopeePay</span>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs font-mono">
+                    <div class="flex justify-between items-center text-slate-600">
+                        <span>Nominal Paket:</span>
+                        <span id="modalBaseAmount" class="font-bold text-slate-900">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between items-center text-slate-600">
+                        <span>Kode Unik Verifikasi:</span>
+                        <span id="modalUniqueCode" class="text-blue-600 font-bold">+Rp 0</span>
+                    </div>
+                    <div class="pt-2 border-t border-slate-200 flex justify-between items-center text-sm font-bold text-slate-900">
+                        <span>Total Pembayaran:</span>
+                        <span id="modalTotalAmount" class="text-emerald-600">Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="mt-3 p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-800 leading-relaxed">
+                    ⚠️ <strong>PENTING:</strong> Transfer <strong>PERSIS sesuai nominal total</strong> (termasuk kode unik) agar saldo token otomatis terisi instan dalam hitungan detik.
+                </div>
+
+                <div class="mt-4 flex gap-2">
+                    <button onclick="checkPaymentStatus()" id="btnCheckStatus" class="w-full py-2.5 px-4 rounded-xl font-mono text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 transition-all btn-tactile flex items-center justify-center gap-2">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Cek Status Pembayaran
+                    </button>
+                </div>
+            </div>
+
+            <div id="qrisSuccess" class="hidden py-8 text-center space-y-3">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+                    <i data-lucide="check" class="w-6 h-6"></i>
+                </div>
+                <h4 class="text-base font-bold text-slate-900">Pembayaran Berhasil!</h4>
+                <p class="text-xs text-slate-500">Kuota token telah berhasil ditambahkan ke akun Telegram Anda.</p>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center px-4 py-2 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-all">
+                    Buka Bot Telegram &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script>
         lucide.createIcons();
 
-        const terminalTasks = [
+        // Terminal Showcase Scenarios
+        const terminalScenarios = [
             {
-                tabLabel: "#1 FastAPI Fix",
-                user: "andi_saputra",
-                prompt: '"Tolong perbaiki endpoint /api/auth yang kena CORS error dan 500 session lock di FastAPI."',
-                actionHeadline: "Mendiagnosis service FastAPI di port 8082...",
-                steps: [
-                    "> Patch middleware CORS di main.py (origins whitelist: ['*'])",
-                    "> Tambah thread-pool timeout=30 pada async database session",
-                    "> Automated test request: HTTP 200 OK (latency: 14ms)"
-                ],
-                successText: "Status 200 OK. CORS & Database lock tuntas dalam 18 detik."
+                task: "Hitung PPN 11%, Fulfillment 5%, & Margin Excel",
+                user: "Sedny @ Telegram",
+                role: "FINANCE & TAX DISPATCHER",
+                code: `// Memeriksa selisih inkonsistensi kolom rumus:
+DPP: =ROUND(Harga_Jual / 1.11, 0) -> Rp 997.838
+PPN 11%: =Harga_Jual - DPP       -> Rp 109.762 (Seimbang)
+Fulfillment 5%: =DPP - (DPP/1.05) -> Rp 47.516 (Terkoreksi)
+Entertaint 2%: =Sisa - (Sisa/1.02) -> Rp 18.634 (Terkoreksi)
+✓ Status: Neraca selisih 0 & formula terverifikasi siap pakai.`
             },
             {
-                tabLabel: "#2 Nginx & Docker",
-                user: "tech_lead_startup",
-                prompt: '"Setup reverse proxy Nginx ke container Docker port 3000 dan pasang SSL HTTPS domain api.client.id."',
-                actionHeadline: "Memeriksa Docker socket & Nginx configuration tree...",
-                steps: [
-                    "> Menulis Nginx vhost /etc/nginx/sites-available/api.client.id",
-                    "> Symlink ke sites-enabled dan uji syntax: nginx -t -> SUCCESS",
-                    "> Eksekusi certbot --nginx untuk penerbitan SSL Let's Encrypt"
-                ],
-                successText: "Domain api.client.id aktif dengan HTTPS SSL A+ Grade (28 detik)."
+                task: "Draf Perjanjian Kerja Sama (PKS) B2B Vendor",
+                user: "Manager @ Telegram",
+                role: "LEGAL & COMPLIANCE DISPATCHER",
+                code: `// Menyusun klausul PKS B2B Layanan Cloud:
+1. Pasal 4 Hak & Kewajiban Penyedia Jasa (SLA 99.9%)
+2. Pasal 7 Kerahasiaan Informasi & Kepatuhan UU PDP 2022
+3. Pasal 11 Klausul Ganti Rugi (Indemnity Cap) & Force Majeure
+✓ Status: Dokumen PKS selesai disusun & siap ditandatangani.`
             },
             {
-                tabLabel: "#3 Stealth Scraping",
-                user: "growth_analyst",
-                prompt: '"Ekstrak 1.500 data harga produk dari e-commerce target yang diproteksi Cloudflare Turnstile."',
-                actionHeadline: "Mengaktifkan headless stealth browser dengan fingerprint spoofing...",
-                steps: [
-                    "> Bypass Cloudflare Turnstile token validation secara otonom",
-                    "> Scraping 1.500 baris item katalog (harga, rating, stok, vendor)",
-                    "> Ekspor dan formatting data ke spreadsheet products_dataset.xlsx"
-                ],
-                successText: "Dataset 1.500 baris terekstrak bersih (42 detik). File siap di Telegram."
+                task: "Buat Endpoint API FastAPI + Database Schema",
+                user: "Tech Lead @ Telegram",
+                role: "SOFTWARE ENGINEERING DISPATCHER",
+                code: `// Mengembangkan RESTful API CRUD + Migrasi DB:
+@app.post("/api/v1/orders", response_model=OrderResponse)
+async def create_order(req: OrderCreate, db: AsyncSession):
+    order = await OrderService.process_and_save(db, req)
+    return {"status": "created", "order_id": order.id}
+✓ Status: 12 unit test passed (100% test coverage).`
             },
             {
-                tabLabel: "#4 SQL Tuning",
-                user: "backend_dev",
-                prompt: '"Query reporting /dashboard/stats lambat banget butuh 15 detik, tolong optimasi query-nya."',
-                actionHeadline: "Menjalankan EXPLAIN ANALYZE pada query SELECT JOIN tabel orders...",
-                steps: [
-                    "> Deteksi full table scan pada kolom created_at dan status_id",
-                    "> Menambahkan compound B-Tree index: idx_orders_created_status",
-                    "> Uji benchmark query: waktu eksekusi turun dari 15.2s menjadi 24ms"
-                ],
-                successText: "Query 600x lebih cepat (latency 24ms). Selesai dalam 12 detik."
+                task: "Riset Keyword & Strategi Silo Content SEO",
+                user: "Marketing @ Telegram",
+                role: "GROWTH & SEO DISPATCHER",
+                code: `// Menganalisis Search Intent & Arsitektur Konten:
+• Keyword Utama: "software hris indonesia" (Vol: 4.8k, KD: 24)
+• LSI Keywords: "aplikasi absensi gps", "payroll pph 21 ter"
+• Content Silo: 1 Pilar Page + 5 Sub-Cluster Topics
+✓ Status: Kalender konten 30 hari siap eksekusi.`
             },
             {
-                tabLabel: "#5 Sheets Cronjob",
-                user: "finance_ops",
-                prompt: '"Buatkan cronjob 24 jam untuk rekap transaksi Telegram ke Google Sheets setiap jam 00.00."',
-                actionHeadline: "Membangun script scheduler dan integrasi Google Sheets API...",
-                steps: [
-                    "> Menulis script auto-sync /home/ubuntu/scripts/sheets_sync.py",
-                    "> Mendaftarkan background cronjob: 0 0 * * * python3 /scripts/sheets_sync.py",
-                    "> Uji coba dry-run: 450 data transaksi terisi otomatis ke Spreadsheet"
-                ],
-                successText: "Cronjob aktif berjalan 24/7 di VPS. Log verifikasi sukses (22 detik)."
+                task: "Multi-Agent Orchestration 10 Divisi Paralel",
+                user: "Owner @ Telegram",
+                role: "CHIEF OPERATING ORCHESTRATOR",
+                code: `// Mengorkestrasi peluncuran produk baru:
+[Agent 1 - Product]: Menyusun spesifikasi fitur & PRD
+[Agent 2 - Finance]: Kalkulasi margin & simulasi unit price
+[Agent 3 - Legal]: Menyiapkan draf NDA & MoU Kemitraan
+[Agent 4 - Marketing]: Menulis copy landing page & email
+✓ Status: 4 agen selesai simultan dalam 28 detik.`
             }
         ];
 
         let currentTaskIdx = 0;
-        let cycleTimer = null;
-        let progressInterval = null;
-        const CYCLE_DURATION = 7000; // 7 seconds per task
-        let progressStart = Date.now();
+        let progressTimer = null;
+        let progressSec = 0;
 
-        function renderTerminalTask(idx) {
-            const task = terminalTasks[idx];
-            const body = document.getElementById("terminalBody");
-            
-            // Fade out slightly
-            body.style.opacity = "0.3";
+        function renderTerminal(idx) {
+            const sc = terminalScenarios[idx];
+            const body = document.getElementById('terminalBody');
+            body.innerHTML = `
+                <div>
+                    <div class="text-slate-500 text-[11px] mb-1">Incoming Instruction from Telegram:</div>
+                    <div class="text-blue-700 font-bold text-xs bg-blue-50 p-2 rounded border border-blue-200">"${sc.task}"</div>
+                </div>
+                <div class="text-slate-700 text-xs bg-white p-3 rounded-lg border border-slate-200">
+                    <pre class="font-mono whitespace-pre-wrap leading-relaxed text-[11px] text-slate-800">${sc.code}</pre>
+                </div>
+                <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-200">
+                    <span class="text-slate-500">Role: <strong class="text-slate-900 font-bold">${sc.role}</strong></span>
+                    <span class="text-emerald-700 font-bold">✓ DELIVERED TO USER</span>
+                </div>
+            `;
 
-            setTimeout(() => {
-                let stepsHtml = task.steps.map(s => `<span class="text-slate-500">&gt;</span> ${s.replace(/^>\s*/, "")}`).join("<br>");
-
-                body.innerHTML = `
-                    <div class="space-y-3.5">
-                        <div class="flex items-start gap-2">
-                            <span class="text-emeraldAccent-400 font-bold">[@${task.user}]:</span>
-                            <span class="text-slate-200">${task.prompt}</span>
-                        </div>
-                        <div class="p-3.5 rounded-lg bg-obsidian-950 hairline-border space-y-2 border-l-2 border-l-emeraldAccent-500">
-                            <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
-                                <i data-lucide="play" class="w-3 h-3 text-emeraldAccent-400"></i>
-                                <span>${task.actionHeadline}</span>
-                            </div>
-                            <p class="text-[11px] text-slate-300 leading-relaxed font-mono">
-                                ${stepsHtml}
-                            </p>
-                            <div class="text-[11px] text-emeraldAccent-400 font-semibold flex items-center gap-1.5 pt-1">
-                                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                                <span>${task.successText}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                // Update active tab buttons
-                document.querySelectorAll(".term-tab").forEach(tab => {
-                    if (parseInt(tab.getAttribute("data-index")) === idx) {
-                        tab.className = "term-tab active px-2.5 py-1 rounded bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40 whitespace-nowrap transition-all";
-                    } else {
-                        tab.className = "term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all";
-                    }
-                });
-
-                lucide.createIcons();
-                body.style.opacity = "1";
-            }, 150);
+            document.querySelectorAll('.term-tab').forEach((tab, i) => {
+                if (i === idx) {
+                    tab.classList.add('bg-blue-600', 'text-white', 'font-bold');
+                    tab.classList.remove('bg-slate-700', 'text-slate-300');
+                } else {
+                    tab.classList.remove('bg-blue-600', 'text-white', 'font-bold');
+                    tab.classList.add('bg-slate-700', 'text-slate-300');
+                }
+            });
         }
 
         function switchTerminalTask(idx) {
             currentTaskIdx = idx;
-            renderTerminalTask(idx);
+            renderTerminal(idx);
             resetProgress();
         }
 
         function resetProgress() {
-            progressStart = Date.now();
+            progressSec = 0;
+            document.getElementById('termProgressBar').style.width = '0%';
         }
 
-        function startAutoCycle() {
-            renderTerminalTask(currentTaskIdx);
-            resetProgress();
+        function startAutoShowcase() {
+            renderTerminal(0);
+            setInterval(() => {
+                progressSec += 0.2;
+                const pct = (progressSec / 6) * 100;
+                document.getElementById('termProgressBar').style.width = Math.min(pct, 100) + '%';
+                const remaining = Math.max(0, Math.ceil(6 - progressSec));
+                document.getElementById('termTimerText').innerText = `Next task in ${remaining}s`;
 
-            if (progressInterval) clearInterval(progressInterval);
-            progressInterval = setInterval(() => {
-                const elapsed = Date.now() - progressStart;
-                const percent = Math.min((elapsed / CYCLE_DURATION) * 100, 100);
-                const bar = document.getElementById("termProgressBar");
-                const timerText = document.getElementById("termTimerText");
-                
-                if (bar) bar.style.width = percent + "%";
-                if (timerText) {
-                    const remainingSec = Math.max(0, Math.ceil((CYCLE_DURATION - elapsed) / 1000));
-                    timerText.innerText = `Next task in ${remainingSec}s`;
-                }
-
-                if (elapsed >= CYCLE_DURATION) {
-                    currentTaskIdx = (currentTaskIdx + 1) % terminalTasks.length;
-                    renderTerminalTask(currentTaskIdx);
+                if (progressSec >= 6) {
+                    currentTaskIdx = (currentTaskIdx + 1) % terminalScenarios.length;
+                    renderTerminal(currentTaskIdx);
                     resetProgress();
                 }
-            }, 100);
+            }, 200);
         }
 
-        // Initialize on load
-        window.addEventListener("DOMContentLoaded", () => {
-            startAutoCycle();
-        });
+        startAutoShowcase();
+
+        let currentTrxId = null;
+        let checkPollInterval = null;
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            if (drawer) drawer.classList.toggle('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('qrisModal').style.display = 'none';
+            if (checkPollInterval) clearInterval(checkPollInterval);
+        }
+
+        async function requestQRIS(tier, planName, price) {
+            document.getElementById('qrisModal').style.display = 'flex';
+            document.getElementById('qrisLoading').classList.remove('hidden');
+            document.getElementById('qrisContent').classList.add('hidden');
+            document.getElementById('qrisSuccess').classList.add('hidden');
+            document.getElementById('modalPlanName').innerText = planName;
+
+            try {
+                const res = await fetch('/api/payment/create-qris', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        tier: tier,
+                        telegram_id: 'WEB_GUEST_' + Math.floor(Math.random() * 1000000)
+                    })
+                });
+                const data = await res.json();
+                
+                if (data.status === 'success') {
+                    currentTrxId = data.transaction_id;
+                    document.getElementById('qrisImg').src = data.qr_url;
+                    document.getElementById('modalBaseAmount').innerText = 'Rp ' + Number(data.amount).toLocaleString('id-ID');
+                    document.getElementById('modalUniqueCode').innerText = '+Rp ' + Number(data.total_amount - data.amount).toLocaleString('id-ID');
+                    document.getElementById('modalTotalAmount').innerText = 'Rp ' + Number(data.total_amount).toLocaleString('id-ID');
+                    
+                    document.getElementById('qrisLoading').classList.add('hidden');
+                    document.getElementById('qrisContent').classList.remove('hidden');
+                    
+                    // Poll status every 5 seconds
+                    if (checkPollInterval) clearInterval(checkPollInterval);
+                    checkPollInterval = setInterval(checkPaymentStatus, 5000);
+                } else {
+                    alert(data.detail || 'Gagal memproses QRIS');
+                    closeModal();
+                }
+            } catch (err) {
+                alert('Terjadi kesalahan jaringan');
+                closeModal();
+            }
+        }
+
+        async function checkPaymentStatus() {
+            if (!currentTrxId) return;
+            try {
+                const res = await fetch('/api/payment/check/' + currentTrxId);
+                const data = await res.json();
+                if (data.status === 'success') {
+                    clearInterval(checkPollInterval);
+                    document.getElementById('qrisContent').classList.add('hidden');
+                    document.getElementById('qrisSuccess').classList.remove('hidden');
+                }
+            } catch (e) {}
+        }
     </script>
 </body>
 </html>
