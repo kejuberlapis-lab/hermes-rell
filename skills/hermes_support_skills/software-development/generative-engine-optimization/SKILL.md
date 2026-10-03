@@ -43,6 +43,15 @@ A class-level guide for authoring, structuring, and auditing web content to maxi
    - Ensure all body text, specification tables, and FAQ cards are immediately present in the DOM with default `opacity: 1`.
    - Never gate textual content behind fragile JavaScript scroll animations (like unobserved `.slide-up` classes) that cause text to render invisible to headless web scrapers and search bots.
 
+6. **The `llms.txt` & AI Crawl Manifest Standard:**
+   - Host a clean, structured Markdown manifest at `/llms.txt` outlining brand definitions, core capabilities, subscription tiers, and canonical URLs for fast ingestion by LLM crawlers (ChatGPT, Perplexity, Claude, Gemini).
+
+7. **IndexNow & Instant Multi-Engine Notification:**
+   - Deploy a 32-character key at `/{key}.txt` and post an IndexNow JSON payload (`host`, `key`, `keyLocation`, `urlList`) to `https://api.indexnow.org/indexnow` to bypass crawl lag and trigger near-instant discovery on Bing, Yandex, and partner networks.
+
+8. **Rich JSON-LD Multi-Type Schema (`@graph`):**
+   - Inject structured JSON-LD data combining `SoftwareApplication` (pricing, ratings), `Organization` (brand identity, official bot links), and `FAQPage` (featured snippets).
+
 ## Pitfalls
 
 - **Vague Fluff Copy:** Using purely emotional marketing adjectives without concrete numbers prevents AI models from identifying the page as an authoritative technical reference.
