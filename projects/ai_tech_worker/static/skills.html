@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Skill & Kapabilitas Teknis | AI Tech Worker</title>
+    <meta name="description" content="Daftar lengkap kemampuan dan skill teknis yang dapat dieksekusi secara otonom oleh AI Tech Worker via Telegram.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        obsidian: {
+                            950: '#06080F',
+                            900: '#0B0F19',
+                            850: '#101626',
+                            800: '#161F36',
+                            700: '#233052',
+                        },
+                        emeraldAccent: {
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06080F; color: #E2E8F0; }
+        .dot-grid { background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px); background-size: 24px 24px; }
+        .hairline-border { border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glow-subtle { box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.15); }
+        .btn-tactile:active { transform: translateY(1px) scale(0.99); }
+    </style>
+</head>
+<body class="bg-obsidian-950 text-slate-200 antialiased selection:bg-emeraldAccent-500 selection:text-obsidian-950 relative">
+
+    <div class="fixed inset-0 dot-grid pointer-events-none z-0 opacity-80"></div>
+
+    <!-- Precision Segmented Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-obsidian-950/90 backdrop-blur-md border-b hairline-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Left: Branding -->
+            <a href="/" class="flex items-center space-x-3 shrink-0 group">
+                <div class="w-8 h-8 rounded-lg bg-emeraldAccent-500/10 border border-emeraldAccent-500/30 flex items-center justify-center text-emeraldAccent-400 font-mono font-bold text-sm group-hover:border-emeraldAccent-400 transition-colors">
+                    λ
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span class="font-bold tracking-tight text-white text-sm sm:text-base">AI TECH WORKER</span>
+                    <span class="hidden sm:inline-block text-[9px] font-mono font-semibold uppercase tracking-widest text-emeraldAccent-400 bg-emeraldAccent-500/10 px-1.5 py-0.5 rounded border border-emeraldAccent-500/20">AUTONOMOUS</span>
+                </div>
+            </a>
+
+            <!-- Center: Segmented Navigation Dock (Desktop / Tablet-L) -->
+            <nav class="hidden lg:flex items-center p-1 rounded-full bg-obsidian-900/90 hairline-border text-xs font-medium text-slate-400 shadow-inner">
+                <div class="flex items-center space-x-0.5">
+                    <a href="/" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Beranda</a>
+                <a href="/skills" class="bg-white/[0.08] text-emeraldAccent-400 font-semibold border border-emeraldAccent-500/30 px-3 py-1.5 rounded-full transition-all">Katalog Skill</a>
+                <a href="/pricing" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Pricing</a>
+                <a href="/docs" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Tutorial</a>
+                
+                </div>
+
+                <!-- Precision Divider -->
+                <div class="w-[1px] h-4 bg-white/10 mx-1.5"></div>
+
+                <!-- Solutions Group -->
+                <div class="flex items-center space-x-0.5">
+                    <a href="/enterprise" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-500"></i> <span>Enterprise</span></a>
+                <a href="/umkm" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="store" class="w-3.5 h-3.5 text-slate-500"></i> <span>UMKM</span></a>
+                <a href="/personal" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5 text-slate-500"></i> <span>Personal</span></a>
+                
+                </div>
+
+                <!-- Precision Divider -->
+                <div class="w-[1px] h-4 bg-white/10 mx-1.5"></div>
+
+                <!-- Help Group -->
+                <a href="/contact" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3.5 h-3.5 text-slate-500"></i> <span>Contact & Help</span></a>
+            </nav>
+
+            <!-- Right: Actions -->
+            <div class="flex items-center space-x-2.5 shrink-0">
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center px-3.5 py-1.5 text-xs font-semibold font-mono text-obsidian-950 bg-emeraldAccent-400 hover:bg-emeraldAccent-500 rounded-full transition-all btn-tactile shadow-sm shadow-emeraldAccent-500/20">
+                    <i data-lucide="terminal" class="w-3.5 h-3.5 mr-1.5"></i>
+                    <span class="hidden sm:inline">Buka </span><span>Telegram</span>
+                </a>
+
+                <!-- Mobile Hamburger Toggle -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-obsidian-900 hairline-border text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" id="menuIcon" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Scrollable Segmented Dock (Mobile & Tablet) -->
+        <div class="lg:hidden border-t hairline-border bg-obsidian-950 px-3 py-2 overflow-x-auto flex items-center gap-1.5 text-xs font-medium whitespace-nowrap">
+            <a href="/" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="home" class="w-3 h-3 text-slate-500"></i> Beranda</a>
+            <a href="/skills" class="px-3 py-1.5 rounded-full bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40 font-semibold flex items-center gap-1.5"><i data-lucide="layers" class="w-3 h-3"></i> Katalog Skill</a>
+            <a href="/pricing" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="tag" class="w-3 h-3 text-slate-500"></i> Pricing</a>
+            <a href="/docs" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="book-open" class="w-3 h-3 text-slate-500"></i> Tutorial</a>
+            <a href="/enterprise" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="building-2" class="w-3 h-3 text-slate-500"></i> Enterprise</a>
+            <a href="/umkm" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="store" class="w-3 h-3 text-slate-500"></i> UMKM</a>
+            <a href="/personal" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="user" class="w-3 h-3 text-slate-500"></i> Personal</a>
+            <a href="/contact" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3 h-3 text-slate-500"></i> Contact & Help</a>
+            
+        </div>
+
+        <!-- Mobile Dropdown Drawer -->
+        <div id="mobileDrawer" class="hidden lg:hidden border-t hairline-border bg-obsidian-950 px-4 py-3 space-y-1 text-xs font-medium">
+            <a href="/" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="home" class="w-4 h-4 text-slate-500"></i> Beranda</a>
+        <a href="/skills" class="block px-3 py-2 rounded-lg bg-emeraldAccent-500/10 text-emeraldAccent-400 font-semibold flex items-center gap-2.5"><i data-lucide="layers" class="w-4 h-4"></i> Katalog Skill</a>
+        <a href="/pricing" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="tag" class="w-4 h-4 text-slate-500"></i> Pricing</a>
+        <a href="/docs" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="book-open" class="w-4 h-4 text-slate-500"></i> Tutorial</a>
+        <a href="/enterprise" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="building-2" class="w-4 h-4 text-slate-500"></i> Enterprise</a>
+        <a href="/umkm" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="store" class="w-4 h-4 text-slate-500"></i> UMKM</a>
+        <a href="/personal" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="user" class="w-4 h-4 text-slate-500"></i> Personal</a>
+        <a href="/contact" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="life-buoy" class="w-4 h-4 text-slate-500"></i> Contact & Help</a>
+        
+        </div>
+    </header>
+
+    <!-- Header Title Section -->
+    <section class="relative z-10 pt-12 pb-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+        <div class="max-w-3xl">
+            <span class="text-xs font-mono uppercase tracking-widest text-emeraldAccent-400">Capabilities Catalog</span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white mt-1 tracking-tight">
+                Katalog Skill & Kapabilitas Eksekusi
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+                Jelajahi berbagai pekerjaan teknis yang dapat dituntaskan langsung oleh AI Tech Worker secara mandiri tanpa perantara manusia.
+            </p>
+        </div>
+
+        <!-- Search and Filter Controls -->
+        <div class="mt-8 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
+            <div class="relative flex-1 max-w-md">
+                <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                <input type="text" id="skillSearch" placeholder="Cari skill (e.g. Nginx, FastAPI, Scraping, Docker)..." onkeyup="filterSkills()" class="w-full pl-10 pr-4 py-2 bg-obsidian-900 hairline-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emeraldAccent-400 font-mono">
+            </div>
+
+            <!-- Category Pills -->
+            <div class="flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <button onclick="setCategory('all')" class="cat-btn active px-3 py-1.5 rounded bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40" data-cat="all">Semua</button>
+                <button onclick="setCategory('dev')" class="cat-btn px-3 py-1.5 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white" data-cat="dev">Fullstack</button>
+                <button onclick="setCategory('devops')" class="cat-btn px-3 py-1.5 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white" data-cat="devops">DevOps/VPS</button>
+                <button onclick="setCategory('scraping')" class="cat-btn px-3 py-1.5 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white" data-cat="scraping">Scraping</button>
+                <button onclick="setCategory('auto')" class="cat-btn px-3 py-1.5 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white" data-cat="auto">Otomasi</button>
+                <button onclick="setCategory('db')" class="cat-btn px-3 py-1.5 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white" data-cat="db">Database</button>
+                <button onclick="setCategory('sec')" class="cat-btn px-3 py-1.5 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white" data-cat="sec">Security</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Grid -->
+    <section class="relative z-10 py-8 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div id="skillsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            
+            <!-- Skill 1: FastAPI & Python Backend -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="dev" data-title="FastAPI Python Backend API Debugging">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Fullstack Dev</span>
+                        <span class="text-[10px] font-mono text-slate-500">~18s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">FastAPI & Python Backend Fix</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Deteksi dan perbaikan error 500, async database connection leak, CORS policy error, dan endpoint serializer issue.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Endpoint /login error 500 sqlite lock"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: Thread-pool patch + 200 OK test</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 2: Nginx Reverse Proxy & SSL -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="devops" data-title="Nginx Reverse Proxy SSL Certbot Domain Configuration">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">DevOps / VPS</span>
+                        <span class="text-[10px] font-mono text-slate-500">~30s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Nginx & SSL Certbot Setup</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Pembuatan virtual host Nginx, reverse proxy ke internal port (Node/Python/Go), dan otomatisasi SSL gratis Certbot.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Arahkan api.domain.com ke port 8080"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: Vhost ready + HTTPS SSL valid</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 3: Stealth Anti-Bot Scraping -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="scraping" data-title="Stealth Browser Anti-Bot Cloudflare Scraping Data">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">Scraping</span>
+                        <span class="text-[10px] font-mono text-slate-500">~45s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Stealth Anti-Bot Web Scraping</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Ekstraksi data tabel/katalog dari website yang diproteksi Cloudflare Turnstile, DataDome, atau rate-limit agresif.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Scrape 1000 produk dari website X"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: Clean CSV & Excel spreadsheet</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 4: Systemd Service & Daemon Manager -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="devops" data-title="Systemd Service Background Daemon Uvicorn PM2 Linux">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">DevOps / VPS</span>
+                        <span class="text-[10px] font-mono text-slate-500">~20s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Linux Systemd Daemon Manager</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Membuat file service `.service` untuk menjalankan aplikasi Node/Python 24/7 dengan auto-restart saat crash/reboot.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Jalankan script worker ini 24 jam"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: Service active (running) + enabled</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 5: Google Sheets & Workspace Sync -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="auto" data-title="Google Sheets Sync Spreadsheet Automation Cronjob">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Otomasi</span>
+                        <span class="text-[10px] font-mono text-slate-500">~25s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Google Sheets Auto-Sync</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Otomatisasi pengisian data, pemfilteran baris per regional, kalkulasi formula otomatis, dan sinkronisasi berkala.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Rekap data transaksi harian ke Sheet"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: 100+ baris updated + summary</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 6: Database Optimization & Migration -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="db" data-title="Database SQL PostgreSQL MySQL SQLite Indexing Query">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Database</span>
+                        <span class="text-[10px] font-mono text-slate-500">~35s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">SQL Tuning & Migration</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Optimasi query lambat, penambahan indexing, migrasi skema tabel, dan backup/restore database terenkripsi.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Query laporan ini butuh 12 detik"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: B-Tree index + latency 28ms</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 7: Security Audit & Secret Isolation -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="sec" data-title="Security Audit Hardening Secret API Key Env UFW Firewall">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">Security</span>
+                        <span class="text-[10px] font-mono text-slate-500">~22s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Security Hardening & Secret Guard</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Isolasi kredensial `.env`, setup UFW firewall whitelist IP, proteksi rate-limit, dan audit celah inject/leak.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Kunci akses port SSH & RDP hanya IP saya"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: UFW rule updated + zero leak</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 8: Multi-File Code Refactor -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="dev" data-title="Multi-File Code Refactor Clean Architecture TypeScript Python">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">Fullstack Dev</span>
+                        <span class="text-[10px] font-mono text-slate-500">~40s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Multi-File Code Refactor</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Restrukturisasi arsitektur kode spaghetti menjadi modular, type-safe, dan memenuhi kaidah Clean Architecture.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Pecah file main.py 2000 baris ini"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: 6 clean modules + zero import bug</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+            <!-- Skill 9: Telegram Bot Webhook & Dispatcher -->
+            <div class="skill-card p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all flex flex-col justify-between" data-category="auto" data-title="Telegram Bot Webhook Dispatcher Python Node">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Otomasi</span>
+                        <span class="text-[10px] font-mono text-slate-500">~28s Latency</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">Telegram Bot Dispatcher</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Membangun bot Telegram custom untuk notifikasi server down, pembayaran QRIS masuk, atau broadcast grup otomatis.
+                    </p>
+                    <div class="p-3 rounded bg-obsidian-950 hairline-border space-y-1 text-[11px] font-mono text-slate-300 mb-6">
+                        <div class="text-slate-500">&gt; Input: "Buatkan bot notif jika CPU VPS > 90%"</div>
+                        <div class="text-emeraldAccent-400">&gt; Output: Webhook alert bot live & running</div>
+                    </div>
+                </div>
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="w-full py-2 bg-obsidian-800 hover:bg-emeraldAccent-500 hover:text-obsidian-950 text-slate-300 text-xs font-mono font-semibold rounded hairline-border transition-all btn-tactile text-center">
+                    Coba Skill Ini di Telegram
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Unified Technical Footer -->
+    <footer class="relative z-10 bg-obsidian-950 py-10 border-t hairline-border text-xs text-slate-500 font-mono">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-left">
+                <div class="space-y-3">
+                    <span class="text-white font-bold tracking-tight text-sm block">AI TECH WORKER</span>
+                    <p class="text-[11px] text-slate-400 leading-relaxed font-sans">
+                        Platform pekerja teknis virtual mandiri untuk eksekusi tugas nyata, perbaikan server, dan otomatisasi bisnis.
+                    </p>
+                </div>
+                <div>
+                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Navigasi</span>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="/" class="hover:text-emeraldAccent-400">Beranda</a></li>
+                        <li><a href="/skills" class="hover:text-emeraldAccent-400">Katalog Skill</a></li>
+                        <li><a href="/pricing" class="hover:text-emeraldAccent-400">Paket & QRIS</a></li>
+                        <li><a href="/case-studies" class="hover:text-emeraldAccent-400">Studi Kasus</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Bantuan & Panduan</span>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="/docs" class="hover:text-emeraldAccent-400">Panduan Bot Telegram</a></li>
+                        <li><a href="/about" class="hover:text-emeraldAccent-400">Keamanan & Sandbox</a></li>
+                        <li><a href="https://t.me/Olo_SBT_bot" target="_blank" class="hover:text-emeraldAccent-400">Live Telegram Bot</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Gateway Pembayaran</span>
+                    <p class="text-[11px] text-slate-400 leading-relaxed font-sans mb-2">
+                        Didukung oleh Dynamic QRIS dengan auto-settlement instan 24 jam.
+                    </p>
+                    <span class="text-[10px] text-emeraldAccent-400/80 bg-emeraldAccent-500/10 px-2 py-1 rounded border border-emeraldAccent-500/20 block text-center">
+                        BCA &bull; Mandiri &bull; GoPay &bull; Dana &bull; OVO
+                    </span>
+                </div>
+            </div>
+            <div class="pt-6 border-t hairline-border flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px]">
+                <p>&copy; 2026 AI Tech Worker Platform. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="/about" class="hover:text-slate-300">Privacy Policy</a>
+                    <a href="/docs" class="hover:text-slate-300">Terms of Service</a>
+                    <a href="https://t.me/Olo_SBT_bot" target="_blank" class="hover:text-emeraldAccent-400">Telegram Bot</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let currentCat = 'all';
+
+        function setCategory(cat) {
+            currentCat = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = 'cat-btn active px-3 py-1.5 rounded bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40';
+                } else {
+                    btn.className = 'cat-btn px-3 py-1.5 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white';
+                }
+            });
+            filterSkills();
+        }
+
+        function filterSkills() {
+            const query = document.getElementById('skillSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.skill-card');
+
+            cards.forEach(card => {
+                const cat = card.getAttribute('data-category');
+                const title = card.getAttribute('data-title').toLowerCase();
+                const text = card.innerText.toLowerCase();
+
+                const matchesCat = (currentCat === 'all' || cat === currentCat);
+                const matchesQuery = (title.includes(query) || text.includes(query));
+
+                if (matchesCat && matchesQuery) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

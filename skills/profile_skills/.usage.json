@@ -997,14 +997,14 @@
     "created_by": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-10-02T14:27:03.907478+00:00",
+    "last_viewed_at": "2026-10-02T14:27:03.901392+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "google-workspace": {
     "archived_at": null,
@@ -1302,14 +1302,14 @@
     "first_seen_at": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-10-02T14:03:49.580089+00:00",
-    "last_viewed_at": "2026-10-02T14:03:49.575043+00:00",
+    "last_used_at": "2026-10-02T15:18:15.240298+00:00",
+    "last_viewed_at": "2026-10-02T15:18:15.234472+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 1,
-    "view_count": 1
+    "use_count": 6,
+    "view_count": 6
   },
   "nano-pdf": {
     "archived_at": null,
@@ -1575,16 +1575,16 @@
     "created_at": "2026-09-28T04:05:47.670485+00:00",
     "created_by": "agent",
     "first_seen_at": null,
-    "last_patched_at": "2026-10-01T05:14:33.667777+00:00",
-    "last_reused_patch_generation": 11,
-    "last_used_at": "2026-10-01T07:10:03.540230+00:00",
-    "last_viewed_at": "2026-10-01T07:10:03.534906+00:00",
-    "patch_count": 11,
-    "patch_generation": 11,
+    "last_patched_at": "2026-10-02T14:53:09.537900+00:00",
+    "last_reused_patch_generation": 13,
+    "last_used_at": "2026-10-02T15:18:19.946686+00:00",
+    "last_viewed_at": "2026-10-02T15:18:19.935976+00:00",
+    "patch_count": 13,
+    "patch_generation": 13,
     "pinned": false,
     "state": "active",
-    "use_count": 34,
-    "view_count": 34
+    "use_count": 40,
+    "view_count": 40
   },
   "python-debugpy": {
     "archived_at": null,
@@ -1769,6 +1769,22 @@
     "state": "active",
     "use_count": 0,
     "view_count": 0
+  },
+  "software-development:production-environment-operations-v2": {
+    "archived_at": null,
+    "created_at": "2026-10-02T15:18:25.035290+00:00",
+    "created_by": null,
+    "first_seen_at": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": "2026-10-02T15:18:25.043365+00:00",
+    "last_viewed_at": "2026-10-02T15:18:25.035317+00:00",
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
   },
   "songsee": {
     "archived_at": null,

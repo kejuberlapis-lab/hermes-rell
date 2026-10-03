@@ -1,0 +1,112 @@
+{
+  "jobs": [
+    {
+      "id": "3dc67c303dcd",
+      "name": "xau_10year_deep_analysis_and_engine_research",
+      "prompt": "Lakukan penelitian mendalam, analisis data historis 10 tahun (2016-2026), pemodelan matematika indikator kuantitatif, dan perancangan arsitektur sistem Auto-Trading XAU/USD (Gold). Simpan dan perbarui hasil analisis secara terstruktur ke dalam file /home/ubuntu/Documents/Obsidian Vault/xau.md. Pastikan mencakup: 1. Makroekonomi & Siklus Suku Bunga/Yields 10 Tahun, 2. Smart Money Concepts (SMC, FVG, Liquidity Sweeps), 3. Microstructure Tick/Spread Dynamics & Rollover Filter, 4. Kombinasi Indikator Teknikal (ATR, EMA Ribbon, RSI Divergence, Volume Profile), 5. Protokol Manajemen Risiko (Dynamic Lot Sizing, Circuit Breaker).",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "ag/gemini-3.7-flash-high",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-09-23T03:00:00+08:00",
+        "display": "once at 2026-09-23 03:00"
+      },
+      "schedule_display": "once at 2026-09-23 03:00",
+      "repeat": {
+        "times": 1,
+        "completed": 1
+      },
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-09-23T00:21:51.644546+08:00",
+      "next_run_at": null,
+      "last_run_at": "2026-09-23T03:01:02.439880+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "661471478",
+        "chat_name": "andi saputra",
+        "thread_id": null,
+        "user_id": "661471478",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "run_claim": null,
+      "fire_claim": null
+    },
+    {
+      "id": "7d48ff88eaf5",
+      "name": "realtime_web3_bounty_and_airdrop_scout",
+      "prompt": "Lakukan live monitoring radar real-time terhadap berita alpha Web3, Airdrop gratis $0 modal, retroactive campaign, Testnet early, dan Superteam Earn Bounties terbaru di X (Twitter), Galxe, Zealy, Farcaster, dan komunitas Web3 terpercaya.\n\nATURAN PENTING:\n1. Jika menemukan berita/bounty/airdrop/campaign baru yang berpotensi cuan dan BELUM PERNAH diposting pada sesi sebelumnya:\n   - Jika ini adalah peluang SANGAT LEGIT / TIER-1 / SUPER REKOMENDASI (misal reward pool besar $10K+, gratis tanpa modal, peluang menang tinggi, atau airdrop terkonfirmasi developer), beri tanda awalan: '📌 [REKOMENDASI UTAMA / WAJIB DIGARAP]' di bagian paling atas pesan.\n   - Tuliskan ringkasan singkat, tajam, estimasi reward, deadline, step eksekusi simpel (1-2-3), dan link resminya.\n2. Jika TIDAK ADA berita/peluang baru yang valid atau sudah pernah diposting, balas HANYA dengan kata '[SILENT]' agar tidak spam ke channel.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "custom",
+      "model_snapshot": "ag/gemini-3.7-flash-high",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": [
+        "self"
+      ],
+      "schedule": {
+        "kind": "once",
+        "run_at": "2026-09-24T04:16:23.511166+08:00",
+        "display": "once in 1h"
+      },
+      "schedule_display": "once in 1h",
+      "repeat": {
+        "times": null,
+        "completed": 2
+      },
+      "enabled": false,
+      "state": "completed",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-09-24T03:12:14.540048+08:00",
+      "next_run_at": null,
+      "last_run_at": "2026-09-24T04:17:47.115361+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "failure_streak": 0,
+      "deliver": "telegram:-1004499040688",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "5955713269",
+        "chat_name": "avrell",
+        "thread_id": null,
+        "user_id": "5955713269",
+        "scope_id": null
+      },
+      "enabled_toolsets": null,
+      "workdir": null,
+      "attach_to_session": true,
+      "fire_claim": null,
+      "run_claim": null
+    }
+  ],
+  "updated_at": "2026-09-24T04:17:47.115712+08:00"
+}

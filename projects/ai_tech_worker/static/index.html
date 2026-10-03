@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tech Worker | Autonomous Virtual Tech Specialist & Engineering Operations</title>
+    <meta name="description" content="Pekerja virtual AI otonom untuk Software Engineering, Cloud VPS, Data Scraping, dan Otomasi Bisnis langsung via Telegram dengan integrasi Dynamic QRIS.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        obsidian: {
+                            950: '#06080F',
+                            900: '#0B0F19',
+                            850: '#101626',
+                            800: '#161F36',
+                            700: '#233052',
+                        },
+                        emeraldAccent: {
+                            400: '#34D399',
+                            500: '#10B981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #06080F; color: #E2E8F0; }
+        .dot-grid { background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px); background-size: 24px 24px; }
+        .hairline-border { border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glow-subtle { box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.15); }
+        .btn-tactile:active { transform: translateY(1px) scale(0.99); }
+    </style>
+</head>
+<body class="bg-obsidian-950 text-slate-200 antialiased selection:bg-emeraldAccent-500 selection:text-obsidian-950 relative">
+
+    <div class="fixed inset-0 dot-grid pointer-events-none z-0 opacity-80"></div>
+
+    <!-- Precision Segmented Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-obsidian-950/90 backdrop-blur-md border-b hairline-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Left: Branding -->
+            <a href="/" class="flex items-center space-x-3 shrink-0 group">
+                <div class="w-8 h-8 rounded-lg bg-emeraldAccent-500/10 border border-emeraldAccent-500/30 flex items-center justify-center text-emeraldAccent-400 font-mono font-bold text-sm group-hover:border-emeraldAccent-400 transition-colors">
+                    λ
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span class="font-bold tracking-tight text-white text-sm sm:text-base">AI TECH WORKER</span>
+                    <span class="hidden sm:inline-block text-[9px] font-mono font-semibold uppercase tracking-widest text-emeraldAccent-400 bg-emeraldAccent-500/10 px-1.5 py-0.5 rounded border border-emeraldAccent-500/20">AUTONOMOUS</span>
+                </div>
+            </a>
+
+            <!-- Center: Segmented Navigation Dock (Desktop / Tablet-L) -->
+            <nav class="hidden lg:flex items-center p-1 rounded-full bg-obsidian-900/90 hairline-border text-xs font-medium text-slate-400 shadow-inner">
+                <div class="flex items-center space-x-0.5">
+                    <a href="/" class="bg-white/[0.08] text-emeraldAccent-400 font-semibold border border-emeraldAccent-500/30 px-3 py-1.5 rounded-full transition-all">Beranda</a>
+                <a href="/skills" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Katalog Skill</a>
+                <a href="/pricing" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Pricing</a>
+                <a href="/docs" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all">Tutorial</a>
+                
+                </div>
+
+                <!-- Precision Divider -->
+                <div class="w-[1px] h-4 bg-white/10 mx-1.5"></div>
+
+                <!-- Solutions Group -->
+                <div class="flex items-center space-x-0.5">
+                    <a href="/enterprise" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="building-2" class="w-3.5 h-3.5 text-slate-500"></i> <span>Enterprise</span></a>
+                <a href="/umkm" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="store" class="w-3.5 h-3.5 text-slate-500"></i> <span>UMKM</span></a>
+                <a href="/personal" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-2.5 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5 text-slate-500"></i> <span>Personal</span></a>
+                
+                </div>
+
+                <!-- Precision Divider -->
+                <div class="w-[1px] h-4 bg-white/10 mx-1.5"></div>
+
+                <!-- Help Group -->
+                <a href="/contact" class="hover:text-white hover:bg-white/[0.04] text-slate-400 transition-colors px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3.5 h-3.5 text-slate-500"></i> <span>Contact & Help</span></a>
+            </nav>
+
+            <!-- Right: Actions -->
+            <div class="flex items-center space-x-2.5 shrink-0">
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center px-3.5 py-1.5 text-xs font-semibold font-mono text-obsidian-950 bg-emeraldAccent-400 hover:bg-emeraldAccent-500 rounded-full transition-all btn-tactile shadow-sm shadow-emeraldAccent-500/20">
+                    <i data-lucide="terminal" class="w-3.5 h-3.5 mr-1.5"></i>
+                    <span class="hidden sm:inline">Buka </span><span>Telegram</span>
+                </a>
+
+                <!-- Mobile Hamburger Toggle -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-obsidian-900 hairline-border text-slate-300 hover:text-white focus:outline-none" aria-label="Toggle Menu">
+                    <i data-lucide="menu" id="menuIcon" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Scrollable Segmented Dock (Mobile & Tablet) -->
+        <div class="lg:hidden border-t hairline-border bg-obsidian-950 px-3 py-2 overflow-x-auto flex items-center gap-1.5 text-xs font-medium whitespace-nowrap">
+            <a href="/" class="px-3 py-1.5 rounded-full bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40 font-semibold flex items-center gap-1.5"><i data-lucide="home" class="w-3 h-3"></i> Beranda</a>
+            <a href="/skills" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="layers" class="w-3 h-3 text-slate-500"></i> Katalog Skill</a>
+            <a href="/pricing" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="tag" class="w-3 h-3 text-slate-500"></i> Pricing</a>
+            <a href="/docs" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="book-open" class="w-3 h-3 text-slate-500"></i> Tutorial</a>
+            <a href="/enterprise" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="building-2" class="w-3 h-3 text-slate-500"></i> Enterprise</a>
+            <a href="/umkm" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="store" class="w-3 h-3 text-slate-500"></i> UMKM</a>
+            <a href="/personal" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="user" class="w-3 h-3 text-slate-500"></i> Personal</a>
+            <a href="/contact" class="px-3 py-1.5 rounded-full bg-obsidian-900 hairline-border text-slate-300 hover:text-white flex items-center gap-1.5"><i data-lucide="life-buoy" class="w-3 h-3 text-slate-500"></i> Contact & Help</a>
+            
+        </div>
+
+        <!-- Mobile Dropdown Drawer -->
+        <div id="mobileDrawer" class="hidden lg:hidden border-t hairline-border bg-obsidian-950 px-4 py-3 space-y-1 text-xs font-medium">
+            <a href="/" class="block px-3 py-2 rounded-lg bg-emeraldAccent-500/10 text-emeraldAccent-400 font-semibold flex items-center gap-2.5"><i data-lucide="home" class="w-4 h-4"></i> Beranda</a>
+        <a href="/skills" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="layers" class="w-4 h-4 text-slate-500"></i> Katalog Skill</a>
+        <a href="/pricing" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="tag" class="w-4 h-4 text-slate-500"></i> Pricing</a>
+        <a href="/docs" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="book-open" class="w-4 h-4 text-slate-500"></i> Tutorial</a>
+        <a href="/enterprise" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="building-2" class="w-4 h-4 text-slate-500"></i> Enterprise</a>
+        <a href="/umkm" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="store" class="w-4 h-4 text-slate-500"></i> UMKM</a>
+        <a href="/personal" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="user" class="w-4 h-4 text-slate-500"></i> Personal</a>
+        <a href="/contact" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-obsidian-900 hover:text-white transition-colors flex items-center gap-2.5"><i data-lucide="life-buoy" class="w-4 h-4 text-slate-500"></i> Contact & Help</a>
+        
+        </div>
+    </header>
+
+    <!-- Hero Section (Asymmetric Split Screen with Dynamic Live Agent Terminal) -->
+    <section class="relative z-10 pt-12 pb-16 md:pt-16 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Column: Value Proposition -->
+            <div class="lg:col-span-6 space-y-6 text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-obsidian-850 hairline-border text-xs font-mono text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-emeraldAccent-400 animate-ping"></span>
+                    <span>Free Trial 8 Token Otomatis Aktif</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                    Pekerja Virtual Otonom untuk Tim Teknis & Solo Dev
+                </h1>
+
+                <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-xl">
+                    Bukan sekadar chatbot pasif yang memberi teks teori. AI Tech Worker mengeksekusi aksi nyata di terminal VPS, repositori kode, database, dan browser dengan verifikasi tuntas via Telegram.
+                </p>
+
+                <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <a href="https://t.me/Olo_SBT_bot" target="_blank" class="inline-flex items-center justify-center px-5 py-3 text-xs font-bold font-mono text-obsidian-950 bg-emeraldAccent-400 hover:bg-emeraldAccent-500 rounded-lg transition-all btn-tactile">
+                        <i data-lucide="zap" class="w-4 h-4 mr-2"></i>
+                        Mulai Free Trial (8 Tasks)
+                    </a>
+                    <a href="/skills" class="inline-flex items-center justify-center px-5 py-3 text-xs font-semibold text-slate-300 bg-obsidian-850 hover:bg-obsidian-800 hairline-border rounded-lg transition-all btn-tactile">
+                        <i data-lucide="layers" class="w-4 h-4 mr-2 text-emeraldAccent-400"></i>
+                        Eksplorasi 40+ Skill Teknis
+                    </a>
+                </div>
+
+                <!-- Verified Metrics Strip -->
+                <div class="pt-4 grid grid-cols-3 gap-4 border-t hairline-border text-left">
+                    <div>
+                        <span class="block text-lg font-bold font-mono text-white">100%</span>
+                        <span class="text-[11px] text-slate-500">Autonomous Action</span>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-bold font-mono text-emeraldAccent-400">&lt; 30s</span>
+                        <span class="text-[11px] text-slate-500">Avg. Resolution</span>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-bold font-mono text-white">Dynamic</span>
+                        <span class="text-[11px] text-slate-500">QRIS Instan 24/7</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Dynamic Live Agent Terminal Showcase -->
+            <div class="lg:col-span-6">
+                <div class="rounded-xl bg-obsidian-900 hairline-border overflow-hidden shadow-2xl glow-subtle font-mono text-xs text-left">
+                    
+                    <!-- Terminal Header -->
+                    <div class="bg-obsidian-850 px-4 py-2.5 flex items-center justify-between border-b hairline-border">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emeraldAccent-400"></span>
+                            <span class="text-[11px] text-slate-400 ml-2" id="termUserHost">ai-tech-worker@zeus-node ~ dispatcher</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emeraldAccent-400 animate-pulse"></span>
+                            <span class="text-[10px] text-emeraldAccent-400 font-bold uppercase" id="termStatusBadge">LIVE EXECUTION</span>
+                        </div>
+                    </div>
+
+                    <!-- Task Selector Tabs -->
+                    <div class="bg-obsidian-950/90 px-4 py-2 flex items-center gap-2 border-b hairline-border overflow-x-auto text-[10px]">
+                        <button onclick="switchTerminalTask(0)" class="term-tab active px-2.5 py-1 rounded bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40 whitespace-nowrap transition-all" data-index="0">#1 FastAPI Fix</button>
+                        <button onclick="switchTerminalTask(1)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="1">#2 Nginx & Docker</button>
+                        <button onclick="switchTerminalTask(2)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="2">#3 Stealth Scraping</button>
+                        <button onclick="switchTerminalTask(3)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="3">#4 SQL Tuning</button>
+                        <button onclick="switchTerminalTask(4)" class="term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all" data-index="4">#5 Sheets Cronjob</button>
+                    </div>
+
+                    <!-- Dynamic Terminal Body -->
+                    <div id="terminalBody" class="p-5 space-y-3.5 leading-relaxed text-slate-300 min-h-[290px] flex flex-col justify-between transition-opacity duration-300">
+                        <!-- Dynamic scenario content is injected here via JS -->
+                    </div>
+
+                    <!-- Terminal Footer Auto-Cycle Progress -->
+                    <div class="bg-obsidian-950 px-4 py-2 border-t hairline-border flex items-center justify-between text-[10px] text-slate-500">
+                        <div class="flex items-center gap-2">
+                            <span>Auto Cycle:</span>
+                            <div class="w-24 h-1.5 bg-obsidian-850 rounded-full overflow-hidden hairline-border">
+                                <div id="termProgressBar" class="h-full bg-emeraldAccent-400 transition-all duration-100" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div id="termTimerText" class="font-mono text-slate-400">Next task in 6s</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3-Step Execution Pipeline -->
+    <section class="relative z-10 py-16 bg-obsidian-900/60 border-y hairline-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-left max-w-2xl mb-12">
+                <span class="text-xs font-mono uppercase tracking-widest text-emeraldAccent-400">Workflow Execution</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+                    Cara Kerja AI Tech Worker dalam 3 Langkah
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                <div class="p-6 rounded-xl bg-obsidian-850 hairline-border">
+                    <span class="text-2xl font-mono font-bold text-emeraldAccent-400 block mb-3">01</span>
+                    <h3 class="text-base font-bold text-white mb-2">Kirim Instruksi di Telegram</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Kirim perintah tugas teknis dalam Bahasa Indonesia natural. Anda bisa melampirkan file kode, pesan error server, atau credential target.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-obsidian-850 hairline-border">
+                    <span class="text-2xl font-mono font-bold text-emeraldAccent-400 block mb-3">02</span>
+                    <h3 class="text-base font-bold text-white mb-2">Eksekusi Mandiri & Self-Healing</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        AI Worker langsung membedah masalah, menulis kode, menguji di terminal terisolasi, dan memperbaiki bug secara mandiri jika terjadi error.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-obsidian-850 hairline-border">
+                    <span class="text-2xl font-mono font-bold text-emeraldAccent-400 block mb-3">03</span>
+                    <h3 class="text-base font-bold text-white mb-2">Laporan & Bukti Nyata</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Hasil kerja dikirimkan kembali ke chat Telegram lengkap dengan URL aktif, file output, atau log verifikasi keberhasilan sistem.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Skills Highlights Grid -->
+    <section class="relative z-10 py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div class="text-left max-w-xl">
+                <span class="text-xs font-mono uppercase tracking-widest text-emeraldAccent-400">Core Capabilities</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+                    Spesialisasi Teknis yang Siap Dikerjakan
+                </h2>
+            </div>
+            <a href="/skills" class="mt-4 md:mt-0 inline-flex items-center text-xs font-mono text-emeraldAccent-400 hover:text-emeraldAccent-300 transition-colors">
+                <span>Lihat Semua 40+ Skill di Katalog</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 ml-1.5"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            <div class="p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-mono text-xs text-emeraldAccent-400">DEV / FULLSTACK</span>
+                    <span class="text-[10px] font-mono text-slate-500">~25s Latency</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-2">Bug Fixing & API Development</h3>
+                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                    Perbaikan syntax error, query database lambat, CORS issue, dan pembuatan endpoint REST API (FastAPI, Express, Laravel).
+                </p>
+                <div class="text-[11px] font-mono text-slate-300 bg-obsidian-950 p-2.5 rounded hairline-border">
+                    Input: "Fix error 500 auth query"<br>
+                    Output: Patch code + API verified OK
+                </div>
+            </div>
+
+            <div class="p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-mono text-xs text-emeraldAccent-400">DEVOPS / LINUX</span>
+                    <span class="text-[10px] font-mono text-slate-500">~45s Latency</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-2">Cloud VPS & Nginx Automation</h3>
+                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                    Konfigurasi reverse proxy Nginx, pasang SSL Certbot, setup service systemd, Docker container, dan tuning XRDP GUI.
+                </p>
+                <div class="text-[11px] font-mono text-slate-300 bg-obsidian-950 p-2.5 rounded hairline-border">
+                    Input: "Setup port 8080 ke domain"<br>
+                    Output: Nginx vhost active + SSL HTTPS
+                </div>
+            </div>
+
+            <div class="p-6 rounded-xl bg-obsidian-900 hairline-border hover:border-emeraldAccent-500/40 transition-all">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="font-mono text-xs text-emeraldAccent-400">DATA / SCRAPING</span>
+                    <span class="text-[10px] font-mono text-slate-500">~60s Latency</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-2">Stealth Anti-Bot Web Scraping</h3>
+                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                    Ekstraksi data e-commerce, direktori vendor publik, bypass Cloudflare Turnstile / DataDome, dan konversi ke CSV/Excel.
+                </p>
+                <div class="text-[11px] font-mono text-slate-300 bg-obsidian-950 p-2.5 rounded hairline-border">
+                    Input: "Ambil 500 vendor dari web X"<br>
+                    Output: Clean CSV / Excel dataset
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick CTA Banner -->
+    <section class="relative z-10 py-16 bg-obsidian-850 border-t hairline-border">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                Siap Menugaskan Pekerja Virtual Otonom Anda?
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
+                Tekan tombol di bawah untuk langsung mencoba 8 tugas pertama secara gratis di Telegram.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <a href="https://t.me/Olo_SBT_bot" target="_blank" class="px-6 py-3.5 text-xs font-mono font-bold text-obsidian-950 bg-emeraldAccent-400 hover:bg-emeraldAccent-500 rounded-lg transition-all btn-tactile shadow-lg shadow-emeraldAccent-500/20">
+                    <i data-lucide="zap" class="w-4 h-4 mr-2 inline"></i> Mulai Free Trial di Telegram
+                </a>
+                <a href="/pricing" class="px-6 py-3.5 text-xs font-mono font-semibold text-slate-300 bg-obsidian-900 hover:bg-obsidian-800 hairline-border rounded-lg transition-all btn-tactile">
+                    <i data-lucide="qr-code" class="w-4 h-4 mr-2 inline text-emeraldAccent-400"></i> Lihat Paket QRIS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unified Technical Footer -->
+    <footer class="relative z-10 bg-obsidian-950 py-10 border-t hairline-border text-xs text-slate-500 font-mono">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-left">
+                <div class="space-y-3">
+                    <span class="text-white font-bold tracking-tight text-sm block">AI TECH WORKER</span>
+                    <p class="text-[11px] text-slate-400 leading-relaxed font-sans">
+                        Platform pekerja teknis virtual mandiri untuk eksekusi tugas nyata, perbaikan server, dan otomatisasi bisnis.
+                    </p>
+                </div>
+                <div>
+                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Navigasi</span>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="/" class="hover:text-emeraldAccent-400">Beranda</a></li>
+                        <li><a href="/skills" class="hover:text-emeraldAccent-400">Katalog Skill</a></li>
+                        <li><a href="/pricing" class="hover:text-emeraldAccent-400">Paket & QRIS</a></li>
+                        <li><a href="/case-studies" class="hover:text-emeraldAccent-400">Studi Kasus</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Bantuan & Panduan</span>
+                    <ul class="space-y-2 text-[11px]">
+                        <li><a href="/docs" class="hover:text-emeraldAccent-400">Panduan Bot Telegram</a></li>
+                        <li><a href="/about" class="hover:text-emeraldAccent-400">Keamanan & Sandbox</a></li>
+                        <li><a href="https://t.me/Olo_SBT_bot" target="_blank" class="hover:text-emeraldAccent-400">Live Telegram Bot</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-slate-300 font-semibold block mb-3 uppercase text-[11px]">Gateway Pembayaran</span>
+                    <p class="text-[11px] text-slate-400 leading-relaxed font-sans mb-2">
+                        Didukung oleh Dynamic QRIS dengan auto-settlement instan 24 jam.
+                    </p>
+                    <span class="text-[10px] text-emeraldAccent-400/80 bg-emeraldAccent-500/10 px-2 py-1 rounded border border-emeraldAccent-500/20 block text-center">
+                        BCA &bull; Mandiri &bull; GoPay &bull; Dana &bull; OVO
+                    </span>
+                </div>
+            </div>
+            <div class="pt-6 border-t hairline-border flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px]">
+                <p>&copy; 2026 AI Tech Worker Platform. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="/about" class="hover:text-slate-300">Privacy Policy</a>
+                    <a href="/docs" class="hover:text-slate-300">Terms of Service</a>
+                    <a href="https://t.me/Olo_SBT_bot" target="_blank" class="hover:text-emeraldAccent-400">Telegram Bot</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dynamic Terminal Task Switcher Script -->
+    <script>
+        lucide.createIcons();
+
+        const terminalTasks = [
+            {
+                tabLabel: "#1 FastAPI Fix",
+                user: "andi_saputra",
+                prompt: '"Tolong perbaiki endpoint /api/auth yang kena CORS error dan 500 session lock di FastAPI."',
+                actionHeadline: "Mendiagnosis service FastAPI di port 8082...",
+                steps: [
+                    "> Patch middleware CORS di main.py (origins whitelist: ['*'])",
+                    "> Tambah thread-pool timeout=30 pada async database session",
+                    "> Automated test request: HTTP 200 OK (latency: 14ms)"
+                ],
+                successText: "Status 200 OK. CORS & Database lock tuntas dalam 18 detik."
+            },
+            {
+                tabLabel: "#2 Nginx & Docker",
+                user: "tech_lead_startup",
+                prompt: '"Setup reverse proxy Nginx ke container Docker port 3000 dan pasang SSL HTTPS domain api.client.id."',
+                actionHeadline: "Memeriksa Docker socket & Nginx configuration tree...",
+                steps: [
+                    "> Menulis Nginx vhost /etc/nginx/sites-available/api.client.id",
+                    "> Symlink ke sites-enabled dan uji syntax: nginx -t -> SUCCESS",
+                    "> Eksekusi certbot --nginx untuk penerbitan SSL Let's Encrypt"
+                ],
+                successText: "Domain api.client.id aktif dengan HTTPS SSL A+ Grade (28 detik)."
+            },
+            {
+                tabLabel: "#3 Stealth Scraping",
+                user: "growth_analyst",
+                prompt: '"Ekstrak 1.500 data harga produk dari e-commerce target yang diproteksi Cloudflare Turnstile."',
+                actionHeadline: "Mengaktifkan headless stealth browser dengan fingerprint spoofing...",
+                steps: [
+                    "> Bypass Cloudflare Turnstile token validation secara otonom",
+                    "> Scraping 1.500 baris item katalog (harga, rating, stok, vendor)",
+                    "> Ekspor dan formatting data ke spreadsheet products_dataset.xlsx"
+                ],
+                successText: "Dataset 1.500 baris terekstrak bersih (42 detik). File siap di Telegram."
+            },
+            {
+                tabLabel: "#4 SQL Tuning",
+                user: "backend_dev",
+                prompt: '"Query reporting /dashboard/stats lambat banget butuh 15 detik, tolong optimasi query-nya."',
+                actionHeadline: "Menjalankan EXPLAIN ANALYZE pada query SELECT JOIN tabel orders...",
+                steps: [
+                    "> Deteksi full table scan pada kolom created_at dan status_id",
+                    "> Menambahkan compound B-Tree index: idx_orders_created_status",
+                    "> Uji benchmark query: waktu eksekusi turun dari 15.2s menjadi 24ms"
+                ],
+                successText: "Query 600x lebih cepat (latency 24ms). Selesai dalam 12 detik."
+            },
+            {
+                tabLabel: "#5 Sheets Cronjob",
+                user: "finance_ops",
+                prompt: '"Buatkan cronjob 24 jam untuk rekap transaksi Telegram ke Google Sheets setiap jam 00.00."',
+                actionHeadline: "Membangun script scheduler dan integrasi Google Sheets API...",
+                steps: [
+                    "> Menulis script auto-sync /home/ubuntu/scripts/sheets_sync.py",
+                    "> Mendaftarkan background cronjob: 0 0 * * * python3 /scripts/sheets_sync.py",
+                    "> Uji coba dry-run: 450 data transaksi terisi otomatis ke Spreadsheet"
+                ],
+                successText: "Cronjob aktif berjalan 24/7 di VPS. Log verifikasi sukses (22 detik)."
+            }
+        ];
+
+        let currentTaskIdx = 0;
+        let cycleTimer = null;
+        let progressInterval = null;
+        const CYCLE_DURATION = 7000; // 7 seconds per task
+        let progressStart = Date.now();
+
+        function renderTerminalTask(idx) {
+            const task = terminalTasks[idx];
+            const body = document.getElementById("terminalBody");
+            
+            // Fade out slightly
+            body.style.opacity = "0.3";
+
+            setTimeout(() => {
+                let stepsHtml = task.steps.map(s => `<span class="text-slate-500">&gt;</span> ${s.replace(/^>\s*/, "")}`).join("<br>");
+
+                body.innerHTML = `
+                    <div class="space-y-3.5">
+                        <div class="flex items-start gap-2">
+                            <span class="text-emeraldAccent-400 font-bold">[@${task.user}]:</span>
+                            <span class="text-slate-200">${task.prompt}</span>
+                        </div>
+                        <div class="p-3.5 rounded-lg bg-obsidian-950 hairline-border space-y-2 border-l-2 border-l-emeraldAccent-500">
+                            <div class="text-[11px] text-slate-400 flex items-center gap-1.5">
+                                <i data-lucide="play" class="w-3 h-3 text-emeraldAccent-400"></i>
+                                <span>${task.actionHeadline}</span>
+                            </div>
+                            <p class="text-[11px] text-slate-300 leading-relaxed font-mono">
+                                ${stepsHtml}
+                            </p>
+                            <div class="text-[11px] text-emeraldAccent-400 font-semibold flex items-center gap-1.5 pt-1">
+                                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                                <span>${task.successText}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Update active tab buttons
+                document.querySelectorAll(".term-tab").forEach(tab => {
+                    if (parseInt(tab.getAttribute("data-index")) === idx) {
+                        tab.className = "term-tab active px-2.5 py-1 rounded bg-emeraldAccent-500/20 text-emeraldAccent-400 border border-emeraldAccent-500/40 whitespace-nowrap transition-all";
+                    } else {
+                        tab.className = "term-tab px-2.5 py-1 rounded bg-obsidian-900 text-slate-400 hairline-border hover:text-white whitespace-nowrap transition-all";
+                    }
+                });
+
+                lucide.createIcons();
+                body.style.opacity = "1";
+            }, 150);
+        }
+
+        function switchTerminalTask(idx) {
+            currentTaskIdx = idx;
+            renderTerminalTask(idx);
+            resetProgress();
+        }
+
+        function resetProgress() {
+            progressStart = Date.now();
+        }
+
+        function startAutoCycle() {
+            renderTerminalTask(currentTaskIdx);
+            resetProgress();
+
+            if (progressInterval) clearInterval(progressInterval);
+            progressInterval = setInterval(() => {
+                const elapsed = Date.now() - progressStart;
+                const percent = Math.min((elapsed / CYCLE_DURATION) * 100, 100);
+                const bar = document.getElementById("termProgressBar");
+                const timerText = document.getElementById("termTimerText");
+                
+                if (bar) bar.style.width = percent + "%";
+                if (timerText) {
+                    const remainingSec = Math.max(0, Math.ceil((CYCLE_DURATION - elapsed) / 1000));
+                    timerText.innerText = `Next task in ${remainingSec}s`;
+                }
+
+                if (elapsed >= CYCLE_DURATION) {
+                    currentTaskIdx = (currentTaskIdx + 1) % terminalTasks.length;
+                    renderTerminalTask(currentTaskIdx);
+                    resetProgress();
+                }
+            }, 100);
+        }
+
+        // Initialize on load
+        window.addEventListener("DOMContentLoaded", () => {
+            startAutoCycle();
+        });
+    </script>
+</body>
+</html>

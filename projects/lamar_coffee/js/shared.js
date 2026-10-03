@@ -208,7 +208,14 @@ function updateCartUI() {
   const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
   if (badge) {
     badge.innerText = totalQty;
-    badge.className = totalQty > 0 ? "absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ochre text-white text-[10px] font-mono font-bold flex items-center justify-center scale-100 transition-transform" : "scale-0";
+    if (totalQty > 0) {
+      badge.className = "px-1.5 py-0.5 rounded-full bg-teal text-white text-[10px] font-mono font-bold leading-none min-w-[18px] text-center";
+    } else {
+      badge.className = "px-1.5 py-0.5 rounded-full bg-espresso/15 text-espresso/70 text-[10px] font-mono font-bold leading-none min-w-[18px] text-center";
+    }
+  } else {
+      badge.className = "hidden";
+    }
   }
 
   const list = document.getElementById('cartItemsList');
@@ -277,46 +284,6 @@ let audioPlaying = false;
 let audioCtx = null;
 let audioNode = null;
 
-function toggleAmbience() {
-  const btnText = document.getElementById('ambienceText');
-  const dot = document.getElementById('ambienceDot');
-
-  if (!audioPlaying) {
-    try {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const bufferSize = audioCtx.sampleRate * 2;
-      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-      const data = buffer.getChannelData(0);
-      let lastOut = 0.0;
-      for (let i = 0; i < bufferSize; i++) {
-        const white = Math.random() * 2 - 1;
-        data[i] = (lastOut + (0.02 * white)) / 1.02;
-        lastOut = data[i];
-        data[i] *= 0.12;
-      }
-      audioNode = audioCtx.createBufferSource();
-      audioNode.buffer = buffer;
-      audioNode.loop = true;
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(400, audioCtx.currentTime);
-      audioNode.connect(filter);
-      filter.connect(audioCtx.destination);
-      audioNode.start();
-
-      audioPlaying = true;
-      if (btnText) btnText.innerText = "Suara Kafe: Aktif 🎧";
-      if (dot) dot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
-    } catch (e) {
-      console.log(e);
-    }
-  } else {
-    if (audioNode) audioNode.stop();
-    audioPlaying = false;
-    if (btnText) btnText.innerText = "Suara Kafe: Mati";
-    if (dot) dot.className = "w-2 h-2 rounded-full bg-espresso/40";
-  }
-}
 
 function toggleMobileNav() {
   const nav = document.getElementById('mobileNav');

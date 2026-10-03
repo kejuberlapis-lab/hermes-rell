@@ -1,0 +1,14 @@
+[Unit]
+Description=AI Tech Worker SaaS and BuatQris Payment Gateway Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/ai_tech_worker
+ExecStart=/home/ubuntu/ai_tech_worker/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8088
+Restart=always
+RestartSec=5
+EnvironmentFile=/home/ubuntu/ai_tech_worker/.env
+
+[Install]
+WantedBy=multi-user.target

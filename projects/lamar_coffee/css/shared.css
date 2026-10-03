@@ -1,25 +1,35 @@
-/* Shared Editorial Tokens & Textures */
+/* Shared Editorial Tokens & Textures - Lamar Creative 2026 */
+:root {
+  --color-teal: #34606B;
+  --color-pine: #01796F;
+  --color-citron: #9CB746;
+  --color-ochre: #C86D3B;
+  --color-espresso: #141819;
+  --color-linen: #F6F4EB;
+}
+
 .bg-paper {
-  background-color: #F8F5EE;
-  background-image: radial-gradient(#E3DDD2 0.75px, transparent 0.75px);
+  background-color: #F6F4EB;
+  background-image: radial-gradient(#E1DDD0 0.75px, transparent 0.75px);
   background-size: 24px 24px;
 }
 
 .bg-dark-paper {
-  background-color: #140F0D;
-  background-image: radial-gradient(#2A221E 0.75px, transparent 0.75px);
+  background-color: #121617;
+  background-image: radial-gradient(#252E30 0.75px, transparent 0.75px);
   background-size: 24px 24px;
 }
 
 .hairline-b {
-  border-bottom: 1px solid rgba(229, 223, 211, 0.8);
+  border-bottom: 1px solid rgba(218, 212, 198, 0.8);
 }
+
 .hairline-dark-b {
-  border-bottom: 1px solid rgba(56, 47, 42, 0.7);
+  border-bottom: 1px solid rgba(48, 60, 64, 0.7);
 }
 
 ::selection {
-  background-color: #C86D3B;
+  background-color: #34606B;
   color: #FFFFFF;
 }
 
@@ -27,6 +37,7 @@
   from { transform: translateY(100%) translateX(-50%); opacity: 0; }
   to { transform: translateY(0) translateX(-50%); opacity: 1; }
 }
+
 .animate-toast {
   animation: toastSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

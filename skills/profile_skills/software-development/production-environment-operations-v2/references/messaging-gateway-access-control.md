@@ -54,3 +54,11 @@ for cfg_path in configs:
 
 - **Mechanism:** Hermes gateway treats bare Telegram `/start` commands as platform pings (`_hm_cmd_start` in `gateway/run_inbound.py`) and returns an empty string without invoking an LLM conversation turn (`Ignoring /start platform ping for session ...`).
 - **Onboarding Rule:** When a newly whitelisted user reports no response after clicking "Start" in Telegram, instruct them to send a standard text message (e.g. "Halo", "Tes") to trigger conversation turn dispatch.
+
+## 4. Multi-Instance Gateway Port Binding & Provider Isolation
+
+When running multiple profile gateways concurrently on a single host (e.g. Master Admin bot + Public AI Tech Worker bot):
+1. **Unique API Server Ports**: Each profile's `platforms.api_server.port` must be assigned an isolated port number (e.g. Profile A: `8642`, Profile B: `8644`) to prevent fatal `[Errno 98] Address already in use` startup exits.
+2. **Authentic API Key Persistence**: When programmatically copying or updating `config.yaml` across profiles, always resolve the unmasked raw key from `~/.9router/db/data.sqlite` or `.env` rather than copying redacted display strings (`sk-6b7...b877`), which triggers `HTTP 401 Invalid API key` rejection on local LLM proxies.
+3. **Public Gateway DM Policy**: To expose a commercial/worker bot to general users while keeping admin tools active, set `platforms.telegram.dm_policy: open` with omitted/wildcard `allow_from`.
+

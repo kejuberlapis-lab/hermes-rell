@@ -95,12 +95,22 @@ A standardized operational framework for inspecting, managing, provisioning, deb
 10. **Multi-Role Endpoint Matrix Verification (RBAC Audit):**
    - When diagnosing web application 500 errors or after deployments, test authentication and dashboard routes across **every distinct user role** (e.g., `employee`, `manager`, `director`, `super_admin`), not just admin credentials. Subordinate aggregation queries and role-specific template blocks often hide fatal exceptions.
 
-10. **Multi-Layer Access Auditing:**
+11. **Multi-Layer Access Auditing:**
    - **SSH Layer:** Inspect `~/.ssh/authorized_keys` for registered public keys.
    - **OS Layer:** Inspect `/etc/passwd` and `sudo` group for active interactive user accounts.
    - **Platform Gateway Layer:** Audit incoming interaction logs (e.g. `gateway.log` for `user=... chat=...`) and verify `allowed_chats` / channel whitelists in `config.yaml`.
 
-11. **Post-Change Live Verification (Green Loop):**
+12. **Multi-Project Scope Isolation & Zero Cross-Contamination Backup Architecture:**
+   - **Strict Identity & Scope Boundary:** In environments managing multiple entities (e.g. personal academic projects vs. corporate products vs. private VPS infrastructure), never mix or reuse credentials, GitHub accounts, or deploy keys across unrelated scopes.
+   - **Dedicated Deploy Key Provisioning:** Generate an isolated, single-purpose SSH key pair (`ssh-keygen -t ed25519 -C "project-purpose" -f ~/.ssh/id_ed25519_<purpose> -N ""`) and configure Git to use it via `core.sshCommand = "ssh -i ~/.ssh/id_ed25519_<purpose> -o StrictHostKeyChecking=accept-new"`.
+   - **Automated Artifact Sanitization:** Pre-filter large binaries (>100MB, dataset CSVs, virtual machine prefixes `.wine/`), session caches, and actively redact secrets (strip `.env` files and regex-mask API tokens/passwords to `[REDACTED]` in YAML/JSON manifests) before committing.
+   - **Lossless Chat History & Manifest Serialization:** Extract structured SQLite chat/turn histories (`state.db`) into human-readable Markdown logs (`hermes_core/chat_history/`) alongside a master rules manifest (`RULES_AND_SETTINGS.md`) and a skill catalog (`SKILLS_CATALOG.md`) so the backup remains fully interpretable without proprietary database tooling.
+
+13. **Concurrent Multi-Profile Messaging Gateways & Port Binding Isolation:**
+   - **Isolated API Server Ports**: When running multiple Hermes profiles simultaneously (e.g. `hermes-support` for internal admin and `profil-admin-mvp` for public AI workers), assign distinct ports for `platforms.api_server.port` (`8642`, `8644`) to avoid `[Errno 98] Address already in use` startup failure.
+   - **Unmasked Provider API Key Resolution**: Never serialize masked strings (`sk-6b7...b877`) into `config.yaml` when programmatically replicating configuration across profiles; always fetch the authentic raw key from `.env` or `~/.9router/db/data.sqlite`.
+
+14. **Post-Change Live Verification (Green Loop):**
    - **For API/Auth Changes:** Re-test the live HTTP endpoint directly with the exact generated identifier and password:
      ```bash
      curl -i -X POST "https://target-domain.com/api/auth/login" \
@@ -112,6 +122,12 @@ A standardized operational framework for inspecting, managing, provisioning, deb
 
 ## Pitfalls
 
+- **Masked Credential Serialization in Multi-Profile Configs:** Copying profile configurations containing truncated/masked API keys (`sk-xxxx...xxxx`) breaks inference proxy authentication immediately with `HTTP 401 Invalid API key`. Always resolve raw keys directly from the source credentials vault before saving YAML configs.
+- **Port Collisions on Multi-Profile Gateways:** Running multiple gateway instances with identical `platforms.api_server.port` causes the second instance to crash on startup with `Errno 98: Address already in use`. Enforce unique port offsets per profile.
+- **Heavy Compression Spikes Killing Interactive Wine/MT5 Processes:** Executing multi-gigabyte compression, large tar archives, or recursive sync operations without memory throttling can trigger Linux OOM eviction on background Wine X11 desktop sessions. Always supervise mission-critical trading daemons with persistent systemd units or verify process PID post-backup.
+
+- **Cross-Scope & Identity Contamination in Multi-Project Backups:** Pushing multi-project infrastructure or internal business files to a dedicated personal/academic repository breaches strict confidentiality boundaries and pollutes project scopes. Always isolate Git remotes, provision single-purpose deploy keys per target, and verify remote URLs before pushing.
+- **Unsanitized Backup Commits:** Committing uninspected directories into a master backup repo can inadvertently push live `.env` secrets or huge multi-gigabyte virtual machines/datasets (`.wine`, `.csv`) exceeding Git hosting limits. Always enforce strict `.gitignore` rules and active token redaction before staging.
 - **WebRTC & Geolocation Insecure Context Failure:** Calling `navigator.mediaDevices.getUserMedia` or `navigator.geolocation` over plain `http://<IP>:<PORT>` fails silently or raises security errors because modern browsers restrict device sensors to HTTPS / localhost origins. Always provide an explicit fallback `<input type="file" accept="image/*" capture="user">` for native mobile camera activation on insecure origins.
 - **Template Null-Math / NoneType Arithmetic Crashes:** In Jinja2/Blade/ERB templates, executing inline arithmetic on nullable metrics (e.g. `{{ (member.avg_achievement * 0.04)|round(2) }}`) crashes the entire route with `TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'` when new records lack historical rows; always guard calculations with `(val or 0)` and explicit conditional null checks (`{% if val and val >= 95 %}`).
 - **Database Row Object vs Dict API Mismatch:** `sqlite3.Row` and `aiosqlite.Row` objects do not implement `.get(key, default)` like native Python dictionaries; calling `row.get(...)` raises `AttributeError: 'sqlite3.Row' object has no attribute 'get'`. Convert with `dict(row)` or check keys explicitly.

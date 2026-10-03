@@ -15,15 +15,18 @@
             linen: '#F8F5EE',
             sand: '#EFEAE1',
             warmgray: '#E3DDD2',
-            espresso: '#140F0D',
-            charcoal: '#211B18',
-            roast: '#2E2622',
+            espresso: '#141819',
+            charcoal: '#1E2426',
+            roast: '#263033',
+            teal: '#34606B',
+            pine: '#01796F',
+            citron: '#9CB746',
             ochre: '#C86D3B',
             clay: '#A45327',
             amber: '#D9822B',
-            cream: '#FAF8F5',
-            borderWarm: '#E5DFD3',
-            borderDark: '#382F2A'
+            cream: '#FAF9F5',
+            borderWarm: '#DAD4C6',
+            borderDark: '#2C383B'
           },
           fontFamily: {
             serif: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
@@ -42,89 +45,92 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-paper text-espresso font-sans antialiased selection:bg-ochre selection:text-white">
+<body class="bg-paper text-espresso font-sans antialiased selection:bg-teal selection:text-white">
 
-  <!-- TOP BAR -->
-  <div class="bg-espresso text-linen/80 py-2 px-4 text-[11px] font-mono tracking-widest uppercase border-b border-borderDark flex items-center justify-between">
-    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <span class="inline-flex items-center gap-1.5 text-ochre">
-          <span class="w-1.5 h-1.5 rounded-full bg-ochre animate-pulse"></span>
-          Fresh Batch Roasting
-        </span>
-        <span class="hidden sm:inline text-linen/50">|</span>
-        <span class="hidden sm:inline text-linen/70">Single-Origin Aceh Gayo Anaerobic Honey #04</span>
+          <!-- TOP UTILITY BAR -->
+  <div class="bg-espresso text-linen/90 text-[11px] font-mono tracking-wider py-1.5 px-4 sm:px-8 border-b border-borderDark hidden sm:block">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2.5">
+        <span class="inline-block w-2 h-2 rounded-full bg-citron animate-pulse"></span>
+        <span class="text-linen/80">Lamar Creative Roastery & Slow Sanctuary</span>
       </div>
-      <div class="flex items-center gap-6">
-        <span class="hidden md:inline text-linen/60">📍 Senopati 42, Jakarta Selatan</span>
-        <span class="text-ochre font-semibold">07:00 — 22:00 WIB</span>
+      <div class="flex items-center gap-5 text-[10.5px]">
+        <span class="text-linen/60">📍 Cabang Pertanian & Kranggan</span>
+        <span class="text-citron font-semibold">07:00 — 22:00 WIB</span>
       </div>
     </div>
   </div>
 
   <!-- MAIN HEADER NAVIGATION -->
   <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-borderWarm transition-all duration-200">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-2.5 flex items-center justify-between min-h-[76px] gap-4">
       
-      <a href="index.html" class="flex flex-col group">
-        <span class="font-serif text-3xl font-bold tracking-tight text-espresso group-hover:text-ochre transition-colors">
-          LAMAR <span class="italic font-normal text-ochre font-serif">Coffee</span>
-        </span>
-        <span class="text-[9px] font-mono tracking-[0.25em] text-espresso/50 uppercase -mt-1">
-          Roastery & Slow Sanctuary
-        </span>
+      <!-- Brand & Logo -->
+      <a href="index.html" class="flex items-start gap-3.5 group py-1 shrink-0">
+        <img src="assets/lamar_logo.png" alt="Lamar Coffee & Eatery" class="h-[58px] w-auto max-h-[58px] shrink-0 object-contain transition-transform duration-300 group-hover:scale-105" style="height: 58px; width: auto;" />
+        <div class="flex flex-col justify-start pt-0.5">
+          <span class="font-serif text-[22px] font-bold tracking-tight text-espresso group-hover:text-teal transition-colors leading-none">
+            LAMAR
+          </span>
+          <span class="font-serif italic text-[12.5px] font-medium text-teal tracking-wide leading-none mt-1">
+            Coffee & Eatery
+          </span>
+          <span class="text-[8.5px] font-mono tracking-[0.18em] text-espresso/50 uppercase leading-none mt-1.5">
+            Good Coffee • Honest Food
+          </span>
+        </div>
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-espresso/70">
-        <a href="index.html" class="text-ochre font-bold">Beranda</a>
-        <a href="about.html" class="hover:text-ochre transition-colors">Filosofi</a>
-        <a href="menu.html" class="hover:text-ochre transition-colors">Buku Menu</a>
-        <a href="beans.html" class="hover:text-ochre transition-colors">Biji Kopi</a>
-        <a href="space.html" class="hover:text-ochre transition-colors">Ruang</a>
-        <a href="journal.html" class="hover:text-ochre transition-colors">Jurnal</a>
-        <a href="contact.html" class="hover:text-ochre transition-colors">Kontak</a>
+      <!-- Desktop Nav Menu -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-7 text-[12px] font-mono uppercase tracking-wider">
+        <a href="index.html" class="text-teal font-bold relative py-1 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-teal transition-colors whitespace-nowrap">Beranda</a>
+        <a href="about.html" class="text-espresso/75 hover:text-teal font-medium py-1 transition-colors whitespace-nowrap">Filosofi</a>
+        <a href="menu.html" class="text-espresso/75 hover:text-teal font-medium py-1 transition-colors whitespace-nowrap">Buku Menu</a>
+        <a href="beans.html" class="text-espresso/75 hover:text-teal font-medium py-1 transition-colors whitespace-nowrap">Biji Kopi</a>
+        <a href="space.html" class="text-espresso/75 hover:text-teal font-medium py-1 transition-colors whitespace-nowrap">Ruang</a>
+        <a href="journal.html" class="text-espresso/75 hover:text-teal font-medium py-1 transition-colors whitespace-nowrap">Jurnal</a>
+        <a href="contact.html" class="text-espresso/75 hover:text-teal font-medium py-1 transition-colors whitespace-nowrap">Kontak</a>
       </nav>
 
-      <div class="flex items-center gap-3.5">
-        <button id="ambienceBtn" onclick="toggleAmbience()" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-borderWarm bg-sand/60 text-[11px] font-mono text-espresso/80 hover:border-ochre hover:text-ochre transition-all cursor-pointer">
-          <span class="w-2 h-2 rounded-full bg-espresso/40" id="ambienceDot"></span>
-          <span id="ambienceText">Suara Kafe: Mati</span>
-        </button>
-
-        <button onclick="toggleCart(true)" class="relative p-2.5 rounded-full border border-borderWarm hover:border-ochre text-espresso hover:text-ochre transition-all bg-white shadow-xs cursor-pointer">
+      <!-- Right Action Tools -->
+      <div class="flex items-center gap-3 shrink-0">
+        <button onclick="toggleCart(true)" class="flex items-center gap-2 px-3 sm:px-3.5 py-2 rounded-full border border-borderWarm bg-sand/50 hover:bg-white hover:border-teal text-espresso hover:text-teal transition-all shadow-xs cursor-pointer shrink-0" aria-label="Buka Keranjang">
           <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-          <span id="cartCountBadge" class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-ochre text-white text-[10px] font-mono font-bold flex items-center justify-center scale-0 transition-transform">0</span>
+          <span class="text-[11px] font-mono font-medium tracking-wider uppercase hidden sm:inline">Keranjang</span>
+          <span id="cartCountBadge" class="px-1.5 py-0.5 rounded-full bg-espresso/15 text-espresso/70 text-[10px] font-mono font-bold leading-none min-w-[18px] text-center">0</span>
         </button>
 
-        <a href="reservation.html" class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso text-linen text-xs font-mono tracking-wider uppercase hover:bg-ochre transition-colors">
+        <a href="reservation.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-teal text-white text-xs font-mono tracking-wider uppercase font-semibold hover:bg-pine transition-all shadow-xs whitespace-nowrap shrink-0">
           <span>Book a Table</span>
         </a>
 
-        <button onclick="toggleMobileNav()" class="md:hidden p-2 text-espresso">
-          <i data-lucide="menu" class="w-5 h-5"></i>
+        <button onclick="toggleMobileNav()" class="lg:hidden p-2 text-espresso hover:text-teal transition-colors shrink-0" aria-label="Menu Navigasi">
+          <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
 
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobileNav" class="hidden md:hidden bg-sand border-b border-borderWarm px-6 py-6 space-y-4 text-xs font-mono uppercase tracking-wider">
-      <a href="index.html" class="block py-1 text-ochre font-bold">Beranda</a>
-      <a href="about.html" class="block py-1 hover:text-ochre">Filosofi</a>
-      <a href="menu.html" class="block py-1 hover:text-ochre">Buku Menu</a>
-      <a href="beans.html" class="block py-1 hover:text-ochre">Biji Kopi</a>
-      <a href="space.html" class="block py-1 hover:text-ochre">Ruang</a>
-      <a href="journal.html" class="block py-1 hover:text-ochre">Jurnal Kopi</a>
-      <a href="contact.html" class="block py-1 hover:text-ochre">Kontak & Lokasi</a>
-      <a href="reservation.html" class="block py-2 text-center rounded-xl bg-espresso text-linen font-bold">Reservasi Meja</a>
+    <div id="mobileNav" class="hidden lg:hidden bg-sand border-b border-borderWarm px-6 py-6 space-y-4 text-xs font-mono uppercase tracking-wider shadow-inner">
+      <a href="index.html" class="block py-1.5 text-teal font-bold">Beranda</a>
+      <a href="about.html" class="block py-1.5 hover:text-teal">Filosofi</a>
+      <a href="menu.html" class="block py-1.5 hover:text-teal">Buku Menu</a>
+      <a href="beans.html" class="block py-1.5 hover:text-teal">Biji Kopi</a>
+      <a href="space.html" class="block py-1.5 hover:text-teal">Ruang</a>
+      <a href="journal.html" class="block py-1.5 hover:text-teal">Jurnal</a>
+      <a href="contact.html" class="block py-1.5 hover:text-teal">Kontak</a>
+      <div class="pt-3 border-t border-borderWarm flex gap-3">
+        <a href="reservation.html" class="inline-block px-5 py-2.5 rounded-full bg-teal text-white text-xs font-mono tracking-wider uppercase text-center w-full">Reservasi Meja</a>
+      </div>
     </div>
   </header>
 
   <!-- HERO SECTION -->
-  <section class="relative pt-12 pb-24 border-b border-borderWarm overflow-hidden">
+  <section class="relative pt-5 pb-8 border-b border-borderWarm overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 sm:px-8">
       
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-borderWarm/80 text-xs font-mono text-espresso/60 uppercase">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-borderWarm/80 text-xs font-mono text-espresso/60 uppercase">
         <div class="flex items-center gap-3">
           <span>Vol. 04 — Edisi Musim Gugur</span>
           <span>·</span>
@@ -135,8 +141,8 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-10 items-end">
-        <div class="lg:col-span-7 space-y-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 pt-4 items-end">
+        <div class="lg:col-span-7 space-y-4">
           <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal tracking-tight text-espresso leading-[0.95]">
             Ritual Kopi. <br>
             <span class="italic font-serif text-ochre font-light">Ruang Jeda.</span>
@@ -147,15 +153,15 @@
           </p>
 
           <div class="flex flex-wrap items-center gap-4 pt-2">
-            <a href="menu.html" class="px-8 py-4 rounded-full bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-all shadow-sm">
+            <a href="menu.html" class="px-6 py-2.5 rounded-full bg-espresso text-linen font-mono text-xs uppercase tracking-wider hover:bg-ochre transition-all shadow-sm">
               Buku Menu Lengkap →
             </a>
-            <a href="beans.html" class="px-7 py-4 rounded-full border border-borderWarm bg-white/70 hover:bg-sand font-mono text-xs uppercase tracking-wider text-espresso transition-all">
+            <a href="beans.html" class="px-5 py-2.5 rounded-full border border-borderWarm bg-white/70 hover:bg-sand font-mono text-xs uppercase tracking-wider text-espresso transition-all">
               Beli Biji Kopi Sangrai
             </a>
           </div>
 
-          <div class="grid grid-cols-3 gap-6 pt-10 border-t border-borderWarm/80">
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-borderWarm/80">
             <div>
               <span class="font-mono text-xs text-espresso/50 uppercase block">Sumber</span>
               <strong class="font-serif text-xl sm:text-2xl font-bold text-espresso">100% Petani Langsung</strong>
@@ -173,7 +179,7 @@
 
         <!-- Right Product Showcase -->
         <div class="lg:col-span-5">
-          <div class="bg-sand border border-borderWarm rounded-2xl p-6 sm:p-8 space-y-6 shadow-xs relative">
+          <div class="bg-sand border border-borderWarm rounded-2xl p-4 sm:p-5 space-y-3.5 shadow-xs relative">
             <div class="flex items-start justify-between border-b border-borderWarm pb-4">
               <div>
                 <span class="text-[10px] font-mono uppercase tracking-widest text-ochre font-semibold block">Signature Lot</span>
@@ -182,7 +188,7 @@
               <span class="font-mono text-xl font-bold text-espresso">Rp 38.000</span>
             </div>
 
-            <div class="h-64 rounded-xl overflow-hidden border border-borderWarm/70 relative">
+            <div class="h-48 rounded-xl overflow-hidden border border-borderWarm/70 relative">
               <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=700&q=80" alt="Lamar Aren Macchiato" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-700">
               <span class="absolute bottom-3 left-3 px-2.5 py-1 bg-espresso/90 text-linen text-[10px] font-mono rounded">
                 Double Ristretto + Java Aren Nira + Oat Crema
@@ -222,10 +228,10 @@
   </section>
 
   <!-- 4 HIGHLIGHT SECTIONS TEASER -->
-  <section class="py-20 border-b border-borderWarm">
+  <section class="py-8 sm:py-10 border-b border-borderWarm">
     <div class="max-w-7xl mx-auto px-6 sm:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between pb-8 border-b border-borderWarm gap-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-4 border-b border-borderWarm gap-4">
         <div>
           <span class="text-xs font-mono text-ochre uppercase tracking-widest block mb-1">Eksplorasi Ekosistem Lamar</span>
           <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso">Ruang & Kerajinan Kopi</h2>
@@ -235,7 +241,7 @@
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-5">
         
         <!-- Card 1: Menu -->
         <a href="menu.html" class="group bg-sand/60 rounded-2xl p-6 border border-borderWarm hover:border-ochre transition-all block">
@@ -287,17 +293,24 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-espresso text-linen/70 py-16 border-t border-borderDark text-xs font-mono">
+  <footer class="bg-espresso text-linen/70 py-6 sm:py-8 border-t border-borderDark text-xs font-mono">
     <div class="max-w-7xl mx-auto px-6 sm:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-borderDark/80">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-4 border-b border-borderDark/80">
         
         <div class="md:col-span-4 space-y-4">
-          <span class="font-serif text-3xl font-bold text-linen tracking-tight">LAMAR COFFEE</span>
+          <div class="flex items-start gap-3.5">
+            <img src="assets/lamar_logo.png" alt="Lamar Coffee & Eatery Logo" class="h-[56px] w-auto max-h-[56px] shrink-0 object-contain" style="height: 56px; width: auto;" />
+            <div class="flex flex-col justify-start pt-0.5">
+              <span class="font-serif text-[22px] font-bold text-linen tracking-tight leading-none">LAMAR</span>
+              <span class="font-serif italic text-[13px] font-medium text-citron tracking-wide leading-none mt-1">Coffee & Eatery</span>
+              <span class="text-[8.5px] font-mono tracking-[0.18em] text-linen/50 uppercase leading-none mt-1.5">Good Coffee • Honest Food</span>
+            </div>
+          </div>
           <p class="text-linen/50 text-xs font-light max-w-sm leading-relaxed">
-            Micro-roastery independen & slow living sanctuary di Senopati, Jakarta Selatan.
+            Micro-roastery independen & slow living sanctuary di Pertanian & Kranggan.
           </p>
           <div class="pt-2 text-ochre">
-            <span>Instagram: @lamarcoffee.id</span>
+            <span>Instagram: @lamarcreative22</span>
           </div>
         </div>
 
@@ -330,7 +343,7 @@
 
       </div>
 
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-linen/40">
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-between text-[11px] text-linen/40">
         <p>© 2026 Lamar Coffee Roastery. Seluruh hak cipta dilindungi.</p>
         <p>Crafted with patience, precision, and natural single-origins.</p>
       </div>
@@ -375,7 +388,7 @@
 
   <!-- CUSTOMIZER MODAL -->
   <div id="customizerModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="w-full max-w-lg bg-paper rounded-2xl border border-borderWarm p-6 sm:p-8 space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+    <div class="w-full max-w-lg bg-paper rounded-2xl border border-borderWarm p-4 sm:p-5 space-y-3.5 shadow-2xl relative max-h-[90vh] overflow-y-auto">
       <button onclick="closeCustomizer()" class="absolute top-5 right-5 p-2 rounded-full hover:bg-sand text-espresso/60 hover:text-espresso cursor-pointer">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>

@@ -13,6 +13,7 @@ echo "Target Repo: $REPO_URL"
 echo "=========================================================="
 
 mkdir -p "$BACKUP_DIR/vaults"
+mkdir -p "$BACKUP_DIR/projects/ai_tech_worker"
 mkdir -p "$BACKUP_DIR/projects/lamar_coffee"
 mkdir -p "$BACKUP_DIR/projects/hris"
 mkdir -p "$BACKUP_DIR/projects/scripts"
@@ -55,6 +56,11 @@ find /home/ubuntu/ -maxdepth 1 -name "*.md" -exec cp -f {} "$BACKUP_DIR/" \; 2>/
 
 # 4. Backup Skills (Profile Skills + Global Skills Library)
 echo "🧠 Backing up Profile Skills & Full Global Skills Library..."
+rsync -av --delete \
+  --exclude="__pycache__" \
+  --exclude=".git" \
+  /home/ubuntu/.hermes/profiles/hermes-support/skills/ "$BACKUP_DIR/skills/hermes_support_skills/"
+
 rsync -av --delete \
   --exclude="__pycache__" \
   --exclude=".git" \
@@ -137,7 +143,15 @@ cat << 'EOF' > "$BACKUP_DIR/RULES_AND_SETTINGS.md"
 EOF
 
 # 7. Backup Projects
+
 echo "💻 Syncing Projects..."
+rsync -av --delete \
+  --exclude="venv" \
+  --exclude=".env" \
+  --exclude="__pycache__" \
+  --exclude="*.db" \
+  /home/ubuntu/ai_tech_worker/ "$BACKUP_DIR/projects/ai_tech_worker/"
+
 rsync -av --delete \
   --exclude=".git" \
   /home/ubuntu/lamar_coffee_website/ "$BACKUP_DIR/projects/lamar_coffee/"
@@ -155,6 +169,7 @@ cp -f /home/ubuntu/*.py "$BACKUP_DIR/projects/scripts/" 2>/dev/null || true
 # 8. Backup System Configurations
 echo "⚙️ Syncing System Service Configs..."
 cp -f /etc/systemd/system/lamar-coffee.service "$BACKUP_DIR/system_configs/systemd/" 2>/dev/null || true
+cp -f /etc/systemd/system/ai-tech-worker.service "$BACKUP_DIR/system_configs/systemd/" 2>/dev/null || true
 cp -f /etc/systemd/system/hris.service "$BACKUP_DIR/system_configs/systemd/" 2>/dev/null || true
 cp -rf /etc/nginx/sites-available "$BACKUP_DIR/system_configs/nginx/" 2>/dev/null || true
 
