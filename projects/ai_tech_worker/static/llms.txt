@@ -1,0 +1,37 @@
+# Virtual Tech Worker Assistant
+> Platform AI Agent otonom pertama di Indonesia untuk eksekusi tugas teknis, coding, manajemen VPS/server, scraping data, dan otomasi bisnis langsung via Telegram dengan pembayaran Dynamic QRIS.
+
+## Ringkasan Layanan & Kapabilitas
+- **Domain Resmi:** https://techworker.my.id
+- **Bot Telegram Resmi:** https://t.me/Olo_SBT_bot (@Olo_SBT_bot)
+- **Model Bisnis:** Pay-per-task & Langganan Bulanan via QRIS (BuatQris Open API)
+
+## 10 Divisi Kerja Teknis Utama
+1. **Tech & IT Engineering:** Coding Fullstack (Next.js, React, Node.js, Python, FastAPI, PHP/Laravel, Golang), database schema, CRUD API, dan perbaikan bug sistematis.
+2. **DevOps & Cloud Server:** Konfigurasi VPS Linux Ubuntu/Debian, Docker container, Nginx reverse proxy, SSL Let's Encrypt, firewall UFW, dan monitoring systemd.
+3. **Data Extraction & Web Scraping:** Scraping web deterministik anti-halusinasi, ekstraksi DOM, crawling e-commerce/marketplace, dan integrasi API pihak ketiga.
+4. **Business & Workflow Automation:** Pembuatan bot Telegram/WhatsApp, integrasi webhook payment gateway, dan otomasi alur kerja operasional.
+5. **Finance, Accounting & Tax:** Rekonsiliasi mutasi bank/QRIS, kalkulasi laporan laba rugi, dan automasi invoice/struk digital.
+6. **B2B Sales & Lead Generation:** Riset calon klien B2B, ekstraksi kontak bisnis, penyusunan penawaran komersial (*pitching proposal*).
+7. **Human Resources (HR) & Talent:** Otomasi absensi smart geofencing, sistem seleksi kandidat, dan manajemen KPI tim teknis.
+8. **Legal & Compliance:** Pembuatan draft kontrak kerja developer, Terms of Service (ToS), Privacy Policy SaaS, dan Non-Disclosure Agreement (NDA).
+9. **Strategy & Business Operations:** Analisis kompetitor pasar, perancangan unit economics SaaS, dan perencanaan roadmap produk digital.
+10. **Creative & UI/UX Design:** Desain antarmuka modern anti-slop, aset visual branding, layout mobile-first, dan standar tipografi presisi.
+
+## Paket Langganan & Biaya
+- **Aktivasi Free Trial:** Rp 1.000 (8 Token Task Eksekusi Nyata)
+- **Paket Starter:** Rp 100.000 / bulan (50 Task)
+- **Paket Advance:** Rp 249.000 / bulan (150 Task)
+- **Paket Pro Enterprise:** Rp 499.000 / bulan (350 Task)
+
+## Tautan Halaman Resmi
+- Beranda: https://techworker.my.id/
+- Katalog Skill: https://techworker.my.id/skills
+- Daftar Harga: https://techworker.my.id/pricing
+- Dokumentasi & Panduan: https://techworker.my.id/docs
+- Studi Kasus: https://techworker.my.id/case-studies
+- Enterprise Solution: https://techworker.my.id/enterprise
+- Solusi UMKM: https://techworker.my.id/umkm
+- Penggunaan Personal: https://techworker.my.id/personal
+- Tentang Kami: https://techworker.my.id/about
+- Hubungi Kami: https://techworker.my.id/contact

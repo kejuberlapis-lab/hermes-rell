@@ -12,7 +12,7 @@ from pydantic import BaseModel
 import httpx
 from fastapi import FastAPI, Request, HTTPException, Header, Depends, Cookie
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, Response, PlainTextResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from models import Base, User, Transaction, sessionmaker, create_engine
@@ -658,6 +658,18 @@ def serve_robots():
 @app.api_route("/sitemap.xml", methods=["GET", "HEAD"])
 def serve_sitemap():
     return FileResponse(os.path.join(BASE_DIR, "static", "sitemap.xml"), media_type="application/xml")
+
+@app.api_route("/llms.txt", methods=["GET", "HEAD"])
+def serve_llms():
+    return FileResponse(os.path.join(BASE_DIR, "static", "llms.txt"), media_type="text/plain; charset=utf-8")
+
+@app.api_route("/a7d9f2b4c8e146039582710364958102.txt", methods=["GET", "HEAD"])
+def serve_indexnow_key():
+    return FileResponse(os.path.join(BASE_DIR, "static", "a7d9f2b4c8e146039582710364958102.txt"), media_type="text/plain")
+
+@app.api_route("/google{verify_id}.html", methods=["GET", "HEAD"])
+def serve_google_verify(verify_id: str):
+    return Response(content=f"google-site-verification: google{verify_id}.html", media_type="text/html")
 
 # Static Mount for Assets
 static_dir = os.path.join(BASE_DIR, 'static')
