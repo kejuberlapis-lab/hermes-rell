@@ -17,6 +17,7 @@ Berbeda dengan chatbot pasif (ChatGPT/Gemini), AI Tech Worker bertindak sebagai 
 | [[04_Implementasi_Middleware_dan_Webhook_FastAPI]] | Kode backend Python FastAPI, database SQLite/PostgreSQL, dan router callback |
 | [[05_Konfigurasi_Bot_Telegram_dan_Hermes_Profile]] | Setup profil Hermes, isolasi environment, dan system prompt multi-jobdesk |
 | [[06_Integrasi_End_to_End_Website_Telegram_dan_Lifecycle_Transaksi]] | Mekanisme Deep-Link website-to-bot, binding transaksi, aktivasi trial Rp 1k, dan webhook |
+| [[07_Protokol_Keamanan_Komersial_dan_Anti_Reverse_Engineering]] | Proteksi rahasia dagang, larangan profiling/cloning, anti-prompt-injection, & kontrak pekerja komersial |
 
 ---
 
