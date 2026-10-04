@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026-10-04T22:53:31.659433",
+  "updated_at": "2026-10-05T02:20:00.857996",
   "platforms": {
     "telegram": [
       {
-        "id": "922749471",
-        "name": "Tri",
+        "id": "856579127",
+        "name": "Sedny Mur Prasetyo",
         "type": "dm",
         "thread_id": null
       },
       {
-        "id": "856579127",
-        "name": "Sedny Mur Prasetyo",
+        "id": "922749471",
+        "name": "Tri",
         "type": "dm",
         "thread_id": null
       },

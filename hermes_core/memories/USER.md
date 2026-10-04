@@ -1,0 +1,3 @@
+User is Tri (Tri Gutomo), building/managing the Finance & Sales CRM for CV Jagad Scientific Indonesia (Node.js, SQLite, Nginx on Ubuntu VPS). Prefers receiving full updated file code when requesting code revisions so it can be easily copied and pasted into VS Code in one step.
+§
+Sedny Mur Prasetyo (Telegram ID: 856579127) manages CV Jagad Scientific Indonesia (CRM system at VPS 43.134.93.34 / domain jsi-system.web.id). Prefers ready-to-use turnkey execution ("terima jadi").
