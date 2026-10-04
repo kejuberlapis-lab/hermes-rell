@@ -571,14 +571,14 @@
     "first_seen_at": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-10-03T14:08:20.823808+00:00",
-    "last_viewed_at": "2026-10-03T14:08:20.819301+00:00",
+    "last_used_at": "2026-10-04T06:01:15.983410+00:00",
+    "last_viewed_at": "2026-10-04T06:01:15.977836+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 2,
-    "view_count": 2
+    "use_count": 3,
+    "view_count": 3
   },
   "bug-fix-protocol": {
     "archived_at": null,
@@ -2213,13 +2213,13 @@
     "first_seen_at": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-09-27T17:40:01.429595+00:00",
-    "last_viewed_at": "2026-09-27T17:40:01.425488+00:00",
+    "last_used_at": "2026-10-04T06:58:10.066684+00:00",
+    "last_viewed_at": "2026-10-04T06:58:10.062034+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 1,
-    "view_count": 1
+    "use_count": 3,
+    "view_count": 3
   }
 }

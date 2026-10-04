@@ -137,12 +137,29 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
      ```
    - Use automatic fallback to plain text if markup entity parsing fails.
 
-8. **Abandoned Pending Transaction Auto-Expiry Sweeper (30 Minutes):**
-   - When users generate a QRIS (via web modal or `/start` bot) but abandon checkout without paying, the gateway expires the invoice on bank rails after 15–30 minutes but does NOT send webhooks for offline/unpaid expirations.
-   - Implement an automated sweeper in `/api/payment/check/{transaction_id}` and `/api/admin/metrics` to automatically update transactions where `status == 'pending'` and `(now_utc - created_at) > 1800s (30m)` to `status = 'expired'`.
-   - This ensures live dashboard metrics reflect only real active checkout sessions and prevents inflating pending revenue figures.
+8. **Automated Instant Push Notification & Activation Invitation:**
+   - When payment succeeds, immediately invoke Telegram Bot API (`sendMessage`) with parsed HTML markup:
+     ```python
+     notification_text = (
+         f"🎉 <b>PEMBAYARAN BERHASIL DIVERIFIKASI!</b>\n\n"
+         f"Halo! Pembayaran QRIS Anda sebesar <b>Rp {total_paid}</b> telah kami terima dan diverifikasi secara otomatis.\n\n"
+         f"📋 <b>Detail Akun & Kuota Anda:</b>\n"
+         f"• <b>Paket Langganan:</b> {tier_title}\n"
+         f"• <b>Kuota Tugas:</b> {tokens_cnt} Token Eksekusi\n"
+         f"• <b>Status Akun:</b> 🟢 Aktif & Siap Bekerja\n\n"
+         f"🤖 <b>Silakan Mulai Menggunakan Saya Sekarang!</b>\n"
+         f"Saya adalah AI Tech Worker Anda. Anda bisa langsung memberikan instruksi pekerjaan teknis apa pun di sini, ketikkan tugas atau pertanyaan pertama Anda sekarang untuk langsung saya eksekusi!"
+     )
+     ```
+   - Use automatic fallback to plain text if markup entity parsing fails.
 
-9. **Clear Status Badging in Administrative & Executive Dashboards:**
+9. **Abandoned Pending Transaction Auto-Expiry Sweeper (15–30 Minutes):**
+   - When users generate a QRIS (via web modal or `/start` bot) but abandon checkout without paying, the gateway expires the invoice on bank rails after 15–30 minutes but does NOT send webhooks for offline/unpaid expirations.
+   - Implement an automated sweeper in `/api/payment/check/{transaction_id}`, `/api/admin/metrics`, and `cli_billing.py` to automatically update transactions where `status == 'pending'` and `(now_utc - created_at) > 900s (15m)` to `status = 'expired'`.
+   - On every `/start` command or user check, auto-expire prior pending records for that user so dangling pending invoices never linger.
+   - If a user opens an expired Telegram deep-link (`trx_...`), reject immediately with an explicit expiration prompt rather than serving a stale QR code.
+
+10. **Clear Status Badging in Administrative & Executive Dashboards:**
    - In user management tables, never label unverified/unpaid users (0 tokens) with ambiguous labels like `REGISTERED` (which implies active membership).
    - Use distinct, unambiguous badges:
      - `BELUM BAYAR` (Amber badge) $\rightarrow$ `UNVERIFIED` tier, 0 tokens.
@@ -151,7 +168,9 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
 
 ## Pitfalls
 
-- **Un-swept Pending Transactions Cluttering Metrics:** Without an auto-expiry sweeper on transactions older than 30 minutes, abandoned invoices permanently accumulate as `pending`, creating false impressions of pending bank transfers and distorting financial reporting.
+- **Leaving Expired Transactions in Pending State:** Without an auto-expiry sweeper on transactions older than 15 minutes, abandoned invoices permanently accumulate as `pending`, misleading administrative dashboards into reporting phantom pending revenue and leaving users confused with stale QR codes.
+- **Stacking Multiple Pending Invoices for One User:** Failing to expire prior pending transactions when issuing a new `/start` invoice creates duplicate pending records for the same account. Always expire older pending rows for that `telegram_id` before inserting a new one.
+- **Serving Stale QRIS on Expired Deep-Links:** When a user opens a Telegram transaction deep-link (`trx_...`) after 15 minutes, serving the old QRIS leads to payment failures or uncredited transfers. Check timestamp and reject with an explicit expiration prompt immediately.
 - **Ambiguous Status Labels in Dashboards:** Labeling unpaid leads as "REGISTERED" creates stakeholder confusion regarding active customer counts versus unpaid abandoned checkouts. Always use clear, explicit status indicators.
 - **Default Python User-Agent Blocking (HTTP 403 Forbidden):** Python's default `urllib` user agent (`Python-urllib/3.x`) is blocked by BuatQris API security filters. Always send a standard browser `User-Agent` header with every request.
 - **Unbound Website Transactions:** Generating QRIS on a website without a deep-link transaction parameter (`?start=trx_<ID>`) results in orphaned payments where the bot cannot identify which Telegram account purchased the tokens.
