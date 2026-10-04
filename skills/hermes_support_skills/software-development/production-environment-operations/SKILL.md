@@ -43,14 +43,21 @@ A standardized operational framework for inspecting, managing, debugging, and mo
      ```
 
 3. **Mandatory Snapshot Backup:**
-   - **Database Dump:** Always snapshot the live database before applying changes:
+   - **Local VPS Backups:** Snapshot local databases and codebases:
      ```bash
      mysqldump -h <host> -u <user> -p'<password>' <database> | gzip > backups/db_backup_pre_fix_$(date +%Y%m%d_%H%M%S).sql.gz
-     ```
-   - **Codebase Snapshot:** Archive touched application directories before file updates:
-     ```bash
      tar -czf backups/app_code_backup_$(date +%Y%m%d_%H%M%S).tar.gz app/ routes/
      ```
+   - **Remote cPanel Hosting Snapshot (via FTP + PHP Helper):**
+     - When SSH port 22 is disabled on shared cPanel hosting, upload a short-lived PHP helper to execute a tar archive command on the server:
+       ```php
+       <?php
+       $target_tar = "/home/<user>/app_backup_" . date("Ymd_His") . ".tar.gz";
+       shell_exec("tar --exclude='vendor' --exclude='storage' -czf " . escapeshellarg($target_tar) . " -C /home/<user>/<subdomain> . 2>&1");
+       echo "BACKUP_FILE:" . $target_tar;
+       ?>
+       ```
+     - Download the generated tar archive locally via FTP (`RETR <tar_name>`) with `ftp.set_pasv(True)`, and immediately delete the temporary helper script from the webroot.
 
 4. **Deterministic Implementation & Syntax Check:**
    - **Write Reusable Artisan/CLI Commands:** For recurring state transitions (e.g. unfreezing expired accounts, recalculating quotas), create a dedicated command with `--dry-run` support.

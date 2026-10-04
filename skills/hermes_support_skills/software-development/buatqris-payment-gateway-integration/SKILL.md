@@ -121,22 +121,6 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
    - **Fast Response Gate (<6 Seconds):** Return HTTP 200 immediately to prevent BuatQris automated retry loops.
    - **Idempotency Guard:** If `transaction.status == 'success'`, return `{"status": "already_processed"}` without re-crediting quota.
 
-7. **Automated Instant Push Notification & Activation Invitation:**
-   - When payment succeeds, immediately invoke Telegram Bot API (`sendMessage`) with parsed HTML markup:
-     ```python
-     notification_text = (
-         f"🎉 <b>PEMBAYARAN BERHASIL DIVERIFIKASI!</b>\n\n"
-         f"Halo! Pembayaran QRIS Anda sebesar <b>Rp {total_paid}</b> telah kami terima dan diverifikasi secara otomatis.\n\n"
-         f"📋 <b>Detail Akun & Kuota Anda:</b>\n"
-         f"• <b>Paket Langganan:</b> {tier_title}\n"
-         f"• <b>Kuota Tugas:</b> {tokens_cnt} Token Eksekusi\n"
-         f"• <b>Status Akun:</b> 🟢 Aktif & Siap Bekerja\n\n"
-         f"🤖 <b>Silakan Mulai Menggunakan Saya Sekarang!</b>\n"
-         f"Saya adalah AI Tech Worker Anda. Anda bisa langsung memberikan instruksi pekerjaan teknis apa pun di sini, ketikkan tugas atau pertanyaan pertama Anda sekarang untuk langsung saya eksekusi!"
-     )
-     ```
-   - Use automatic fallback to plain text if markup entity parsing fails.
-
 8. **Automated Instant Push Notification & Activation Invitation:**
    - When payment succeeds, immediately invoke Telegram Bot API (`sendMessage`) with parsed HTML markup:
      ```python
