@@ -1,23 +1,23 @@
 ---
 name: ai-agent-product-and-pricing-strategy
 description: "Use when designing AI agent SaaS tiers, pricing, and UX."
-version: 1.4.0
+version: 1.5.0
 author: Hermes Agent
 license: MIT
 metadata:
   hermes:
     category: software-development
-    tags: [saas, ai-agents, pricing-strategy, product-management, free-trial, unit-economics, telegram-bots, pitch-deck, light-theme, qris-paywall, gateway, multi-page, terminal-simulator, trust-building, anti-slop]
+    tags: [saas, ai-agents, pricing-strategy, product-management, free-trial, unit-economics, telegram-bots, pitch-deck, light-theme, qris-paywall, gateway, multi-page, terminal-simulator, trust-building, anti-slop, micro-commitment, timezone-wib]
 ---
 
 # AI Agent SaaS Product Strategy, Tiering Architecture, & Unit Economics
 
-A class-level operational guide for packaging autonomous AI agents into commercial SaaS products, designing high-converting Free Trial loops, formulating 3-tier value-based pricing ladders, mapping skill capabilities across tiers, implementing dynamic QRIS auto-paywall middleware, building platform trust architectures, white-labeling proprietary autonomous engines, and constructing high-converting multi-page web portals.
+A class-level operational guide for packaging autonomous AI agents into commercial SaaS products, designing high-converting Micro-Commitment (Rp 1.000) trial loops with purchase limits, formulating 3-tier value-based pricing ladders, mapping skill capabilities across tiers, implementing dynamic QRIS auto-paywall middleware, building platform trust architectures, white-labeling proprietary autonomous engines, and constructing high-converting multi-page web portals.
 
 ## When to Use
 
 - When structuring commercial SaaS subscription packages and message quotas for autonomous AI agents or Telegram-based virtual workers.
-- When formulating Free Trial token limits and conversion paywalls that balance user trust with zero-risk API cost (COGS) burn rate.
+- When formulating Free Trial / Micro-Commitment token limits and conversion paywalls that balance user trust with zero-risk API cost (COGS) burn rate.
 - When implementing automated Dynamic QRIS paywalls, Telegram `/start` gatekeepers, and webhook settlement callbacks for instant user activation.
 - When designing multi-page SaaS web portals and interactive skills catalogs that serve as the primary customer conversion hub.
 - When reinforcing platform trust and addressing why Telegram is the superior, enterprise-grade channel over web-only or heavy desktop apps.
@@ -33,11 +33,14 @@ A class-level operational guide for packaging autonomous AI agents into commerci
    - Market the product purely as a **Proprietary Autonomous Execution Engine & Real-Time Action Pipeline**.
    - Frame the technology as custom enterprise-grade architecture capable of deterministic tool execution, self-healing, and end-to-end task completion.
 
-2. **The 8-Token Free Trial Rule (Completion & Taste Principle):**
-   - Never set trial quotas too low (e.g. 3–5 tokens), which risks cutting off the user mid-task and creating paywall frustration.
-   - Never set trial quotas too high (e.g. 20 tokens), which cannibalizes 40% of the entry tier and allows users to finish entire monthly workloads without paying.
+2. **The Micro-Commitment Pass & 8-Token Rule (Rp 1.000 Strategy):**
+   - Replace generic "Free Trial" with a nominal micro-commitment pass: **`Lihat Bagaimana Virtual Tech Worker Bekerja` (Rp 1.000 / sekali coba | 8 Token)**.
+   - Sweep and eliminate the word "Gratis" across all secondary pages, banners, docs, and personal solutions.
+   - **Enforce Strict Purchase Limits (Max 2x per User):**
+     - Limit micro-commitment purchases to a maximum of **2 paid trials per Telegram/user ID**.
+     - On the 3rd attempt, block QRIS generation with an informative error message and automatically trigger an instant client-side upsell prompt to transition to the **Starter tier (Rp 99.000 / 50 Token)**.
    - Enforce the **8-Token Golden Ratio**:
-     - **Tokens 1–5 (Task 1 Tuntas 100%):** Delivers a fully completed, verified artifact (Excel file, fixed code, or ad copy), establishing deep trust and reciprocity.
+     - **Tokens 1–5 (Task 1 Tuntas 100%):** Delivers a fully completed, verified deliverable (Excel file, fixed code, or legal contract), establishing deep trust and reciprocity.
      - **Tokens 6–8 (Taste 2nd Jobdesk):** Allows the user to test a completely different job skill (e.g. pivoting from web coding to financial analysis or copywriting), proving the "All-in-One" tagline.
      - **Token 8 Closure (Paywall Hook):** Displays a celebratory completion notice and a direct call to action to unlock 50 new task quotas for the entry price.
 
@@ -73,7 +76,7 @@ A class-level operational guide for packaging autonomous AI agents into commerci
      - Do NOT cripple Starter with restricted features or basic-only skills. Provide **100% full professional analytical & execution capabilities across all 10 corporate divisions** in BOTH Starter and Advance tiers.
      - Differentiate Starter and Advance strictly by **Task Volume / Token Quotas** (50 vs 150 tokens) and priority/rollover perks. This creates an irresistible entry value proposition where users feel they are getting an uncompromised enterprise-grade workforce, triggering natural upgrades purely as work volume grows.
    - **Tier Breakdown:**
-     - **🎁 Tier 0: FREE TRIAL (Rp 0 / 7 Hari | 8 Token (Pesan Perintah)):** Full access to 10 divisions to test 1 complete task + 1 sample.
+     - **🎁 Tier 0: UJI COBA / COMMITMENT PASS (Rp 1.000 / Sekali Coba | 8 Token (Pesan Perintah) | Max 2x per user):** Full access to 10 divisions to test 1 complete task + 1 sample.
      - **🟢 Tier 1: STARTER (Rp 99.000 / Bulan | 50 Token (Pesan Perintah) | ~Rp 1.980/pesan):**
        - *Role:* Low-friction entry gate for solopreneurs, UMKM, and freelancers.
        - *Promo Display:* Always display the normal comparison price crossed out inline (`Rp99k ~~Rp150k~~ / bulan`) using bold, prominent typography (20-21px) and a bold red strikethrough line (`#ef4444, 2.5px`).
@@ -116,12 +119,10 @@ A class-level operational guide for packaging autonomous AI agents into commerci
 
 ## Pitfalls
 
+- **Allowing Unlimited Micro-Commitment Purchases:** Neglecting a trial purchase count limit allows users to repeatedly buy Rp 1.000 passes (8 tokens each) rather than converting to the higher-margin Starter/Advance tiers.
 - **Exposing Underlying LLM Model Names:** Revealing model names (e.g. OpenAI/Anthropic/Google) in promotional copy commoditizes the product and encourages users to bypass your SaaS and use the raw models directly; always maintain proprietary branding.
 - **Direct LLM Invocations Without Pre-Flight Middleware:** Routing Telegram `/start` or chat messages directly to the LLM agent without a deterministic database gatekeeper burns API tokens on non-paying users.
 - **Insecure Webhook Endpoints Without Signature Verification:** Processing payment callbacks without validating HMAC-SHA256 signature or merchant secret allows malicious actors to forge fake settlement requests and claim free token quotas.
 - **Overwhelming Mainstream Users with Multi-Agent Jargon:** Marketing multi-agent technical orchestration to non-technical business owners causes confusion and hesitation; sell the outcome as a single, ultra-capable virtual team member.
-- **Under-Provisioning Free Trial Quotas (<5 Tasks):** Stopping trial users before their first real task is 100% finished generates resentment rather than conversion; ensure at least 1 complex task finishes completely before triggering the paywall.
-- **Over-Provisioning Free Trial Quotas (>15 Tasks):** Giving too many free tasks allows users to finish their entire one-off project for free and creates vulnerability to multi-account abuse.
 - **Single-Page Landing Pages for Complex Technical SaaS:** Relying solely on a one-page scroller without a dedicated skills catalog, documentation, and security proof creates trust friction for technical buyers.
-- **Static Passive Terminal Previews:** Using static screenshots rather than an animated, rotating multi-task execution terminal fails to showcase breadth across coding, DevOps, data scraping, and automations.
 - **Separate Row Strikethrough Formatting on Pricing Cards:** Stacking the crossed-out comparison price on a separate top row above the active price breaks vertical alignment across pricing cards; always place strikethrough prices inline (`Rp99k ~~Rp150k~~ / bln`) on the same horizontal baseline with bold, prominent styling.

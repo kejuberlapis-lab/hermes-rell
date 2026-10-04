@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 import json
 import sqlite3
 import re
@@ -271,6 +271,18 @@ def get_admin_metrics(db: Session = Depends(get_db)):
     users = db.query(User).all()
     transactions = db.query(Transaction).order_by(Transaction.created_at.desc()).all()
     
+    # Auto-expire pending transactions older than 30 minutes
+    now_utc = datetime.utcnow()
+    dirty = False
+    for tx in transactions:
+        if tx.status == "pending" and tx.created_at:
+            diff_seconds = (now_utc - tx.created_at).total_seconds()
+            if diff_seconds > 1800:
+                tx.status = "expired"
+                dirty = True
+    if dirty:
+        db.commit()
+    
     total_users = len(users)
     trial_activations = len([t for t in transactions if t.tier_package == 'TRIAL'])
     
@@ -524,6 +536,31 @@ def create_qris(req: CreateQRISRequest, db: Session = Depends(get_db)):
         "qr_url": qr_url,
         "qr_image": qr_image,
         "instructions": f"Silakan scan QRIS di atas dengan GoPay/OVO/Dana/BCA/ShopeePay. Total bayar tepat Rp {total_amount:,}."
+    }
+
+@app.get("/api/payment/check/{transaction_id}")
+def check_payment_status(transaction_id: str, db: Session = Depends(get_db)):
+    tx = db.query(Transaction).filter(Transaction.transaction_id == transaction_id).first()
+    if not tx:
+        raise HTTPException(status_code=404, detail="Transaksi tidak ditemukan.")
+    
+    # Auto-expire if pending for more than 30 minutes (1800 seconds)
+    if tx.status == "pending" and tx.created_at:
+        diff_seconds = (datetime.utcnow() - tx.created_at).total_seconds()
+        if diff_seconds > 1800:
+            tx.status = "expired"
+            db.commit()
+            db.refresh(tx)
+            
+    return {
+        "status": "success",
+        "transaction_id": tx.transaction_id,
+        "payment_status": tx.status,
+        "tier": tx.tier_package,
+        "tokens": tx.tokens_allocated,
+        "amount": tx.amount,
+        "total_amount": tx.total_amount,
+        "paid_at": format_wib(tx.paid_at) if tx.paid_at else None
     }
 
 @app.post("/api/payment/webhook")
