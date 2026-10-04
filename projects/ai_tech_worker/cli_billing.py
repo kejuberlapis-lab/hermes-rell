@@ -31,6 +31,17 @@ BUATQRIS_SECRET_TOKEN = env_vars.get("BUATQRIS_SECRET_TOKEN", "")
 def check_user(telegram_id: str, username: str = None):
     db: Session = SessionLocal()
     try:
+        # Auto-expire any stale pending transactions older than 15 minutes
+        now_utc = datetime.utcnow()
+        pending_txs = db.query(Transaction).filter(
+            Transaction.telegram_id == str(telegram_id),
+            Transaction.status == "pending"
+        ).all()
+        for ptx in pending_txs:
+            if ptx.created_at and (now_utc - ptx.created_at).total_seconds() > 900:
+                ptx.status = "expired"
+        db.commit()
+
         user = db.query(User).filter(User.telegram_id == str(telegram_id)).first()
         if not user:
             # New user
@@ -67,6 +78,17 @@ def create_qris(telegram_id: str, tier: str):
         return {"status": "error", "message": f"Tier {tier} tidak valid."}
         
     cfg = tier_config[tier_upper]
+    
+    # Auto-expire previous pending transactions for this user
+    db: Session = SessionLocal()
+    try:
+        db.query(Transaction).filter(
+            Transaction.telegram_id == str(telegram_id),
+            Transaction.status == "pending"
+        ).update({"status": "expired"})
+        db.commit()
+    finally:
+        db.close()
     
     payload = {
         "action": "api_create_qris",

@@ -478,6 +478,13 @@ def create_qris(req: CreateQRISRequest, db: Session = Depends(get_db)):
                 detail="Batas Maksimal Uji Coba Tercapai (Maksimal 2x per Akun Telegram). Anda sudah menggunakan 2 kali kuota Uji Coba. Untuk melanjutkan pekerjaan operasional, silakan pilih Paket Starter (50 Token · Rp 99.000)."
             )
     
+    # Auto-expire any previous pending transactions for this user/guest
+    db.query(Transaction).filter(
+        Transaction.telegram_id == req.telegram_id,
+        Transaction.status == "pending"
+    ).update({"status": "expired"})
+    db.commit()
+
     payload = {
         "action": "api_create_qris",
         "account_id": BUATQRIS_ACCOUNT_ID,

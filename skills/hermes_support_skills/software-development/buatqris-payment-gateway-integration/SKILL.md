@@ -137,8 +137,22 @@ A class-level operational guide for integrating the **BuatQris Open API** (`http
      ```
    - Use automatic fallback to plain text if markup entity parsing fails.
 
+8. **Abandoned Pending Transaction Auto-Expiry Sweeper (30 Minutes):**
+   - When users generate a QRIS (via web modal or `/start` bot) but abandon checkout without paying, the gateway expires the invoice on bank rails after 15–30 minutes but does NOT send webhooks for offline/unpaid expirations.
+   - Implement an automated sweeper in `/api/payment/check/{transaction_id}` and `/api/admin/metrics` to automatically update transactions where `status == 'pending'` and `(now_utc - created_at) > 1800s (30m)` to `status = 'expired'`.
+   - This ensures live dashboard metrics reflect only real active checkout sessions and prevents inflating pending revenue figures.
+
+9. **Clear Status Badging in Administrative & Executive Dashboards:**
+   - In user management tables, never label unverified/unpaid users (0 tokens) with ambiguous labels like `REGISTERED` (which implies active membership).
+   - Use distinct, unambiguous badges:
+     - `BELUM BAYAR` (Amber badge) $\rightarrow$ `UNVERIFIED` tier, 0 tokens.
+     - `FREE TRIAL (AKTIF)` (Emerald badge) $\rightarrow$ `TRIAL` tier, 8 tokens active.
+     - `STARTER / ADVANCE / PRO (AKTIF)` (Blue/Indigo/Purple badges) $\rightarrow$ Paid active tiers.
+
 ## Pitfalls
 
+- **Un-swept Pending Transactions Cluttering Metrics:** Without an auto-expiry sweeper on transactions older than 30 minutes, abandoned invoices permanently accumulate as `pending`, creating false impressions of pending bank transfers and distorting financial reporting.
+- **Ambiguous Status Labels in Dashboards:** Labeling unpaid leads as "REGISTERED" creates stakeholder confusion regarding active customer counts versus unpaid abandoned checkouts. Always use clear, explicit status indicators.
 - **Default Python User-Agent Blocking (HTTP 403 Forbidden):** Python's default `urllib` user agent (`Python-urllib/3.x`) is blocked by BuatQris API security filters. Always send a standard browser `User-Agent` header with every request.
 - **Unbound Website Transactions:** Generating QRIS on a website without a deep-link transaction parameter (`?start=trx_<ID>`) results in orphaned payments where the bot cannot identify which Telegram account purchased the tokens.
 - **Enforcing Amounts Under Rp 1.000:** Attempting to create a QRIS for Rp 1 or Rp 500 fails because BuatQris enforces a minimum base amount of Rp 1.000. Use Rp 1.000 for trial verification checkouts.
