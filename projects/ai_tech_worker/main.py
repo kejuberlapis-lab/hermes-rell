@@ -644,6 +644,148 @@ async def buatqris_webhook(request: Request, db: Session = Depends(get_db)):
         
     return {"status": "ok", "message": "Webhook processed successfully"}
 
+# --- UBTECH YANSHEE EMBODIMENT BRIDGE ---
+
+class YansheeRegisterPayload(BaseModel):
+    robot_id: str = "yanshee_alpha"
+    ip: Optional[str] = None
+    hostname: Optional[str] = None
+    audio_player: Optional[str] = None
+    has_yanapi: bool = False
+
+class YansheeSpeakPayload(BaseModel):
+    text: str
+    motion: Optional[str] = None
+    voice: Optional[str] = "id-ID-ArdiNeural"
+
+class YansheeReportPayload(BaseModel):
+    task_id: int
+    status: str
+    message: Optional[str] = None
+
+YANSHEE_STATE = {
+    "robot_id": "yanshee_alpha",
+    "online": False,
+    "last_seen": 0,
+    "ip": None,
+    "hostname": None,
+    "audio_player": None,
+    "has_yanapi": False,
+    "queue": [],
+    "history": [],
+    "task_counter": 0
+}
+
+YANSHEE_AUDIO_DIR = os.path.join(BASE_DIR, "yanshee_audio")
+os.makedirs(YANSHEE_AUDIO_DIR, exist_ok=True)
+
+async def generate_speech_file(text: str, filename: str, voice: str = "id-ID-ArdiNeural") -> str:
+    out_path = os.path.join(YANSHEE_AUDIO_DIR, filename)
+    try:
+        import edge_tts
+        communicate = edge_tts.Communicate(text, voice)
+        await communicate.save(out_path)
+        return out_path
+    except Exception as e:
+        try:
+            from gtts import gTTS
+            tts = gTTS(text=text, lang="id", slow=False)
+            tts.save(out_path)
+            return out_path
+        except Exception as e2:
+            print(f"Error generating TTS: {e}, {e2}")
+            return ""
+
+@app.post("/api/yanshee/register")
+async def yanshee_register(payload: YansheeRegisterPayload):
+    first_time = not YANSHEE_STATE["online"]
+    YANSHEE_STATE["online"] = True
+    YANSHEE_STATE["last_seen"] = int(time.time())
+    YANSHEE_STATE["ip"] = payload.ip
+    YANSHEE_STATE["hostname"] = payload.hostname
+    YANSHEE_STATE["audio_player"] = payload.audio_player
+    YANSHEE_STATE["has_yanapi"] = payload.has_yanapi
+
+    if first_time or len(YANSHEE_STATE["queue"]) == 0:
+        greeting_text = "Halo sir! Saya Hermes. Sekarang saya sudah berhasil masuk dan terhubung langsung ke tubuh robot Yanshee!"
+        YANSHEE_STATE["task_counter"] += 1
+        t_id = YANSHEE_STATE["task_counter"]
+        audio_file = f"speech_{t_id}.mp3"
+        await generate_speech_file(greeting_text, audio_file)
+        
+        YANSHEE_STATE["queue"].append({
+            "id": t_id,
+            "action": "speak",
+            "text": greeting_text,
+            "motion": "wave" if payload.has_yanapi else None,
+            "audio_url": f"/api/yanshee/audio/{audio_file}"
+        })
+
+    return {"status": "ok", "message": f"Robot {payload.robot_id} connected successfully at {payload.ip}"}
+
+@app.get("/api/yanshee/poll")
+def yanshee_poll(robot_id: str = "yanshee_alpha", ip: Optional[str] = None):
+    YANSHEE_STATE["online"] = True
+    YANSHEE_STATE["last_seen"] = int(time.time())
+    if ip:
+        YANSHEE_STATE["ip"] = ip
+    
+    tasks_to_run = list(YANSHEE_STATE["queue"])
+    YANSHEE_STATE["queue"].clear()
+    return {"status": "ok", "tasks": tasks_to_run}
+
+@app.post("/api/yanshee/speak")
+async def yanshee_speak(payload: YansheeSpeakPayload):
+    YANSHEE_STATE["task_counter"] += 1
+    t_id = YANSHEE_STATE["task_counter"]
+    audio_file = f"speech_{t_id}.mp3"
+    
+    await generate_speech_file(payload.text, audio_file, voice=payload.voice or "id-ID-ArdiNeural")
+    
+    task_obj = {
+        "id": t_id,
+        "action": "speak",
+        "text": payload.text,
+        "motion": payload.motion,
+        "audio_url": f"/api/yanshee/audio/{audio_file}",
+        "created_at": int(time.time())
+    }
+    YANSHEE_STATE["queue"].append(task_obj)
+    YANSHEE_STATE["history"].append(task_obj)
+    
+    return {
+        "status": "ok",
+        "task_id": t_id,
+        "message": f"Instruksi suara berhasil dikirim ke antrian Yanshee: '{payload.text}'"
+    }
+
+@app.get("/api/yanshee/audio/{filename}")
+def yanshee_serve_audio(filename: str):
+    file_path = os.path.join(YANSHEE_AUDIO_DIR, filename)
+    if os.path.exists(file_path):
+        return FileResponse(file_path, media_type="audio/mpeg")
+    raise HTTPException(status_code=404, detail="Audio file not found")
+
+@app.get("/api/yanshee/status")
+def yanshee_status():
+    now = int(time.time())
+    is_live = (now - YANSHEE_STATE["last_seen"]) < 15 if YANSHEE_STATE["last_seen"] > 0 else False
+    return {
+        "online": is_live,
+        "robot_id": YANSHEE_STATE["robot_id"],
+        "ip": YANSHEE_STATE["ip"],
+        "hostname": YANSHEE_STATE["hostname"],
+        "has_yanapi": YANSHEE_STATE["has_yanapi"],
+        "audio_player": YANSHEE_STATE["audio_player"],
+        "last_seen_seconds_ago": now - YANSHEE_STATE["last_seen"] if YANSHEE_STATE["last_seen"] > 0 else None,
+        "pending_tasks": len(YANSHEE_STATE["queue"]),
+        "history_count": len(YANSHEE_STATE["history"])
+    }
+
+@app.post("/api/yanshee/report")
+def yanshee_report(payload: YansheeReportPayload):
+    return {"status": "ok"}
+
 # --- STATIC MULTI-PAGE ROUTES ---
 
 @app.api_route("/", methods=["GET", "HEAD"])
