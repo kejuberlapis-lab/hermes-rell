@@ -679,17 +679,41 @@ YANSHEE_STATE = {
 YANSHEE_AUDIO_DIR = os.path.join(BASE_DIR, "yanshee_audio")
 os.makedirs(YANSHEE_AUDIO_DIR, exist_ok=True)
 
+def sanitize_spoken_text(text: str) -> str:
+    """Membersihkan dan memformat teks agar artikulasi lisan jelas & bebas tanda baca aneh."""
+    if not text:
+        return ""
+    # Hapus markdown
+    t = re.sub(r'[*_#`~|>]', '', text)
+    t = re.sub(r'https?://\S+', 'tautan', t)
+    # Ganti simbol penting ke kata
+    t = t.replace('%', ' persen')
+    t = t.replace('$', ' dolar ')
+    t = t.replace('&', ' dan ')
+    t = t.replace('Rp ', 'rupiah ')
+    t = t.replace('Rp', 'rupiah ')
+    # Akronim penting
+    t = re.sub(r'\bKPI\b', 'K-P-I', t)
+    t = re.sub(r'\bSLA\b', 'S-L-A', t)
+    t = re.sub(r'\bPO\b', 'P-O', t)
+    t = re.sub(r'\bVPS\b', 'V-P-S', t)
+    t = re.sub(r'\bAPI\b', 'A-P-I', t)
+    # Bersihkan whitespace ganda
+    t = re.sub(r'\s+', ' ', t).strip()
+    return t
+
 async def generate_speech_file(text: str, filename: str, voice: str = "id-ID-ArdiNeural") -> str:
     out_path = os.path.join(YANSHEE_AUDIO_DIR, filename)
+    clean_text = sanitize_spoken_text(text)
     try:
         import edge_tts
-        communicate = edge_tts.Communicate(text, voice)
+        communicate = edge_tts.Communicate(clean_text, voice, rate="+0%", pitch="+0Hz")
         await communicate.save(out_path)
         return out_path
     except Exception as e:
         try:
             from gtts import gTTS
-            tts = gTTS(text=text, lang="id", slow=False)
+            tts = gTTS(text=clean_text, lang="id", slow=False)
             tts.save(out_path)
             return out_path
         except Exception as e2:
