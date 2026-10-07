@@ -190,6 +190,20 @@ fi
 echo "🚀 Pushing Full Backup to GitHub: $REPO_URL..."
 git push -u origin main
 
+# 10. Sync Dedicated Repositories (Widya.X)
+if [ -d "/home/ubuntu/ObsidianVault/Widya_X/.git" ]; then
+    echo "📦 Syncing Dedicated Vault: Widya.X..."
+    cd /home/ubuntu/ObsidianVault/Widya_X
+    git add -A
+    if ! git diff --staged --quiet; then
+        git commit -m "Auto-sync Widya.X Vault: $TIMESTAMP"
+        git push origin main 2>/dev/null || true
+        echo "✓ Widya.X repo synced successfully!"
+    else
+        echo "✓ Widya.X repo already up-to-date."
+    fi
+fi
+
 echo "=========================================================="
 echo "🎉 SEMUA CHAT HISTORY, RULE, PENGATURAN, MD, & DAFTAR SKILL TELAH TERSINKRON!"
 echo "=========================================================="
