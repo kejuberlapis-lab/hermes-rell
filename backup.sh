@@ -133,8 +133,8 @@ cat << 'EOF' > "$BACKUP_DIR/RULES_AND_SETTINGS.md"
 - Proyek lain (Mitsindo, Lamar Coffee, XAU Trading, VPS Backup, Bot Airdrop) wajib diisolasi penuh di repositori/kunci terpisah.
 
 ## ⚙️ 4. Infrastruktur & Port Aktif di VPS
-- **Port 80:** Nginx Web Server (`/var/www/html/`)
-- **Port 8082:** HRIS Mitsindo (`hris.service` - FastAPI Backend)
+- **Port 80 & 443:** Nginx Web Server (Reverse Proxy & SSL HTTPS)
+- **Port 8088:** Platform AI Tech Worker (`ai-tech-worker.service` - FastAPI Backend)
 - **Port 8085:** Lamar Coffee Multi-Page Website (`lamar-coffee.service`)
 - **Port 3389:** XRDP Remote Desktop (Wine 10.0 & MetaTrader 5 - 24/7 Nonstop)
 
@@ -155,14 +155,6 @@ rsync -av --delete \
 rsync -av --delete \
   --exclude=".git" \
   /home/ubuntu/lamar_coffee_website/ "$BACKUP_DIR/projects/lamar_coffee/"
-
-rsync -av --delete \
-  --exclude="venv" \
-  --exclude=".env" \
-  --exclude="__pycache__" \
-  --exclude="static/uploads" \
-  --exclude="*.db" \
-  /home/ubuntu/hris/ "$BACKUP_DIR/projects/hris/"
 
 cp -f /home/ubuntu/*.py "$BACKUP_DIR/projects/scripts/" 2>/dev/null || true
 

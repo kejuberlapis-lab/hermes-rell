@@ -20,8 +20,8 @@
 - Proyek lain (Mitsindo, Lamar Coffee, XAU Trading, VPS Backup, Bot Airdrop) wajib diisolasi penuh di repositori/kunci terpisah.
 
 ## ⚙️ 4. Infrastruktur & Port Aktif di VPS
-- **Port 80:** Nginx Web Server (`/var/www/html/`)
-- **Port 8082:** HRIS Mitsindo (`hris.service` - FastAPI Backend)
+- **Port 80 & 443:** Nginx Web Server (Reverse Proxy & SSL HTTPS)
+- **Port 8088:** Platform AI Tech Worker (`ai-tech-worker.service` - FastAPI Backend)
 - **Port 8085:** Lamar Coffee Multi-Page Website (`lamar-coffee.service`)
 - **Port 3389:** XRDP Remote Desktop (Wine 10.0 & MetaTrader 5 - 24/7 Nonstop)
 
