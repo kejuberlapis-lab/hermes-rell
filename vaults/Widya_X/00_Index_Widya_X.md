@@ -45,6 +45,7 @@
 | **[[05_SOP_Instruktur_dan_Manajemen_Siswa]]** | Standar Pengajaran & QC | Kualifikasi mentor, alur presensi, laporan berkala orang tua, dan sertifikasi kelulusan. |
 | **[[06_Strategi_Marketing_dan_Akuisisi_Siswa]]** | Pemasaran & Lead Funnel | Trial class gratis, pameran robotik sekolah, kampanye digital, dan event kompetisi. |
 | **[[07_Roadmap_Pengembangan_dan_Ekspansi]]** | Target Jangka Panjang | Milestones kuartalan, pendirian tim atlet olimpiade robotik, dan inkubasi inovasi. |
+| **[[09_PRD_Learning_Management_and_Operations_Platform]]** | PRD Sistem Platform Widya.X OS | Arsitektur LMS, ERP operasional 2 cabang, manajemen siswa/guru, konten 4 pilar, & marketing CRM. |
 
 ---
 
